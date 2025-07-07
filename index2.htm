@@ -19,31 +19,8 @@
 <link rel="apple-touch-icon-precomposed" href="https://lib.cpu.edu.tw/var/file/36/1036/msys_1036_2538920_14953.ico">
 <link rel="apple-touch-icon" href="https://lib.cpu.edu.tw/var/file/36/1036/msys_1036_2538920_14953.ico">
 
-<link rel="stylesheet" href="combine-zh-tw.css?t=001" type="text/css" />
+<link rel="stylesheet" href="combine-zh-tw2.css?t=001D" type="text/css" />
 <style>@media (min-width: 481px) {.row_0 .col_01 { width: 0%;}.row_0 .col_02 { width: 100%;}.row_0 .col_03 { width: 0%;}}</style>
-
-
-
-<script>
-function gen(ur) {
-
-function getRandomString(length) {
-  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  let result = '';
-  for (let i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
-}
-document.getElementById('mb2').style.display = 'none';
-document.getElementById("funnel").style.display =  "block";
-    setTimeout(function() {
-
-      window.location.href =ur+'?i='+getRandomString(10);
-    }, 300); // 1 秒後跳轉
-  }
-</script>
-
 
 
 
@@ -67,7 +44,24 @@ document.getElementById("funnel").style.display =  "block";
 	<div class="minner container">
 
 
+<script>
+function gen(ur) {
 
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+document.getElementById('mb2').style.display = 'none';
+document.getElementById("funnel").style.display = "block";
+    setTimeout(function() {
+      window.location.href =ur+'?i='+getRandomString(10);
+    }, 300); // 1 秒後跳轉
+  }
+</script>
 
 
 
@@ -109,6 +103,9 @@ document.getElementById("funnel").style.display =  "block";
                 
 
 
+
+
+
    
 <div class="headnavcust">
 	<div class="mnavbar mn-collapse">
@@ -118,17 +115,51 @@ document.getElementById("funnel").style.display =  "block";
 		<div class="nav-toggle collapse navbar-collapse iosScrollToggle hd-mainmenu">
 			<div class="hdmenu">
 <ul class="nav navbar-nav" id="aa66f8ed779ef4af0c103f834dc50750d_MenuTop_mainmenu">
-
 <li id="Hln_1729" class="dropdown" ></div>			
 <li id="Hln_1729" class="dropdown" ></div>			
 </div>
 </div>
 </div>
 
+<script>
+$(document).ready(function(){
+	$(".mnavbar .navbar-toggle").click(function(){
+		$(this).toggleClass("open");
+		var ariaExpanded = $(this).attr('aria-expanded');
+		$(this).attr('aria-expanded',ariaExpanded !== 'true');
+	});
+   $(".mycollapse .navbar-toggle").click(function(){
+      $(this).toggleClass("open");
+      var ariaExpanded = $(this).attr('aria-expanded');
+      $(this).attr('aria-expanded',ariaExpanded !== 'true');
+   });
+   $('.iosScrollToggle').on('shown.bs.collapse', function () {
+		var togglePos = $(this).css('position');
+      if(togglePos !== 'static'){
+          ModalHelper.afterOpen();
+      }
+    });
+
+    $('.iosScrollToggle').on('hide.bs.collapse', function () {
+		var togglePos = $(this).css('position');
+      if(togglePos !== 'static'){
+			ModalHelper.beforeClose();
+      }
+    });
+	
+});
+</script>
 
 
 
+	
 
+<script language="javascript">
+
+	tabSwitch("aa66f8ed779ef4af0c103f834dc50750d_MenuTop_mainmenu");
+
+
+</script>
 
          
 			
@@ -154,6 +185,12 @@ document.getElementById("funnel").style.display =  "block";
 		</div>
 	</div>
 </div>
+
+
+
+	
+
+
          
          
             </div>
@@ -282,14 +319,17 @@ document.getElementById("funnel").style.display =  "block";
 
 <div class="module module-compound">
 		<div class="mouter">
-<button style="background-color: #0D6EFD;padding-right:1px;padding-left:1px;justify-content:center;align-items:center;height:35px;width:120px;color:#FFF;font-size:1.1em;font-weight: bold; type="button" href="javascript: void(0)" onclick="gen('index.htm')" class="btn btn-warning">【克漏字】</button>
+<button style="background-color: #0D6EFD;padding-right:1px;padding-left:1px;justify-content:center;align-items:center;height:35px;width:120px;color:#FFF;font-size:1.1em;font-weight: bold; type="button" href="javascript: void(0)" onclick="gen('index.htm')" class="btn btn-warning">【克漏字】</button> 
 　<button style="background-color: #FFC107;padding-right:1px;padding-left:1px;justify-content:center;align-items:center;height:35px;width:120px;color:#000;font-size:1.1em;font-weight: bold; type="button" href="javascript: void(0)" onclick="gen('index2.htm')" class="btn btn-warning">【英文閱讀】</button>
 					
-			
 
 
+	
 
-			
+
+	
+
+		
 		</div>
 	</div>
 
@@ -308,73 +348,109 @@ document.getElementById("funnel").style.display =  "block";
 <div class="module module-link md_style5">
 <div class="mouter">
 	<header class="mt ">	 
-	<h2 class="mt-title">克漏字學習</h2>
-
+	<h2 class="mt-title">英文閱讀學習</h2>
         </header>
 <!--++++++++++++++++++++++++-->
 <div id="funnel" style="display:none;align-items: center; text-align: center;">
 <img src="wait2.gif"></div>
-<section  class="mb" >
+<section class="mb">
 <div class="row listBS">
 
 
 <div class="container">
   <div class="row">
 	
-<div id="mb2" style="display: block;"> 		
-<div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
-<a href="#" onclick="gen('111a.htm')" target="_self"  rel='noopener noreferrer' style="color:blue;"  >
-111克漏字[專業]</a>	
+<div id="mb2" >		
+<div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt2">
+<div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">
+<a href="#" onclick="gen('111b.htm')"  rel='noopener noreferrer' style="color:blue;"  >
+111閱讀[專業]</a>	
 </div></div></div></div>
 
 		
 <div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
-<a href="#" onclick="gen('111wa.htm')" target="_self"  rel='noopener noreferrer' style="color:blue;"  >
-111克漏字[外勤]</a>	
+<a href="#" onclick="gen('111wb.htm')"   rel='noopener noreferrer' style="color:blue;"  >
+111閱讀[外勤]</a>	
 </div></div></div></div>
 	
 
 <div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
-<a href="#" onclick="gen('word01.htm')" target="_self"  rel='noopener noreferrer'  style="color:blue;">
-克漏字01</a>	
+<a  href="#" onclick="gen('111wc.htm')"   rel='noopener noreferrer'  style="color:blue;">
+<font color="#006946">111考題[外勤]</a>		
+</div></div></div></div>
+
+<div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
+<a href="#" onclick="gen('rb01.htm')" rel='noopener noreferrer'  style="color:blue;">
+測驗01【閱讀】</a>		
+</div></div></div></div>
+
+<div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
+<a href="#" onclick="gen('rb01q.htm')" rel='noopener noreferrer'  style="color:blue;">
+<font color="#006946">測驗01【考題】</a>		
+</div></div></div></div>
+
+<div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
+<a href="#" onclick="gen('rb02.htm')" el='noopener noreferrer'  style="color:blue;">
+測驗02【閱讀】</a>		
+</div></div></div></div>
+
+<div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
+<a href="#" onclick="gen('rb02q.htm')" rel='noopener noreferrer'  style="color:blue;">
+<font color="#006946">測驗02【考題】</a>		
 </div></div></div></div>
 
 
 <div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
-<a href="#" onclick="gen('word02.htm')" target="_self"  rel='noopener noreferrer'  style="color:blue;">
-克漏字02</a>
+<a href="#" onclick="gen('rb03.htm')" rel='noopener noreferrer'  style="color:blue;">
+測驗03【閱讀】</a>		
 </div></div></div></div>
-	
-
-<div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
-<a href="#" onclick="gen('word03.htm')" target="_self"  rel='noopener noreferrer'  style="color:blue;">
-克漏字03</a>
-</div></div></div></div>
-
 
 
 <div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
-<a href="#" onclick="gen('word04.htm')" target="_self"  rel='noopener noreferrer'  style="color:blue;">
-克漏字04</a>
+<a href="#" onclick="gen('rb04.htm')" rel='noopener noreferrer'  style="color:blue;">
+測驗04【閱讀】</a>		
 </div></div></div></div>
-		
 
 <div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
-<a href="#" onclick="gen('word05.htm')" target="_self"  rel='noopener noreferrer'  style="color:blue;">
-克漏字05</a>
+<a href="#" onclick="gen('rb05.htm')" rel='noopener noreferrer'  style="color:blue;">
+測驗05【閱讀】</a>		
 </div></div></div></div>
-			
+
 
 <div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
-<a href="#" onclick="gen('word06.htm')" target="_self"  rel='noopener noreferrer'  style="color:blue;">
-克漏字06</a>
+<a href="#" onclick="gen('rb07.htm')" rel='noopener noreferrer'  style="color:blue;">
+測驗07【閱讀】</a>		
 </div></div></div></div>
+
+<div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
+<a href="#" onclick="gen('rb08.htm')" rel='noopener noreferrer'  style="color:blue;">
+測驗08【閱讀】</a>		
+</div></div></div></div>
+
+
+<div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
+<a href="#" onclick="gen('rb09.htm')" rel='noopener noreferrer'  style="color:blue;">
+測驗09【閱讀】</a>		
+</div></div></div></div>
+
+<div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
+<a href="#" onclick="gen('rb10.htm')" rel='noopener noreferrer'  style="color:blue;">
+測驗10【閱讀】</a>		
+</div></div></div></div>
+
+
+<div class="d-item d-title col-sm-2"><div class="mbox"><div class="d-txt"><div class="mtitle" style="color:blue;text-align:center;font-size:22px;font-weight: bold;">			
+<a href="#" onclick="gen('rb11.htm')" rel='noopener noreferrer'  style="color:blue;">
+測驗11【閱讀】</a>		
+</div></div></div></div>
+
+
+
 
 
 
 <!--++++++++++++++++++++++++-->      
-</div>
-</div></div>
+</div></div></div>
 
    	
 	</section>

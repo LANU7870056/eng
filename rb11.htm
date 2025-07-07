@@ -1,0 +1,263 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:99%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      right:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+<center>11奇異鳥</center>
+　<span class='tooltip'>Kiwi birds<span class='tooltip-text' onclick="speakText('Kiwi birds')"><IMG SRC='speak.png'>奇異鳥</span></span> are <span class='tooltip'>endangered<span class='tooltip-text' onclick="speakText('endangered')"><IMG SRC='speak.png'>瀕危</span></span> little birds that are <span class='tooltip'>native<span class='tooltip-text' onclick="speakText('native')"><IMG SRC='speak.png'>本國的</span></span> to <span class='tooltip'>New Zealand<span class='tooltip-text' onclick="speakText('New Zealand')"><IMG SRC='speak.png'>紐西蘭</span></span> , and <span class='tooltip'>act as<span class='tooltip-text' onclick="speakText('act as')"><IMG SRC='speak.png'>充當</span></span> a <span class='tooltip'>fairly<span class='tooltip-text' onclick="speakText('fairly')"><IMG SRC='speak.png'>相當</span></span> <span class='tooltip'>adorable<span class='tooltip-text' onclick="speakText('adorable')"><IMG SRC='speak.png'>可愛的</span></span> <span class='tooltip'>unofficial<span class='tooltip-text' onclick="speakText('unofficial')"><IMG SRC='speak.png'>非官方</span></span> <span class='tooltip'>symbol<span class='tooltip-text' onclick="speakText('symbol')"><IMG SRC='speak.png'>象徵</span></span> for the <span class='tooltip'>country<span class='tooltip-text' onclick="speakText('country')"><IMG SRC='speak.png'>國家</span></span> .<br>
+　And , <span class='tooltip'>aside<span class='tooltip-text' onclick="speakText('aside')"><IMG SRC='speak.png'>一邊</span></span> from being <span class='tooltip'>cute<span class='tooltip-text' onclick="speakText('cute')"><IMG SRC='speak.png'>可愛的</span></span> , they have some very <span class='tooltip'>unique<span class='tooltip-text' onclick="speakText('unique')"><IMG SRC='speak.png'>獨特的</span></span> <span class='tooltip'>characteristics<span class='tooltip-text' onclick="speakText('characteristics')"><IMG SRC='speak.png'>特徵</span></span> which make them <span class='tooltip'>exceptionally<span class='tooltip-text' onclick="speakText('exceptionally')"><IMG SRC='speak.png'>異常地</span></span> <span class='tooltip'>awesome:<span class='tooltip-text' onclick="speakText('awesome:')"><IMG SRC='speak.png'>驚人的、非常棒</span></span> <br> <hr>
+1.Kiwi moms are <span class='tooltip'>basically<span class='tooltip-text' onclick="speakText('basically')"><IMG SRC='speak.png'>基本的</span></span> <span class='tooltip'>superheroes<span class='tooltip-text' onclick="speakText('superheroes')"><IMG SRC='speak.png'>超級英雄</span></span> .<br>
+ <span class='tooltip'>Female<span class='tooltip-text' onclick="speakText('Female')"><IMG SRC='speak.png'>女性</span></span> kiwis <span class='tooltip'>lay<span class='tooltip-text' onclick="speakText('lay')"><IMG SRC='speak.png'>躺、産卵</span></span> one of the largest <span class='tooltip'>eggs<span class='tooltip-text' onclick="speakText('eggs')"><IMG SRC='speak.png'>蛋</span></span> in <span class='tooltip'>relation<span class='tooltip-text' onclick="speakText('relation')"><IMG SRC='speak.png'>關係</span></span> to their body size of any bird in the world .<br>
+　A kiwi egg takes up about 20% of the <span class='tooltip'>female<span class='tooltip-text' onclick="speakText('female')"><IMG SRC='speak.png'>女性</span></span> bird's body , and weighs about 16 oz .<br>
+　To give some <span class='tooltip'>perspective<span class='tooltip-text' onclick="speakText('perspective')"><IMG SRC='speak.png'>看法、給一些概念</span></span> , a <span class='tooltip'>human<span class='tooltip-text' onclick="speakText('human')"><IMG SRC='speak.png'>人類</span></span> baby only takes up about 5% of its mother's body .<br>
+　As the <span class='tooltip'>result<span class='tooltip-text' onclick="speakText('result')"><IMG SRC='speak.png'>結果</span></span> of such a <span class='tooltip'>sizable<span class='tooltip-text' onclick="speakText('sizable')"><IMG SRC='speak.png'>相當大的</span></span> egg , there is a higher <span class='tooltip'>percentage<span class='tooltip-text' onclick="speakText('percentage')"><IMG SRC='speak.png'>百分比</span></span> of <span class='tooltip'>yolk<span class='tooltip-text' onclick="speakText('yolk')"><IMG SRC='speak.png'>蛋黃</span></span> in kiwi <span class='tooltip'>eggs<span class='tooltip-text' onclick="speakText('eggs')"><IMG SRC='speak.png'>蛋</span></span> ,
+ which enables the kiwi <span class='tooltip'>babies<span class='tooltip-text' onclick="speakText('babies')"><IMG SRC='speak.png'>嬰兒</span></span> to <span class='tooltip'>hatch<span class='tooltip-text' onclick="speakText('hatch')"><IMG SRC='speak.png'>孵</span></span> fully <span class='tooltip'>feathered<span class='tooltip-text' onclick="speakText('feathered')"><IMG SRC='speak.png'>羽毛狀的</span></span> , <span class='tooltip'>healthy<span class='tooltip-text' onclick="speakText('healthy')"><IMG SRC='speak.png'>健康</span></span> , and well on their way to <span class='tooltip'>independence<span class='tooltip-text' onclick="speakText('independence')"><IMG SRC='speak.png'>獨立</span></span> .<br> <hr>
+
+2.They have <span class='tooltip'>sharp<span class='tooltip-text' onclick="speakText('sharp')"><IMG SRC='speak.png'>鋒利的</span></span> <span class='tooltip'>sniffers<span class='tooltip-text' onclick="speakText('sniffers')"><IMG SRC='speak.png'>嗅覺器官</span></span> .<br>
+　A good <span class='tooltip'>sense<span class='tooltip-text' onclick="speakText('sense')"><IMG SRC='speak.png'>感覺</span></span> of <span class='tooltip'>smell<span class='tooltip-text' onclick="speakText('smell')"><IMG SRC='speak.png'>聞</span></span> is a <span class='tooltip'>rare<span class='tooltip-text' onclick="speakText('rare')"><IMG SRC='speak.png'>稀有的</span></span> <span class='tooltip'>attribute<span class='tooltip-text' onclick="speakText('attribute')"><IMG SRC='speak.png'>屬性</span></span> for a bird , but kiwis have highly <span class='tooltip'>developed<span class='tooltip-text' onclick="speakText('developed')"><IMG SRC='speak.png'>發達</span></span> <span class='tooltip'>olfactory<span class='tooltip-text' onclick="speakText('olfactory')"><IMG SRC='speak.png'>嗅覺</span></span> <span class='tooltip'>senses<span class='tooltip-text' onclick="speakText('senses')"><IMG SRC='speak.png'>感官</span></span> .<br>
+　They are the only birds with <span class='tooltip'>nostrils<span class='tooltip-text' onclick="speakText('nostrils')"><IMG SRC='speak.png'>鼻孔</span></span> at the end of their <span class='tooltip'>beaks<span class='tooltip-text' onclick="speakText('beaks')"><IMG SRC='speak.png'>喙</span></span> , <span class='tooltip'>along<span class='tooltip-text' onclick="speakText('along')"><IMG SRC='speak.png'>沿著</span></span> with <span class='tooltip'>sensory<span class='tooltip-text' onclick="speakText('sensory')"><IMG SRC='speak.png'>感官</span></span> <span class='tooltip'>pits<span class='tooltip-text' onclick="speakText('pits')"><IMG SRC='speak.png'>坑</span></span> which allow them to <span class='tooltip'>sense<span class='tooltip-text' onclick="speakText('sense')"><IMG SRC='speak.png'>感覺</span></span> <span class='tooltip'>prey<span class='tooltip-text' onclick="speakText('prey')"><IMG SRC='speak.png'>獵物</span></span> <span class='tooltip'>underground<span class='tooltip-text' onclick="speakText('underground')"><IMG SRC='speak.png'>地下</span></span> .<br> <hr>
+
+3.They're very <span class='tooltip'>grounded<span class='tooltip-text' onclick="speakText('grounded')"><IMG SRC='speak.png'>接地</span></span> -- <span class='tooltip'>literally<span class='tooltip-text' onclick="speakText('literally')"><IMG SRC='speak.png'>字面上地</span></span> .<br>
+　It is <span class='tooltip'>common<span class='tooltip-text' onclick="speakText('common')"><IMG SRC='speak.png'>常見的</span></span> knowledge that kiwis are <span class='tooltip'>flightless<span class='tooltip-text' onclick="speakText('flightless')"><IMG SRC='speak.png'>不會飛</span></span>, but their <span class='tooltip'>lack of<span class='tooltip-text' onclick="speakText('lack of')"><IMG SRC='speak.png'>缺少</span></span> <span class='tooltip'>wingspan<span class='tooltip-text' onclick="speakText('wingspan')"><IMG SRC='speak.png'>翼展</span></span> isn't without cause .<br>
+　Before humans arrived in <span class='tooltip'>New Zealand<span class='tooltip-text' onclick="speakText('New Zealand')"><IMG SRC='speak.png'>紐西蘭</span></span> <span class='tooltip'>thousands<span class='tooltip-text' onclick="speakText('thousands')"><IMG SRC='speak.png'>數千</span></span> of years ago , there were really no <span class='tooltip'>terrestrial<span class='tooltip-text' onclick="speakText('terrestrial')"><IMG SRC='speak.png'>陸地</span></span> <span class='tooltip'>predators<span class='tooltip-text' onclick="speakText('predators')"><IMG SRC='speak.png'>掠食者</span></span> <span class='tooltip'>endangering<span class='tooltip-text' onclick="speakText('endangering')"><IMG SRC='speak.png'>危害</span></span> the kiwi <span class='tooltip'>population<span class='tooltip-text' onclick="speakText('population')"><IMG SRC='speak.png'>人口</span></span> , so most <span class='tooltip'>flightless<span class='tooltip-text' onclick="speakText('flightless')"><IMG SRC='speak.png'>不會飛</span></span> birds were <span class='tooltip'>relatively<span class='tooltip-text' onclick="speakText('relatively')"><IMG SRC='speak.png'>相對地</span></span> safe <span class='tooltip'>searching<span class='tooltip-text' onclick="speakText('searching')"><IMG SRC='speak.png'>搜尋</span></span> for food and <span class='tooltip'>nesting<span class='tooltip-text' onclick="speakText('nesting')"><IMG SRC='speak.png'>築巢</span></span> on the ground .<br> <hr>
+
+4.They're not <span class='tooltip'>pushovers<span class='tooltip-text' onclick="speakText('pushovers')"><IMG SRC='speak.png'>容易屈服者</span></span> .<br>
+　Kiwis may be <span class='tooltip'>nocturnal<span class='tooltip-text' onclick="speakText('nocturnal')"><IMG SRC='speak.png'>夜</span></span> , <span class='tooltip'>meaning<span class='tooltip-text' onclick="speakText('meaning')"><IMG SRC='speak.png'>意義</span></span> they are <span class='tooltip'>mostly<span class='tooltip-text' onclick="speakText('mostly')"><IMG SRC='speak.png'>大多</span></span> active <span class='tooltip'>during<span class='tooltip-text' onclick="speakText('during')"><IMG SRC='speak.png'>期間</span></span> night time .<br>
+　But they aren't <span class='tooltip'>shy<span class='tooltip-text' onclick="speakText('shy')"><IMG SRC='speak.png'>害羞的</span></span> at all .<br>
+　The birds are very <span class='tooltip'>territorial<span class='tooltip-text' onclick="speakText('territorial')"><IMG SRC='speak.png'>領土(地域性)</span></span> , and they have razor-sharp <span class='tooltip'>claws<span class='tooltip-text' onclick="speakText('claws')"><IMG SRC='speak.png'>爪子</span></span> which can do some <span class='tooltip'>damage<span class='tooltip-text' onclick="speakText('damage')"><IMG SRC='speak.png'>損害</span></span> .<br>
+　<span class='tooltip'>According<span class='tooltip-text' onclick="speakText('According')"><IMG SRC='speak.png'>根據</span></span> to kiwi <span class='tooltip'>researcher<span class='tooltip-text' onclick="speakText('researcher')"><IMG SRC='speak.png'>研究員</span></span> Dr.
+John McLenan , one great <span class='tooltip'>spotted<span class='tooltip-text' onclick="speakText('spotted')"><IMG SRC='speak.png'>斑</span></span> kiwi in North <span class='tooltip'>Westland<span class='tooltip-text' onclick="speakText('Westland')"><IMG SRC='speak.png'>韋斯特蘭</span></span> named Pete is <span class='tooltip'>infamous<span class='tooltip-text' onclick="speakText('infamous')"><IMG SRC='speak.png'>臭名昭著</span></span> for
+ "<span class='tooltip'>catapulting<span class='tooltip-text' onclick="speakText('catapulting')"><IMG SRC='speak.png'>彈射、啄傷</span></span> in for a <span class='tooltip'>hit-and-run<span class='tooltip-text' onclick="speakText('hit-and-run')"><IMG SRC='speak.png'>攻擊就跑</span></span>. He <span class='tooltip'>belts<span class='tooltip-text' onclick="speakText('belts')"><IMG SRC='speak.png'>N皮帶、V猛擊</span></span> you in the leg and then <span class='tooltip'>runs off<span class='tooltip-text' onclick="speakText('runs off')"><IMG SRC='speak.png'>跑掉</span></span> into the <span class='tooltip'>undergrowth<span class='tooltip-text' onclick="speakText('undergrowth')"><IMG SRC='speak.png'>灌木叢</span></span>."<br> <hr>
+
+5.They're hard to <span class='tooltip'>fool<span class='tooltip-text' onclick="speakText('fool')"><IMG SRC='speak.png'>傻子</span></span> .<br>
+　Kiwis <span class='tooltip'>actually<span class='tooltip-text' onclick="speakText('actually')"><IMG SRC='speak.png'>實際上</span></span> have <span class='tooltip'>excellent<span class='tooltip-text' onclick="speakText('excellent')"><IMG SRC='speak.png'>出色的</span></span> <span class='tooltip'>memories<span class='tooltip-text' onclick="speakText('memories')"><IMG SRC='speak.png'>記憶</span></span> , and can <span class='tooltip'>remember<span class='tooltip-text' onclick="speakText('remember')"><IMG SRC='speak.png'>記住</span></span> <span class='tooltip'>unsavory<span class='tooltip-text' onclick="speakText('unsavory')"><IMG SRC='speak.png'>令人討厭的</span></span> <span class='tooltip'>incidents<span class='tooltip-text' onclick="speakText('incidents')"><IMG SRC='speak.png'>事件</span></span> for at least five years .<br>
+　The birds may be <span class='tooltip'>fooled<span class='tooltip-text' onclick="speakText('fooled')"><IMG SRC='speak.png'>被愚弄</span></span> by <span class='tooltip'>recorded<span class='tooltip-text' onclick="speakText('recorded')"><IMG SRC='speak.png'>錄音</span></span> kiwi calls on <span class='tooltip'>tape<span class='tooltip-text' onclick="speakText('tape')"><IMG SRC='speak.png'>錄音帶</span></span> once ,
+ but they learn their <span class='tooltip'>lesson<span class='tooltip-text' onclick="speakText('lesson')"><IMG SRC='speak.png'>課程</span></span> <span class='tooltip'>afterward<span class='tooltip-text' onclick="speakText('afterward')"><IMG SRC='speak.png'>之後</span></span> ,
+ and tend to <span class='tooltip'>challenge<span class='tooltip-text' onclick="speakText('challenge')"><IMG SRC='speak.png'>挑戰</span></span> the device and 
+<span class='tooltip'>suspiciously<span class='tooltip-text' onclick="speakText('actually')"><IMG SRC='speak.png'>可疑地、懷疑</span></span> 
+<span class='tooltip'>circle<span class='tooltip-text' onclick="speakText('circle')"><IMG SRC='speak.png'>環繞、圓圈</span></span>
+it to <span class='tooltip'>ascertain<span class='tooltip-text' onclick="speakText('ascertain')"><IMG SRC='speak.png'>探究</span></span> 
+<span class='tooltip'>whether<span class='tooltip-text' onclick="speakText('whether')"><IMG SRC='speak.png'>無論</span></span>
+ it is an 
+<span class='tooltip'>actual<span class='tooltip-text' onclick="speakText('actual')"><IMG SRC='speak.png'>實際的</span></span>
+ fellow kiwi .<br>

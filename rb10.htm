@@ -1,0 +1,262 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:99%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      right:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+<CENTER>10性暴力</CENTER>
+　"What were you <span class='tooltip'>wearing<span class='tooltip-text' onclick="speakText('wearing')"><IMG SRC='speak.png'>穿著</span></span> ?" is the <span class='tooltip'>question<span class='tooltip-text' onclick="speakText('question')"><IMG SRC='speak.png'>問題</span></span> often <span class='tooltip'>raised<span class='tooltip-text' onclick="speakText('raised')"><IMG SRC='speak.png'>提出</span></span> to the <span class='tooltip'>victims<span class='tooltip-text' onclick="speakText('victims')"><IMG SRC='speak.png'>受害者</span></span> of <span class='tooltip'>sexual<span class='tooltip-text' onclick="speakText('sexual')"><IMG SRC='speak.png'>性</span></span> <span class='tooltip'>assaults<span class='tooltip-text' onclick="speakText('assaults')"><IMG SRC='speak.png'>攻擊</span></span>.<br>
+　This <span class='tooltip'>reveals<span class='tooltip-text' onclick="speakText('reveals')"><IMG SRC='speak.png'>揭示</span></span> the <span class='tooltip'>fact<span class='tooltip-text' onclick="speakText('fact')"><IMG SRC='speak.png'>事實</span></span> that many people <span class='tooltip'>assume<span class='tooltip-text' onclick="speakText('assume')"><IMG SRC='speak.png'>認為</span></span> <span class='tooltip'>rape<span class='tooltip-text' onclick="speakText('rape')"><IMG SRC='speak.png'>強姦</span></span> has something to do with the victim's choices. <br>
+　To <span class='tooltip'>dispel<span class='tooltip-text' onclick="speakText('dispel')"><IMG SRC='speak.png'>打消</span></span> the myth that <span class='tooltip'>rape<span class='tooltip-text' onclick="speakText('rape')"><IMG SRC='speak.png'>強姦</span></span> is about what the <span class='tooltip'>victim<span class='tooltip-text' onclick="speakText('victim')"><IMG SRC='speak.png'>受害者</span></span> was <span class='tooltip'>wearing<span class='tooltip-text' onclick="speakText('wearing')"><IMG SRC='speak.png'>穿著</span></span>, an <span class='tooltip'>exhibition<span class='tooltip-text' onclick="speakText('exhibition')"><IMG SRC='speak.png'>展覽</span></span> named "What were you <span class='tooltip'>wearing<span class='tooltip-text' onclick="speakText('wearing')"><IMG SRC='speak.png'>穿著</span></span> ?" was held in <span class='tooltip'>Brussels<span class='tooltip-text' onclick="speakText('Brussels')"><IMG SRC='speak.png'>布魯塞爾</span></span>, <span class='tooltip'>displaying<span class='tooltip-text' onclick="speakText('displaying')"><IMG SRC='speak.png'>顯示</span></span> the kind of clothing <span class='tooltip'>rape<span class='tooltip-text' onclick="speakText('rape')"><IMG SRC='speak.png'>強姦</span></span> <span class='tooltip'>victims<span class='tooltip-text' onclick="speakText('victims')"><IMG SRC='speak.png'>受害者</span></span> <span class='tooltip'>wore<span class='tooltip-text' onclick="speakText('wore')"><IMG SRC='speak.png'>穿著</span></span> when they were raped.<br><hr>
+
+
+　If you <span class='tooltip'>walk<span class='tooltip-text' onclick="speakText('walk')"><IMG SRC='speak.png'>走</span></span> around the <span class='tooltip'>exhibition<span class='tooltip-text' onclick="speakText('exhibition')"><IMG SRC='speak.png'>展覽</span></span>, you will see T-Shirts, <span class='tooltip'>tracksuit<span class='tooltip-text' onclick="speakText('tracksuit')"><IMG SRC='speak.png'>運動服</span></span> bottoms, and a child's top . <br>
+　You can <span class='tooltip'>hardly<span class='tooltip-text' onclick="speakText('hardly')"><IMG SRC='speak.png'>幾乎沒有</span></span> <span class='tooltip'>ignore<span class='tooltip-text' onclick="speakText('ignore')"><IMG SRC='speak.png'>忽略</span></span> the <span class='tooltip'>fact<span class='tooltip-text' onclick="speakText('fact')"><IMG SRC='speak.png'>事實</span></span> that these are all normal items that anyone would wear . <br>
+　They are not <span class='tooltip'>latex<span class='tooltip-text' onclick="speakText('latex')"><IMG SRC='speak.png'>乳膠</span></span>, and they do not <span class='tooltip'>expose<span class='tooltip-text' onclick="speakText('expose')"><IMG SRC='speak.png'>暴露</span></span> too much <span class='tooltip'>skin<span class='tooltip-text' onclick="speakText('skin')"><IMG SRC='speak.png'>皮膚</span></span> . <br>
+　Rape <span class='tooltip'>victims<span class='tooltip-text' onclick="speakText('victims')"><IMG SRC='speak.png'>受害者</span></span> <span class='tooltip'>voluntarily<span class='tooltip-text' onclick="speakText('voluntarily')"><IMG SRC='speak.png'>自願</span></span> <span class='tooltip'>provided<span class='tooltip-text' onclick="speakText('provided')"><IMG SRC='speak.png'>假如</span></span> brief <span class='tooltip'>descriptions<span class='tooltip-text' onclick="speakText('descriptions')"><IMG SRC='speak.png'>描述</span></span> of what they were <span class='tooltip'>wearing<span class='tooltip-text' onclick="speakText('wearing')"><IMG SRC='speak.png'>穿著</span></span> when they <span class='tooltip'>experienced<span class='tooltip-text' onclick="speakText('experienced')"><IMG SRC='speak.png'>經驗豐富的</span></span> <span class='tooltip'>sexual<span class='tooltip-text' onclick="speakText('sexual')"><IMG SRC='speak.png'>性</span></span> violence, and these <span class='tooltip'>descriptions<span class='tooltip-text' onclick="speakText('descriptions')"><IMG SRC='speak.png'>描述</span></span> were used to source clothing for the <span class='tooltip'>exhibition<span class='tooltip-text' onclick="speakText('exhibition')"><IMG SRC='speak.png'>展覽</span></span> . <br>
+　The outfits displayed in the <span class='tooltip'>installation<span class='tooltip-text' onclick="speakText('installation')"><IMG SRC='speak.png'>安裝</span></span> are not the actual clothing worn by the <span class='tooltip'>survivors<span class='tooltip-text' onclick="speakText('survivors')"><IMG SRC='speak.png'>倖存者</span></span>, but rather delivering visual representation of their stories . <br>
+　When assessing a <span class='tooltip'>sexual<span class='tooltip-text' onclick="speakText('sexual')"><IMG SRC='speak.png'>性</span></span> <span class='tooltip'>assault<span class='tooltip-text' onclick="speakText('assault')"><IMG SRC='speak.png'>攻擊</span></span>, the only <span class='tooltip'>question<span class='tooltip-text' onclick="speakText('question')"><IMG SRC='speak.png'>問題</span></span> that <span class='tooltip'>matters<span class='tooltip-text' onclick="speakText('matters')"><IMG SRC='speak.png'>事宜</span></span> is whether there was consent . <br><hr>
+
+　But <span class='tooltip'>rape<span class='tooltip-text' onclick="speakText('rape')"><IMG SRC='speak.png'>強姦</span></span> culture　(a <span class='tooltip'>prevailing<span class='tooltip-text' onclick="speakText('prevailing')"><IMG SRC='speak.png'>盛行</span></span> <span class='tooltip'>social<span class='tooltip-text' onclick="speakText('social')"><IMG SRC='speak.png'>社會的</span></span> <span class='tooltip'>attitude<span class='tooltip-text' onclick="speakText('attitude')"><IMG SRC='speak.png'>態度</span></span> of <span class='tooltip'>ignorance<span class='tooltip-text' onclick="speakText('ignorance')"><IMG SRC='speak.png'>無知</span></span> towards <span class='tooltip'>sexual<span class='tooltip-text' onclick="speakText('sexual')"><IMG SRC='speak.png'>性</span></span> <span class='tooltip'>assault<span class='tooltip-text' onclick="speakText('assault')"><IMG SRC='speak.png'>攻擊</span></span> which results in its <span class='tooltip'>normalization<span class='tooltip-text' onclick="speakText('normalization')"><IMG SRC='speak.png'>常態化</span></span>) has caused people to believe that what a <span class='tooltip'>victim<span class='tooltip-text' onclick="speakText('victim')"><IMG SRC='speak.png'>受害者</span></span> wears does matter . <br>
+　Because of <span class='tooltip'>rape<span class='tooltip-text' onclick="speakText('rape')"><IMG SRC='speak.png'>強姦</span></span> <span class='tooltip'>culture<span class='tooltip-text' onclick="speakText('culture')"><IMG SRC='speak.png'>文化</span></span>, when trying to <span class='tooltip'>figure<span class='tooltip-text' onclick="speakText('figure')"><IMG SRC='speak.png'>數位</span></span> out why a <span class='tooltip'>rape<span class='tooltip-text' onclick="speakText('rape')"><IMG SRC='speak.png'>強姦</span></span> <span class='tooltip'>occurred<span class='tooltip-text' onclick="speakText('occurred')"><IMG SRC='speak.png'>發生</span></span>, the <span class='tooltip'>obvious<span class='tooltip-text' onclick="speakText('obvious')"><IMG SRC='speak.png'>明顯的</span></span> answer — because the attacker is a rapist — is often <span class='tooltip'>overlooked<span class='tooltip-text' onclick="speakText('overlooked')"><IMG SRC='speak.png'>被忽視</span></span> . <br>
+　Instead, what the <span class='tooltip'>victim<span class='tooltip-text' onclick="speakText('victim')"><IMG SRC='speak.png'>受害者</span></span> <span class='tooltip'>wore<span class='tooltip-text' onclick="speakText('wore')"><IMG SRC='speak.png'>穿著</span></span>, consumed, said, and how they <span class='tooltip'>acted<span class='tooltip-text' onclick="speakText('acted')"><IMG SRC='speak.png'>做事</span></span> is questioned and scrutinized . <br>
+　Too often, those <span class='tooltip'>victims<span class='tooltip-text' onclick="speakText('victims')"><IMG SRC='speak.png'>受害者</span></span> brave enough to <span class='tooltip'>report<span class='tooltip-text' onclick="speakText('report')"><IMG SRC='speak.png'>報告</span></span> <span class='tooltip'>sexual<span class='tooltip-text' onclick="speakText('sexual')"><IMG SRC='speak.png'>性</span></span> crimes committed against them are asked "What were you <span class='tooltip'>wearing<span class='tooltip-text' onclick="speakText('wearing')"><IMG SRC='speak.png'>穿著</span></span> ?" That's when they begin to <span class='tooltip'>question<span class='tooltip-text' onclick="speakText('question')"><IMG SRC='speak.png'>問題</span></span> themselves "Did I do something wrong to cause this ?" and with that questioning comes <span class='tooltip'>shame<span class='tooltip-text' onclick="speakText('shame')"><IMG SRC='speak.png'>恥辱</span></span> . <br><hr>
+
+　With that <span class='tooltip'>shame<span class='tooltip-text' onclick="speakText('shame')"><IMG SRC='speak.png'>恥辱</span></span>, fewer <span class='tooltip'>victims<span class='tooltip-text' onclick="speakText('victims')"><IMG SRC='speak.png'>受害者</span></span> <span class='tooltip'>report<span class='tooltip-text' onclick="speakText('report')"><IMG SRC='speak.png'>報告</span></span> <span class='tooltip'>sexual<span class='tooltip-text' onclick="speakText('sexual')"><IMG SRC='speak.png'>性</span></span> <span class='tooltip'>assaults<span class='tooltip-text' onclick="speakText('assaults')"><IMG SRC='speak.png'>攻擊</span></span> and <span class='tooltip'>suffer<span class='tooltip-text' onclick="speakText('suffer')"><IMG SRC='speak.png'>遭受</span></span> alone, which leads to less rapists being brought to justice . <br>
+　All this <span class='tooltip'>blaming<span class='tooltip-text' onclick="speakText('blaming')"><IMG SRC='speak.png'>責備</span></span> and questioning of <span class='tooltip'>victims<span class='tooltip-text' onclick="speakText('victims')"><IMG SRC='speak.png'>受害者</span></span> simply feeds <span class='tooltip'>rape<span class='tooltip-text' onclick="speakText('rape')"><IMG SRC='speak.png'>強姦</span></span> <span class='tooltip'>culture<span class='tooltip-text' onclick="speakText('culture')"><IMG SRC='speak.png'>文化</span></span> . <br><hr>
+　
+　<span class='tooltip'>Society<span class='tooltip-text' onclick="speakText('Society')"><IMG SRC='speak.png'>社會</span></span> needs to <span class='tooltip'>recognize<span class='tooltip-text' onclick="speakText('recognize')"><IMG SRC='speak.png'>認出</span></span> that the only <span class='tooltip'>question<span class='tooltip-text' onclick="speakText('question')"><IMG SRC='speak.png'>問題</span></span> to ask a <span class='tooltip'>victim<span class='tooltip-text' onclick="speakText('victim')"><IMG SRC='speak.png'>受害者</span></span> of <span class='tooltip'>sexual<span class='tooltip-text' onclick="speakText('sexual')"><IMG SRC='speak.png'>性</span></span> <span class='tooltip'>assault<span class='tooltip-text' onclick="speakText('assault')"><IMG SRC='speak.png'>攻擊</span></span> is "What can I do to help ?" Asking a <span class='tooltip'>victim<span class='tooltip-text' onclick="speakText('victim')"><IMG SRC='speak.png'>受害者</span></span> what they <span class='tooltip'>wore<span class='tooltip-text' onclick="speakText('wore')"><IMG SRC='speak.png'>穿著</span></span> when they were <span class='tooltip'>attacked<span class='tooltip-text' onclick="speakText('attacked')"><IMG SRC='speak.png'>攻擊</span></span> is irrelevant, <span class='tooltip'>damaging<span class='tooltip-text' onclick="speakText('damaging')"><IMG SRC='speak.png'>有害的</span></span>, and ignorant . <br>
+　Exhibits like "What Were You Wearing ?" help <span class='tooltip'>eliminate<span class='tooltip-text' onclick="speakText('eliminate')"><IMG SRC='speak.png'>消除</span></span> the <span class='tooltip'>notion<span class='tooltip-text' onclick="speakText('notion')"><IMG SRC='speak.png'>想法</span></span> that a <span class='tooltip'>victim<span class='tooltip-text' onclick="speakText('victim')"><IMG SRC='speak.png'>受害者</span></span> is in any way responsible for their attack . <br>
+　 <span class='tooltip'>Removing
+<span class='tooltip-text' onclick="speakText('Removing')"><IMG SRC='speak.png'>移除</span></span> 
+<span class='tooltip'>blame<span class='tooltip-text' onclick="speakText('blame')"><IMG SRC='speak.png'>責備</span></span> and <span class='tooltip'>shame<span class='tooltip-text' onclick="speakText('shame')"><IMG SRC='speak.png'>恥辱</span></span> from the <span class='tooltip'>dialogue<span class='tooltip-text' onclick="speakText('dialogue')"><IMG SRC='speak.png'>對話</span></span> will <span class='tooltip'>empower<span class='tooltip-text' onclick="speakText('empower')"><IMG SRC='speak.png'>授權</span></span> <span class='tooltip'>victims<span class='tooltip-text' onclick="speakText('victims')"><IMG SRC='speak.png'>受害者</span></span> to <span class='tooltip'>report<span class='tooltip-text' onclick="speakText('report')"><IMG SRC='speak.png'>報告</span></span> their 
+<span class='tooltip'>attacks<span class='tooltip-text' onclick="speakText('attacks')"><IMG SRC='speak.png'>進攻</span></span>
+
+ and begin their 
+<span class='tooltip'>recovery<span class='tooltip-text' onclick="speakText('recovery')"><IMG SRC='speak.png'>恢復  </span></span>
+, without 
+<span class='tooltip'>shame<span class='tooltip-text' onclick="speakText('shame')"><IMG SRC='speak.png'>恥辱</span></span> or 
+<span class='tooltip'>fear<span class='tooltip-text' onclick="speakText('fear')"><IMG SRC='speak.png'>擔心</span></span> . <br>
+
+
+

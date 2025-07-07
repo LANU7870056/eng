@@ -1,0 +1,242 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<head>
+  <meta charset="utf-8" />
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+ <script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>  
+
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #F0F;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+ 
+  </style>
+</head>
+<body>
+
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>克漏字學習　　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+<center>雨天睏覺</center>
+  Many people have the <span class='tooltip'>experience<span class='tooltip-text' onclick="speakText('experience')"><IMG SRC='speak.png'>經驗</span></span> of feeling <span class='tooltip'>sleepy<span class='tooltip-text' onclick="speakText('sleepy')"><IMG SRC='speak.png'>睏</span></span> on rainy days.
+<span class='tooltip'>Simply<span class='tooltip-text' onclick="speakText('Simply')"><IMG SRC='speak.png'>簡單地</span></span> watching the rain fall on the window makes them <span class='tooltip'>lazy<span class='tooltip-text' onclick="speakText('lazy')"><IMG SRC='speak.png'>懶惰的</span></span> and <span class='tooltip'>sleepy<span class='tooltip-text' onclick="speakText('sleepy')"><IMG SRC='speak.png'>睏</span></span>.
+There may be two reasons that <div class="cir">41</div> such a sleepy feeling.<br>
+<IMG SRC='arrow.png'>(A)<span class='tooltip'>result from<span class='tooltip-text' onclick="speakText('result from')"><IMG SRC='speak.png'>起因於</span></span>  (B)<span class='tooltip'>step on<span class='tooltip-text' onclick="speakText('step on')"><IMG SRC='speak.png'>加緊腳步</span></span>  (C)<span class='tooltip2'>lead to<span class='tooltip-text'><IMG SRC='speak.png'>導致、造成</span></span>  (D)<span class='tooltip'>run into<span class='tooltip-text' onclick="speakText('run into')"><IMG SRC='speak.png'>偶然碰到</span></span><br><hR>
+
+First, people have a <span class='tooltip'>habit<span class='tooltip-text' onclick="speakText('habit')"><IMG SRC='speak.png'>習慣</span></span> of going to sleep when it is <span class='tooltip'>dark<span class='tooltip-text' onclick="speakText('dark')"><IMG SRC='speak.png'>黑暗的</span></span> and <span class='tooltip'>quiet<span class='tooltip-text' onclick="speakText('quiet')"><IMG SRC='speak.png'>安靜的</span></span>.<br>
+On rainy days, the <span class='tooltip'>clouds<span class='tooltip-text' onclick="speakText('clouds')"><IMG SRC='speak.png'>雲</span></span> make the sky darker and <div class="cir">42</div> our <span class='tooltip'>brain<span class='tooltip-text' onclick="speakText('brain')"><IMG SRC='speak.png'>大腦</span></span>,<br>
+so we think <span class='tooltip'>nighttime<span class='tooltip-text' onclick="speakText('nighttime')"><IMG SRC='speak.png'>夜晚</span></span> is coming.<br>
+<IMG SRC='arrow.png'>(A)<span class='tooltip2'>play a trick on<span class='tooltip-text'><IMG SRC='speak.png'>捉弄</span></span>  (B)<span class='tooltip'>do harm to<span class='tooltip-text' onclick="speakText('do harm to')"><IMG SRC='speak.png'>損害</span></span>  (C)<span class='tooltip'>make fun of<span class='tooltip-text' onclick="speakText('make fun of')"><IMG SRC='speak.png'>取笑</span></span>  (D)<span class='tooltip'>take part in<span class='tooltip-text' onclick="speakText('take part in')"><IMG SRC='speak.png'>參加出席</span></span><br><hr>
+
+Second, because the sound of rain <span class='tooltip'>drops<span class='tooltip-text' onclick="speakText('drops')"><IMG SRC='speak.png'>滴落</span></span> is <span class='tooltip'>static<span class='tooltip-text' onclick="speakText('static')"><IMG SRC='speak.png'>靜止的</span></span>, it makes people feel quiet.<br>
+<span class='tooltip2'>To understand this<span class='tooltip-text'><IMG SRC='speak.png'>了解這點</span></span>, we have to know more about our <span class='tooltip'>hearing<span class='tooltip-text' onclick="speakText('hearing')"><IMG SRC='speak.png'>聽覺</span></span>.<br><hR>
+Our ears can hear many different sounds at the same time, but our brain chooses only <div class="cir">43</div><br>
+<IMG SRC='arrow.png'>(A)a little to listen  (B)a little to listen to  (C)a few to listen  (D)a few to <span class='tooltip'>listen to<span class='tooltip-text' onclick="speakText('listen to')"><IMG SRC='speak.png'>傾聽 注意：a few+可屬</span></span><br><hr>
+
+Think of a classroom. There may be the sounds of a clock, a computer, and <span class='tooltip'>fans<span class='tooltip-text' onclick="speakText('fans')"><IMG SRC='speak.png'>風扇</span></span>, 
+but you may only <span class='tooltip'>notice<span class='tooltip-text' onclick="speakText('notice')"><IMG SRC='speak.png'>注意</span></span> the teacher's voice.
+When there is <span class='tooltip'>static<span class='tooltip-text' onclick="speakText('static')"><IMG SRC='speak.png'>靜態</span></span> noise, or white noise, you will stop <div class="cir">44</div>.<br>
+<IMG SRC='arrow.png'>(A)to hearing from  (B)<span class='tooltip2'>hearing<span class='tooltip-text'><IMG SRC='speak.png'>stop+Ving</span></span>  (C)to hear from  (D)from hearing
+<br><hR>
+<span class='tooltip'>distracting<span class='tooltip-text' onclick="speakText('distracting')"><IMG SRC='speak.png'>分散注意力的</span></span> noises because it works as a <span class='tooltip'>magic<span class='tooltip-text' onclick="speakText('magic')"><IMG SRC='speak.png'>魔法</span></span> screen, which <div class="cir">45</div>.<br>
+distracting noises and makes you feel <span class='tooltip'>quiet<span class='tooltip-text' onclick="speakText('quiet')"><IMG SRC='speak.png'>平靜</span></span>.<br>
+<IMG SRC='arrow.png'>(A)<span class='tooltip'>comes up with<span class='tooltip-text' onclick="speakText('comes up with')"><IMG SRC='speak.png'>提供</span></span>  (B)<span class='tooltip'>puts up with<span class='tooltip-text' onclick="speakText('puts up with')"><IMG SRC='speak.png'>容忍</span></span>  (C)<span class='tooltip2'>blocks out<span class='tooltip-text'><IMG SRC='speak.png'>遮擋</span></span>  (D)<span class='tooltip'>depends on<span class='tooltip-text' onclick="speakText('depends on')"><IMG SRC='speak.png'>依賴</span></span><BR><hR>
+

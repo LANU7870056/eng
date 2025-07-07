@@ -1,0 +1,253 @@
+﻿lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+  <script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>     		
+
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+
+  <style>
+
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      right:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+<center>網路霸凌</center>
+　<span class='tooltip'>Cyberbullying<span class='tooltip-text' onclick="speakText('Cyberbullying')">網路霸凌</span></span> is the use of <span class='tooltip'>digital-tools<span class='tooltip-text' onclick="speakText('digital-tools')">數位工具</span></span> such as the Internet and <span class='tooltip'>cell phones<span class='tooltip-text' onclick="speakText('cell phones')">手機</span></span> to make another person feel <span class='tooltip'>angry<span class='tooltip-text' onclick="speakText('angry')">生氣</span></span>  <span class='tooltip'>sad<span class='tooltip-text' onclick="speakText('sad')">傷心</span></span> or <span class='tooltip'>scared<span class='tooltip-text' onclick="speakText('scared')">害怕的</span></span> . It usually <span class='tooltip'>happens<span class='tooltip-text' onclick="speakText('happens')">發生</span></span> <span class='tooltip'>repeatedly<span class='tooltip-text' onclick="speakText('repeatedly')">反覆</span></span> and <span class='tooltip'>continuously<span class='tooltip-text' onclick="speakText('continuously')">連續地</span></span> .<br>
+　Examples of <span class='tooltip'>cyberbullying<span class='tooltip-text' onclick="speakText('cyberbullying')">網路霸凌</span></span> include sending <span class='tooltip'>hurtful<span class='tooltip-text' onclick="speakText('hurtful')">傷人的</span></span> texts or <span class='tooltip'>instant<span class='tooltip-text' onclick="speakText('instant')">立即的</span></span> <span class='tooltip'>messages<span class='tooltip-text' onclick="speakText('messages')">訊息</span></span> , <span class='tooltip'>posting<span class='tooltip-text' onclick="speakText('posting')">發文</span></span> <span class='tooltip'>embarrassing<span class='tooltip-text' onclick="speakText('embarrassing')">令人尷尬</span></span> photos or video on <span class='tooltip'>social media<span class='tooltip-text' onclick="speakText('social media')">社群媒體</span></span> , and <span class='tooltip'>spreading<span class='tooltip-text' onclick="speakText('spreading')">延伸</span></span> <span class='tooltip'>mean rumors<span class='tooltip-text' onclick="speakText('mean rumors')">卑鄙謠言</span></span> online or with cell phones . <br>
+　Untibnol <span class='tooltip'>recently<span class='tooltip-text' onclick="speakText('recently')">最近</span></span> , <span class='tooltip'>parents<span class='tooltip-text' onclick="speakText('parents')">父母</span></span> and teachers have focused on the <span class='tooltip'>relationship<span class='tooltip-text' onclick="speakText('relationship')">關係</span></span> between a <span class='tooltip'>bully<span class='tooltip-text' onclick="speakText('bully')">霸凌</span></span> and his or her <span class='tooltip'>target<span class='tooltip-text' onclick="speakText('target')">目標</span></span> .<br>
+<hr>
+
+　But <span class='tooltip'>experts<span class='tooltip-text' onclick="speakText('experts')">專家</span></span> say that there are usually more kids <span class='tooltip'>involved<span class='tooltip-text' onclick="speakText('involved')">涉及</span></span> in a <span class='tooltip'>cyberbullying<span class='tooltip-text' onclick="speakText('cyberbullying')">網路霸凌</span></span> <span class='tooltip'>scenario<span class='tooltip-text' onclick="speakText('scenario')">局面</span></span> , making it a much more <span class='tooltip'>complex<span class='tooltip-text' onclick="speakText('complex')">複雜的</span></span> <span class='tooltip'>organism<span class='tooltip-text' onclick="speakText('organism')">生物</span></span> than <span class='tooltip'>previously<span class='tooltip-text' onclick="speakText('previously')">之前</span></span> <span class='tooltip'>thought<span class='tooltip-text' onclick="speakText('thought')">想法、想像</span></span> .<br>
+　In fact, one of the <span class='tooltip'>side effects<span class='tooltip-text' onclick="speakText('side effects')">副作用</span></span> of how public bullying has become is that <span class='tooltip'>potentially<span class='tooltip-text' onclick="speakText('potentially')">潛在</span></span> everyone in the <span class='tooltip'>bully’s circle of friends<span class='tooltip-text' onclick="speakText('bully’s circle of friends')">霸凌者的朋友圈</span></span> – both online and off-line – may be <span class='tooltip'>involved<span class='tooltip-text' onclick="speakText('involved')">涉及、參與</span></span> .<br>
+
+　<span class='tooltip'>Identifying<span class='tooltip-text' onclick="speakText('Identifying')">識別</span></span> the different roles in a <span class='tooltip'>cyberbullying<span class='tooltip-text' onclick="speakText('cyberbullying')">網路霸凌</span></span> <span class='tooltip'>situation<span class='tooltip-text' onclick="speakText('situation')">情況</span></span> <span class='tooltip'>allows<span class='tooltip-text' onclick="speakText('allows')">允許</span></span> you to help your kid <span class='tooltip'>develop<span class='tooltip-text' onclick="speakText('develop')">發展</span></span> <span class='tooltip'>self-awareness<span class='tooltip-text' onclick="speakText('self-awareness')">自我意識</span></span> and a <span class='tooltip'>sense of empathy<span class='tooltip-text' onclick="speakText('sense of empathy')">同理心</span></span> .<br>
+　These skills will go a long way <span class='tooltip'>toward<span class='tooltip-text' onclick="speakText('toward')">朝向</span></span> <span class='tooltip'>cultivating<span class='tooltip-text' onclick="speakText('cultivating')">培育</span></span> an <span class='tooltip'>online culture<span class='tooltip-text' onclick="speakText('online culture')">網路文化</span></span> of <span class='tooltip'>respect<span class='tooltip-text' onclick="speakText('respect')">尊重</span></span> and <span class='tooltip'>responsibility<span class='tooltip-text' onclick="speakText('responsibility')">責任</span></span> .<br>
+
+<hr>
+　First , there's the <span class='tooltip'>cyberbully<span class='tooltip-text' onclick="speakText('cyberbully')">網路霸凌</span></span> , the <span class='tooltip'>aggressor<span class='tooltip-text' onclick="speakText('aggressor')">侵略者</span></span> who's using <span class='tooltip'>digital media<span class='tooltip-text' onclick="speakText('digital media')">數位媒體</span></span> tools to <span class='tooltip'>deliberately<span class='tooltip-text' onclick="speakText('deliberately')">故意地</span></span> <span class='tooltip'>upset<span class='tooltip-text' onclick="speakText('upset')">沮喪的</span></span> or <span class='tooltip'>harass<span class='tooltip-text' onclick="speakText('harass')">騷擾</span></span> their <span class='tooltip'>target<span class='tooltip-text' onclick="speakText('target')">目標</span></span> -- the person who's being <span class='tooltip'>cyberbullied<span class='tooltip-text' onclick="speakText('cyberbullied')">網路霸凌</span></span> .<br>
+　Then there are the <span class='tooltip'>bystanders<span class='tooltip-text' onclick="speakText('bystanders')">旁觀者</span></span> , the kids who are <span class='tooltip'>aware<span class='tooltip-text' onclick="speakText('aware')">目標</span></span> that something <span class='tooltip'>cruel<span class='tooltip-text' onclick="speakText('cruel')">殘忍的</span></span> is going on but who stay on the <span class='tooltip'>sidelines<span class='tooltip-text' onclick="speakText('sidelines')">場邊、外圍</span></span>
+(either out of <span class='tooltip'>indifference<span class='tooltip-text' onclick="speakText('indifference')">冷漠</span></span> or because they're afraid of being <span class='tooltip'>socially<span class='tooltip-text' onclick="speakText('socially')">社會上</span></span> <span class='tooltip'>isolated<span class='tooltip-text' onclick="speakText('isolated')">孤立</span></span> or of becoming a <span class='tooltip'>target<span class='tooltip-text' onclick="speakText('target')">目標</span></span> themselves) .<br>
+　But there are also kids who act as <span class='tooltip'>upstanders<span class='tooltip-text' onclick="speakText('upstanders')">旁觀者</span></span> .<br>
+
+<hr>
+　These are the kids who actively try to <span class='tooltip'>break<span class='tooltip-text' onclick="speakText('break')">打破</span></span> the <span class='tooltip'>cycle<span class='tooltip-text' onclick="speakText('cycle')">週期</span></span> , whether by <span class='tooltip'>sticking up<span class='tooltip-text' onclick="speakText('sticking up')">堅持</span></span> for the <span class='tooltip'>target<span class='tooltip-text' onclick="speakText('target')">目標</span></span> , <span class='tooltip'>addressing<span class='tooltip-text' onclick="speakText('addressing')">面對</span></span> the <span class='tooltip'>bully<span class='tooltip-text' onclick="speakText('bully')">惡霸</span></span> <span class='tooltip'>directly<span class='tooltip-text' onclick="speakText('directly')">直接</span></span> , or <span class='tooltip'>notifying<span class='tooltip-text' onclick="speakText('notifying')">通知</span></span> the <span class='tooltip'>appropriate<span class='tooltip-text' onclick="speakText('appropriate')">合適的</span></span> <span class='tooltip'>authorities<span class='tooltip-text' onclick="speakText('authorities')">當局</span></span> about what's going on . <br>
+　Kids may play <span class='tooltip'>different<span class='tooltip-text' onclick="speakText('different')">不同的</span></span> roles at <span class='tooltip'>different<span class='tooltip-text' onclick="speakText('different')">不同的</span></span> times .<br>
+　Your <span class='tooltip'>advice<span class='tooltip-text' onclick="speakText('advice')">忠告</span></span> to your child will <span class='tooltip'>differ<span class='tooltip-text' onclick="speakText('differ')">不同</span></span> <span class='tooltip'>depending<span class='tooltip-text' onclick="speakText('depending')">取決於</span></span> on the <span class='tooltip'>situation<span class='tooltip-text' onclick="speakText('situation')">情況</span></span> and the <span class='tooltip'>specific<span class='tooltip-text' onclick="speakText('specific')">具體的</span></span> role your child is playing in <span class='tooltip'>whatever bullying<span class='tooltip-text' onclick="speakText('whatever bullying')">任何霸凌中</span></span> or <span class='tooltip'>drama<span class='tooltip-text' onclick="speakText('drama')">戲劇</span></span> is <span class='tooltip'>going on<span class='tooltip-text' onclick="speakText('going on')">繼續</span></span> .<br>
+
+<hr> 
+　By making kids <span class='tooltip'>aware<span class='tooltip-text' onclick="speakText('aware')">意識到的</span></span> that a safe world is everyone's <span class='tooltip'>responsibility<span class='tooltip-text' onclick="speakText('responsibility')">責任</span></span> , we <span class='tooltip'>empower<span class='tooltip-text' onclick="speakText('empower')">授權</span></span> them to take <span class='tooltip'>positive<span class='tooltip-text' onclick="speakText('positive')">積極的</span></span> <span class='tooltip'>actions<span class='tooltip-text' onclick="speakText('actions')">行動</span></span> -- like reporting a bully , <span class='tooltip'>flagging<span class='tooltip-text' onclick="speakText('flagging')">標記</span></span> a <span class='tooltip'>cruel<span class='tooltip-text' onclick="speakText('cruel')">殘忍的</span></span> online <span class='tooltip'>comment<span class='tooltip-text' onclick="speakText('comment')">評論</span></span> , or not <span class='tooltip'>forwarding<span class='tooltip-text' onclick="speakText('forwarding')">轉發</span></span> a <span class='tooltip'>humiliating<span class='tooltip-text' onclick="speakText('humiliating')">羞辱</span></span> photo – that <span class='tooltip'>ultimately<span class='tooltip-text' onclick="speakText('ultimately')">最終</span></span> can put a stop to an <span class='tooltip'>escalating<span class='tooltip-text' onclick="speakText('escalating')">不斷升級</span></span> <span class='tooltip'>episode<span class='tooltip-text' onclick="speakText('episode')">插曲</span></span> of <span class='tooltip'>cruelty<span class='tooltip-text' onclick="speakText('cruelty')">殘酷</span></span> .<br>
+<BR>
+</div>

@@ -1,0 +1,254 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script> 
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #F0F;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.2em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.2em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.2em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+ 
+  </style>
+</head>
+<body><div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>克漏字學習　　回首頁</h3></a></div>
+</div>
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;><BR>
+<div class="background-box" style="font-size: 1.2em;"><BR>
+<center>旅遊票價</center>
+
+　If you <span class='tooltip'>travel<span class='tooltip-text' onclick="speakText('travel')"><IMG SRC='speak.png'>旅行</span></span>, you most <span class='tooltip'>likely<span class='tooltip-text' onclick="speakText('likely')"><IMG SRC='speak.png'>可能</span></span> will have to <span class='tooltip'>deal<span class='tooltip-text' onclick="speakText('deal')"><IMG SRC='speak.png'>交易</span></span> with flying.<BR>
+　Flying is the <span class='tooltip'>quickest<span class='tooltip-text' onclick="speakText('quickest')"><IMG SRC='speak.png'>最快的</span></span> and most <span class='tooltip'>convenient<span class='tooltip-text' onclick="speakText('convenient')"><IMG SRC='speak.png'>方便的</span></span> <div class="cir">1</div> of <span class='tooltip'>travel<span class='tooltip-text' onclick="speakText('travel')"><IMG SRC='speak.png'>旅行</span></span> between different parts of one country.<BR>
+<IMG SRC='ARROW.PNG'>(A)<img src="ans.png"><span class='tooltip'>means<span class='tooltip-text' onclick="speakText('means')"><IMG SRC='speak.png'>方法</span></span>　(B)areas　(C)rates　(D)dates<BR><HR>
+　Flying is <span class='tooltip'>expensive,<span class='tooltip-text' onclick="speakText('expensive,')"><IMG SRC='speak.png'>昂貴的</span></span> but when all costs <div class="cir">2</div> into account for <span class='tooltip'>traveling<span class='tooltip-text' onclick="speakText('traveling')"><IMG SRC='speak.png'>旅行</span></span> long <span class='tooltip'>distance<span class='tooltip-text' onclick="speakText('distance')"><IMG SRC='speak.png'>距離</span></span>, air <span class='tooltip'>travel<span class='tooltip-text' onclick="speakText('travel')"><IMG SRC='speak.png'>旅行</span></span> is usually less expensive than driving by car.<BR>
+<IMG SRC='ARROW.PNG'>(A)<span class='tooltip'>were taking<span class='tooltip-text' onclick="speakText('were taking')"><IMG SRC='speak.png'>※過去進行</span></span>　(B)<span class='tooltip'>have taken<span class='tooltip-text' onclick="speakText('have taken')"><IMG SRC='speak.png'>※現在完成</span></span>　(C)<span class='tooltip'>will take<span class='tooltip-text' onclick="speakText('will take')"><IMG SRC='speak.png'>※未來</span></span>　(D)<img src="ans.png"><span class='tooltip'>are taken<span class='tooltip-text' onclick="speakText('are taken')"><IMG SRC='speak.png'>※被動語態</span></span><BR><HR>
+
+　It is also the most <span class='tooltip'>economical<span class='tooltip-text' onclick="speakText('economical')"><IMG SRC='speak.png'>經濟</span></span> way to go in terms of <div class="cir">3</div>.<BR>
+<IMG SRC='ARROW.PNG'>(A)<img src="ans.png"><span class='tooltip'>time<span class='tooltip-text' onclick="speakText('time')"><IMG SRC='speak.png'>時間</span></span>　(B)cost　(C)service　(D)<span class='tooltip'>preference<span class='tooltip-text' onclick="speakText('preference')"><IMG SRC='speak.png'>偏愛</span></span><BR><HR>
+
+　You'll miss the <span class='tooltip'>scenery<span class='tooltip-text' onclick="speakText('scenery')"><IMG SRC='speak.png'>風景</span></span> on the way, but you'll have more <span class='tooltip'>available<span class='tooltip-text' onclick="speakText('available')"><IMG SRC='speak.png'>可用的</span></span> time at your vacation <span class='tooltip'>destination<span class='tooltip-text' onclick="speakText('destination')"><IMG SRC='speak.png'>目的地</span></span> with air <span class='tooltip'>travel<span class='tooltip-text' onclick="speakText('travel')"><IMG SRC='speak.png'>旅行</span></span>.<BR>
+
+　Airlines sell seats at a <div class="cir">4</div> of prices under a system of <span class='tooltip'>requirements<span class='tooltip-text' onclick="speakText('requirements')"><IMG SRC='speak.png'>要求</span></span> and <span class='tooltip'>restrictions<span class='tooltip-text' onclick="speakText('restrictions')"><IMG SRC='speak.png'>限制</span></span>.<BR>
+<IMG SRC='ARROW.PNG'>(A)<span class='tooltip'>identity<span class='tooltip-text' onclick="speakText('identity')"><IMG SRC='speak.png'>身分</span></span>　(B)<span class='tooltip'>quality<span class='tooltip-text' onclick="speakText('quality')"><IMG SRC='speak.png'>品質</span></span>　(C)<img src="ans.png"><span class='tooltip'>variety<span class='tooltip-text' onclick="speakText('variety')"><IMG SRC='speak.png'>種類</span></span>　(D)<span class='tooltip'>necessity<span class='tooltip-text' onclick="speakText('necessity')"><IMG SRC='speak.png'>需求</span></span><BR><HR>
+
+　<span class='tooltip'>Full-fare tickets<span class='tooltip-text' onclick="speakText('Full-fare tickets')"><IMG SRC='speak.png'>全價票</span></span> are the most <span class='tooltip'>expensive<span class='tooltip-text' onclick="speakText('expensive')"><IMG SRC='speak.png'>昂貴</span></span>, but they give you the most <span class='tooltip'>flexibility<span class='tooltip-text' onclick="speakText('flexibility')"><IMG SRC='speak.png'>靈活的</span></span> in terms of <span class='tooltip'>making changes<span class='tooltip-text' onclick="speakText('making changes')"><IMG SRC='speak.png'>做出改變</span></span>.<BR>
+　A traveler can buy a full- fare ticket up to <span class='tooltip'>takeoff<span class='tooltip-text' onclick="speakText('takeoff')"><IMG SRC='speak.png'>起飛</span></span> time as long as a seat is <div class="cir">5</div>. <BR>
+<IMG SRC='ARROW.PNG'>(A)<span class='tooltip'>commercial<span class='tooltip-text' onclick="speakText('commercial')"><IMG SRC='speak.png'>商業的</span></span>　(B)<img src="ans.png"><span class='tooltip'>available<span class='tooltip-text' onclick="speakText('available')"><IMG SRC='speak.png'>可用的</span></span>　(C)<span class='tooltip'>graceful<span class='tooltip-text' onclick="speakText('graceful')"><IMG SRC='speak.png'>優美的</span></span>　(D)<span class='tooltip'>mechanical<span class='tooltip-text' onclick="speakText('mechanical')"><IMG SRC='speak.png'>機械的</span></span><BR><HR>
+
+　Fares change <span class='tooltip'>rapidly<span class='tooltip-text' onclick="speakText('rapidly')"><IMG SRC='speak.png'>迅速地</span></span> , and even <span class='tooltip'>travel experts<span class='tooltip-text' onclick="speakText('travel experts')"><IMG SRC='speak.png'>旅遊專家</span></span> find it difficult to <span class='tooltip'>keep up<span class='tooltip-text' onclick="speakText('keep up')"><IMG SRC='speak.png'>趕上</span></span>.<BR>
+
+　The changing <span class='tooltip'>situation<span class='tooltip-text' onclick="speakText('situation')"><IMG SRC='speak.png'>情況</span></span> is <div class="cir">6</div> many factors, including increased competition.<BR>
+<IMG SRC='ARROW.PNG'>(A)<span class='tooltip'>apart from<span class='tooltip-text' onclick="speakText('apart from')"><IMG SRC='speak.png'>除了</span></span>　(B)<span class='tooltip'>long for<span class='tooltip-text' onclick="speakText('long for')"><IMG SRC='speak.png'>渴望</span></span>　(C)<span class='tooltip'>short of<span class='tooltip-text' onclick="speakText('short of')"><IMG SRC='speak.png'>缺少</span></span>　(D)<img src="ans.png"><span class='tooltip'>due to<span class='tooltip-text' onclick="speakText('due to')"><IMG SRC='speak.png'>由於</span></span><BR><HR>
+
+　As a general rule, the less you pay for the ticket, the more <span class='tooltip'>restrictions<span class='tooltip-text' onclick="speakText('restrictions')"><IMG SRC='speak.png'>限制</span></span> you can <span class='tooltip'>expect<span class='tooltip-text' onclick="speakText('expect')"><IMG SRC='speak.png'>預計</span></span>.<BR>
+
+　If you are trying to save money, <div class="cir">7</div> <span class='tooltip'>excursion fares<span class='tooltip-text' onclick="speakText('excursion fares')"><IMG SRC='speak.png'>遊覽票價</span></span>.<BR>
+
+　These are the airline's <span class='tooltip'>equivalent<span class='tooltip-text' onclick="speakText('equivalent')"><IMG SRC='speak.png'>相等的</span></span> of a <span class='tooltip'>special sale<span class='tooltip-text' onclick="speakText('special sale')"><IMG SRC='speak.png'>特別促銷</span></span>.<BR>
+<IMG SRC='ARROW.PNG'>(A)<span class='tooltip'>get over<span class='tooltip-text' onclick="speakText('get over')"><IMG SRC='speak.png'>克服</span></span>　(B)<span class='tooltip'>take after<span class='tooltip-text' onclick="speakText('take after')"><IMG SRC='speak.png'>效法</span></span>　(C)<img src="ans.png"><span class='tooltip'>look for<span class='tooltip-text' onclick="speakText('look for')"><IMG SRC='speak.png'>尋找</span></span>　(D)<span class='tooltip'>bring out<span class='tooltip-text' onclick="speakText('bring out')"><IMG SRC='speak.png'>拿出</span></span><BR><HR>
+
+　Most <span class='tooltip'>excursion fares<span class='tooltip-text' onclick="speakText('excursion fares')"><IMG SRC='speak.png'>旅遊票</span></span> are for <span class='tooltip'>round-trip travel<span class='tooltip-text' onclick="speakText('round-trip travel')"><IMG SRC='speak.png'>來回票</span></span> and have <span class='tooltip'>strict<span class='tooltip-text' onclick="speakText('strict')"><IMG SRC='speak.png'>嚴格的</span></span> <span class='tooltip'>regulations<span class='tooltip-text' onclick="speakText('regulations')"><IMG SRC='speak.png'>法規</span></span> and a minimum and maximum length of stay, so don't count on <span class='tooltip'>extending<span class='tooltip-text' onclick="speakText('extending')"><IMG SRC='speak.png'>延伸</span></span> your vacation or staying <div class="cir">8</div> time than <span class='tooltip'>required<span class='tooltip-text' onclick="speakText('required')"><IMG SRC='speak.png'>必需的</span></span>.<BR>
+　However, once you are on the plane, you are <span class='tooltip'>indistinguishable<span class='tooltip-text' onclick="speakText('indistinguishable')"><IMG SRC='speak.png'>難以區分</span></span> from <span class='tooltip'>passengers<span class='tooltip-text' onclick="speakText('passengers')"><IMG SRC='speak.png'>乘客</span></span> who paid higher fares.<BR>
+<IMG SRC='ARROW.PNG'>(A)<img src="ans.png"><span class='tooltip'>less<span class='tooltip-text' onclick="speakText('less')"><IMG SRC='speak.png'>較少</span></span>　(B)<span class='tooltip'>least<span class='tooltip-text' onclick="speakText('least')"><IMG SRC='speak.png'>最少</span></span>　(C)<span class='tooltip'>better<span class='tooltip-text' onclick="speakText('better')"><IMG SRC='speak.png'>更好</span></span>　(D)<span class='tooltip'>best<span class='tooltip-text' onclick="speakText('best')"><IMG SRC='speak.png'>最好</span></span><BR><HR>

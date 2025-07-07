@@ -1,0 +1,260 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="EXPIRES" CONTENT="0">
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+
+<head>
+  <meta charset="utf-8" />
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script> 
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #F0F;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 25px;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 25px;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 25px;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+ 
+  </style>
+</head>
+<body>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>克漏字學習　　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;><BR>
+<div class="background-box" style="font-size: 1.2em;">
+<center>咖啡因</center>
+　Is <span class='tooltip'>caffeine<span class='tooltip-text' onclick="speakText('caffeine')"><IMG SRC='speak.png'>咖啡因</span></span> <span class='tooltip'>ctive<span class='tooltip-text' onclick="speakText('ctive')"><IMG SRC='speak.png'>活躍</span></span>? The most <span class='tooltip'>common<span class='tooltip-text' onclick="speakText('common')"><IMG SRC='speak.png'>常見的</span></span> problem for coffee drinkers <div class="cir">1</div> <span class='tooltip'>insomnia<span class='tooltip-text' onclick="speakText('insomnia')"><IMG SRC='speak.png'>失眠</span></span>. <BR>
+<IMG SRC='ARROW.PNG'>(A)<img src="ans.png"><span class='tooltip'>is<span class='tooltip-text' onclick="speakText('is')"><IMG SRC='speak.png'>problem單數</span></span>　(B)are　(C)has　(D)have <HR>
+
+　Studies show that in many people <span class='tooltip'>caffeine<span class='tooltip-text' onclick="speakText('caffeine')"><IMG SRC='speak.png'>咖啡因</span></span> <div class="cir">2</div> their
+normal ability to <span class='tooltip'>fall asleep<span class='tooltip-text' onclick="speakText('fall asleep')"><IMG SRC='speak.png'>深層睡眠</span></span>.<BR>
+<IMG SRC='ARROW.PNG'>(A)<span class='tooltip'>erupts<span class='tooltip-text' onclick="speakText('erupts')"><IMG SRC='speak.png'>爆發</span></span>　(B)<span class='tooltip'>relevant<span class='tooltip-text' onclick="speakText('relevant')"><IMG SRC='speak.png'>相關的</span></span> to　(C)<img src="ans.png"><span class='tooltip'>disrupts<span class='tooltip-text' onclick="speakText('disrupts')"><IMG SRC='speak.png'>擾亂</span></span>　(D)<span class='tooltip'>irrelevant<span class='tooltip-text' onclick="speakText('irrelevant')"><IMG SRC='speak.png'>無關</span></span> to <HR>
+
+ As little as two cups of coffee can keep them<div class="cir">3</div>.<BR>
+<IMG SRC='ARROW.PNG'>(A)<span class='tooltip'>unconscious<span class='tooltip-text' onclick="speakText('unconscious')"><IMG SRC='speak.png'>無意識</span></span>　(B)<span class='tooltip'>sentimental<span class='tooltip-text' onclick="speakText('sentimental')"><IMG SRC='speak.png'>情深的</span></span>　(C)<span class='tooltip'>unconscious<span class='tooltip-text' onclick="speakText('unconscious')"><IMG SRC='speak.png'>不知道的</span></span>　(D)<img src="ans.png"><span class='tooltip'>awake<span class='tooltip-text' onclick="speakText('awake')"><IMG SRC='speak.png'>清醒的</span></span><HR>
+
+ Perhaps, because <span class='tooltip'>insomnia<span class='tooltip-text' onclick="speakText('insomnia')"><IMG SRC='speak.png'>失眠</span></span> <span class='tooltip'>bothers<span class='tooltip-text' onclick="speakText('bothers')"><IMG SRC='speak.png'>打擾</span></span> you one night, you <span class='tooltip'>decide<span class='tooltip-text' onclick="speakText('decide')"><IMG SRC='speak.png'>決定</span></span> to <span class='tooltip'>eliminate<span class='tooltip-text' onclick="speakText('eliminate')"><IMG SRC='speak.png'>排除</span></span> all caffeine from your <div class="cir">4</div> the next day.<BR>
+<IMG SRC='ARROW.PNG'>(A)<span class='tooltip'>vegetables<span class='tooltip-text' onclick="speakText('vegetables')"><IMG SRC='speak.png'>蔬菜</span></span>　(B)<img src="ans.png"><span class='tooltip'>diet<span class='tooltip-text' onclick="speakText('diet')"><IMG SRC='speak.png'>飲食</span></span>　(C)sports　(D)<span class='tooltip'>alcohol<span class='tooltip-text' onclick="speakText('alcohol')"><IMG SRC='speak.png'>酒</span></span> <HR>
+
+ If you're a <div class="cir">5</div> coffee drinker, by late afternoon you might feel 
+<div class="cir">6</div> and <span class='tooltip'>moody<span class='tooltip-text' onclick="speakText('moody')"><IMG SRC='speak.png'>喜怒無常</span></span> and 
+have a <span class='tooltip'>throbbing<span class='tooltip-text' onclick="speakText('throbbing')"><IMG SRC='speak.png'>悸動</span></span> <span class='tooltip'>headache<span class='tooltip-text' onclick="speakText('headache')"><IMG SRC='speak.png'>頭痛</span></span>.<BR>
+<IMG SRC='ARROW.PNG'><div class="cir">5</div>(A)weak　(B)light　(C)<img src="ans.png"><span class='tooltip'>heavy<span class='tooltip-text' onclick="speakText('heavy')"><IMG SRC='speak.png'>大量的</span></span>　(D)healthy <br>
+<IMG SRC='ARROW.PNG'><div class="cir">6</div>(A)<span class='tooltip'>depressing<span class='tooltip-text' onclick="speakText('depressing')"><IMG SRC='speak.png'>沉悶</span></span>　(B)<span class='tooltip'>humiliated<span class='tooltip-text' onclick="speakText('humiliated')"><IMG SRC='speak.png'>羞辱</span></span>　(C)<span class='tooltip'>Shameful<span class='tooltip-text' onclick="speakText('Shameful')"><IMG SRC='speak.png'>令人丟臉的</span></span>　(D)<img src="ans.png"><span class='tooltip'>depressed<span class='tooltip-text' onclick="speakText('depressed')"><IMG SRC='speak.png'>鬱悶</span></span><BR><HR>
+
+ If you <div class="cir">7</div> <span class='tooltip'>caffeine<span class='tooltip-text' onclick="speakText('caffeine')"><IMG SRC='speak.png'>咖啡因</span></span>, these <span class='tooltip'>symptoms<span class='tooltip-text' onclick="speakText('symptoms')"><IMG SRC='speak.png'>症狀</span></span> could
+last two or three days <div class="cir">8</div>.<BR>
+<IMG SRC='ARROW.PNG'><div class="cir">7</div>(A)<img src="ans.png"><span class='tooltip'>stay off<span class='tooltip-text' onclick="speakText('stay off')"><IMG SRC='speak.png'>遠離</span></span>　(B)set off　(C)carry on　(D)go on <BR>
+<IMG SRC='ARROW.PNG'><div class="cir">8</div>(A)<img src="ans.png"><span class='tooltip'>before disappearing<span class='tooltip-text' onclick="speakText('before disappearing')"><IMG SRC='speak.png'>消失之前</span></span>　(B)before they disappearing　(C)for disappearing　(D)after disappearance<HR>
+
+
+ Why? Because you were in <span class='tooltip'>withdrawal<span class='tooltip-text' onclick="speakText('withdrawal')"><IMG SRC='speak.png'>撤退</span></span> from a <span class='tooltip'>mild<span class='tooltip-text' onclick="speakText('mild')"><IMG SRC='speak.png'>輕微</span></span> <span class='tooltip'>dependency<span class='tooltip-text' onclick="speakText('dependency')"><IMG SRC='speak.png'>依賴</span></span> <div class="cir">9</div> <span class='tooltip'>caffeine<span class='tooltip-text' onclick="speakText('caffeine')"><IMG SRC='speak.png'>咖啡因</span></span>.<BR>
+<IMG SRC='ARROW.PNG'>(A)for　(B)to　(C)<img src="ans.png"><span class='tooltip'>on<span class='tooltip-text' onclick="speakText('on')"><IMG SRC='speak.png'>癮dependency on</span></span>　(D)by <BR><HR>
+
+ <div class="cir">10</div>you <span class='tooltip'>gradually<span class='tooltip-text' onclick="speakText('gradually')"><IMG SRC='speak.png'>逐步地</span></span> reduced your <span class='tooltip'>daily<span class='tooltip-text' onclick="speakText('daily')"><IMG SRC='speak.png'>日常的</span></span> <span class='tooltip'>intake<span class='tooltip-text' onclick="speakText('intake')"><IMG SRC='speak.png'>攝取量</span></span>, you might never have <span class='tooltip'>suffered<span class='tooltip-text' onclick="speakText('suffered')"><IMG SRC='speak.png'>遭受</span></span>.<BR>
+
+<IMG SRC='ARROW.PNG'>(A)If　(B)<img src="ans.png"><span class='tooltip'>Had<span class='tooltip-text' onclick="speakText('Had')"><IMG SRC='speak.png'>Had+pp有</span></span>　(C)Having　(D)Since <HR>
+ 
+

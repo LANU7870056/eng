@@ -1,0 +1,238 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script> 
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #F0F;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.2em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.2em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.2em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+ 
+  </style>
+</head>
+<body><div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>克漏字學習　　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+
+<div class="background-box" style="font-size: 1.2em;"><BR><BR>
+
+<center>Unit 5 Time</center>
+ People in <span class='tooltip'>different<span class='tooltip-text' onclick="speakText('different')"><IMG SRC='speak.png'>不同的</span></span> <span class='tooltip'>countries<span class='tooltip-text' onclick="speakText('countries')"><IMG SRC='speak.png'>國家</span></span> look at time <span class='tooltip'>differently<span class='tooltip-text' onclick="speakText('differently')"><IMG SRC='speak.png'>不同地</span></span>.<br>
+
+
+ In some <span class='tooltip'>countries<span class='tooltip-text' onclick="speakText('countries')"><IMG SRC='speak.png'>國家</span></span> being <span class='tooltip'>on time<span class='tooltip-text' onclick="speakText('on time')"><IMG SRC='speak.png'>守時</span></span> and <div class="cir">1</div> everything by <span class='tooltip'>exact<span class='tooltip-text' onclick="speakText('exact')"><IMG SRC='speak.png'>精確的</span></span> time is very <div class="cir">2</div> .<br>
+<IMG SRC='ARROW.PNG'>1.(A)<img src="ans.png"><span class='tooltip'>organizing<span class='tooltip-text' onclick="speakText('organizing')"><IMG SRC='speak.png'>組織</span></span>　(B)organization　(C)organ　(D)organize<br>
+<IMG SRC='ARROW.PNG'>2.(A)importance　(B)importantly　(C)<img src="ans.png"><span class='tooltip'>important<span class='tooltip-text' onclick="speakText('important')"><IMG SRC='speak.png'>重要的</span></span>　(D)import<br><hr>
+
+
+ In other <span class='tooltip'>countries<span class='tooltip-text' onclick="speakText('countries')"><IMG SRC='speak.png'>國家</span></span> people are more <div class="cir">3</div> about time.<br>
+<IMG SRC='ARROW.PNG'>(A)relax　(B)<img src="ans.png"><span class='tooltip'>relaxed<span class='tooltip-text' onclick="speakText('relaxed')"><IMG SRC='speak.png'>放鬆的</span></span>　(C)relation　(D)relaxation<br><hr>
+
+ <span class='tooltip'>It doesn't matter<span class='tooltip-text' onclick="speakText('It doesn't matter')"><IMG SRC='speak.png'>不要緊</span></span> if someone is late.<br>
+ <div class="cir">4</div> fact, people might <div class="cir">5</div> it <span class='tooltip'>rude<span class='tooltip-text' onclick="speakText('rude')"><IMG SRC='speak.png'>粗魯的、失禮的</span></span> if you are <span class='tooltip'>exactly<span class='tooltip-text' onclick="speakText('exactly')"><IMG SRC='speak.png'>精確的</span></span> <span class='tooltip'>on time<span class='tooltip-text' onclick="speakText('on time')"><IMG SRC='speak.png'>準時</span></span>.<br>
+<IMG SRC='ARROW.PNG'>4.(A)To　(B)At　(C)On　(D)<img src="ans.png"><span class='tooltip'>In<span class='tooltip-text' onclick="speakText('In')"><IMG SRC='speak.png'>In fact事實上</span></span><br>
+<IMG SRC='ARROW.PNG'>5.(A)<img src="ans.png"><span class='tooltip'>consider<span class='tooltip-text' onclick="speakText('consider')"><IMG SRC='speak.png'>認為</span></span>　(B)considerable　(C)considerate　(D)consideration<br><hr>

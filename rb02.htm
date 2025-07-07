@@ -1,0 +1,277 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+
+  <script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>     		
+
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+  <style>
+
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+ 
+  </style>
+</head>
+
+
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+<center>黑色星期五</center>
+　The day after <span class='tooltip'>Thanksgiving<span class='tooltip-text' onclick="speakText('Thanksgiving')">感恩節</span></span> is the start of the <span class='tooltip'>holiday<span class='tooltip-text' onclick="speakText('holiday')">假日</span></span> shopping <span class='tooltip'>season<span class='tooltip-text' onclick="speakText('season')">季節</span></span>  .<BR>
+　Thanksgiving is always on a Thursday, so the day after is a Friday .This day has come to be known as Black Friday .<BR><HR>
+
+　It has been the <span class='tooltip'>busiest<span class='tooltip-text' onclick="speakText('busiest')">最忙的</span></span> shopping day of the year since 2005 .<BR>
+　Most stores <span class='tooltip'>offer<span class='tooltip-text' onclick="speakText('offer')">提供</span></span> great <span class='tooltip'>deals<span class='tooltip-text' onclick="speakText('deals')">優惠</span></span> on Black Friday .<BR> 
+
+　They open their doors in the <span class='tooltip'>wee hours<span class='tooltip-text' onclick="speakText('wee hours')">凌晨</span></span> of the morning .<BR>
+　They try to <span class='tooltip'>attract<span class='tooltip-text' onclick="speakText('attract')">吸引</span></span> <span class='tooltip'>shoppers<span class='tooltip-text' onclick="speakText('shoppers')">購物者</span></span> with big <span class='tooltip'>discounts<span class='tooltip-text' onclick="speakText('discounts')">折扣</span></span>  .<BR>
+　Some items like TVs are much <span class='tooltip'>cheaper<span class='tooltip-text' onclick="speakText('cheaper')">便宜</span></span> than usual .<BR>
+　Stores may even <span class='tooltip'>lose money<span class='tooltip-text' onclick="speakText('lose money')">賠錢</span></span> on these items .<BR><HR>
+
+　They hope that <span class='tooltip'>shoppers<span class='tooltip-text' onclick="speakText('shoppers')">購物者</span></span> will buy <span class='tooltip'>gifts<span class='tooltip-text' onclick="speakText('gifts')">禮物</span></span> for other people while they are in the store .<BR>
+　Black Friday is a <span class='tooltip'>great time<span class='tooltip-text' onclick="speakText('great time')">美好時光</span></span> to get good <span class='tooltip'>deals<span class='tooltip-text' onclick="speakText('deals')">優惠</span></span> .<BR>
+　The <span class='tooltip'>problem<span class='tooltip-text' onclick="speakText('problem')">問題</span></span> is that there are not enough low-priced items to go <span class='tooltip'>around<span class='tooltip-text' onclick="speakText('around')">圍繞</span></span> .<BR>
+　Each store may only have a few .<BR><HR>
+
+
+　These items are in high <span class='tooltip'>demand<span class='tooltip-text' onclick="speakText('demand')">要求</span></span>  .<BR>
+　People stand in long lines to get such great <span class='tooltip'>deals<span class='tooltip-text' onclick="speakText('deals')">優惠</span></span> .<BR>
+　They may line up hours before a store opens .<BR>
+　They may be hoping to get a low price on a TV or <span class='tooltip'>laptop<span class='tooltip-text' onclick="speakText('laptop')">筆記型電腦</span></span> , but not everyone who wants one will get one .<BR>
+　Some people leave <span class='tooltip'>disappointed<span class='tooltip-text' onclick="speakText('disappointed')">失望</span></span> .<BR><HR>
+
+
+　The <span class='tooltip'>situation<span class='tooltip-text' onclick="speakText('situation')">情況</span></span> can be <span class='tooltip'>tense<span class='tooltip-text' onclick="speakText('tense')">緊張</span></span> .<BR>
+　Some Black Friday events have been <span class='tooltip'>violent<span class='tooltip-text' onclick="speakText('violent')">暴力</span></span> .<BR>
+　Large, <span class='tooltip'>eager<span class='tooltip-text' onclick="speakText('eager')">渴望的</span></span> <span class='tooltip'>crowds<span class='tooltip-text' onclick="speakText('crowds')">列</span></span> have <span class='tooltip'>trampled<span class='tooltip-text' onclick="speakText('trampled')">被踐踏</span></span> workers .<BR>
+　<span class='tooltip'>Fights<span class='tooltip-text' onclick="speakText('Fights')">打架</span></span> have <span class='tooltip'>broken out over<span class='tooltip-text' onclick="speakText('broken out over')">爆發</span></span> toys or people <span class='tooltip'>cutting in line<span class='tooltip-text' onclick="speakText('cutting in line')">插隊</span></span> .<BR> People have <span class='tooltip'>shot<span class='tooltip-text' onclick="speakText('shot')">射擊</span></span> one <span class='tooltip'>another<span class='tooltip-text' onclick="speakText('another')">其他</span></span> over <span class='tooltip'>parking spots<span class='tooltip-text' onclick="speakText('parking spots')">停車位</span></span> .<BR>
+　But most Black Friday events are safe and fun .<BR><HR>
+
+
+　Still, if you plan on going, <span class='tooltip'>expect<span class='tooltip-text' onclick="speakText('expect')">預計</span></span> large <span class='tooltip'>crowds<span class='tooltip-text' onclick="speakText('crowds')">人群</span></span> and a bit of <span class='tooltip'>shoving<span class='tooltip-text' onclick="speakText('shoving')">推擠</span></span> .<BR>
+　So where does the name "Black Friday" come from?<BR>
+　It was first used in <span class='tooltip'>Philadelphia<span class='tooltip-text' onclick="speakText('Philadelphia')">費城</span></span> in the 1950s .<BR><HR>
+
+　The police called this day Black Friday because of the heavy <span class='tooltip'>traffic<span class='tooltip-text' onclick="speakText('traffic')">交通</span></span> it drew .<BR>
+　In the 1960s, stores tried to rename the day "Big Friday." It did not <span class='tooltip'>stick<span class='tooltip-text' onclick="speakText('stick')">黏住</span></span> .<BR>
+　The name "Black Friday" <span class='tooltip'>continued<span class='tooltip-text' onclick="speakText('continued')">持續</span></span> to <span class='tooltip'>spread<span class='tooltip-text' onclick="speakText('spread')">傳播</span></span> across the country .<BR> It seems that it is here to <span class='tooltip'>stay<span class='tooltip-text' onclick="speakText('stay')">停留</span></span> .<BR><HR>
+
+　Now people all over the country <span class='tooltip'>take part<span class='tooltip-text' onclick="speakText('take part')">參與</span></span> in the event known as Black Friday .<BR>
+　It is even <span class='tooltip'>spreading<span class='tooltip-text' onclick="speakText('spreading')">蔓延</span></span> to other parts of the world .<BR> Stores have <span class='tooltip'>held<span class='tooltip-text' onclick="speakText('held')">保持</span></span> Black Friday events in the U.K. ,Australia, and Brazil since 2012 .<BR>
+　In <span class='tooltip'>Costa Rica<span class='tooltip-text' onclick="speakText('Costa Rica')">哥斯大黎加</span></span> Black Friday is known as <span class='tooltip'>"Viernes Negro"<span class='tooltip-text' onclick="speakText('"Viernes Negro"')">黑色星期五</span></span> .<BR><HR>
+
+　And in Mexico, stores <span class='tooltip'>offer<span class='tooltip-text' onclick="speakText('offer')">提供</span></span> an <span class='tooltip'>annual<span class='tooltip-text' onclick="speakText('annual')">年度的</span></span> weekend of <span class='tooltip'>discounts<span class='tooltip-text' onclick="speakText('discounts')">折扣</span></span> .<BR>
+　They call it "El Buen Fin," which means "the good weekend" in <span class='tooltip'>Spanish<span class='tooltip-text' onclick="speakText('Spanish')">西班牙</span></span> .<BR>
+　I guess the language of <span class='tooltip'>savings<span class='tooltip-text' onclick="speakText('savings')">省錢</span></span> is <span class='tooltip'>universal<span class='tooltip-text' onclick="speakText('universal')">普遍的</span></span> .<BR>

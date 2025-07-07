@@ -1,0 +1,269 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+  <script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+  </script>
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.p{
+font-size: 1.0em;
+height:20px;
+}
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:99%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      right:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+<center>04失憶症</center>
+　Many Americans gather together as families and spend time with each other over the <span class='tooltip'>winter<span class='tooltip-text' onclick="speakText('winter')">冬季</span></span> <span class='tooltip'>holidays<span class='tooltip-text' onclick="speakText('holidays')">假日</span></span>.<br>
+　But it can be <span class='tooltip'>difficult<span class='tooltip-text' onclick="speakText('difficult')">困難的</span></span> when a family member <span class='tooltip'>suffers<span class='tooltip-text' onclick="speakText('suffers')">遭受</span></span> from <span class='tooltip'>memory loss<span class='tooltip-text' onclick="speakText('memory loss')">失憶症</span></span>.<BR>
+<U>Tim Hollingsworth</U> knows it well.
+The well-known American <span class='tooltip'>chef<span class='tooltip-text' onclick="speakText('chef')">主廚</span></span> learned to <span class='tooltip'>cook<span class='tooltip-text' onclick="speakText('cook')">烹煮</span></span> at his mother's side when he was growing up. <br>
+　<U>Hollingsworth</U> would <span class='tooltip'>measure<span class='tooltip-text' onclick="speakText('measure')">測量</span></span> <span class='tooltip'>ingredients<span class='tooltip-text' onclick="speakText('ingredients')">烹調的原料</span></span> to help her make <span class='tooltip'>dinner<span class='tooltip-text' onclick="speakText('dinner')">晚餐</span></span>. <br><HR>
+
+　He would talk with his mother and <span class='tooltip'>taste<span class='tooltip-text' onclick="speakText('taste')">嚐到</span></span> the food as they cooked.<br>
+　Today, he is the <span class='tooltip'>winner<span class='tooltip-text' onclick="speakText('winner')">勝利者</span></span> of "The Final Table" <span class='tooltip'>competition<span class='tooltip-text' onclick="speakText('competition')">競爭</span></span> on Netflix, the media <span class='tooltip'>production<span class='tooltip-text' onclick="speakText('production')">製作</span></span> <span class='tooltip'>company<span class='tooltip-text' onclick="speakText('company')">公司</span></span>. <br>
+　He also is the owner of <span class='tooltip'>Otium<span class='tooltip-text' onclick="speakText('Otium')">餐館名稱</span></span> , a <span class='tooltip'>restaurant<span class='tooltip-text' onclick="speakText('restaurant')">餐廳</span></span> in Los Angeles, <span class='tooltip'>California<span class='tooltip-text' onclick="speakText('California')">加州</span></span>.<BR>
+　<U>Hollingsworth</U> still cooks with his mother, but it is <span class='tooltip'>different<span class='tooltip-text' onclick="speakText('different')">不同的</span></span> now. <br>
+　She <span class='tooltip'>struggles<span class='tooltip-text' onclick="speakText('struggles')">掙扎</span></span> with <span class='tooltip'>memory loss<span class='tooltip-text' onclick="speakText('memory loss')">失憶症</span></span>. <br><HR>
+
+　She sits with him as he <span class='tooltip'>prepares<span class='tooltip-text' onclick="speakText('prepares')">準備</span></span> <span class='tooltip'>meals<span class='tooltip-text' onclick="speakText('meals')">餐點</span></span> from her favorite <span class='tooltip'>recipes<span class='tooltip-text' onclick="speakText('recipes')">食譜</span></span>. <br>
+　These include recipes for "<span class='tooltip'>comfort<span class='tooltip-text' onclick="speakText('comfort')">舒適</span></span> foods"—ones that fill your <span class='tooltip'>stomach<span class='tooltip-text' onclick="speakText('stomach')">胃</span></span> and warm your heart with happy memories, while filling a home with a <span class='tooltip'>pleasant smell<span class='tooltip-text' onclick="speakText('pleasant smell')">聞出令人愉快的</span></span>. <BR>
+　His mother does not cook anymore. <br><HR>
+
+　But being <span class='tooltip'>present<span class='tooltip-text' onclick="speakText('present')">展示</span></span> at the cooking and eating foods she may <span class='tooltip'>remember<span class='tooltip-text' onclick="speakText('remember')">記住</span></span> help close the <span class='tooltip'>distance<span class='tooltip-text' onclick="speakText('distance')">距離</span></span> that <span class='tooltip'>dementia<span class='tooltip-text' onclick="speakText('dementia')">失智</span></span> can <span class='tooltip'>create<span class='tooltip-text' onclick="speakText('create')">創造</span></span>. <br>
+　<span class='tooltip'>Dementia<span class='tooltip-text' onclick="speakText('Dementia')">癡呆症</span></span> and <span class='tooltip'>Alzheimer<span class='tooltip-text' onclick="speakText('Alzheimer')">阿茲海默症</span></span>'s <span class='tooltip'>disease<span class='tooltip-text' onclick="speakText('disease')">疾病</span></span> <span class='tooltip'>affect<span class='tooltip-text' onclick="speakText('affect')">影響</span></span> older people's <span class='tooltip'>memories<span class='tooltip-text' onclick="speakText('memories')">記憶</span></span>. <br>
+　<span class='tooltip'>Over time<span class='tooltip-text' onclick="speakText('Over time')">隨著時間</span></span>, <span class='tooltip'>patients<span class='tooltip-text' onclick="speakText('patients')">病人</span></span> lose their <span class='tooltip'>memories<span class='tooltip-text' onclick="speakText('memories')">記憶</span></span>, <span class='tooltip'>piece by piece<span class='tooltip-text' onclick="speakText('piece by piece')">一點一點</span></span>. <br>
+　The first to go are usually the <span class='tooltip'>newer memories<span class='tooltip-text' onclick="speakText('newer memories')">較新的記憶</span></span>. <br>
+　The older <span class='tooltip'>memories<span class='tooltip-text' onclick="speakText('memories')">記憶</span></span>, from when they were young, can be the last to <span class='tooltip'>disappear<span class='tooltip-text' onclick="speakText('disappear')">消失</span></span>.<BR>
+　Being with family and doing things <span class='tooltip'>together<span class='tooltip-text' onclick="speakText('together')">一起</span></span> can help. <br><HR>
+
+　They give the <span class='tooltip'>patients<span class='tooltip-text' onclick="speakText('patients')">病人</span></span> a sense of <span class='tooltip'>usefulness<span class='tooltip-text' onclick="speakText('usefulness')">有用</span></span> and <span class='tooltip'>belonging<span class='tooltip-text' onclick="speakText('belonging')">歸屬感</span></span>. <br>
+　Family members with <span class='tooltip'>dementia<span class='tooltip-text' onclick="speakText('dementia')">失智症</span></span> can be involved <span class='tooltip'>in meal<span class='tooltip-text' onclick="speakText('in meal')">吃飯</span></span> <span class='tooltip'>preparation<span class='tooltip-text' onclick="speakText('preparation')">準備</span></span> or setting the table. <br>
+　It helps them feel like part of a family or <span class='tooltip'>community<span class='tooltip-text' onclick="speakText('community')">社群</span></span>.<BR><HR>
+
+　What they ate was not <span class='tooltip'>important<span class='tooltip-text' onclick="speakText('important')">重要的</span></span>. <br>
+　It was <span class='tooltip'>instead<span class='tooltip-text' onclick="speakText('instead')">準備</span></span> the <span class='tooltip'>familiar<span class='tooltip-text' onclick="speakText('familiar')">熟悉的</span></span> and <span class='tooltip'>comforting<span class='tooltip-text' onclick="speakText('comforting')">令人欣慰的</span></span> <span class='tooltip'>experience<span class='tooltip-text' onclick="speakText('experience')">經驗</span></span> of sitting around the table together, even after the family had finished eating. <br>
+　It is the meal made with love that can truly bring out a person with <span class='tooltip'>dementia<span class='tooltip-text' onclick="speakText('dementia')">失智症</span></span> and bring them real 
+<span class='tooltip'>joy<span class='tooltip-text' onclick="speakText('joy')">
+歡樂</span></span>.<br>

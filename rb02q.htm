@@ -1,0 +1,257 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+  <script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>  
+
+
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      right:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+ 
+  </style>
+</head>
+<body><div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+21.<span class='tooltip'>According<span class='tooltip-text' onclick="speakText('According')">根據</span></span> to the text, why do stores set prices so low on some items that they <span class='tooltip'>lose money<span class='tooltip-text' onclick="speakText('lose money')">賠錢</span></span>?
+<span class='tooltip3'>譯<span class='tooltip-text'>根據本文，為什麼店家會將某些商品定價訂得很低，而讓他們自己倒賠</span></span><br>
+(A)Because they want people to enjoy the holidays..<br>
+(B)Because they hope people will buy other gifts while they are in the store. <img src="ans.png"><br>
+(C)Because they are in a <span class='tooltip'>giving mood<span class='tooltip-text' onclick="speakText('giving mood')">給予心情</span></span> because the holiday season is just beginning..<br>
+(D)Because they are trying to get <span class='tooltip'>rid of old items<span class='tooltip-text' onclick="speakText('rid of old items')">擺脫舊品</span></span> from last year to <span class='tooltip'>make room<span class='tooltip-text' onclick="speakText('make room')">騰出空間</span></span> for new items..<br>
+<hr>
+22.Which is NOT true about Black Friday? <span class='tooltip3'>譯<span class='tooltip-text'>有關黑色星期五，何者有誤</span></span><br>
+(A)Black Friday is always the day after Thanksgiving.<span class='tooltip3'>譯<span class='tooltip-text'>黑色星期五都是在感恩節後的隔天</span></span><br>
+(B)Black Friday is the <span class='tooltip'>busiest<span class='tooltip-text' onclick="speakText('busiest')">忙碌的</span></span> shopping day of the year.<span class='tooltip3'>譯<span class='tooltip-text'>黑色星期五是一年中忙碌的購物節</span></span><br>
+(C)Black Friday is a national holiday. <img src="ans.png"><span class='tooltip3'>譯<span class='tooltip-text'>黑色星期五是國定假日</span></span><br>
+(D)Black Friday is the start of the holiday shopping season.<span class='tooltip3'>譯<span class='tooltip-text'>黑色星期五是假期購物季的開始。</span></span><br>
+<hr>
+23.Where does the name Black Friday come from?<span class='tooltip3'>譯<span class='tooltip-text'>黑色星期五的名稱由來為何</span></span><br>
+(A)The police called this day Black Friday because there is <span class='tooltip'>a lot of traffic<span class='tooltip-text' onclick="speakText('a lot of traffic')">交通流量大</span></span>. <img src="ans.png"><br>
+(B)The stores called this day Black Friday because it is a <span class='tooltip'>serious<span class='tooltip-text' onclick="speakText('serious')">嚴肅的、重要的</span></span> shopping day.<br>
+(C)The police called this day Black Friday to remember the <span class='tooltip'>victims<span class='tooltip-text' onclick="speakText('victims')">受害者</span></span> of <span class='tooltip'>violence<span class='tooltip-text' onclick="speakText('violence')">暴力</span></span>。<BR>
+(D)The stores called this day Black Friday because they make a lot of money.<br>
+<hr>
+24.Which best <span class='tooltip'>explains<span class='tooltip-text' onclick="speakText('explains')">解釋</span></span> the main idea of the third <span class='tooltip'>paragraph<span class='tooltip-text' onclick="speakText('paragraph')">段落</span></span>? <span class='tooltip3'>譯<span class='tooltip-text'>何者最能點出第三段的主旨</span></span> <br>
+(A)People stand in long lines on Black Friday.<br>
+(B)Black Friday is the best time of the year to get <span class='tooltip'>good deals<span class='tooltip-text' onclick="speakText('good deals')">好優惠</span></span>.<br>
+(C)Black Friday is a really <span class='tooltip'>disappointing<span class='tooltip-text' onclick="speakText('disappointing')">失望</span></span> time of the year.<br>
+(D)Black Friday <span class='tooltip'>deals<span class='tooltip-text' onclick="speakText('deals')">優惠</span></span> are <span class='tooltip'>limited<span class='tooltip-text' onclick="speakText('limited')">限制</span></span> and not everyone will get one.<img src="ans.png"><br>
+
+<hr>
+25.<span class='tooltip'>According<span class='tooltip-text' onclick="speakText('According')">根據</span></span> to the text, which <span class='tooltip'>country<span class='tooltip-text' onclick="speakText('country')">國家</span></span> does not <span class='tooltip'>participate<span class='tooltip-text' onclick="speakText('participate')">參加</span></span> in Black Friday? <span class='tooltip3'>譯<span class='tooltip-text'>根據本文，那一個國家沒有參與黑色星期五的活動</span></span><br>
+(A)<span class='tooltip'>France<span class='tooltip-text' onclick="speakText('France')">法國</span></span> <img src="ans.png"><br>
+(B)<span class='tooltip'>Costa Rica<span class='tooltip-text' onclick="speakText('Costa Rica')">哥斯大黎加</span></span><br>
+(C)<span class='tooltip'>Brazil<span class='tooltip-text' onclick="speakText('Brazil')">巴西</span></span> <br>
+(D)<span class='tooltip'>United Kingdom<span class='tooltip-text' onclick="speakText('United Kingdom')">英國</span></span> .<br>

@@ -1,0 +1,247 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<head>
+  <meta charset="utf-8" />
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script> 
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+<style>
+.cir {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      border: 1px solid #333;
+      border-radius: 30%;
+      color: #333;
+    }
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 30px;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+ 
+  </style>
+</head>
+<body>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>克漏字學習　　回首頁</h3></a></div>
+</div>
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;><BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+  <p><u>Nola Ochs</u> was <span class='tooltip'>born<span class='tooltip-text' onclick="speakText('born')"><IMG SRC='speak.png'>出生</span></span> in Kansas in 1911.<br>
+
+Her life was not <span class='tooltip'>extraordinary<span class='tooltip-text' onclick="speakText('extraordinary')"><IMG SRC='speak.png'>非凡的</span></span> by most <span class='tooltip'>measures<span class='tooltip-text' onclick="speakText('measures')"><IMG SRC='speak.png'>措施</span></span>.<br>
+
+She grew and <span class='tooltip'>married<span class='tooltip-text' onclick="speakText('married')"><IMG SRC='speak.png'>結婚</span></span>, had children and <span class='tooltip'>grandchildren<span class='tooltip-text' onclick="speakText('grandchildren')"><IMG SRC='speak.png'>孫子</span></span>, <span class='tooltip'>taught<span class='tooltip-text' onclick="speakText('taught')"><IMG SRC='speak.png'>教過的</span></span> in <span class='tooltip'>rural<span class='tooltip-text' onclick="speakText('rural')"><IMG SRC='speak.png'>鄉村的</span></span> schools, and lived the quiet <span class='tooltip'>Midwest<span class='tooltip-text' onclick="speakText('Midwest')"><IMG SRC='speak.png'>中西部</span></span> life.<br><HR>
+
+
+But she was different in one <span class='tooltip'>notable<span class='tooltip-text' onclick="speakText('notable')"><IMG SRC='speak.png'>值得注意的</span></span> way: After her <span class='tooltip'>husband<span class='tooltip-text' onclick="speakText('husband')"><IMG SRC='speak.png'>老公</span></span> <span class='tooltip'>died<span class='tooltip-text' onclick="speakText('died')"><IMG SRC='speak.png'>過逝</span></span> in 1972, 
+<U>Nola</U> began taking classes and <span class='tooltip'>eventually<span class='tooltip-text' onclick="speakText('eventually')"><IMG SRC='speak.png'>最終</span></span> <span class='tooltip'>earned<span class='tooltip-text' onclick="speakText('earned')"><IMG SRC='speak.png'>賺來的</span></span> her <span class='tooltip'>associate degree<span class='tooltip-text' onclick="speakText('associate degree')"><IMG SRC='speak.png'>副學士學位</span></span> at age 77.<br><HR>
+
+"I still wanted to go to school. It was fun to go to classes.<br>
+And if I had an <span class='tooltip'>assignment<span class='tooltip-text' onclick="speakText('assignment')"><IMG SRC='speak.png'>任務</span></span> to do in the <span class='tooltip'>evening<span class='tooltip-text' onclick="speakText('evening')"><IMG SRC='speak.png'>晚上</span></span>, 
+that <span class='tooltip'>occupied<span class='tooltip-text' onclick="speakText('occupied')"><IMG SRC='speak.png'>佔領</span></span> my time in a <span class='tooltip'>pleasant<span class='tooltip-text' onclick="speakText('pleasant')"><IMG SRC='speak.png'>令人愉快的</span></span> way," she <span class='tooltip'>recalled<span class='tooltip-text' onclick="speakText('recalled')"><IMG SRC='speak.png'>回憶</span></span>.<br><HR>
+
+After some years went by, <U>Nola</U> again got the <span class='tooltip'>bug<span class='tooltip-text' onclick="speakText('bug')"><IMG SRC='speak.png'>蟲、問題</span></span> to learn.<br>
+
+Learning takes time, and <span class='tooltip'>moving through courses<span class='tooltip-text' onclick="speakText('moving through courses')"><IMG SRC='speak.png'>學習課程</span></span> must be done on your own time, 
+at your own pace.<br>
+
+When <U>Nola</U> had 30 hours of school left to <span class='tooltip'>complete<span class='tooltip-text' onclick="speakText('complete')"><IMG SRC='speak.png'>完全的</span></span>, 
+she moved 100 miles away from her farm, got an <span class='tooltip'>apartment<span class='tooltip-text' onclick="speakText('apartment')"><IMG SRC='speak.png'>公寓</span></span> and attended classes in person.<br>
+She <span class='tooltip'>graduated<span class='tooltip-text' onclick="speakText('graduated')"><IMG SRC='speak.png'>畢業</span></span> with her <span class='tooltip'>granddaughter<span class='tooltip-text' onclick="speakText('granddaughter')"><IMG SRC='speak.png'>孫女</span></span> in 2007.<br><HR>
+
+
+<U>Nola</U> could have been <span class='tooltip'>finished<span class='tooltip-text' onclick="speakText('finished')"><IMG SRC='speak.png'>完成</span></span> then with her long life of learning.<br>
+She was, after all, 95 years young.<U>Nola</U> decided to <span class='tooltip'>keep going<span class='tooltip-text' onclick="speakText('keep going')"><IMG SRC='speak.png'>繼續前進</span></span>.<br>
+She lived in the <span class='tooltip'>student dorms<span class='tooltip-text' onclick="speakText('student dorms')"><IMG SRC='speak.png'>學生宿舍</span></span> and got her <span class='tooltip'>master's degree<span class='tooltip-text' onclick="speakText('master's degree')"><IMG SRC='speak.png'>碩士</span></span> in <span class='tooltip'>liberal studies<span class='tooltip-text' onclick="speakText('liberal studies')"><IMG SRC='speak.png'>人文學科</span></span> with an <span class='tooltip'>emphasis<span class='tooltip-text' onclick="speakText('emphasis')"><IMG SRC='speak.png'>強調、主修</span></span> on <span class='tooltip'>history<span class='tooltip-text' onclick="speakText('history')"><IMG SRC='speak.png'>歷史</span></span> three years later, at age 98.<br><hr>
+
+A <span class='tooltip'>hundred years<span class='tooltip-text' onclick="speakText('hundred years')"><IMG SRC='speak.png'>百歲</span></span> <span class='tooltip'>yields<span class='tooltip-text' onclick="speakText('yields')"><IMG SRC='speak.png'>產量</span></span> a lot of <span class='tooltip'>wisdom<span class='tooltip-text' onclick="speakText('wisdom')"><IMG SRC='speak.png'>智慧</span></span>.
+But it's the <span class='tooltip'>process<span class='tooltip-text' onclick="speakText('process')"><IMG SRC='speak.png'>過程</span></span> that can <span class='tooltip'>teach us<span class='tooltip-text' onclick="speakText('teach us')"><IMG SRC='speak.png'>教導我們</span></span> all.<br><HR>
+Learn everything you can.Share your <span class='tooltip'>crops<span class='tooltip-text' onclick="speakText('crops')"><IMG SRC='speak.png'>農作物、收成</span></span> with the <span class='tooltip'>neighbors<span class='tooltip-text' onclick="speakText('neighbors')"><IMG SRC='speak.png'>鄰居</span></span>.<br>
+And never,never <span class='tooltip'>give up on yourself<span class='tooltip-text' onclick="speakText('give up on yourself')"><IMG SRC='speak.png'>放棄自我</span></span>. At 105, <U>Nola</U> finished her <span class='tooltip'>memoir<span class='tooltip-text' onclick="speakText('memoir')"><IMG SRC='speak.png'>回憶錄</span></span>.<br>
+

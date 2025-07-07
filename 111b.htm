@@ -1,0 +1,297 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<head>
+  <meta charset="utf-8" />
+  <script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>  
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+  <style>
+
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.2em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.2em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+ 
+  </style>
+
+</head>
+<body>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+  I grew up on a farm in Colombia, a poor country in South America.<BR>
+The lack of rain has been killing many of the people who live around here.<BR>
+My friends and I have been helping them <span class='tooltip'>survive<span class='tooltip-text' onclick="speakText('survive')"><IMG SRC='speak.png'>存活</span></span>, but we're not <span class='tooltip'>superheroes<span class='tooltip-text' onclick="speakText('superheroes')"><IMG SRC='speak.png'>超級英雄</span></span>.
+We are just <span class='tooltip'>beans<span class='tooltip-text' onclick="speakText('beans')"><IMG SRC='speak.png'>豆子</span></span>,little beans that grow in the <span class='tooltip'>dirt<span class='tooltip-text' onclick="speakText('dirt')"><IMG SRC='speak.png'>污垢</span></span>.<BR>
+
+Yet it's our ability to grow in the dirt that makes us so special.<BR><Hr>
+
+
+We're called <span class='tooltip'>guajiro<span class='tooltip-text' onclick="speakText('guajiro')"><IMG SRC='speak.png'>瓦尤人</span></span> beans, and we don't need much water.<BR>
+In fact, sometimes we can <span class='tooltip'>sprout<span class='tooltip-text' onclick="speakText('sprout')"><IMG SRC='speak.png'>發芽</span></span> from <span class='tooltip'>dry<span class='tooltip-text' onclick="speakText('dry')"><IMG SRC='speak.png'>乾燥</span></span> land.<BR>
+There are lots of <span class='tooltip'>nutrients<span class='tooltip-text' onclick="speakText('nutrients')"><IMG SRC='speak.png'>營養素</span></span> in the <span class='tooltip'>soil<span class='tooltip-text' onclick="speakText('soil')"><IMG SRC='speak.png'>土壤</span></span> that we can take in and grow from.<br>
+
+When we're fully <span class='tooltip'>developed<span class='tooltip-text' onclick="speakText('developed')"><IMG SRC='speak.png'>發達、發展成長</span></span> in our <span class='tooltip'>pods<span class='tooltip-text' onclick="speakText('pods')"><IMG SRC='speak.png'>豆莢</span></span>, we <span class='tooltip'>contain<span class='tooltip-text' onclick="speakText('contain')"><IMG SRC='speak.png'>包含</span></span> <span class='tooltip'>vitamins<span class='tooltip-text' onclick="speakText('vitamins')"><IMG SRC='speak.png'>維生素</span></span>, <span class='tooltip'>minerals<span class='tooltip-text' onclick="speakText('minerals')"><IMG SRC='speak.png'>礦物質</span></span>, and <span class='tooltip'>proteins<span class='tooltip-text' onclick="speakText('proteins')"><IMG SRC='speak.png'>蛋白質</span></span>.<BR><HR>
+
+That is why we have been able to help so many people.
+As you know, Earth's <span class='tooltip'>climate<span class='tooltip-text' onclick="speakText('climate')"><IMG SRC='speak.png'>氣候</span></span> is <span class='tooltip'>changing<span class='tooltip-text' onclick="speakText('changing')"><IMG SRC='speak.png'>改變</span></span>.<BR>
+
+Here in Colombia, we're feeling the <span class='tooltip'>effects<span class='tooltip-text' onclick="speakText('effects')"><IMG SRC='speak.png'>效果</span></span>.<BR>
+About ten years ago, the rain stopped coming.<BR>
+Our rivers have <span class='tooltip'>dried up<span class='tooltip-text' onclick="speakText('dried up')"><IMG SRC='speak.png'>乾涸</span></span>, our <span class='tooltip'>forests<span class='tooltip-text' onclick="speakText('forests')"><IMG SRC='speak.png'>森林</span></span> have <span class='tooltip'>burned down<span class='tooltip-text' onclick="speakText('burned down')"><IMG SRC='speak.png'>燒毀</span></span>, and our farms can't grow many types of food.<BR><HR>
+
+So, for many people here, we <span class='tooltip'>guajiro<span class='tooltip-text' onclick="speakText('guajiro')"><IMG SRC='speak.png'>瓦尤人</span></span> beans are giving them some of the <span class='tooltip'>nutrients<span class='tooltip-text' onclick="speakText('nutrients')"><IMG SRC='speak.png'>營養素</span></span> they need.
+In addition to that, we're also giving farmers a product to sell.<BR><HR>
+
+
+We're especially important to the <span class='tooltip'>Wayuu people<span class='tooltip-text' onclick="speakText('Wayuu people')"><IMG SRC='speak.png'>瓦尤人</span></span>, a local <span class='tooltip'>tribe<span class='tooltip-text' onclick="speakText('tribe')"><IMG SRC='speak.png'>部落</span></span>.<br>
+The Wayuu have been farming the land here for <span class='tooltip'>centuries<span class='tooltip-text' onclick="speakText('centuries')"><IMG SRC='speak.png'>世紀</span></span>.
+
+
+However, they can't <span class='tooltip'>grow and raise<span class='tooltip-text' onclick="speakText('grow and raise')"><IMG SRC='speak.png'>飼養</span></span> animals like they <span class='tooltip'>used to<span class='tooltip-text' onclick="speakText('used to')"><IMG SRC='speak.png'>過去常</span></span>.<BR>
+But beans like my friends and me are keeping the <span class='tooltip'>tribe<span class='tooltip-text' onclick="speakText('tribe')"><IMG SRC='speak.png'>部落</span></span> and its <span class='tooltip'>culture<span class='tooltip-text' onclick="speakText('culture')"><IMG SRC='speak.png'>文化</span></span> alive.<br>
+In fact, we even help people grow other foods, too.<BR>
+We add <span class='tooltip'>nitrogen<span class='tooltip-text' onclick="speakText('nitrogen')"><IMG SRC='speak.png'>氮</span></span> to the <span class='tooltip'>soil<span class='tooltip-text' onclick="speakText('soil')"><IMG SRC='speak.png'>土壤</span></span>,
+which helps foods like <span class='tooltip'>pumpkins<span class='tooltip-text' onclick="speakText('pumpkins')"><IMG SRC='speak.png'>南瓜</span></span> and <span class='tooltip'>corn<span class='tooltip-text' onclick="speakText('corn')"><IMG SRC='speak.png'>玉米</span></span> grow.<BR>
+We can't do all this by ourselves, though.<br>
+We sometimes need a bit of water, and the farmers here have found ways to get
+<span class='tooltip'>small amounts<span class='tooltip-text' onclick="speakText('small amounts')"><IMG SRC='speak.png'>少量</span></span> out of <span class='tooltip'>wells<span class='tooltip-text' onclick="speakText('wells')"><IMG SRC='speak.png'>井</span></span>, clean it, and <span class='tooltip'>spread<span class='tooltip-text' onclick="speakText('spread')"><IMG SRC='speak.png'>擴散</span></span> it on our land.<BR>
+
+I'm <span class='tooltip'>proud<span class='tooltip-text' onclick="speakText('proud')"><IMG SRC='speak.png'>自豪的</span></span> to be a guajiro bean.
+I'm strong, healthy, and easy to <span class='tooltip'>get along with<span class='tooltip-text' onclick="speakText('get along with')"><IMG SRC='speak.png'>取得進展</span></span>.<BR>
+I'm so happy that I can help my Wayuu friends <span class='tooltip'>survive<span class='tooltip-text' onclick="speakText('survive')"><IMG SRC='speak.png'>存活</span></span>.<BR>
+

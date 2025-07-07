@@ -1,0 +1,253 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:99%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      right:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+<style>
+.pp {
+  color: #008800;           /* 字體顏色：紅色（十六進位） */
+  text-decoration: underline; /* 加底線 */
+}
+</style>
+<center>07學習態度</center>
+　<span class="pp">Tammy</span> and <span class="pp">Sammy</span> were both students in Mr. <span class="pp">Morton's</span> reading class. <br>
+　Mr. <span class="pp">Morton</span> wasn't too <span class='tooltip'>strict<span class='tooltip-text' onclick="speakText('strict')"><IMG SRC='speak.png'>嚴格的</span></span> about <span class='tooltip'>deadlines<span class='tooltip-text' onclick="speakText('deadlines')"><IMG SRC='speak.png'>截止日期</span></span>, and Sammy took <span class='tooltip'>advantage<span class='tooltip-text' onclick="speakText('advantage')"><IMG SRC='speak.png'>優勢</span></span> of that.<br>
+　He did all of his homework in his other classes but never <span class='tooltip'>bothered<span class='tooltip-text' onclick="speakText('bothered')"><IMG SRC='speak.png'>困擾</span></span> to <span class='tooltip'>complete<span class='tooltip-text' onclick="speakText('complete')"><IMG SRC='speak.png'>完全的</span></span> Mr. <br>
+　<span class="pp">Morton's</span> reading <span class='tooltip'>assignments<span class='tooltip-text' onclick="speakText('assignments')"><IMG SRC='speak.png'>作業</span></span>, <span class='tooltip'>figuring<span class='tooltip-text' onclick="speakText('figuring')"><IMG SRC='speak.png'>計算</span></span> that he could <span class='tooltip'>complete<span class='tooltip-text' onclick="speakText('complete')"><IMG SRC='speak.png'>完全的</span></span> them later. <br><HR>
+
+　<span class="pp">Tammy</span>, <span class='tooltip'>on the other hand<span class='tooltip-text' onclick="speakText('on the other hand')"><IMG SRC='speak.png'>另一方面</span></span>, <span class='tooltip'>completed<span class='tooltip-text' onclick="speakText('completed')"><IMG SRC='speak.png'>完全的</span></span> each <span class='tooltip'>assignment<span class='tooltip-text' onclick="speakText('assignment')"><IMG SRC='speak.png'>任務</span></span> Mr. Morton <span class='tooltip'>assigned<span class='tooltip-text' onclick="speakText('assigned')"><IMG SRC='speak.png'>分配的</span></span> the night that he <span class='tooltip'>assigned<span class='tooltip-text' onclick="speakText('assigned')"><IMG SRC='speak.png'>分配的</span></span> it. <br>
+　She had to <span class='tooltip'>stay up<span class='tooltip-text' onclick="speakText('stay up')"><IMG SRC='speak.png'>熬夜</span></span> a little later, but she didn't want to get a <span class='tooltip'>penalty<span class='tooltip-text' onclick="speakText('penalty')"><IMG SRC='speak.png'>懲罰</span></span> for <span class='tooltip'>turning<span class='tooltip-text' onclick="speakText('turning')"><IMG SRC='speak.png'>轉動</span></span> in her reading work late. <br>
+　<span class="pp">Tammy</span> knew reading was a <span class='tooltip'>core subject<span class='tooltip-text' onclick="speakText('core subject')"><IMG SRC='speak.png'>核心科目</span></span> and that she had to keep "C" average for the <span class='tooltip'>entire<span class='tooltip-text' onclick="speakText('entire')"><IMG SRC='speak.png'>全部的</span></span><br>
+　year or she would have to go to <span class='tooltip'>summer<span class='tooltip-text' onclick="speakText('summer')"><IMG SRC='speak.png'>夏天</span></span> school. <br><Hr>
+
+
+　Towards the end of the <span class='tooltip'>semester<span class='tooltip-text' onclick="speakText('semester')"><IMG SRC='speak.png'>學期</span></span>, <span class="pp">Tammy and Sammy</span> had both on going to the <span class='tooltip'>Enchanted Castle<span class='tooltip-text' onclick="speakText('Enchanted Castle')"><IMG SRC='speak.png'>魔法城堡</span></span> <span class='tooltip'>amusement<span class='tooltip-text' onclick="speakText('amusement')"><IMG SRC='speak.png'>娛樂</span></span> park, but Mr. <span class="pp">Morton</span> called Sammy's mother, and she <span class='tooltip'>grounded<span class='tooltip-text' onclick="speakText('grounded')"><IMG SRC='speak.png'>禁足、接地</span></span> <span class="pp">Sammy</span> until he <span class='tooltip'>turned in<span class='tooltip-text' onclick="speakText('turned in')"><IMG SRC='speak.png'>繳交</span></span> all of his work. <br>
+　That <span class='tooltip'>weekend<span class='tooltip-text' onclick="speakText('weekend')"><IMG SRC='speak.png'>週末</span></span> was <span class='tooltip'>horrible<span class='tooltip-text' onclick="speakText('horrible')"><IMG SRC='speak.png'>可怕</span></span> for <span class="pp">Sammy</span>. <br>
+　He <span class='tooltip'>stayed<span class='tooltip-text' onclick="speakText('stayed')"><IMG SRC='speak.png'>留下來</span></span> up until 2:00 AM each night and still couldn't <span class='tooltip'>complete<span class='tooltip-text' onclick="speakText('complete')"><IMG SRC='speak.png'>完全的</span></span> all of the <span class='tooltip'>assignments<span class='tooltip-text' onclick="speakText('assignments')"><IMG SRC='speak.png'>作業</span></span>. <br><HR>
+
+
+　<span class='tooltip'>The whole while<span class='tooltip-text' onclick="speakText('The whole while')"><IMG SRC='speak.png'>整個過程</span></span>, <span class="pp">Tammy</span> had a great time eating <span class='tooltip'>pizza<span class='tooltip-text' onclick="speakText('pizza')"><IMG SRC='speak.png'>披薩</span></span> at <span class='tooltip'>Enchanted Castle<span class='tooltip-text' onclick="speakText('Enchanted Castle')"><IMG SRC='speak.png'>魔法城堡</span></span>, watching movies late at night, and enjoying her <span class='tooltip'>weekend<span class='tooltip-text' onclick="speakText('weekend')"><IMG SRC='speak.png'>學期</span></span> free of stress and <span class='tooltip'>pressure<span class='tooltip-text' onclick="speakText('pressure')"><IMG SRC='speak.png'>壓力</span></span>. <br>
+　At the end of the <span class='tooltip'>semester<span class='tooltip-text' onclick="speakText('semester')"><IMG SRC='speak.png'>學期</span></span>, <span class="pp">Sammy</span> was <span class='tooltip'>lucky to squeak<span class='tooltip-text' onclick="speakText('lucky to squeak')"><IMG SRC='speak.png'>幸運尖叫</span></span> by with a "C" <span class='tooltip'>minus<span class='tooltip-text' onclick="speakText('minus')"><IMG SRC='speak.png'>減</span></span> in reading while <span class="pp">Tammy</span> <span class='tooltip'>earned<span class='tooltip-text' onclick="speakText('earned')"><IMG SRC='speak.png'>賺取</span></span> an "A." <span class="pp">Sammy</span> still hasn't learned his lesson and <span class='tooltip'>probably<span class='tooltip-text' onclick="speakText('probably')"><IMG SRC='speak.png'>大概</span></span> won't <span class='tooltip'>complete<span class='tooltip-text' onclick="speakText('complete')"><IMG SRC='speak.png'>完全的</span></span> this <span class='tooltip'>activity<span class='tooltip-text' onclick="speakText('activity')"><IMG SRC='speak.png'>活動</span></span> either. <br>
+
+

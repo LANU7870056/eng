@@ -1,0 +1,266 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:99%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      right:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+<style>
+.pp {
+  color: #008800;           /* 字體顏色：紅色（十六進位） */
+  text-decoration: underline; /* 加底線 */
+}
+</style>
+
+<center>09感恩節</center>
+　Americans <span class='tooltip'>celebrate<span class='tooltip-text' onclick="speakText('celebrate')"><IMG SRC='speak.png'>慶祝</span></span> <span class='tooltip'>Thanksgiving<span class='tooltip-text' onclick="speakText('Thanksgiving')"><IMG SRC='speak.png'>感恩節</span></span> on the <span class='tooltip'>fourth<span class='tooltip-text' onclick="speakText('fourth')"><IMG SRC='speak.png'>第四</span></span> Thursday of <span class='tooltip'>November<span class='tooltip-text' onclick="speakText('November')"><IMG SRC='speak.png'>十一月</span></span> . <br>
+　 <span class='tooltip'>Children<span class='tooltip-text' onclick="speakText('Children')"><IMG SRC='speak.png'>孩子們</span></span> don't go to school and businesses close for four days . <br>
+　It is a <span class='tooltip'>special<span class='tooltip-text' onclick="speakText('special')"><IMG SRC='speak.png'>特別的</span></span> day for <span class='tooltip'>families<span class='tooltip-text' onclick="speakText('families')"><IMG SRC='speak.png'>家庭</span></span>, and people <span class='tooltip'>travel<span class='tooltip-text' onclick="speakText('travel')"><IMG SRC='speak.png'>旅行</span></span> great <span class='tooltip'>distances<span class='tooltip-text' onclick="speakText('distances')"><IMG SRC='speak.png'>距離</span></span> just to be with their <span class='tooltip'>families<span class='tooltip-text' onclick="speakText('families')"><IMG SRC='speak.png'>家庭</span></span> for this <span class='tooltip'>occasion<span class='tooltip-text' onclick="speakText('occasion')"><IMG SRC='speak.png'>重大活動、場合</span></span> . <br>
+
+　This <span class='tooltip'>tradition<span class='tooltip-text' onclick="speakText('tradition')"><IMG SRC='speak.png'>傳統</span></span> started with the "<span class='tooltip'>Pilgrim Fathers<span class='tooltip-text' onclick="speakText('Pilgrim Fathers')"><IMG SRC='speak.png'>清教徒前輩移民</span></span>" . <br>
+　They were the <span class='tooltip'>founders<span class='tooltip-text' onclick="speakText('founders')"><IMG SRC='speak.png'>創辦人</span></span> of a <span class='tooltip'>colony<span class='tooltip-text' onclick="speakText('colony')"><IMG SRC='speak.png'>殖民地</span></span> in North America . <br>
+　These people were <span class='tooltip'>Puritans<span class='tooltip-text' onclick="speakText('Puritans')"><IMG SRC='speak.png'>清教徒</span></span> in England . <br>
+　They were <span class='tooltip'>against<span class='tooltip-text' onclick="speakText('against')"><IMG SRC='speak.png'>對抗</span></span> the <span class='tooltip'>Church<span class='tooltip-text' onclick="speakText('Church')"><IMG SRC='speak.png'>教會</span></span> of England and they <span class='tooltip'>suffered<span class='tooltip-text' onclick="speakText('suffered')"><IMG SRC='speak.png'>遭受</span></span>  <span class='tooltip'>religious<span class='tooltip-text' onclick="speakText('religious')"><IMG SRC='speak.png'>宗教</span></span>  <span class='tooltip'>oppression<span class='tooltip-text' onclick="speakText('oppression')"><IMG SRC='speak.png'>壓迫</span></span> , so they wanted to start a new life . <br><hr>
+
+　On the 6th September 1620 ,102 men , women and children left <span class='tooltip'>Plymouth<span class='tooltip-text' onclick="speakText('Plymouth')"><IMG SRC='speak.png'>普利茅斯</span></span> in a <span class='tooltip'>ship<span class='tooltip-text' onclick="speakText('ship')"><IMG SRC='speak.png'>船</span></span> called <span class='tooltip'>Mayflower<span class='tooltip-text' onclick="speakText('Mayflower')"><IMG SRC='speak.png'>五月花號</span></span> . <br>
+　The <span class='tooltip'>voyage<span class='tooltip-text' onclick="speakText('voyage')"><IMG SRC='speak.png'>航程</span></span> wasn't easy , but finally they arrived in America on the 11th <span class='tooltip'>December<span class='tooltip-text' onclick="speakText('December')"><IMG SRC='speak.png'>12月</span></span> 1620 . <br>
+
+　They <span class='tooltip'>landed<span class='tooltip-text' onclick="speakText('landed')"><IMG SRC='speak.png'>土地</span></span> on the north-west <span class='tooltip'>coast<span class='tooltip-text' onclick="speakText('coast')"><IMG SRC='speak.png'>海岸</span></span> and they called this place <span class='tooltip'>Plymouth<span class='tooltip-text' onclick="speakText('Plymouth')"><IMG SRC='speak.png'>普利茅斯</span></span> . <br>
+　But it was winter , and there wasn't much food . <br>
+　They <span class='tooltip'>immediately<span class='tooltip-text' onclick="speakText('immediately')"><IMG SRC='speak.png'>立刻</span></span> began to build small houses , but it was too late to grow <span class='tooltip'>crops<span class='tooltip-text' onclick="speakText('crops')"><IMG SRC='speak.png'>農作物</span></span> . <br>
+　The winter was long and half of them died . <br><hr>
+
+　In the spring , a <span class='tooltip'>Native<span class='tooltip-text' onclick="speakText('Native')"><IMG SRC='speak.png'>本地的</span></span> American named <span class="pp"><span class="pp"><IMG SRC='speak.png'>Squanto</span></span> taught them how to grow corn and how to <span class='tooltip'>hunt<span class='tooltip-text' onclick="speakText('hunt')"><IMG SRC='speak.png'>打獵</span></span>. <br>
+　Soon , the <span class='tooltip'>pilgrims<span class='tooltip-text' onclick="speakText('pilgrims')"><IMG SRC='speak.png'>清教徒</span></span> and the Native Americans <span class='tooltip'>became<span class='tooltip-text' onclick="speakText('became')"><IMG SRC='speak.png'>成為</span></span>  <span class='tooltip'>friends<span class='tooltip-text' onclick="speakText('friends')"><IMG SRC='speak.png'>朋友們</span></span> . <br>
+
+　The <span class='tooltip'>pilgrims<span class='tooltip-text' onclick="speakText('pilgrims')"><IMG SRC='speak.png'>清教徒</span></span> grew crops and that summer <span class='tooltip'>harvest<span class='tooltip-text' onclick="speakText('harvest')"><IMG SRC='speak.png'>收成</span></span> was <span class='tooltip'>excellent<span class='tooltip-text' onclick="speakText('excellent')"><IMG SRC='speak.png'>出色的</span></span> . <br>
+　By <span class='tooltip'>November<span class='tooltip-text' onclick="speakText('November')"><IMG SRC='speak.png'>十一月</span></span> 1621 , everyone had food and home . <br>
+　There was hope for the future . <br><hr>
+
+　Then , the governor of the Pilgrim's <span class='tooltip'>colony<span class='tooltip-text' onclick="speakText('colony')"><IMG SRC='speak.png'>殖民地</span></span>  <span class='tooltip'>decided<span class='tooltip-text' onclick="speakText('decided')"><IMG SRC='speak.png'>決定</span></span> to <span class='tooltip'>celebrate<span class='tooltip-text' onclick="speakText('celebrate')"><IMG SRC='speak.png'>慶祝</span></span> with a dinner because he wanted to thank God and <span class="pp">Squanto</span> . <br>
+　They invited <span class="pp">Squanto</span> over for a <span class='tooltip'>feast<span class='tooltip-text' onclick="speakText('feast')"><IMG SRC='speak.png'>盛宴</span></span> . <br>
+
+ That was the first <span class='tooltip'>Thanksgiving<span class='tooltip-text' onclick="speakText('Thanksgiving')"><IMG SRC='speak.png'>感恩節</span></span> <span class='tooltip'>celebration<span class='tooltip-text' onclick="speakText('celebration')"><IMG SRC='speak.png'>慶典</span></span> , and it <span class='tooltip'>continued<span class='tooltip-text' onclick="speakText('continued')"><IMG SRC='speak.png'>持續</span></span> for three days . <br>
+　Today the <span class='tooltip'>traditional<span class='tooltip-text' onclick="speakText('traditional')"><IMG SRC='speak.png'>傳統的</span></span> <span class='tooltip'>Thanksgiving<span class='tooltip-text' onclick="speakText('Thanksgiving')"><IMG SRC='speak.png'>感恩節</span></span> <span class='tooltip'>meal<span class='tooltip-text' onclick="speakText('meal')"><IMG SRC='speak.png'>一頓飯</span></span> is <span class='tooltip'>similar<span class='tooltip-text' onclick="speakText('similar')"><IMG SRC='speak.png'>相似的</span></span> to the first . <br>
+　People eat <span class='tooltip'>roast<span class='tooltip-text' onclick="speakText('roast')"><IMG SRC='speak.png'>烤</span></span> <span class='tooltip'>turkey<span class='tooltip-text' onclick="speakText('turkey')"><IMG SRC='speak.png'>火雞</span></span> with <span class='tooltip'>cranberry sauce<span class='tooltip-text' onclick="speakText('cranberry sauce')"><IMG SRC='speak.png'>蔓越莓醬</span></span> ,  <span class='tooltip'>potatoes<span class='tooltip-text' onclick="speakText('potatoes')"><IMG SRC='speak.png'>馬鈴薯</span></span> and <span class='tooltip'>pumpkin<span class='tooltip-text' onclick="speakText('pumpkin')"><IMG SRC='speak.png'>南瓜</span></span> pie . <br>
+　Many <span class='tooltip'>organizations<span class='tooltip-text' onclick="speakText('organizations')"><IMG SRC='speak.png'>組織</span></span> also <span class='tooltip'>prepare<span class='tooltip-text' onclick="speakText('prepare')"><IMG SRC='speak.png'>準備</span></span> a free <span class='tooltip'>meal<span class='tooltip-text' onclick="speakText('meal')"><IMG SRC='speak.png'>一頓飯</span></span> for <span class='tooltip'>poor people<span class='tooltip-text' onclick="speakText('poor people')"><IMG SRC='speak.png'>窮人</span></span> in their <span class='tooltip'>towns<span class='tooltip-text' onclick="speakText('towns')"><IMG SRC='speak.png'>城鎮</span></span> or cities . <br>
+　In New York , there are also <span class='tooltip'>parades<span class='tooltip-text' onclick="speakText('parades')"><IMG SRC='speak.png'>遊行</span></span> and more than two <span class='tooltip'>million<span class='tooltip-text' onclick="speakText('million')"><IMG SRC='speak.png'>百萬</span></span> people go and see it every year . <br>

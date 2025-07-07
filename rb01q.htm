@@ -1,0 +1,262 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+  <script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>  
+
+
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align:center;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 90%; /* 👈 顯示在上方 */
+      left: 0%;
+      
+      transform: translateX(-80%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+ 
+  </style>
+</head>
+<body>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+21.Which happened first?<span class='tooltip3'>譯<span class='tooltip-text'>那一事件最先發生</span></span><br>
+(A)An earthquake damaged the Coliseum.<br>
+(B)The Coliseum was <span class='tooltip'>struck<span class='tooltip-text' onclick="speakText('struck')">受到打擊</span></span> by <span class='tooltip'>lightning<span class='tooltip-text' onclick="speakText('lightning')">閃電</span></span>.<img src="ans.png"><br>
+(C)The Coliseum became a popular tourist's <span class='tooltip'>attraction<span class='tooltip-text' onclick="speakText('attraction')">景點</span></span>.<br>
+(D)The Coliseum was used as a <span class='tooltip'>castle<span class='tooltip-text' onclick="speakText('castle')">城堡</span></span>.<br><hr>
+
+22.What <span class='tooltip'>caused<span class='tooltip-text' onclick="speakText('caused')">造成</span></span> the fire that damaged the upper levels of the Coliseum?
+<span class='tooltip3'>譯<span class='tooltip-text'>什麼火災原因造成競技場的上半部毀損</span></span><br>
+(A)<span class='tooltip'>A bolt of lightning<span class='tooltip-text' onclick="speakText('A bolt of lightning')">一道閃電</span></span>.<img src="ans.png"><br>
+(B)People who came to watch the <span class='tooltip'>fighting<span class='tooltip-text' onclick="speakText('fighting')">鬥爭</span></span> games.<br>
+(C)An <span class='tooltip'>attacking<span class='tooltip-text' onclick="speakText('attacking')">進攻</span></span> <span class='tooltip'>army<span class='tooltip-text' onclick="speakText('army')">軍隊</span></span>.<br>
+(D)An angry <span class='tooltip'>pope<span class='tooltip-text' onclick="speakText('pope')">教宗</span></span>.<br><hr>
+
+23.Which best <span class='tooltip'>defines<span class='tooltip-text' onclick="speakText('defines')">定義</span></span> the word <span class='tooltip'>gruesome<span class='tooltip-text' onclick="speakText('gruesome')">可怕的</span></span> as it is used in the first <span class='tooltip'>paragraph<span class='tooltip-text' onclick="speakText('paragraph')">段落</span></span>?
+<span class='tooltip3'>譯<span class='tooltip-text'>那一字最適合用來解釋第一段中gruesome的意思</span></span><br>
+(A)<span class='tooltip'>Exciting<span class='tooltip-text' onclick="speakText('Exciting')">興奮的</span></span><br>
+(B)Funny<br>
+(C)<span class='tooltip'>Horrifying<span class='tooltip-text' onclick="speakText('Horrifying')">可怕的</span></span><img src="ans.png"><br>
+(D)<span class='tooltip'>Boring<span class='tooltip-text' onclick="speakText('Boring')">無聊的</span></span><br><hr>
+
+
+24.Which best <span class='tooltip'>describes<span class='tooltip-text' onclick="speakText('describes')">令人興奮</span></span> the main idea in the last <span class='tooltip'>paragraph<span class='tooltip-text' onclick="speakText('paragraph')">有趣的</span></span>?
+<span class='tooltip3'>譯<span class='tooltip-text'>本文最後一段所傳達的意旨為何</span></span><br>
+(A)This is about all the things the Coliseum has been used for throughout history.<span class='tooltip3'>譯<span class='tooltip-text'>競技場曾被使用所有用途</span></span><br>
+(B)This is about the <span class='tooltip'>historical<span class='tooltip-text' onclick="speakText('historical')">令人震驚</span></span> meaning of the Coliseum.<span class='tooltip3'>譯<span class='tooltip-text'>競技場歷史意義</span></span><br>
+(C)This is about how the Coliseum is a symbol of Italy that many people know.<span class='tooltip3'>譯<span class='tooltip-text'>競技場是眾所周知的義大利象徵</span></span><img src="ans.png"><br>
+(D)This is about how the Coliseum is used today.<span class='tooltip3'>譯<span class='tooltip-text'>競技場今天如何被使用</span></span><br><hr>
+
+25.Which <span class='tooltip'>statement<span class='tooltip-text' onclick="speakText('statement')">陳述</span></span> would the <span class='tooltip'>author<span class='tooltip-text' onclick="speakText('author')">作者</span></span> most likely agree with?
+<span class='tooltip3'>譯<span class='tooltip-text'>作者最可能同意那一句話</span></span><br>
+(A)The Coliseum should be <span class='tooltip'>replaced<span class='tooltip-text' onclick="speakText('replaced')">被取代</span></span> with a building that is not damaged.<br>
+(B)The Coliseum has its <span class='tooltip'>place<span class='tooltip-text' onclick="speakText('place')">地位</span></span> in <span class='tooltip'>history<span class='tooltip-text' onclick="speakText('history')">歷史</span></span> but it has no value now.<br>
+(C)The Coliseum should be used for <span class='tooltip'>fighting<span class='tooltip-text' onclick="speakText('fighting')">鬥爭</span></span> games once again.<br>
+(D)The Coliseum is very old and has great <span class='tooltip'>historical<span class='tooltip-text' onclick="speakText('historical')">歷史的</span></span> value.<img src="ans.png"><br><hr>

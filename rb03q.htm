@@ -16,7 +16,8 @@
       speechSynthesis.speak(utterance);
     }
 </script>
-  <script>
+
+<script>
 function gen(ur) {
 
 function getRandomString(length) {
@@ -31,8 +32,7 @@ function getRandomString(length) {
 window.open(ur+'?i='+getRandomString(10),'_self');
 
   }
-</script>  
-
+</script>
 
 <style>
 .bk-box {
@@ -51,17 +51,18 @@ top:0px;
   }
 
   .background-box {
-    width:100%;
+    width:99%;
     background-color: #D2FF78;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
     background-size: cover; /* 圖片填滿區塊 */
     background-position: center; /* 圖片置中 */
     background-repeat: no-repeat; /* 不重複顯示圖片 */
-    border: 0px solid #ccc; /* 可加上邊框 */
+    border: 1px solid #ccc; /* 可加上邊框 */
     margin: 20px auto; /* 置中顯示 */
     border-radius: 20px; /* 調整圓角大小 */
   }
 </style>
+
 
 <style>
 .cir {
@@ -90,14 +91,14 @@ top:0px;
       visibility: hidden;
       background-color: #FFFF00;
       color: #FF00FF;
-      text-align:center;
+      text-align: center;
       padding: 3px 8px;
       border-radius: 2px;
       position: absolute;
-      bottom: 90%; /* 👈 顯示在上方 */
-      left: 0%;
+      bottom: 100%; /* 👈 顯示在上方 */
+      right:0%;
       
-      transform: translateX(-80%);
+      transform: translateX(-50%);
       z-index: 1;
       white-space: nowrap;
       opacity: 0;
@@ -211,12 +212,9 @@ top:0px;
       border-width: 5px;
       border-style: solid;
       border-color: #333 transparent transparent transparent;
-    }  
-
- 
+    }   
   </style>
 </head>
-<body>
 <div class="bk-box">
 <div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
 <a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　回首頁</h3></a></div>
@@ -225,38 +223,40 @@ top:0px;
 <body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
 <BR>
 <div class="background-box" style="font-size: 1.2em;">
-<center>01義大利競技場 考題</center>
-21.Which happened first?<span class='tooltip3'>譯<span class='tooltip-text'>那一事件最先發生</span></span><br>
-(A)An earthquake damaged the Coliseum.<br>
-(B)The Coliseum was <span class='tooltip'>struck<span class='tooltip-text' onclick="speakText('struck')">受到打擊</span></span> by <span class='tooltip'>lightning<span class='tooltip-text' onclick="speakText('lightning')">閃電</span></span>.<img src="ans.png"><br>
-(C)The Coliseum became a popular tourist's <span class='tooltip'>attraction<span class='tooltip-text' onclick="speakText('attraction')">景點</span></span>.<br>
-(D)The Coliseum was used as a <span class='tooltip'>castle<span class='tooltip-text' onclick="speakText('castle')">城堡</span></span>.<br><hr>
 
-22.What <span class='tooltip'>caused<span class='tooltip-text' onclick="speakText('caused')">造成</span></span> the fire that damaged the upper levels of the Coliseum?
-<span class='tooltip3'>譯<span class='tooltip-text'>什麼火災原因造成競技場的上半部毀損</span></span><br>
-(A)<span class='tooltip'>A bolt of lightning<span class='tooltip-text' onclick="speakText('A bolt of lightning')">一道閃電</span></span>.<img src="ans.png"><br>
-(B)People who came to watch the <span class='tooltip'>fighting<span class='tooltip-text' onclick="speakText('fighting')">鬥爭</span></span> games.<br>
-(C)An <span class='tooltip'>attacking<span class='tooltip-text' onclick="speakText('attacking')">進攻</span></span> <span class='tooltip'>army<span class='tooltip-text' onclick="speakText('army')">軍隊</span></span>.<br>
-(D)An angry <span class='tooltip'>pope<span class='tooltip-text' onclick="speakText('pope')">教宗</span></span>.<br><hr>
+<center>03網路霸凌 考題</center>
+21.What is the closest meaning to the word "aggressor" in the fourth paragraph? 
+<span class='tooltip3'>譯<span class='tooltip-text'>何者意思與本文第四段中的"aggressor"最接近?</span></span><br>
+(A)<span class='tooltip'>engineer<span class='tooltip-text'  onclick="speakText('engineer')"><IMG SRC='speak.png'>工程師</span></span>　　
+(B)teacher　
+(C)<img src="ans.png"><span class='tooltip'>invader<span class='tooltip-text'  onclick="speakText('invader')"><IMG SRC='speak.png'>侵略者</span></span>　　
+(D)<span class='tooltip'>protector<span class='tooltip-text' onclick="speakText('protector')"><IMG SRC='speak.png'>保護者</span></span><br><hr>
 
-23.Which best <span class='tooltip'>defines<span class='tooltip-text' onclick="speakText('defines')">定義</span></span> the word <span class='tooltip'>gruesome<span class='tooltip-text' onclick="speakText('gruesome')">可怕的</span></span> as it is used in the first <span class='tooltip'>paragraph<span class='tooltip-text' onclick="speakText('paragraph')">段落</span></span>?
-<span class='tooltip3'>譯<span class='tooltip-text'>那一字最適合用來解釋第一段中gruesome的意思</span></span><br>
-(A)<span class='tooltip'>Exciting<span class='tooltip-text' onclick="speakText('Exciting')">興奮的</span></span><br>
-(B)Funny<br>
-(C)<span class='tooltip'>Horrifying<span class='tooltip-text' onclick="speakText('Horrifying')">可怕的</span></span><img src="ans.png"><br>
-(D)<span class='tooltip'>Boring<span class='tooltip-text' onclick="speakText('Boring')">無聊的</span></span><br><hr>
+22.Which statement about cyberbullying is NOT true?
+<span class='tooltip3'>譯<span class='tooltip-text'>哪一個關於網路霸凌的敘述有誤?</span></span><br>
+(A)Many kids might be involved in a cyberbullying scenario.<br>
+(B)<span class='tooltip'>Cyberbullying<span class='tooltip-text'  onclick="speakText('Cyberbullying')"><IMG SRC='speak.png'>網路霸凌</span></span>  makes the use of digital-communication tools to harm others .<br>
+(C)There are at least three different roles in a cyberbullying situation .<br>
+(D)<img src="ans.png">Cyberbullying is not preventable .<br><HR>
+
+23.According to this article , which statement is true?
+<span class='tooltip3'>譯<span class='tooltip-text'>根據文章，何者敘述正確?</span></span><br>
+(A)Cyberbullying <span class='tooltip'>bystanders<span class='tooltip-text'  onclick="speakText('bystanders')"><IMG SRC='speak.png'>旁觀者</span></span>  <span class='tooltip'>run away<span class='tooltip-text'  onclick="speakText('run away')"><IMG SRC='speak.png'>遠離、逃開</span></span>  from the <span class='tooltip'>scene<span class='tooltip-text'  onclick="speakText('scene')"><IMG SRC='speak.png'>場面</span></span>  and report it to the <span class='tooltip'>authorities<span class='tooltip-text'  onclick="speakText('authorities')"><IMG SRC='speak.png'>當權機關</span></span>  . <br>
+(B)Cyberbullying <span class='tooltip'>bystanders<span class='tooltip-text'  onclick="speakText('bystanders')"><IMG SRC='speak.png'>旁觀者</span></span>  will often speak up for the targets .　<br>
+(C)<img src="ans.png">Cyberbullying often happens <span class='tooltip'>more than once<span class='tooltip-text'  onclick="speakText('more than once')"><IMG SRC='speak.png'>超過一次</span></span>.<br>
+(D)Cyberbullying happens only between the <span class='tooltip'>bully<span class='tooltip-text'  onclick="speakText('bully')"><IMG SRC='speak.png'>霸凌</span></span>  and his or her <span class='tooltip'>target<span class='tooltip-text'  onclick="speakText('target')"><IMG SRC='speak.png'>目標</span></span>.<br><hr>
+
+24.To prevent cyberbullying ,what is NOT a measure suggested by the author?
+<span class='tooltip3'>譯<span class='tooltip-text'>為預防網路霸凌，何者並非作者提出的建議?</span></span><br>
+(A)<span class='tooltip'>Identifying<span class='tooltip-text'  onclick="speakText('Identifying')"><IMG SRC='speak.png'>辨別</span></span>  the different roles in a cyberbullying <span class='tooltip'>situation<span class='tooltip-text'  onclick="speakText('situation')"><IMG SRC='speak.png'>情況</span></span>  .<br>
+(B)Making kids aware that a safe world is everyone's <span class='tooltip'>responsibility<span class='tooltip-text'  onclick="speakText('responsibility')"><IMG SRC='speak.png'>責任</span></span>  .<br>
+(C)Helping kids <span class='tooltip'>develop<span class='tooltip-text'  onclick="speakText('develop')"><IMG SRC='speak.png'>發展</span></span>  <span class='tooltip'>self-awareness<span class='tooltip-text'  onclick="speakText('self-awareness')"><IMG SRC='speak.png'>自我意識</span></span>  and a <span class='tooltip'>sense of empathy<span class='tooltip-text'  onclick="speakText('sense of empathy')"><IMG SRC='speak.png'>同理心</span></span>  .<br>
+(D)<img src="ans.png"><span class='tooltip'>Restricting<span class='tooltip-text'  onclick="speakText('Restricting')"><IMG SRC='speak.png'>限制</span></span>  children's use of the Internet and cellphones .<br><hr>
 
 
-24.Which best <span class='tooltip'>describes<span class='tooltip-text' onclick="speakText('describes')">令人興奮</span></span> the main idea in the last <span class='tooltip'>paragraph<span class='tooltip-text' onclick="speakText('paragraph')">有趣的</span></span>?
-<span class='tooltip3'>譯<span class='tooltip-text'>本文最後一段所傳達的意旨為何</span></span><br>
-(A)This is about all the things the Coliseum has been used for throughout history.<span class='tooltip3'>譯<span class='tooltip-text'>競技場曾被使用所有用途</span></span><br>
-(B)This is about the <span class='tooltip'>historical<span class='tooltip-text' onclick="speakText('historical')">令人震驚</span></span> meaning of the Coliseum.<span class='tooltip3'>譯<span class='tooltip-text'>競技場歷史意義</span></span><br>
-(C)This is about how the Coliseum is a symbol of Italy that many people know.<span class='tooltip3'>譯<span class='tooltip-text'>競技場是眾所周知的義大利象徵</span></span><img src="ans.png"><br>
-(D)This is about how the Coliseum is used today.<span class='tooltip3'>譯<span class='tooltip-text'>競技場今天如何被使用</span></span><br><hr>
-
-25.Which <span class='tooltip'>statement<span class='tooltip-text' onclick="speakText('statement')">陳述</span></span> would the <span class='tooltip'>author<span class='tooltip-text' onclick="speakText('author')">作者</span></span> most likely agree with?
-<span class='tooltip3'>譯<span class='tooltip-text'>作者最可能同意那一句話</span></span><br>
-(A)The Coliseum should be <span class='tooltip'>replaced<span class='tooltip-text' onclick="speakText('replaced')">被取代</span></span> with a building that is not damaged.<br>
-(B)The Coliseum has its <span class='tooltip'>place<span class='tooltip-text' onclick="speakText('place')">地位</span></span> in <span class='tooltip'>history<span class='tooltip-text' onclick="speakText('history')">歷史</span></span> but it has no value now.<br>
-(C)The Coliseum should be used for <span class='tooltip'>fighting<span class='tooltip-text' onclick="speakText('fighting')">鬥爭</span></span> games once again.<br>
-(D)The Coliseum is very old and has great <span class='tooltip'>historical<span class='tooltip-text' onclick="speakText('historical')">歷史的</span></span> value.<img src="ans.png"><br><hr>
+25.What is the main purpose of this article?
+<span class='tooltip3'>譯<span class='tooltip-text'>本文主要目的為何?</span></span><br>
+(A)To tell people how to <span class='tooltip'>identify<span class='tooltip-text'  onclick="speakText('identify')"><IMG SRC='speak.png'>識別</span></span>  the different roles in a cyberbullying situation .<br>
+(B)<img src="ans.png">To <span class='tooltip'>introduce<span class='tooltip-text'  onclick="speakText('introduce')"><IMG SRC='speak.png'>介紹</span></span>  cyberbullying and teach people how to <span class='tooltip'>prevent<span class='tooltip-text'  onclick="speakText('prevent')"><IMG SRC='speak.png'>預防</span></span>  it from happening .<br>
+(C)To educate kids how to <span class='tooltip'>respond<span class='tooltip-text'  onclick="speakText('respond')"><IMG SRC='speak.png'>回應</span></span>  to cyberbullying .<br>
+(D)To share <span class='tooltip'>experiences<span class='tooltip-text'  onclick="speakText('experiences')"><IMG SRC='speak.png'>經驗</span></span>  of cyberbullying .<br>

@@ -1,0 +1,277 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:99%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      right:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+<center>06峰鳥的聲音</center>
+　Have you ever <span class='tooltip'>heard<span class='tooltip-text'  onclick="speakText('heard')"><IMG SRC='speak.png'>聽到</span></span>  the sound of a <span class='tooltip'>hummingbird<span class='tooltip-text'  onclick="speakText('hummingbird')"><IMG SRC='speak.png'>峰鳥</span></span>? They make a <span class='tooltip'>buzzing<span class='tooltip-text'  onclick="speakText('buzzing')"><IMG SRC='speak.png'>嗡嗡</span></span>  <span class='tooltip'>noise<span class='tooltip-text'  onclick="speakText('noise')"><IMG SRC='speak.png'>聲響；噪音</span></span>  when they fly.<br>
+　They make this <span class='tooltip'>noise<span class='tooltip-text'  onclick="speakText('noise')"><IMG SRC='speak.png'>聲響；噪音</span></span>  because they <span class='tooltip'>heat<span class='tooltip-text'  onclick="speakText('heat')"><IMG SRC='speak.png'>熱</span></span>  their <span class='tooltip'>wings<span class='tooltip-text'  onclick="speakText('wings')"><IMG SRC='speak.png'>翅膀</span></span>  so fast.<br>
+　They <span class='tooltip'>beat<span class='tooltip-text'  onclick="speakText('beat')"><IMG SRC='speak.png'>使激動、拍動</span></span>  their <span class='tooltip'>wings<span class='tooltip-text'  onclick="speakText('wings')"><IMG SRC='speak.png'>翅膀</span></span>  up to 80 times a <span class='tooltip'>second<span class='tooltip-text'  onclick="speakText('second')"><IMG SRC='speak.png'>第二</span></span>.<br>
+　All that <span class='tooltip'>flapping<span class='tooltip-text'  onclick="speakText('flapping')"><IMG SRC='speak.png'>拍動</span></span>  makes a lot of <span class='tooltip'>noise<span class='tooltip-text'  onclick="speakText('noise')"><IMG SRC='speak.png'>聲響；噪音</span></span>.<br>
+　That's why we call them <span class='tooltip'>hummingbirds<span class='tooltip-text'  onclick="speakText('hummingbirds')"><IMG SRC='speak.png'>蜂鳥</span></span>.<br> <hr>
+
+　<span class='tooltip'>hummingbirds<span class='tooltip-text'  onclick="speakText('hummingbirds')"><IMG SRC='speak.png'>峰鳥</span></span>  fly in a <span class='tooltip'>unique<span class='tooltip-text'  onclick="speakText('unique')"><IMG SRC='speak.png'>獨特的</span></span>  way.<br>
+　They move their <span class='tooltip'>wings<span class='tooltip-text'  onclick="speakText('wings')"><IMG SRC='speak.png'>翅膀</span></span>  so fast that they can <span class='tooltip'>hover<span class='tooltip-text'  onclick="speakText('hover')"><IMG SRC='speak.png'>徘徊</span></span>. <br>
+　This <span class='tooltip'>means<span class='tooltip-text'  onclick="speakText('means')"><IMG SRC='speak.png'>方法</span></span>  that they can stay in one <span class='tooltip'>spot<span class='tooltip-text'  onclick="speakText('spot')"><IMG SRC='speak.png'>地點、定點</span></span>  in the <span class='tooltip'>middle<span class='tooltip-text'  onclick="speakText('middle')"><IMG SRC='speak.png'>中間</span></span>  of the air , like a <span class='tooltip'>helicopter<span class='tooltip-text'  onclick="speakText('helicopter')"><IMG SRC='speak.png'>直升飛機</span></span>.<br>
+　Sometimes they fly or <span class='tooltip'>hover<span class='tooltip-text'  onclick="speakText('hover')"><IMG SRC='speak.png'>徘徊</span></span>  <span class='tooltip'>upside down<span class='tooltip-text'  onclick="speakText('upside down')"><IMG SRC='speak.png'>倒掛</span></span>.<br>
+　They are the only bird that <span class='tooltip'>flies backward<span class='tooltip-text'  onclick="speakText('flies backward')"><IMG SRC='speak.png'>向後飛</span></span>. <br><hr>
+
+　<span class='tooltip'>hummingbirds<span class='tooltip-text'  onclick="speakText('hummingbirds')"><IMG SRC='speak.png'>峰鳥</span></span>  are <span class='tooltip'>small<span class='tooltip-text'  onclick="speakText('small')"><IMG SRC='speak.png'>小的</span></span>.<br> 
+　One type called the <span class='tooltip'>bee hummingbird<span class='tooltip-text'  onclick="speakText('bee hummingbird')"><IMG SRC='speak.png'>蜜蜂峰鳥</span></span>  is the <span class='tooltip'>smallest<span class='tooltip-text'  onclick="speakText('smallest')"><IMG SRC='speak.png'>最小</span></span>  bird in the world.<br>
+　<span class='tooltip'>Bee hummingbirds<span class='tooltip-text'  onclick="speakText('Bee hummingbirds')"><IMG SRC='speak.png'>蜜蜂峰鳥</span></span>  weigh less than a <span class='tooltip'>penny<span class='tooltip-text'  onclick="speakText('penny')"><IMG SRC='speak.png'>一分錢</span></span>.<br>
+　They are just a little bit bigger than <span class='tooltip'>bees<span class='tooltip-text'  onclick="speakText('bees')"><IMG SRC='speak.png'>蜜蜂</span></span>.<br>
+　I guess that's where they get their name.<br><HR>
+
+　<span class='tooltip'>Bee hummingbirds<span class='tooltip-text'  onclick="speakText('Bee hummingbirds')"><IMG SRC='speak.png'>蜜蜂峰鳥</span></span>  <span class='tooltip'>build<span class='tooltip-text'  onclick="speakText('build')"><IMG SRC='speak.png'>建造</span></span>  <span class='tooltip'>tiny<span class='tooltip-text'  onclick="speakText('tiny')"><IMG SRC='speak.png'>微小的</span></span>  <span class='tooltip'>nests<span class='tooltip-text'  onclick="speakText('nests')"><IMG SRC='speak.png'>巢穴</span></span>.<br>
+　They use <span class='tooltip'>cobwebs<span class='tooltip-text'  onclick="speakText('cobwebs')"><IMG SRC='speak.png'>蜘蛛網</span></span>  and bits of <span class='tooltip'>bark<span class='tooltip-text'  onclick="speakText('bark')"><IMG SRC='speak.png'>N樹皮</span></span>  to make their homes.<br>
+　Their homes are only an inch <span class='tooltip'>around<span class='tooltip-text'  onclick="speakText('around')"><IMG SRC='speak.png'>大約</span></span>.<br>
+　This is big <span class='tooltip'>enough<span class='tooltip-text'  onclick="speakText('enough')"><IMG SRC='speak.png'>足夠的</span></span>  for their eggs though.<br>
+　Their eggs are smaller than <span class='tooltip'>peas<span class='tooltip-text'  onclick="speakText('peas')"><IMG SRC='speak.png'>豌豆</span></span>.<br>
+　People have found these <span class='tooltip'>tiny<span class='tooltip-text'  onclick="speakText('tiny')"><IMG SRC='speak.png'>微小的</span></span>  <span class='tooltip'>nests<span class='tooltip-text'  onclick="speakText('nests')"><IMG SRC='speak.png'>巢穴</span></span>  on a <span class='tooltip'>clothespin<span class='tooltip-text'  onclick="speakText('clothespin')"><IMG SRC='speak.png'>曬衣夾</span></span>.<br> <hr>
+
+　<span class='tooltip'>hummingbirds<span class='tooltip-text'  onclick="speakText('hummingbirds')"><IMG SRC='speak.png'>峰鳥</span></span>  move fast. <br>
+　It takes lots of <span class='tooltip'>energy<span class='tooltip-text'  onclick="speakText('energy')"><IMG SRC='speak.png'>活力</span></span>  to move as fast as they do. <br>
+　This <span class='tooltip'>means<span class='tooltip-text'  onclick="speakText('means')"><IMG SRC='speak.png'>方法</span></span>  that they need to eat <span class='tooltip'>a lot of<span class='tooltip-text'  onclick="speakText('a lot of')"><IMG SRC='speak.png'>眾多</span></span>  food. <br>
+　Their <span class='tooltip'>favorite<span class='tooltip-text'  onclick="speakText('favorite')"><IMG SRC='speak.png'>最喜歡的</span></span>  food is <span class='tooltip'>nectar<span class='tooltip-text'  onclick="speakText('nectar')"><IMG SRC='speak.png'>花蜜</span></span>, a <span class='tooltip'>sweet<span class='tooltip-text'  onclick="speakText('sweet')"><IMG SRC='speak.png'>甜的</span></span>  <span class='tooltip'>liquid<span class='tooltip-text'  onclick="speakText('liquid')"><IMG SRC='speak.png'>液體</span></span>  inside of some flowers.<br>
+　They drink more than their own <span class='tooltip'>weight<span class='tooltip-text'  onclick="speakText('weight')"><IMG SRC='speak.png'>重量</span></span>  in <span class='tooltip'>nectar<span class='tooltip-text'  onclick="speakText('nectar')"><IMG SRC='speak.png'>花蜜</span></span>  <span class='tooltip'>daily<span class='tooltip-text'  onclick="speakText('daily')"><IMG SRC='speak.png'>日常的</span></span>.<br>
+　They have to visit <span class='tooltip'>hundreds<span class='tooltip-text'  onclick="speakText('hundreds')"><IMG SRC='speak.png'>數百</span></span>  of flowers to get <span class='tooltip'>enough<span class='tooltip-text'  onclick="speakText('enough')"><IMG SRC='speak.png'>足夠的</span></span>  <span class='tooltip'>nectar<span class='tooltip-text'  onclick="speakText('nectar')"><IMG SRC='speak.png'>花蜜</span></span>  to live.<br>
+　They can only <span class='tooltip'>store<span class='tooltip-text'  onclick="speakText('store')"><IMG SRC='speak.png'>儲存</span></span>  <span class='tooltip'>enough<span class='tooltip-text'  onclick="speakText('enough')"><IMG SRC='speak.png'>足夠的</span></span>  <span class='tooltip'>energy<span class='tooltip-text'  onclick="speakText('energy')"><IMG SRC='speak.png'>活力</span></span>  to <span class='tooltip'>survive<span class='tooltip-text'  onclick="speakText('survive')"><IMG SRC='speak.png'>存活</span></span>  through the night.<br>
+　They <span class='tooltip'>live on the edge<span class='tooltip-text'  onclick="speakText('live on the edge')"><IMG SRC='speak.png'>生存在危險邊緣</span></span>.<br> <hr>
+
+　<span class='tooltip'>hummingbirds<span class='tooltip-text'  onclick="speakText('hummingbirds')"><IMG SRC='speak.png'>峰鳥</span></span>  don't use their long <span class='tooltip'>beaks<span class='tooltip-text'  onclick="speakText('beaks')"><IMG SRC='speak.png'>鳥喙</span></span>  like <span class='tooltip'>straws<span class='tooltip-text'  onclick="speakText('straws')"><IMG SRC='speak.png'>吸管</span></span>.<br>
+　They have a <span class='tooltip'>tongue<span class='tooltip-text'  onclick="speakText('tongue')"><IMG SRC='speak.png'>舌頭</span></span>  just like you.<br>
+　They use their <span class='tooltip'>tongues<span class='tooltip-text'  onclick="speakText('tongues')"><IMG SRC='speak.png'>舌頭</span></span>  for eating.<br>
+　They flick their <span class='tooltip'>tongues<span class='tooltip-text'  onclick="speakText('tongues')"><IMG SRC='speak.png'>舌頭</span></span>  in and out of their <span class='tooltip'>mouths<span class='tooltip-text'  onclick="speakText('mouths')"><IMG SRC='speak.png'>嘴巴</span></span>  while inside of flowers.<br>
+　They <span class='tooltip'>lap up<span class='tooltip-text'  onclick="speakText('lap up')"><IMG SRC='speak.png'>舔食</span></span>  <span class='tooltip'>nectar<span class='tooltip-text'  onclick="speakText('nectar')"><IMG SRC='speak.png'>花蜜</span></span>.<br>
+　Flowers give them the <span class='tooltip'>energy<span class='tooltip-text'  onclick="speakText('energy')"><IMG SRC='speak.png'>活力</span></span>  that they need.<br><hr>
+
+　<span class='tooltip'>hummingbirds<span class='tooltip-text'  onclick="speakText('hummingbirds')"><IMG SRC='speak.png'>峰鳥</span></span>  help flowers too. <br>
+　They get <span class='tooltip'>pollen<span class='tooltip-text'  onclick="speakText('pollen')"><IMG SRC='speak.png'>花粉</span></span>  on their <span class='tooltip'>heads<span class='tooltip-text'  onclick="speakText('heads')"><IMG SRC='speak.png'>頭</span></span>  and <span class='tooltip'>bills<span class='tooltip-text'  onclick="speakText('bills')"><IMG SRC='speak.png'>鳥喙</span></span>  when they <span class='tooltip'>feed<span class='tooltip-text'  onclick="speakText('feed')"><IMG SRC='speak.png'>吃食</span></span>.<br>
+　Flowers use <span class='tooltip'>pollen<span class='tooltip-text'  onclick="speakText('pollen')"><IMG SRC='speak.png'>花粉</span></span>  to make <span class='tooltip'>seeds<span class='tooltip-text'  onclick="speakText('seeds')"><IMG SRC='speak.png'>種子</span></span>.<br>
+　<span class='tooltip'>hummingbirds<span class='tooltip-text'  onclick="speakText('hummingbirds')"><IMG SRC='speak.png'>峰鳥</span></span>  help <span class='tooltip'>pollen<span class='tooltip-text'  onclick="speakText('pollen')"><IMG SRC='speak.png'>花粉</span></span>  get from one flower to the next.<br>
+　This helps flowers make more <span class='tooltip'>seeds<span class='tooltip-text'  onclick="speakText('seeds')"><IMG SRC='speak.png'>種子</span></span>.<br>
+　More <span class='tooltip'>seeds<span class='tooltip-text'  onclick="speakText('seeds')"><IMG SRC='speak.png'>種子</span></span>  <span class='tooltip'>means<span class='tooltip-text'  onclick="speakText('means')"><IMG SRC='speak.png'>方法</span></span>  more flowers.<br>
+　More flowers <span class='tooltip'>means<span class='tooltip-text'  onclick="speakText('means')"><IMG SRC='speak.png'>方法</span></span>  more food for <span class='tooltip'>hummingbirds<span class='tooltip-text'  onclick="speakText('hummingbirds')"><IMG SRC='speak.png'>蜂鳥</span></span>.<br>
+　Isn't it nice how that <span class='tooltip'>works out<span class='tooltip-text'  onclick="speakText('works out')"><IMG SRC='speak.png'>工作</span></span>? <hr>
+

@@ -1,0 +1,269 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+<center>07學習態度　考題</center>
+21.What is the <span class='tooltip'>closest<span class='tooltip-text'  onclick="speakText('closest')"><IMG SRC='speak.png'>最近</span></span>  meaning to the word "<span class='tooltip'>penalty<span class='tooltip-text'  onclick="speakText('penalty')"><IMG SRC='speak.png'>懲罰</span></span>" in the second paragraph?
+ <span class='tooltip3'>譯<span class='tooltip-text'>哪一個字的意思與第二段文中的"penalty"最接近?</span></span> <br>
+(A) <span class='tooltip'>progress<span class='tooltip-text'  onclick="speakText('progress')"><IMG SRC='speak.png'>進步、進展</span></span>  <br>
+(B) <img src="ans.png"> <span class='tooltip'>punishment<span class='tooltip-text'  onclick="speakText('punishment')"><IMG SRC='speak.png'>懲罰</span></span>  <br>
+(C) <span class='tooltip'>preview<span class='tooltip-text'  onclick="speakText('preview')"><IMG SRC='speak.png'>預習</span></span>  <br>
+(D) <span class='tooltip'>prevention<span class='tooltip-text'  onclick="speakText('prevention')"><IMG SRC='speak.png'>預防</span></span>  <br> <HR>
+
+
+22.What is NOT one of the reasons that Sammy <span class='tooltip'>turned<span class='tooltip-text'  onclick="speakText('turned')"><IMG SRC='speak.png'>轉身</span></span>  in Mr.Morton's reading <span class='tooltip'>assignments<span class='tooltip-text'  onclick="speakText('assignments')"><IMG SRC='speak.png'>作業</span></span>  late?
+ <span class='tooltip3'>譯<span class='tooltip-text'>下列何者不是Sammy遲交Morton先生出的閱讀作業的原因之一?</span></span> <br>
+(A) <img src="ans.png">Because he went to the Enchanted Castle <span class='tooltip'>amusement<span class='tooltip-text'  onclick="speakText('amusement')"><IMG SRC='speak.png'>娛樂</span></span>  park.<span class='tooltip3'>譯<span class='tooltip-text'>因為Sammy去了魔法城堡遊樂園。</span></span><br>
+(B)Because Mr.Morton wasn't too <span class='tooltip'>strict<span class='tooltip-text'  onclick="speakText('strict')"><IMG SRC='speak.png'>嚴格的</span></span>  about <span class='tooltip'>deadlines<span class='tooltip-text'  onclick="speakText('deadlines')"><IMG SRC='speak.png'>截止日期</span></span>.<span class='tooltip3'>譯<span class='tooltip-text'>因為Morton先生對於作業期限要求沒有很嚴格。</span></span><br>
+(C)Because he never <span class='tooltip'>bothered<span class='tooltip-text'  onclick="speakText('bothered')"><IMG SRC='speak.png'>困擾</span></span>  to <span class='tooltip'>complete<span class='tooltip-text'  onclick="speakText('complete')"><IMG SRC='speak.png'>完全的</span></span>  Mr.Morton's reading <span class='tooltip'>assignments<span class='tooltip-text'  onclick="speakText('assignments')"><IMG SRC='speak.png'>作業</span></span>.<span class='tooltip3'>譯<span class='tooltip-text'>因為Sammy從來不花心思完成Morton先生的閱讀作業。</span></span><br>
+(D)Because he <span class='tooltip'>figured<span class='tooltip-text'  onclick="speakText('figured')"><IMG SRC='speak.png'>想像</span></span>  that he could <span class='tooltip'>complete<span class='tooltip-text'  onclick="speakText('complete')"><IMG SRC='speak.png'>完全的</span></span>  Mr.Morton's reading <span class='tooltip'>assignments<span class='tooltip-text'  onclick="speakText('assignments')"><IMG SRC='speak.png'>作業</span></span>  later.
+<span class='tooltip3'>譯<span class='tooltip-text'>因為Sammy認為他晚一點再做Morton先生的閱讀作業就好。</span></span><br> <HR>
+
+
+23.According to the text , what will happen to Tammy if she <span class='tooltip'>failed<span class='tooltip-text'  onclick="speakText('failed')"><IMG SRC='speak.png'>失敗的</span></span>  to keep "C" average for the <span class='tooltip'>entire<span class='tooltip-text'  onclick="speakText('entire')"><IMG SRC='speak.png'>全部的</span></span>  year?
+ <span class='tooltip3'>譯<span class='tooltip-text'>根據內文,如果Sammy沒有整年度都保持在C的平均成績,會發生什麼事?</span></span> <br>
+(A)She will be <span class='tooltip'>grounded<span class='tooltip-text'  onclick="speakText('grounded')"><IMG SRC='speak.png'>接地</span></span>  by her mother.<span class='tooltip3'>譯<span class='tooltip-text'>他會被他媽媽禁足</span></span><br>
+(B)She will be <span class='tooltip'>scolded<span class='tooltip-text'  onclick="speakText('scolded')"><IMG SRC='speak.png'>被罵</span></span>  by Mr.Morton.<span class='tooltip3'>譯<span class='tooltip-text'>他會被Morton先生責備</span></span><br>
+(C) <img src="ans.png">She will have to go to summer school.<span class='tooltip3'>譯<span class='tooltip-text'>他就必須要去上暑期學校</span></span><br>
+(D)She will have to take another exam.<span class='tooltip3'>譯<span class='tooltip-text'>他就必須要參加另外一場考試</span></span><br> <HR>
+
+24.According to the text , which <span class='tooltip'>statement<span class='tooltip-text'  onclick="speakText('statement')"><IMG SRC='speak.png'>陳述</span></span>  is true?
+ <span class='tooltip3'>譯<span class='tooltip-text'>根據內文,哪一句敘述為真?</span></span> <br>
+(A)Tammy and Sammy are best friends<span class='tooltip3'>譯<span class='tooltip-text'>Tammy跟Sammy是最好的朋友</span></span>.<br>
+(B)<img src="ans.png">Tammy and Sammy were both Mr. Morton's students.<span class='tooltip3'>譯<span class='tooltip-text'>Tammy跟Sammy 都是Morton先生的學生</span></span><br>
+(C)Tammy's mom is very <span class='tooltip'>strict<span class='tooltip-text'  onclick="speakText('strict')"><IMG SRC='speak.png'>嚴格的</span></span>  to her.<span class='tooltip3'>譯<span class='tooltip-text'>Tammy的媽媽對她很嚴格</span></span><br>
+(D)Tammy stayed up until 2:00 AM throughout the weekend at the end of the <span class='tooltip'>semester<span class='tooltip-text'  onclick="speakText('semester')"><IMG SRC='speak.png'>學期</span></span>.<span class='tooltip3'>譯<span class='tooltip-text'>Tammy在學期末的周末都熬夜到半夜兩點</span></span><br> <HR>
+
+
+25.What would be most likely agreed by the <span class='tooltip'>author<span class='tooltip-text'  onclick="speakText('author')"><IMG SRC='speak.png'>作者</span></span>  of this text?
+<span class='tooltip3'>譯<span class='tooltip-text'>本文作者最可能同意哪一句話?</span></span> <br>
+(A)Honesty is the best <span class='tooltip'>policy<span class='tooltip-text'  onclick="speakText('policy')"><IMG SRC='speak.png'>政策</span></span>.
+<span class='tooltip3'>譯<span class='tooltip-text'>誠實為上策</span></span><br>
+(B) <img src="ans.png"> <span class='tooltip'>Delaying<span class='tooltip-text'  onclick="speakText('Delaying')"><IMG SRC='speak.png'>拖延</span></span>  just makes things <span class='tooltip'>worse<span class='tooltip-text'  onclick="speakText('worse')"><IMG SRC='speak.png'>更糟</span></span>.<span class='tooltip3'>譯<span class='tooltip-text'>拖延只會讓事情變得更糟</span></span><br>
+(C)Never talk before you think.<span class='tooltip3'>譯<span class='tooltip-text'>不要未經思考就說話</span></span><br>
+(D)<span class='tooltip'>Action<span class='tooltip-text'  onclick="speakText('Action')"><IMG SRC='speak.png'>行動</span></span>  <span class='tooltip'>speaks<span class='tooltip-text'  onclick="speakText('speaks')"><IMG SRC='speak.png'>說話</span></span>  <span class='tooltip'>louder<span class='tooltip-text'  onclick="speakText('louder')"><IMG SRC='speak.png'>更響亮</span></span>  than words.<span class='tooltip3'>譯<span class='tooltip-text'>坐而言不如起而行</span></span><br> <HR>
+
+
+

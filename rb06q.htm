@@ -1,0 +1,277 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+<CENTER>06蜂鳥的聲音 考題</CENTER>
+21.According to this <span class='tooltip'>article<span class='tooltip-text'  onclick="speakText('article')"><IMG SRC='speak.png'>文章</span></span>  , why are they called <span class='tooltip'>hummingbirds<span class='tooltip-text'  onclick="speakText('hummingbirds')"><IMG SRC='speak.png'>峰鳥</span></span>? 
+<span class='tooltip3'>譯<span class='tooltip-text'>根據本文蜂鳥為什麼叫蜂鳥</span></span> <br>
+(A)Because they are very <span class='tooltip'>light<span class='tooltip-text'  onclick="speakText('light')"><IMG SRC='speak.png'>輕</span></span>.<span class='tooltip3'>譯<span class='tooltip-text'>因為牠們很輕。</span></span><br>
+(B)Because they sing when they fly.<span class='tooltip3'>譯<span class='tooltip-text'>因為牠們會在飛行時唱歌。</span></span><br>
+(C)<img src="ans.png">Because their wings make a <span class='tooltip'>humming<span class='tooltip-text'  onclick="speakText('humming')"><IMG SRC='speak.png'>嗡嗡</span></span>  sound.<span class='tooltip3'>譯<span class='tooltip-text'>因為牠們的翅膀會發出嗡嗡的聲響。</span></span><br>
+(D)Because their song sounds like <span class='tooltip'>humming<span class='tooltip-text'  onclick="speakText('humming')"><IMG SRC='speak.png'>嗡嗡</span></span>.<span class='tooltip3'>譯<span class='tooltip-text'>因為牠們唱的歌聽起來像嗡嗡聲。</span></span>
+<br><hr>
+
+
+
+
+22.How do <span class='tooltip'>hummingbirds<span class='tooltip-text'  onclick="speakText('hummingbirds')"><IMG SRC='speak.png'>蜂鳥</span></span>  help flowers? 
+<span class='tooltip3'>譯<span class='tooltip-text'>蜂鳥如何幫助花朵</span></span> <br>
+(A)By <span class='tooltip'>drinking<span class='tooltip-text'  onclick="speakText('drinking')"><IMG SRC='speak.png'>喝</span></span>  their <span class='tooltip'>nectar<span class='tooltip-text'  onclick="speakText('nectar')"><IMG SRC='speak.png'>花蜜</span></span>.<span class='tooltip3'>譯<span class='tooltip-text'>藉由喝花蜜。</span></span><br>
+(B)By eating their <span class='tooltip'>pollen<span class='tooltip-text'  onclick="speakText('pollen')"><IMG SRC='speak.png'>花粉</span></span>.<span class='tooltip3'>譯<span class='tooltip-text'>藉由吃花粉。</span></span><br>
+(C)<img src="ans.png">By bringing their <span class='tooltip'>pollen<span class='tooltip-text'  onclick="speakText('pollen')"><IMG SRC='speak.png'>花粉</span></span>  from one flower to the next.<span class='tooltip3'>譯<span class='tooltip-text'>藉由將花粉由一株花傳播到另一株花。</span></span><br>
+(D)By planting their seeds.<span class='tooltip3'>譯<span class='tooltip-text'>藉由埋下花的種子。</span></span><br><hr>
+
+
+23.Which of the following <span class='tooltip'>statements<span class='tooltip-text'  onclick="speakText('statements')"><IMG SRC='speak.png'>語句</span></span>  about bee <span class='tooltip'>hummingbirds<span class='tooltip-text'  onclick="speakText('hummingbirds')"><IMG SRC='speak.png'>蜂鳥</span></span>  is NOT true?
+<span class='tooltip3'>譯<span class='tooltip-text'>下列哪一個關於蜜蜂蜂鳥的敘述有誤?？</span></span> <br>
+(A)<span class='tooltip'>Bee<span class='tooltip-text'  onclick="speakText('Bee')"><IMG SRC='speak.png'>蜜蜂</span></span>  hummingbird eggs are smaller than peas.<span class='tooltip3'>譯<span class='tooltip-text'>蜜蜂蜂鳥的蛋必豌豆還小。</span></span><br>
+(B)<span class='tooltip'>Bee<span class='tooltip-text'  onclick="speakText('Bee')"><IMG SRC='speak.png'>蜜蜂</span></span>  <span class='tooltip'>hummingbirds<span class='tooltip-text'  onclick="speakText('hummingbirds')"><IMG SRC='speak.png'>蜂鳥</span></span>  weigh less than a penny.<span class='tooltip3'>譯<span class='tooltip-text'>蜜蜂蜂鳥的重量比一分錢硬幣還輕。</span></span><br>
+(C)<span class='tooltip'>Bee<span class='tooltip-text'  onclick="speakText('Bee')"><IMG SRC='speak.png'>蜜蜂</span></span>  <span class='tooltip'>hummingbirds<span class='tooltip-text'  onclick="speakText('hummingbirds')"><IMG SRC='speak.png'>蜂鳥</span></span>  have built <span class='tooltip'>nests<span class='tooltip-text'  onclick="speakText('nests')"><IMG SRC='speak.png'>巢穴</span></span>  on clothespins.<span class='tooltip3'>譯<span class='tooltip-text'>蜜蜂蜂鳥曾在曬衣夾上築巢。</span></span><br>
+(D)<img src="ans.png"> <span class='tooltip'>Bee<span class='tooltip-text'  onclick="speakText('Bee')"><IMG SRC='speak.png'>蜜蜂</span></span>  <span class='tooltip'>hummingbirds<span class='tooltip-text'  onclick="speakText('hummingbirds')"><IMG SRC='speak.png'>蜂鳥</span></span>  do not grow <span class='tooltip'>larger<span class='tooltip-text'  onclick="speakText('larger')"><IMG SRC='speak.png'>更大</span></span>  than bees.<span class='tooltip3'>譯<span class='tooltip-text'>蜜蜂蜂鳥不會長到比蜜蜂還大。</span></span><br><hr>
+
+
+
+
+
+
+
+
+24.What is unique about the way that <span class='tooltip'>hummingbirds<span class='tooltip-text'  onclick="speakText('hummingbirds')"><IMG SRC='speak.png'>蜂鳥</span></span>  fly?
+<span class='tooltip3'>譯<span class='tooltip-text'>蜂鳥飛行時有什麼獨一無二的特色?
+</span></span> <br>
+(A)They can fly faster than any other bird.<span class='tooltip3'>譯<span class='tooltip-text'>牠們飛得比其他任何鳥類都要快。</span></span><br>
+(B)They can fly longer than any other bird.<span class='tooltip3'>譯<span class='tooltip-text'>牠們飛得比其他任何鳥類都要久。</span></span><br>
+(C)<img src="ans.png">They can fly <span class='tooltip'>forward<span class='tooltip-text'  onclick="speakText('forward')"><IMG SRC='speak.png'>向前</span></span>  and <span class='tooltip'>backward<span class='tooltip-text'  onclick="speakText('backward')"><IMG SRC='speak.png'>落後</span></span>.<span class='tooltip3'>譯<span class='tooltip-text'>牠們可以向前飛也可以向後飛。</span></span><br>
+(D)They can only fly for a few seconds at a time.<span class='tooltip3'>譯<span class='tooltip-text'>牠們一次只能飛行幾秒鐘。</span></span><br><hr>
+
+25.Which title best describes the main <span class='tooltip'>idea<span class='tooltip-text'  onclick="speakText('idea')"><IMG SRC='speak.png'>主旨、主意</span></span>  of this text? 
+<span class='tooltip3'>譯<span class='tooltip-text'>哪一個標題最恰當地點出本文主旨?</span></span> <br>
+(A)<span class='tooltip'>Bee<span class='tooltip-text'  onclick="speakText('Bee')"><IMG SRC='speak.png'>蜜蜂</span></span>  Hummingbirds: The World's Smallest Bird.<span class='tooltip3'>譯<span class='tooltip-text'>蜜蜂蜂鳥:全世界最小型的鳥</span></span><br>
+(B)Pollination: How Birds and Flowers Work <span class='tooltip'>Together<span class='tooltip-text'  onclick="speakText('Together')"><IMG SRC='speak.png'>一起</span></span>.<span class='tooltip3'>譯<span class='tooltip-text'>授粉:鳥類與花朵如何互相合作</span></span><br>
+(C)<img src="ans.png">Hummingbirds: <span class='tooltip'>Unique<span class='tooltip-text'  onclick="speakText('Unique')"><IMG SRC='speak.png'>獨特的</span></span>  and <span class='tooltip'>Uniquely<span class='tooltip-text'  onclick="speakText('Uniquely')"><IMG SRC='speak.png'>獨特</span></span>  Helpful.<span class='tooltip3'>譯<span class='tooltip-text'>蜂鳥:獨一無二,又特別有用處</span></span><br>
+(D)Interesting Facts About Birds.<span class='tooltip3'>譯<span class='tooltip-text'>鳥類的有趣知識</span></span><br>
+
+
+

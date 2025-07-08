@@ -1,0 +1,262 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:99%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      right:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+<center>04失憶症 考題</center>
+21 . What is the closest meaning to the word "<span class='tooltip'>dementia<span class='tooltip-text'  onclick="speakText('dementia')"><IMG SRC='speak.png'>失智</span></span>"" in the fifth paragraph? 
+<span class='tooltip3'>譯<span class='tooltip-text'>何者與第5段失智意思相近</span></span><br>
+(A)loss of family <br>
+(B)loss of <span class='tooltip'>patience<span class='tooltip-text'  onclick="speakText('patience')"><IMG SRC='speak.png'>耐心</span></span>  <br>
+(C) <img src="ans.png">loss of memory <br>
+(D)loss of the <span class='tooltip'>sense<span class='tooltip-text'  onclick="speakText('sense')"><IMG SRC='speak.png'>感覺</span></span>  of <span class='tooltip'>direction<span class='tooltip-text'  onclick="speakText('direction')"><IMG SRC='speak.png'>方向</span></span>  <br><hr>
+
+22 . According to this <span class='tooltip'>article<span class='tooltip-text'  onclick="speakText('article')"><IMG SRC='speak.png'>文章</span></span>  , how can having family dinners help <span class='tooltip'>patients<span class='tooltip-text'  onclick="speakText('patients')"><IMG SRC='speak.png'>患者</span></span>  of <span class='tooltip'>Dementia?<span class='tooltip-text'  onclick="speakText('Dementia?')"><IMG SRC='speak.png'>失智?</span></span>  
+<span class='tooltip3'>譯<span class='tooltip-text'>根據本文，家族晚餐對老年痴呆症患者有什麼幫助？</span></span><br>
+(A)It can <span class='tooltip'>provide<span class='tooltip-text'  onclick="speakText('provide')"><IMG SRC='speak.png'>提供</span></span>  the <span class='tooltip'>nutrition<span class='tooltip-text'  onclick="speakText('nutrition')"><IMG SRC='speak.png'>營養</span></span>  they need . <br>
+(B)It can teach them how to use <span class='tooltip'>tableware<span class='tooltip-text'  onclick="speakText('tableware')"><IMG SRC='speak.png'>餐具</span></span>  . <br>
+(C)It can help them learn new <span class='tooltip'>dishes<span class='tooltip-text'  onclick="speakText('dishes')"><IMG SRC='speak.png'>菜餚</span></span>  and <span class='tooltip'>ingredients<span class='tooltip-text'  onclick="speakText('ingredients')"><IMG SRC='speak.png'>原料</span></span>  . <br>
+(D) <img src="ans.png">It can give them a <span class='tooltip'>sense<span class='tooltip-text'  onclick="speakText('sense')"><IMG SRC='speak.png'>感覺</span></span>  of <span class='tooltip'>belonging<span class='tooltip-text'  onclick="speakText('belonging')"><IMG SRC='speak.png'>歸屬感</span></span>  . <br><hr>
+
+23 . According to this <span class='tooltip'>article<span class='tooltip-text'  onclick="speakText('article')"><IMG SRC='speak.png'>文章</span></span>  , which statement about Tim Hollingsworth is NOT true? 
+<span class='tooltip3'>譯<span class='tooltip-text'>根據本文，關於Tim Hollingsworth 的敘述何者有誤</span></span><br>
+(A) <img src="ans.png">He is <span class='tooltip'>suffering<span class='tooltip-text'  onclick="speakText('suffering')"><IMG SRC='speak.png'>痛苦</span></span>  from <span class='tooltip'>Dementia<span class='tooltip-text'  onclick="speakText('Dementia')"><IMG SRC='speak.png'>失智</span></span>  . <br>
+(B)He <span class='tooltip'>owns<span class='tooltip-text'  onclick="speakText('owns')"><IMG SRC='speak.png'>擁有</span></span>  a <span class='tooltip'>restaurant<span class='tooltip-text'  onclick="speakText('restaurant')"><IMG SRC='speak.png'>餐廳</span></span>  in <span class='tooltip'>California<span class='tooltip-text'  onclick="speakText('California')"><IMG SRC='speak.png'>加州</span></span>  . <br>
+(C) He takes care of his sick mother . <br>
+(D)He <span class='tooltip'>cooks<span class='tooltip-text'  onclick="speakText('cooks')"><IMG SRC='speak.png'>廚師</span></span>  with his mother . <br><hr>
+
+24 . What can we <span class='tooltip'>infer<span class='tooltip-text'  onclick="speakText('infer')"><IMG SRC='speak.png'>推論</span></span>  from this <span class='tooltip'>article?<span class='tooltip-text'  onclick="speakText('article?')"><IMG SRC='speak.png'>文章？</span></span>  
+<span class='tooltip3'>譯<span class='tooltip-text'>我們可以從本文推論出什麼</span></span><br> 
+(A)<span class='tooltip'>Dementia<span class='tooltip-text'  onclick="speakText('Dementia')"><IMG SRC='speak.png'>失智</span></span>  is <span class='tooltip'>incurable<span class='tooltip-text'  onclick="speakText('incurable')"><IMG SRC='speak.png'>無法治愈</span></span>  . <br>
+(B)Patients of <span class='tooltip'>Dementia<span class='tooltip-text'  onclick="speakText('Dementia')"><IMG SRC='speak.png'>失智</span></span>  usually have hard time <span class='tooltip'>communicating<span class='tooltip-text'  onclick="speakText('communicating')"><IMG SRC='speak.png'>溝通</span></span>  with people . <br>
+(C)Patients of <span class='tooltip'>Dementia<span class='tooltip-text'  onclick="speakText('Dementia')"><IMG SRC='speak.png'>失智</span></span>  <span class='tooltip'>suffer<span class='tooltip-text'  onclick="speakText('suffer')"><IMG SRC='speak.png'>遭受</span></span>  from <span class='tooltip'>loneliness<span class='tooltip-text'  onclick="speakText('loneliness')"><IMG SRC='speak.png'>孤獨</span></span>  <span class='tooltip'>due to<span class='tooltip-text'  onclick="speakText('due to')"><IMG SRC='speak.png'>因為、由於</span></span>  <span class='tooltip'>lack<span class='tooltip-text'  onclick="speakText('lack')"><IMG SRC='speak.png'>缺少</span></span>  of their family's accompany . <br>
+(D)<img src="ans.png"><span class='tooltip'>Patients<span class='tooltip-text'  onclick="speakText('Patients')"><IMG SRC='speak.png'>病人</span></span>  of <span class='tooltip'>Dementia<span class='tooltip-text'  onclick="speakText('Dementia')"><IMG SRC='speak.png'>失智</span></span>  forget newer memories faster than they forget earlier memories . <br><hr>
+
+25 . What is the main idea of this <span class='tooltip'>article?<span class='tooltip-text'  onclick="speakText('article?')"><IMG SRC='speak.png'>文章？</span></span>  
+<span class='tooltip3'>譯<span class='tooltip-text'>本文主旨為何？</span></span><br>
+(A)To tell people how to <span class='tooltip'>prevent<span class='tooltip-text'  onclick="speakText('prevent')"><IMG SRC='speak.png'>防止</span></span>  <span class='tooltip'>Dementia<span class='tooltip-text'  onclick="speakText('Dementia')"><IMG SRC='speak.png'>失智</span></span>  . <br>
+(B) To <span class='tooltip'>introduce<span class='tooltip-text'  onclick="speakText('introduce')"><IMG SRC='speak.png'>介紹</span></span>  the <span class='tooltip'>symptoms<span class='tooltip-text'  onclick="speakText('symptoms')"><IMG SRC='speak.png'>症狀</span></span>  of <span class='tooltip'>Dementia<span class='tooltip-text'  onclick="speakText('Dementia')"><IMG SRC='speak.png'>失智</span></span>  . <br>
+(C) To <span class='tooltip'>provide<span class='tooltip-text'  onclick="speakText('provide')"><IMG SRC='speak.png'>提供</span></span>  a <span class='tooltip'>suitable<span class='tooltip-text'  onclick="speakText('suitable')"><IMG SRC='speak.png'>合適的</span></span>  diet plan for <span class='tooltip'>patients<span class='tooltip-text'  onclick="speakText('patients')"><IMG SRC='speak.png'>患者</span></span>  of <span class='tooltip'>Dementia<span class='tooltip-text'  onclick="speakText('Dementia')"><IMG SRC='speak.png'>失智</span></span>  . <br>
+(D) <img src="ans.png">To <span class='tooltip'>explain<span class='tooltip-text'  onclick="speakText('explain')"><IMG SRC='speak.png'>解釋</span></span>  how family <span class='tooltip'>meals<span class='tooltip-text'  onclick="speakText('meals')"><IMG SRC='speak.png'>餐點</span></span>  help <span class='tooltip'>patients<span class='tooltip-text'  onclick="speakText('patients')"><IMG SRC='speak.png'>患者</span></span>  of <span class='tooltip'>Dementia<span class='tooltip-text'  onclick="speakText('Dementia')"><IMG SRC='speak.png'>失智</span></span>  . 
+

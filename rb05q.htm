@@ -1,0 +1,263 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:99%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+<CENTER>05臨終醫療　考題</CENTER>
+21.According to this article , what is NOT true about Betsy McNair?
+<span class='tooltip3'>譯<span class='tooltip-text'>根據本文，有關Betsy McNair何者錯誤</span></span><br>
+(A)She is a <span class='tooltip'>tour<span class='tooltip-text'  onclick="speakText('tour')"><IMG SRC='speak.png'>旅遊</span></span>  <span class='tooltip'>guide<span class='tooltip-text'  onclick="speakText('guide')"><IMG SRC='speak.png'>指導</span></span>.<br>
+(B)<img src="ans.png">She lives in <span class='tooltip'>Virginia<span class='tooltip-text'  onclick="speakText('Virginia')"><IMG SRC='speak.png'>維吉尼亞州</span></span>.<br>
+(C)Her father <span class='tooltip'>died<span class='tooltip-text'  onclick="speakText('died')"><IMG SRC='speak.png'>過世</span></span>  at the age of 83.<br>
+(D)She took care of her father before he <span class='tooltip'>died<span class='tooltip-text'  onclick="speakText('died')"><IMG SRC='speak.png'>過世</span></span>.<br><HR>
+
+22.What did Haider Warraich and Sarah Cross NOT found from U.S.government<BR> health records between 2003 and 2017?
+<span class='tooltip3'>譯<span class='tooltip-text'>根據本文，有關Betsy McNair何者錯誤</span></span>
+<br><br>
+(A)Deaths in <span class='tooltip'>hospitals<span class='tooltip-text'  onclick="speakText('hospitals')"><IMG SRC='speak.png'>醫院</span></span>  <span class='tooltip'>fell<span class='tooltip-text'  onclick="speakText('fell')"><IMG SRC='speak.png'>下跌</span></span>  from 40% to 30%.<br>
+(B)Deaths in <span class='tooltip'>nursing<span class='tooltip-text'  onclick="speakText('nursing')"><IMG SRC='speak.png'>護理</span></span>  homes <span class='tooltip'>fell<span class='tooltip-text'  onclick="speakText('fell')"><IMG SRC='speak.png'>下跌</span></span>  from 24% to 21% , <br>
+(C) <img src="ans.png">Deaths in homes <span class='tooltip'>fell<span class='tooltip-text'  onclick="speakText('fell')"><IMG SRC='speak.png'>下跌</span></span>  from 31% to 24%.<br>
+(D)Deaths in homes are <span class='tooltip'>growing<span class='tooltip-text'  onclick="speakText('growing')"><IMG SRC='speak.png'>生長</span></span>.<br><HR>
+
+23.What is NOT one of the <span class='tooltip'>advantages<span class='tooltip-text'  onclick="speakText('advantages')"><IMG SRC='speak.png'>優點</span></span>  of <span class='tooltip'>dying<span class='tooltip-text'  onclick="speakText('dying')"><IMG SRC='speak.png'>死亡</span></span>  at home?
+<span class='tooltip3'>譯<span class='tooltip-text'>那一個不是居家臨終的優點？</span></span><BR>
+(A)Patients can spend their last days at home.<br>
+(B)Patients can <span class='tooltip'>stay<span class='tooltip-text'  onclick="speakText('stay')"><IMG SRC='speak.png'>停留</span></span>  around with their pets.<br>
+(C)Patients can lie in their own <span class='tooltip'>bed<span class='tooltip-text'  onclick="speakText('bed')"><IMG SRC='speak.png'>床</span></span>.<br>
+(D) <img src="ans.png">Patients can be treated by a doctor immediately.<br><HR>
+
+24.According to this article , which of the following statements is NOT true?
+<span class='tooltip3'>譯<span class='tooltip-text'>根據本文，下列何者說明有誤</span></span><br>
+(A)Home <span class='tooltip'>hospice<span class='tooltip-text'  onclick="speakText('hospice')"><IMG SRC='speak.png'>安寧療護</span></span>  services help people spend their last days at home.<br>
+(B)Cancer <span class='tooltip'>patients<span class='tooltip-text'  onclick="speakText('patients')"><IMG SRC='speak.png'>患者</span></span>  were more likely to die at home than in a <span class='tooltip'>hospital<span class='tooltip-text'  onclick="speakText('hospital')"><IMG SRC='speak.png'>醫院</span></span>.<br>
+(C) Doctor Haider Warraich and Duke University graduate student Sarah Cross did some <span class='tooltip'>research<span class='tooltip-text'  onclick="speakText('research')"><IMG SRC='speak.png'>研究</span></span>  together.<br>
+(D) <img src="ans.png">Warraich thinks that it is a <span class='tooltip'>pity<span class='tooltip-text'  onclick="speakText('pity')"><IMG SRC='speak.png'>遺憾</span></span>  that more Americans are <span class='tooltip'>dying<span class='tooltip-text'  onclick="speakText('dying')"><IMG SRC='speak.png'>死亡</span></span>  at home rather than in <span class='tooltip'>hospital<span class='tooltip-text'  onclick="speakText('hospital')"><IMG SRC='speak.png'>醫院</span></span>  now.<br><HR>
+
+25.What is the main idea of this article?
+<span class='tooltip3'>譯<span class='tooltip-text'>本文主旨為何</span></span><br>
+(A) <img src="ans.png">The rise and <span class='tooltip'>advantages<span class='tooltip-text'  onclick="speakText('advantages')"><IMG SRC='speak.png'>優點</span></span>  of <span class='tooltip'>dying<span class='tooltip-text'  onclick="speakText('dying')"><IMG SRC='speak.png'>死亡</span></span>  at home.<br>
+(B) Cancer <span class='tooltip'>patients<span class='tooltip-text'  onclick="speakText('patients')"><IMG SRC='speak.png'>患者</span></span>  were more likely to die at home than in a <span class='tooltip'>hospital<span class='tooltip-text'  onclick="speakText('hospital')"><IMG SRC='speak.png'>醫院</span></span>.<br>
+(C) People can choose to die at home , in a <span class='tooltip'>hospital<span class='tooltip-text'  onclick="speakText('hospital')"><IMG SRC='speak.png'>醫院</span></span>  , or in a <span class='tooltip'>nursing<span class='tooltip-text'  onclick="speakText('nursing')"><IMG SRC='speak.png'>護理</span></span>  home.<br>
+(D)Patients <span class='tooltip'>dying<span class='tooltip-text'  onclick="speakText('dying')"><IMG SRC='speak.png'>死亡</span></span>  at home often eat and <span class='tooltip'>drink<span class='tooltip-text'  onclick="speakText('drink')"><IMG SRC='speak.png'>喝</span></span>  a lot.
+

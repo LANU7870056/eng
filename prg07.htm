@@ -9,12 +9,19 @@
   <meta charset="utf-8" />
 
 <script>
-    function speakText(text) {
+    function speakText2(text) {
       //const text = "Connect to the internet";
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
       speechSynthesis.speak(utterance);
     }
+    
+    function speakText(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
 </script>
 
 <script>
@@ -35,6 +42,20 @@ window.open(ur+'?i='+getRandomString(10),'_self');
 </script>
 
 <style>
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
 .bk-box {
     width:100%;
     position: absolute;
@@ -254,70 +275,81 @@ font-size: 0.9em;
 <body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
 <BR>
 <div class="background-box" style="font-size: 1.2em;">
+
 <center>第07回</center>
 一、單字測驗<BR>
 1.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】他們上訴到更高等的法院，因為他們對於結果並不滿意。
 (A)讚揚　(B)欣賞　(C)出現　(D)上訴</span></span> 
-They their case to a higher court because they were not satisfied with the results.
-(A)<span class='tooltip'>praised<span class='tooltip-text' onclick="speakText('praised')"><IMG SRC='speak.png'>讚揚</span></span>　　
-(B)<span class='tooltip'>admired<span class='tooltip-text' onclick="speakText('admired')"><IMG SRC='speak.png'>欣賞</span></span>　　　
-(C)<span class='tooltip'>appeared<span class='tooltip-text' onclick="speakText('appeared')"><IMG SRC='speak.png'>出現</span></span>　　
+They their case to a <span class='tooltip'>higher court<span class='tooltip-text'  onclick="speakText('higher court')"><IMG SRC='speak.png'>高等法院</span></span> because they were not <span class='tooltip'>satisfied<span class='tooltip-text'  onclick="speakText('satisfied')"><IMG SRC='speak.png'>滿意</span></span> with the <span class='tooltip'>results<span class='tooltip-text'  onclick="speakText('results')"><IMG SRC='speak.png'>結果</span></span>.<br>
+(A)<span class='tooltip'>praised<span class='tooltip-text' onclick="speakText('praised')"><IMG SRC='speak.png'>讚揚</span></span>　
+(B)<span class='tooltip'>admired<span class='tooltip-text' onclick="speakText('admired')"><IMG SRC='speak.png'>欣賞</span></span>　
+(C)<span class='tooltip'>appeared<span class='tooltip-text' onclick="speakText('appeared')"><IMG SRC='speak.png'>出現</span></span>　
 (D)<span class='tooltip'>appealed<span class='tooltip-text' onclick="speakText('appealed')"><IMG SRC='speak.png'>上訴</span></span><br> <hr>
 
 2.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】他們沒有預料到在淡季會收到這麼多訂單，所以他們現在日夜不分地在趕工。(A)允許　(B)企圖　(C)預期　(D)參與</span></span> 
-They did not receiving so many orders in the low season, so they are working around the clock now.(A)allow　　
-(B)<span class='tooltip'>attempt<span class='tooltip-text' onclick="speakText('attempt')"><IMG SRC='speak.png'>企圖</span></span>　　
-(C)<span class='tooltip'>anticipate<span class='tooltip-text' onclick="speakText('anticipate')"><IMG SRC='speak.png'>預期</span></span>　　
+They did not <span class='tooltip'>receiving<span class='tooltip-text'  onclick="speakText('receiving')"><IMG SRC='speak.png'>接收</span></span> so many <span class='tooltip'>orders<span class='tooltip-text'  onclick="speakText('orders')"><IMG SRC='speak.png'>訂單</span></span> in the <span class='tooltip'>low season<span class='tooltip-text'  onclick="speakText('low season')"><IMG SRC='speak.png'>淡季</span></span>,  so they are working around the clock now.<br>
+(A)allow　
+(B)<span class='tooltip'>attempt<span class='tooltip-text' onclick="speakText('attempt')"><IMG SRC='speak.png'>企圖</span></span>　
+(C)<span class='tooltip'>anticipate<span class='tooltip-text' onclick="speakText('anticipate')"><IMG SRC='speak.png'>預期</span></span>　
 (D)<span class='tooltip'>participate<span class='tooltip-text' onclick="speakText('participate')"><IMG SRC='speak.png'>參與</span></span> <br> <hr>
  
 3.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】持續上漲的房價讓年輕人除了租小公寓外別無選擇，因為他們負擔不起買房的價錢。(A)負擔　(B)應用　(C)採取、收養　(D)承認</span></span> 
-The increasing house prices leave young people no choice but to rent small apartments, since they could not to buy houses.
-(A)<span class='tooltip'>afford<span class='tooltip-text' onclick="speakText('afford')"><IMG SRC='speak.png'>負擔</span></span>　　
-(B)apply　　
-(C)<span class='tooltip'>adopt<span class='tooltip-text' onclick="speakText('adopt')"><IMG SRC='speak.png'>採取、收養</span></span>　　
-(D)admit <br> <hr>
+The <span class='tooltip'>increasing<span class='tooltip-text'  onclick="speakText('increasing')"><IMG SRC='speak.png'>上漲</span></span> house prices leave young people no choice but to rent small <span class='tooltip'>apartments<span class='tooltip-text'  onclick="speakText('apartments')"><IMG SRC='speak.png'>公寓</span></span>,  since they could not to buy houses.<br>
+(A)<span class='tooltip'>afford<span class='tooltip-text' onclick="speakText('afford')"><IMG SRC='speak.png'>負擔</span></span>　
+(B)apply　
+(C)<span class='tooltip'>adopt<span class='tooltip-text' onclick="speakText('adopt')"><IMG SRC='speak.png'>採取、收養</span></span>　
+(D)<span class='tooltip'>admit<span class='tooltip-text'  onclick="speakText('admit')"><IMG SRC='speak.png'>承認</span></span> <br> <hr>
 
 4.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】那位護理師將病患的資料按照字母整理好，這樣下次要找特定病患的資料會比較容易。(A)避免　(B)照顧　(C)吸引　(D)安排;整理</span></span> 
-The nurse the patients' files into alphabetical order, so that it would be easier to find a particular patient's file when needed.(A)avoided　　(B)attended　　(C)attracted　　(D)arranged <br> <hr>
+The nurse the <span class='tooltip'>patient<span class='tooltip-text'  onclick="speakText('patient')"><IMG SRC='speak.png'>病人</span></span>'s files into <span class='tooltip'>alphabetical<span class='tooltip-text'  onclick="speakText('alphabetical')"><IMG SRC='speak.png'>字母</span></span> <span class='tooltip'>order<span class='tooltip-text'  onclick="speakText('order')"><IMG SRC='speak.png'>排序</span></span>,  so that it would be easier to find a <span class='tooltip'>particular<span class='tooltip-text'  onclick="speakText('particular')"><IMG SRC='speak.png'>特別的</span></span> patient's file when needed.<br>
+(A)<span class='tooltip'>avoided<span class='tooltip-text'  onclick="speakText('avoided')"><IMG SRC='speak.png'>避免</span></span>　(B)<span class='tooltip'>attended<span class='tooltip-text'  onclick="speakText('attended')"><IMG SRC='speak.png'>照顧</span></span>　(C)<span class='tooltip'>attracted<span class='tooltip-text'  onclick="speakText('attracted')"><IMG SRC='speak.png'>吸引</span></span>　(D)<span class='tooltip'>arranged<span class='tooltip-text'  onclick="speakText('arranged')"><IMG SRC='speak.png'>安排</span></span> <br> <hr>
 
 5.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】找到工作與生活間的平衡點很重要，畢竟我們工作是為了獲得更好的生活。如果我們因為做太多工作導致生活變得更糟，那就失去意義了。(A)平衡　(B)綻放　(C)預算　(D)利益</span></span> 
-It is important to find a work-life After all, we work to get a better life.It would be meaningless if our life gets worse from working too much.(A)balance　　(B)bloom　　(C)budget　　(D)benefit <br><hr>
+It is <span class='tooltip'>important<span class='tooltip-text'  onclick="speakText('important')"><IMG SRC='speak.png'>重要的</span></span> to find a <span class='tooltip'>work-life<span class='tooltip-text'  onclick="speakText('work-life')"><IMG SRC='speak.png'>工作生活</span></span> After all,  we work to get a better life.It would be <span class='tooltip'>meaningless<span class='tooltip-text'  onclick="speakText('meaningless')"><IMG SRC='speak.png'>無意義的</span></span> if our life gets <span class='tooltip'>worse<span class='tooltip-text'  onclick="speakText('worse')"><IMG SRC='speak.png'>更糟</span></span> from working too much.<br>
+(A)<span class='tooltip'>balance<span class='tooltip-text'  onclick="speakText('balance')"><IMG SRC='speak.png'>平衡</span></span>　(B)<span class='tooltip'>bloom<span class='tooltip-text'  onclick="speakText('bloom')"><IMG SRC='speak.png'>綜放</span></span>　(C)<span class='tooltip'>budget<span class='tooltip-text'  onclick="speakText('budget')"><IMG SRC='speak.png'>預算</span></span>　(D)<span class='tooltip'>benefit<span class='tooltip-text'  onclick="speakText('benefit')"><IMG SRC='speak.png'>利益</span></span> <br><hr>
 
-6.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】Amy說服她媽媽買那支可愛的手錶給她當生日禮物，她說她從看到那支錶的第一眼就想要它了。(A)看待　(B)欺騙　(C)說服　(D)沉思</span></span>
-Amy ______ her mom to buy the adorable watch as her birthday present.She said she wanted that watch as soon as she saw it at first sight.(A)perceive　　(B)deceive　　(C)persuade　　(D)ponder <br><hr>
+6.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】Amy說服她媽媽買那支可愛的手錶給她當生日禮物，她說她從看到那支錶的第一眼就想要它了。<br>
+(A)看待、感知　(B)欺騙　(C)說服　(D)思考</span></span>
+Amy ______ her mom to buy the <span class='tooltip'>adorable<span class='tooltip-text'  onclick="speakText('adorable')"><IMG SRC='speak.png'>可愛的</span></span> watch as her birthday <span class='tooltip'>present<span class='tooltip-text'  onclick="speakText('present')"><IMG SRC='speak.png'>禮物</span></span>. She said she wanted that watch <span class='tooltip'>as soon as<span class='tooltip-text'  onclick="speakText('as soon as')"><IMG SRC='speak.png'>立刻</span></span> she saw it at first sight.<BR>
+(A)<span class='tooltip'>perceive<span class='tooltip-text'  onclick="speakText('perceive')"><IMG SRC='speak.png'>看待、感知</span></span>　(B)<span class='tooltip'>deceive<span class='tooltip-text'  onclick="speakText('deceive')"><IMG SRC='speak.png'>欺騙</span></span>　(C)<span class='tooltip'>persuade<span class='tooltip-text'  onclick="speakText('persuade')"><IMG SRC='speak.png'>說服</span></span>　(D)<span class='tooltip'>ponder<span class='tooltip-text'  onclick="speakText('ponder')"><IMG SRC='speak.png'>思考</span></span> <br><hr>
 
-7.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】這場金融危機造成很多小型企業破產。(A)毯子　(B)背景　(C)負擔　(D)破產</span></span>
-The financial crisis has led to many small businesses going ______.(A)blanket　　(B)background　　(C)burden　　(D)bankrupt <br><hr>
+7.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>
+【D】這場金融危機造成很多小型企業破產。(A)毯子　(B)背景　(C)負擔　(D)破產</span></span>
+The <span class='tooltip'>financial<span class='tooltip-text'  onclick="speakText('financial')"><IMG SRC='speak.png'>金融</span></span> <span class='tooltip'>crisis<span class='tooltip-text'  onclick="speakText('crisis')"><IMG SRC='speak.png'>危機</span></span> has led to many small businesses going ______.<br>
+(A)<span class='tooltip'>blanket<span class='tooltip-text'  onclick="speakText('blanket')"><IMG SRC='speak.png'>毯子</span></span>　(B)<span class='tooltip'>background<span class='tooltip-text'  onclick="speakText('background')"><IMG SRC='speak.png'>背景</span></span>　(C)<span class='tooltip'>burden<span class='tooltip-text'  onclick="speakText('burden')"><IMG SRC='speak.png'>負擔</span></span>　(D)<span class='tooltip'>bankrupt<span class='tooltip-text'  onclick="speakText('bankrupt')"><IMG SRC='speak.png'>破產</span></span> <br><hr>
 
-8.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】這些屋頂被設計成三角形的形狀，如此一來，<BR>當沉重的雪堆積在上方時，屋頂就不會倒塌。(A)倒塌　(B)流通　(C)收集　(D)壓縮</span></span>
-These roofs are designed in triangular shape, so that they would not ______ when heavy snow accumulated on the top.(A)collapse　　(B)circulate　　(C)collect　　(D)compact <br><hr>
+8.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】這些屋頂被設計成三角形的形狀，如此一來，當沉重的雪堆積在上方時，屋頂就不會倒塌。
+(A)倒塌　(B)流通　(C)收集　(D)壓縮</span></span>
+These <span class='tooltip'>roofs<span class='tooltip-text'  onclick="speakText('roofs')"><IMG SRC='speak.png'>屋頂</span></span> are designed in <span class='tooltip'>triangular shape<span class='tooltip-text'  onclick="speakText('triangular shape')"><IMG SRC='speak.png'>三角形狀</span></span>,  so that they would not ______ when heavy snow <span class='tooltip'>accumulated<span class='tooltip-text'  onclick="speakText('accumulated')"><IMG SRC='speak.png'>累積</span></span> on the top.
+(A)<span class='tooltip'>collapse<span class='tooltip-text'  onclick="speakText('collapse')"><IMG SRC='speak.png'>倒塌</span></span>　(B)<span class='tooltip'>circulate<span class='tooltip-text'  onclick="speakText('circulate')"><IMG SRC='speak.png'>流通</span></span>　(C)<span class='tooltip'>collect<span class='tooltip-text'  onclick="speakText('collect')"><IMG SRC='speak.png'>收集</span></span>　(D)<span class='tooltip'>compact<span class='tooltip-text'  onclick="speakText('compact')"><IMG SRC='speak.png'>壓縮</span></span> <br><hr>
+
 二、文法測驗<BR>
-9.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】他拒絕告訴我，因為那是秘密。<img src='sol.png'>析 本題測驗連接詞用法。表達「因為」的連接詞有because和as，because of+N</span></span>
-He refused to tell me, ______ it was a secret.(A)by　(B)from　(C)as　(D)because of <br><hr>
+9.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】他拒絕告訴我，因為那是秘密。<img src='sol.png'>析 本題測驗連接詞用法。表達「因為」的連接詞有because和as，because of+N，所以選as</span></span>
+He <span class='tooltip'>refused<span class='tooltip-text'  onclick="speakText('refused')"><IMG SRC='speak.png'>拒絕</span></span> to tell me,  ______ it was a <span class='tooltip'>secret<span class='tooltip-text'  onclick="speakText('secret')"><IMG SRC='speak.png'>秘密</span></span>.
+(A)by　(B)from　(C)as　(D)because of <br><hr>
 
 10.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】你讓我好困惑，我現在到底應該做什麼? <BR>
 so Ved你讓我感到困惑；so Ving你讓我使其它人感到困惑</span></span>
-You just make me so ______. What exactly am I supposed to do now?(A)confuse　(B)confused　(C)confusing　(D)be confused <br><hr>
+You just make me so ______. What <span class='tooltip'>exactly<span class='tooltip-text'  onclick="speakText('exactly')"><IMG SRC='speak.png'>確切地、真地</span></span> am I <span class='tooltip'>supposed<span class='tooltip-text'  onclick="speakText('supposed')"><IMG SRC='speak.png'>假設</span></span> to do now?(A)confuse　(B)confused　(C)confusing　(D)be confused <br><hr>
 11.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】暑假我比較想要去露營，而不是待在家裡。<BR>本題測驗prefer的用法。Prefer有偏好的意思，用法為"prefer A to
 B"</span></span>
-I would prefer camping ______ staying at home during summer vacation.(A)by　(B)more　(C)as　(D)to <br><hr>
+I would prefer <span class='tooltip'>camping<span class='tooltip-text'  onclick="speakText('camping')"><IMG SRC='speak.png'>露營</span></span> ______ staying at home during summer vacation.(A)by　(B)more　(C)as　(D)to <br><hr>
 
-12.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】我會試圖讓這個計劃成功,就算沒有辦法，至少我試過了。<br>"try to+V"表達「想方設法去做某事」</span></span>
-I will try ______ this plan work. Even if it doesn't, at least I tried.(A)make　(B)to make　(C)making　(D)to making <br><hr>
+12.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】我會試圖讓這個計劃成功, 就算沒有辦法，至少我試過了。<br>"try to+V"表達「想方設法去做某事」</span></span>
+I will try ______ this plan work. Even if it doesn't,  <span class='tooltip'>at least<span class='tooltip-text'  onclick="speakText('at least')"><IMG SRC='speak.png'>至少</span></span> I tried.(A)make　(B)to make　(C)making　(D)to making <br><hr>
 
 13.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】你睡前最好刷牙，不然你會蛀牙。<br>片語had better+V的用法</span></span>
-You ______ better brush your teeth before going to bed. Otherwise you will get cavities.(A)has　(B)have　(C)had　(D)have to <br><hr>
+You ______ better brush your teeth before going to bed. Otherwise you will get <span class='tooltip'>cavities<span class='tooltip-text'  onclick="speakText('cavities')"><IMG SRC='speak.png'>空洞、蛀牙</span></span>.(A)has　(B)have　(C)had　(D)have to <br><hr>
 
 14.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】她看到蟑螂越過她雙腳之間時，她大聲尖叫。<br>"upon+Ving"表示「當………時」</span></span>
 She <span class='tooltip'>screamed<span class='tooltip-text' onclick="speakText('screamed')"><IMG SRC='speak.png'>尖叫</span></span>
  out loud upon ______ the <span class='tooltip'>cockroach<span class='tooltip-text' onclick="speakText('cockroach')"><IMG SRC='speak.png'>蟑螂</span></span>
  crossing between her feet.(A)see　(B)saw　(C)seeing　(D)to see <br><hr>
 
-15. <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】你可以幫我包裝這份禮物嗎?今天是我朋友生日。<br>help當作幫忙的意思時,後面須接原形動詞,</span></span>
-Could you help me ______ up this gift? It's my friend's birthday.(A)wrap　(B)wraps　(C)to wrap　(D)wrapping<br><hr>
+15. <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>
+【A】你可以幫我包裝這份禮物嗎?今天是我朋友生日。<br>help當作幫忙的意思時, 後面須接原形動詞, </span></span>
+Could you help me ______ up this gift? It's my friend's birthday.(A)<span class='tooltip'>wrap<span class='tooltip-text'  onclick="speakText('wrap')"><IMG SRC='speak.png'>包裝、包裹</span></span>　(B)wraps　(C)to wrap　(D)wrapping<br><hr>
 
 
 
 <BR><BR>
-
-

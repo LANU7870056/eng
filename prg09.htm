@@ -1,0 +1,358 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+top:0px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<a href="javascript: void(0)" onclick="gen('index3.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+ <center>第９回　英單及文法</center>
+一、單字測驗 <br>
+1.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】Fiona總是會在周末帶她的孩子們跟狗一起去河濱公園，他們會沿著河岸騎腳踏車，他們的狗狗就在旁邊跟著他們跑。<BR>
+　(A)沿著　(C)孤獨的　(B)獨自　(D)屬於</span></span>
+Fiona always take her kids and dog to the <span class='tooltip'>riverbank<span class='tooltip-text'  onclick="speakText('riverbank')"><IMG SRC='speak.png'>河岸</span></span> park on the <span class='tooltip'>weekends<span class='tooltip-text'  onclick="speakText('weekends')"><IMG SRC='speak.png'>週末</span></span> .They would ride bicycles ______ the <span class='tooltip'>riverbank<span class='tooltip-text'  onclick="speakText('riverbank')"><IMG SRC='speak.png'>河岸</span></span> ,  and their dog would be running beside them.<br>
+(A)<span class='tooltip'>along<span class='tooltip-text'  onclick="speakText('along')"><IMG SRC='speak.png'>沿著</span></span>　(B)<span class='tooltip'>alone<span class='tooltip-text'  onclick="speakText('alone')"><IMG SRC='speak.png'>孤獨的</span></span>　(C)<span class='tooltip'>lonely<span class='tooltip-text'  onclick="speakText('lonely')"><IMG SRC='speak.png'>獨自</span></span>　(D)<span class='tooltip'>belong<span class='tooltip-text'  onclick="speakText('belong')"><IMG SRC='speak.png'>屬於</span></span> <br> <hr>
+
+2.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】Heidi被晉升因為她在過去幾年都有很好的表現，她幫公司爭取到很多大訂單，老闆也認為她是很合群的人。<BR>
+　(A)承諾　(B)晉升　(C)假裝　(D)打亮</span></span>
+Heidi got _______ because she has done a great job in the past few years.She has helped her <span class='tooltip'>company<span class='tooltip-text'  onclick="speakText('company')"><IMG SRC='speak.png'>公司</span></span> win many big orders and the hoss thinks she is a good team player.<br>
+(A)<span class='tooltip'>promised<span class='tooltip-text'  onclick="speakText('promised')"><IMG SRC='speak.png'>承諾</span></span>　(B)<span class='tooltip'>promoted<span class='tooltip-text'  onclick="speakText('promoted')"><IMG SRC='speak.png'>晉升</span></span>　(C)<span class='tooltip'>pretended<span class='tooltip-text'  onclick="speakText('pretended')"><IMG SRC='speak.png'>假裝</span></span>　(D)<span class='tooltip'>polished<span class='tooltip-text'  onclick="speakText('polished')"><IMG SRC='speak.png'>打亮</span></span> <br> <hr>
+
+3.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】這間科技公司在大廳牆上掛了很多現代藝術作品，並提供員工免費藝術課程，希望能給員工愜意的環境，幫助他們產出有創意的作品。<BR>
+　(A)有創意的　(B)傳統的　(C)故意的　(D)人造的</span></span>
+The <span class='tooltip'>technology<span class='tooltip-text'  onclick="speakText('technology')"><IMG SRC='speak.png'>科技</span></span> <span class='tooltip'>company<span class='tooltip-text'  onclick="speakText('company')"><IMG SRC='speak.png'>公司</span></span> has many <span class='tooltip'>modern<span class='tooltip-text'  onclick="speakText('modern')"><IMG SRC='speak.png'>現代的</span></span> <span class='tooltip'>art pieces<span class='tooltip-text'  onclick="speakText('art pieces')"><IMG SRC='speak.png'>藝術品</span></span> <span class='tooltip'>hung up<span class='tooltip-text'  onclick="speakText('hung up')"><IMG SRC='speak.png'>掛上</span></span> on the wall of the <span class='tooltip'>lobby<span class='tooltip-text'  onclick="speakText('lobby')"><IMG SRC='speak.png'>大廳</span></span> ,  and <span class='tooltip'>provides<span class='tooltip-text'  onclick="speakText('provides')"><IMG SRC='speak.png'>提供</span></span> free art <span class='tooltip'>lessons<span class='tooltip-text'  onclick="speakText('lessons')"><IMG SRC='speak.png'>課程</span></span> for its <span class='tooltip'>employees<span class='tooltip-text'  onclick="speakText('employees')"><IMG SRC='speak.png'>僱員</span></span> ,  in the hope of giving <span class='tooltip'>relaxing<span class='tooltip-text'  onclick="speakText('relaxing')"><IMG SRC='speak.png'>放鬆</span></span> <span class='tooltip'>environments<span class='tooltip-text'  onclick="speakText('environments')"><IMG SRC='speak.png'>環境</span></span> to help their <span class='tooltip'>employees<span class='tooltip-text'  onclick="speakText('employees')"><IMG SRC='speak.png'>僱員</span></span> come up with _______ work.<br>
+(A)<span class='tooltip'>creational<span class='tooltip-text'  onclick="speakText('creational')"><IMG SRC='speak.png'>創造的</span></span>　(B)<span class='tooltip'>traditional<span class='tooltip-text'  onclick="speakText('traditional')"><IMG SRC='speak.png'>傳統的</span></span>　(C)<span class='tooltip'>intentional<span class='tooltip-text'  onclick="speakText('intentional')"><IMG SRC='speak.png'>故意的</span></span>　(D)<span class='tooltip'>artificial<span class='tooltip-text'  onclick="speakText('artificial')"><IMG SRC='speak.png'>人造的</span></span> <br> <hr>
+
+4.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】今天派對缺席的人就不能得到參加獎勵，太可惜了! <BR>
+　(A)被告　(B)缺席　(C)孤立　(D)延遲</span></span>
+People who are _______ from the party today will not be able to get the <span class='tooltip'>participation<span class='tooltip-text'  onclick="speakText('participation')"><IMG SRC='speak.png'>參與</span></span> award.What a pity! <br>
+(A)<span class='tooltip'>accused<span class='tooltip-text'  onclick="speakText('accused')"><IMG SRC='speak.png'>被告</span></span>　(B)<span class='tooltip'>absent<span class='tooltip-text'  onclick="speakText('absent')"><IMG SRC='speak.png'>缺席</span></span>　(C)<span class='tooltip'>isolated<span class='tooltip-text'  onclick="speakText('isolated')"><IMG SRC='speak.png'>孤立</span></span>　(D)<span class='tooltip'>delayed<span class='tooltip-text'  onclick="speakText('delayed')"><IMG SRC='speak.png'>延遲</span></span> <br> <hr>
+
+5.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】每當進入別人房間之前，我們都應該敲門並取得同意，這樣才不會侵犯到他人隱私。<BR>
+　(A)指示　(B)的確　(C)暗示、意味著　(D)侵犯</span></span>
+We should always <span class='tooltip'>knock<span class='tooltip-text'  onclick="speakText('knock')"><IMG SRC='speak.png'>敲</span></span> the door and get <span class='tooltip'>permission<span class='tooltip-text'  onclick="speakText('permission')"><IMG SRC='speak.png'>允許</span></span> before we enter into other people's room ,  so we don't ______ their <span class='tooltip'>privacy<span class='tooltip-text'  onclick="speakText('privacy')"><IMG SRC='speak.png'>隱私</span></span> .<br>
+(A)<span class='tooltip'>instruct<span class='tooltip-text'  onclick="speakText('instruct')"><IMG SRC='speak.png'>指示</span></span>　(B)<span class='tooltip'>indeed<span class='tooltip-text'  onclick="speakText('indeed')"><IMG SRC='speak.png'>的確</span></span>　(C)<span class='tooltip'>imply<span class='tooltip-text'  onclick="speakText('imply')"><IMG SRC='speak.png'>暗示、意味著</span></span>　(D)<span class='tooltip'>invade<span class='tooltip-text'  onclick="speakText('invade')"><IMG SRC='speak.png'>侵犯</span></span> <br> <hr>
+
+6.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】我們必須在辦公司清出一些空間，因為下午工程師會來安裝一台新的印表機。<BR>
+　(A)表明　(B)插入　(C)安裝　(D)啟發</span></span>
+We need to <span class='tooltip'>clear<span class='tooltip-text'  onclick="speakText('clear')"><IMG SRC='speak.png'>清除</span></span> out some <span class='tooltip'>space<span class='tooltip-text'  onclick="speakText('space')"><IMG SRC='speak.png'>空間</span></span> in the office ,  because the <span class='tooltip'>engineer<span class='tooltip-text'  onclick="speakText('engineer')"><IMG SRC='speak.png'>工程師</span></span> will come in the afternoon to ______ a new <span class='tooltip'>printer<span class='tooltip-text'  onclick="speakText('printer')"><IMG SRC='speak.png'>印表機</span></span> .<br>
+(A)<span class='tooltip'>indicate<span class='tooltip-text'  onclick="speakText('indicate')"><IMG SRC='speak.png'>表明</span></span>　(B)<span class='tooltip'>insert<span class='tooltip-text'  onclick="speakText('insert')"><IMG SRC='speak.png'>插入</span></span>　(C)<span class='tooltip'>install<span class='tooltip-text'  onclick="speakText('install')"><IMG SRC='speak.png'>安裝</span></span>　(D)<span class='tooltip'>inspire<span class='tooltip-text'  onclick="speakText('inspire')"><IMG SRC='speak.png'>啟發</span></span> <br> <hr>
+
+7.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】Shawn總是拒絕他朋友及老師們的建議，這就是為什麼再也沒有人想給他建議了。<BR>
+　(A)後悔　(B)舒緩　(C)辭職　(D)拒絕</span></span>
+Shawn always ______ his friends' and teachers' <span class='tooltip'>suggestions<span class='tooltip-text'  onclick="speakText('suggestions')"><IMG SRC='speak.png'>建議</span></span> .That is why nobody wants to give him <span class='tooltip'>advice<span class='tooltip-text'  onclick="speakText('advice')"><IMG SRC='speak.png'>建議</span></span> anymore.<br>
+(A)<span class='tooltip'>regret<span class='tooltip-text'  onclick="speakText('regret')"><IMG SRC='speak.png'>後悔</span></span>　(B)<span class='tooltip'>relieve<span class='tooltip-text'  onclick="speakText('relieve')"><IMG SRC='speak.png'>舒緩</span></span>　(C)<span class='tooltip'>resign<span class='tooltip-text'  onclick="speakText('resign')"><IMG SRC='speak.png'>辭職</span></span>　(D)<span class='tooltip'>reject<span class='tooltip-text'  onclick="speakText('reject')"><IMG SRC='speak.png'>拒絕</span></span> <br> <hr>
+
+8.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】我們越是去反省過去的錯誤，我們在未來就可以更小心。<BR>
+　(A)反映、反省　(B)提醒　(C)要求　(D)複習</span></span>
+The more we ______ on the <span class='tooltip'>mistakes<span class='tooltip-text'  onclick="speakText('mistakes')"><IMG SRC='speak.png'>錯誤</span></span> we made before ,  the more <span class='tooltip'>careful<span class='tooltip-text'  onclick="speakText('careful')"><IMG SRC='speak.png'>小心</span></span> we could be in the <span class='tooltip'>future<span class='tooltip-text'  onclick="speakText('future')"><IMG SRC='speak.png'>未來</span></span> .<br>
+(A)<span class='tooltip'>reflect<span class='tooltip-text'  onclick="speakText('reflect')"><IMG SRC='speak.png'>反映、反省</span></span>　(B)<span class='tooltip'>remind<span class='tooltip-text'  onclick="speakText('remind')"><IMG SRC='speak.png'>提醒</span></span>　(C)<span class='tooltip'>request<span class='tooltip-text'  onclick="speakText('request')"><IMG SRC='speak.png'>要求</span></span>　(D)<span class='tooltip'>review<span class='tooltip-text'  onclick="speakText('review')"><IMG SRC='speak.png'>複習</span></span> <br> <hr>
+
+二、文法測驗 <br>
+9.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】Aaron和Milan是朋友，他們都去同一間學校，他們也是同班同學。<BR>
+　both的適用情境。表達「都有;都是」的意思時，若主詞有兩個則用both，若有三個以上則用all</span></span>
+Aaron and Milan are friends and ______ of them go to the same school.They are <span class='tooltip'>classmates<span class='tooltip-text'  onclick="speakText('classmates')"><IMG SRC='speak.png'>同學</span></span> ,  too.<br>
+(A)none　(B)both　(C)all　(D)neither <br> <hr>
+
+10.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】你最好要趕快開始找另一份工作，我有預感你應該不久後就會被解僱。<BR>
+　"had better + V"→「最好」</span></span>
+You ______ start <span class='tooltip'>looking for<span class='tooltip-text'  onclick="speakText('looking for')"><IMG SRC='speak.png'>尋找</span></span> another job <span class='tooltip'>pretty soon<span class='tooltip-text'  onclick="speakText('pretty soon')"><IMG SRC='speak.png'>趕快</span></span>. I have a feeling that you're going to get <span class='tooltip'>fired<span class='tooltip-text'  onclick="speakText('fired')"><IMG SRC='speak.png'>被解僱</span></span> <span class='tooltip'>before long<span class='tooltip-text'  onclick="speakText('before long')"><IMG SRC='speak.png'>不久之後</span></span>.<br>
+(A)would be　(B)had better　(C)had better to　(D)would have <br> <hr>
+
+11.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】開車通過這個隧道大概會花十分鐘。<BR>
+　介系詞。"through"有經過、穿過的意思，drive through即為開車經過。</span></span>
+It takes about ten minutes to <span class='tooltip'>drive<span class='tooltip-text'  onclick="speakText('drive')"><IMG SRC='speak.png'>駕駛</span></span> ______ this <span class='tooltip'>tunnel<span class='tooltip-text'  onclick="speakText('tunnel')"><IMG SRC='speak.png'>隧道</span></span> .<br>
+(A)through　(B)across　(C)over　(D)among <br> <hr>
+
+12.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】我們的下一堂化學課是在星期二的11:00整。<BR>
+　時間介系詞。at常用來表達精確的時間點，故11點使用at</span></span>
+Our next <span class='tooltip'>chemistry<span class='tooltip-text'  onclick="speakText('chemistry')"><IMG SRC='speak.png'>化學</span></span> class is _______ 11 o'clock on Tuesday.<br>
+(A)in　(B)on　(C)at　(D)around <br> <hr>
+
+13.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】Alexander 75公斤而Nick 97公斤，所以Nick比Alexander瘦。<BR>
+　形容詞比較級。「A比B如何」在英文裡的表達為"A be V +形容詞比較級 than B"
+</span></span>
+Alexander is 75 kilograms and Nick is 97 kilograms ,  so Nick is _______ Alexander.<br>
+(A)as thin as　(B)the thinnest　(C)not as thin as　(D)thinner than <br> <hr>
+
+14.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】Mary問我們怎麼照顧植物，我們建議她上網查資料。<BR>
+　Suggest有提議、建議的意思，後面應加N/Ving</span></span>
+Mary asked us how to <span class='tooltip'>look after<span class='tooltip-text'  onclick="speakText('look after')"><IMG SRC='speak.png'>照顧</span></span> that <span class='tooltip'>plant<span class='tooltip-text'  onclick="speakText('plant')"><IMG SRC='speak.png'>植物</span></span> and we <span class='tooltip'>suggested<span class='tooltip-text'  onclick="speakText('suggested')"><IMG SRC='speak.png'>建議</span></span> _______ some <span class='tooltip'>research<span class='tooltip-text'  onclick="speakText('research')"><IMG SRC='speak.png'>研究</span></span> on the <span class='tooltip'>Internet<span class='tooltip-text'  onclick="speakText('Internet')"><IMG SRC='speak.png'>網際網路</span></span> .<br>
+(A)do　(B)to do　(C)doing　(D)to doing <br> <hr>
+
+15.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】我在八歲時不會看時鐘，但現在我會了。<BR>
+　過去式時態。本題後段說"but now I can."表示以前不會，故應用過去的否定動詞couldn't來表示</span></span>
+I _______ <span class='tooltip'>tell<span class='tooltip-text'  onclick="speakText('tell')"><IMG SRC='speak.png'>識別</span></span> the time when I was 8 years old ,  but now I can.<br>
+(A)can　(B)can't　(C)could　(D)couldn't <br> <hr>
+<BR><BR>

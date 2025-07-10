@@ -8,11 +8,17 @@
 <head><meta charset="utf-8" />
 
 <script>
-    function speakText(text) {
+    function speakText2(text) {
       //const text = "Connect to the internet";
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
       speechSynthesis.speak(utterance);
+    }
+    
+    function speakText(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
     }
 
 function gen(ur) {

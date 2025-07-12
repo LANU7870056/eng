@@ -1,0 +1,451 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+
+
+<div class="scroll-buttons">
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+</style>
+
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+</script>
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index3.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+</style>
+
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+</script>
+<center>第14回 英文模擬測驗</center>
+一、單字測驗<br><hr>
+1.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】如果你把剩菜放進密封盒裡, 它可以維持新鮮一陣子。 <br>　
+　(A)字典　(B)容器、密封盒　(C)護髮霜　(D)充電器  </span></span>
+If you put the <span class='tooltip'>leftovers<span class='tooltip-text'  onclick="speakText('leftovers')"><IMG SRC='speak.png'>剩菜</span></span> in a ____ ,  it can stay fresh for a while .
+ <BR>(A)<span class='tooltip'>dictionary<span class='tooltip-text'  onclick="speakText('dictionary')"><IMG SRC='speak.png'>字典</span></span>　(B)<span class='tooltip'>container<span class='tooltip-text'  onclick="speakText('container')"><IMG SRC='speak.png'>容器、密封盒</span></span>　(C)<span class='tooltip'>conditioner<span class='tooltip-text'  onclick="speakText('conditioner')"><IMG SRC='speak.png'>護髮霜</span></span>　(D)<span class='tooltip'>charger<span class='tooltip-text'  onclick="speakText('charger')"><IMG SRC='speak.png'>充電器</span></span> <br><hr>
+
+2.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】要拒絕巧克力甜點對我來說非常困難，它們是我的最愛<BR>
+　(A)堅持　(B)協助　(C)抵抗、拒絕　(D)堅持 </span></span>
+It is very hard for me to ____ <span class='tooltip'>chocolate<span class='tooltip-text'  onclick="speakText('chocolate')"><IMG SRC='speak.png'>巧克力</span></span> <span class='tooltip'>desserts<span class='tooltip-text'  onclick="speakText('desserts')"><IMG SRC='speak.png'>甜點</span></span> .They are my <span class='tooltip'>favorite<span class='tooltip-text'  onclick="speakText('favorite')"><IMG SRC='speak.png'>最喜歡的</span></span> .
+ <BR>(A)<span class='tooltip'>insist<span class='tooltip-text'  onclick="speakText('insist')"><IMG SRC='speak.png'>堅持</span></span>　(B)<span class='tooltip'>assist<span class='tooltip-text'  onclick="speakText('assist')"><IMG SRC='speak.png'>協助</span></span>　(C)<span class='tooltip'>resist<span class='tooltip-text'  onclick="speakText('resist')"><IMG SRC='speak.png'>抵抗、拒絕</span></span>　(D)<span class='tooltip'>persist<span class='tooltip-text'  onclick="speakText('persist')"><IMG SRC='speak.png'>堅持</span></span> <br><hr>
+
+3.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】 如果雨繼續下，我們就必須要取消今晚的計畫
+　(A)繼續　(B)貢獻　(C)比較　(D)構成 </span></span>
+If the rain ____ ,  we will have to cancel our plans tonight .
+ <BR>(A)<span class='tooltip'>continues<span class='tooltip-text'  onclick="speakText('continues')"><IMG SRC='speak.png'>繼續</span></span>　(B)<span class='tooltip'>contributes<span class='tooltip-text'  onclick="speakText('contributes')"><IMG SRC='speak.png'>貢獻</span></span>　(C)<span class='tooltip'>compares<span class='tooltip-text'  onclick="speakText('compares')"><IMG SRC='speak.png'>比較</span></span>　(D)<span class='tooltip'>constitutes<span class='tooltip-text'  onclick="speakText('constitutes')"><IMG SRC='speak.png'>構成</span></span> <br><hr>
+
+4.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】 她的目的很明顯，每個人都看的出來她想要用買奢侈的禮物給老闆討他歡心<BR>
+　(A)消失　(B)不情願的　(C)明顯的　(D)禁止的 </span></span>
+Her <span class='tooltip'>purpose<span class='tooltip-text'  onclick="speakText('purpose')"><IMG SRC='speak.png'>目標</span></span> was ______. Everyone can see that she wants to <span class='tooltip'>please<span class='tooltip-text'  onclick="speakText('please')"><IMG SRC='speak.png'>請、取悅</span></span> the boss by buying <span class='tooltip'>luxury<span class='tooltip-text'  onclick="speakText('luxury')"><IMG SRC='speak.png'>奢華</span></span> <span class='tooltip'>gifts<span class='tooltip-text'  onclick="speakText('gifts')"><IMG SRC='speak.png'>禮物</span></span> for him .
+ <BR>(A)<span class='tooltip'>disappear<span class='tooltip-text'  onclick="speakText('disappear')"><IMG SRC='speak.png'>消失</span></span>　(B)<span class='tooltip'>reluctant<span class='tooltip-text'  onclick="speakText('reluctant')"><IMG SRC='speak.png'>不情願的</span></span>　(C)<span class='tooltip'>apparent<span class='tooltip-text'  onclick="speakText('apparent')"><IMG SRC='speak.png'>明顯的</span></span>　(D)<span class='tooltip'>forbidden<span class='tooltip-text'  onclick="speakText('forbidden')"><IMG SRC='speak.png'>禁止的</span></span> <br><hr>
+
+5.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】她寄給他們一份禮物以表達感激。present to express→呈現為了表達<BR>
+　(A)表達　(B)定義　(C)接受　(D)後悔  </span></span>
+She sent them a <span class='tooltip'>present<span class='tooltip-text'  onclick="speakText('present')"><IMG SRC='speak.png'>呈現、展示</span></span> to ____ her <span class='tooltip'>gratitude<span class='tooltip-text'  onclick="speakText('gratitude')"><IMG SRC='speak.png'>感激</span></span> .
+ <BR>(A)<span class='tooltip'>express<span class='tooltip-text'  onclick="speakText('express')"><IMG SRC='speak.png'>表達</span></span>　(B)<span class='tooltip'>defines<span class='tooltip-text'  onclick="speakText('defines')"><IMG SRC='speak.png'>定義</span></span>　(C)<span class='tooltip'>accepts<span class='tooltip-text'  onclick="speakText('accepts')"><IMG SRC='speak.png'>接受</span></span>　(D)<span class='tooltip'>regrets<span class='tooltip-text'  onclick="speakText('regrets')"><IMG SRC='speak.png'>後悔</span></span> <br><hr>
+
+6.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】 這場車禍的受害者會得到受傷的賠償<BR>
+　(A)取消　(B)計算　(C)期待　(D)賠償 </span></span>
+<span class='tooltip'>Victims<span class='tooltip-text'  onclick="speakText('Victims')"><IMG SRC='speak.png'>受害者</span></span> of this car <span class='tooltip'>accident<span class='tooltip-text'  onclick="speakText('accident')"><IMG SRC='speak.png'>意外事故</span></span> will receive ____ for their <span class='tooltip'>injuries<span class='tooltip-text'  onclick="speakText('injuries')"><IMG SRC='speak.png'>受傷</span></span> .
+ <BR>(A)<span class='tooltip'>cancelation<span class='tooltip-text'  onclick="speakText('cancelation')"><IMG SRC='speak.png'>取消</span></span>　(B)<span class='tooltip'>calculation<span class='tooltip-text'  onclick="speakText('calculation')"><IMG SRC='speak.png'>計算</span></span>　(C)<span class='tooltip'>expectation<span class='tooltip-text'  onclick="speakText('expectation')"><IMG SRC='speak.png'>期待</span></span>　(D)<span class='tooltip'>compensation<span class='tooltip-text'  onclick="speakText('compensation')"><IMG SRC='speak.png'>賠償</span></span> <br><hr>
+
+7.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】他正試圖說服在地及外國企業來投資他的專案計畫<BR>
+(A)說服　(B)恐慌　(C)進步　(D)準備</span></span>
+He is trying to ____ local and <span class='tooltip'>foreign<span class='tooltip-text'  onclick="speakText('foreign')"><IMG SRC='speak.png'>外國的</span></span> <span class='tooltip'>businesses<span class='tooltip-text'  onclick="speakText('businesses')"><IMG SRC='speak.png'>企業</span></span> to <span class='tooltip'>invest<span class='tooltip-text'  onclick="speakText('invest')"><IMG SRC='speak.png'>投資</span></span> in the project .
+ <BR>(A)<span class='tooltip'>persuade<span class='tooltip-text'  onclick="speakText('persuade')"><IMG SRC='speak.png'>說服</span></span>　(B)<span class='tooltip'>panic<span class='tooltip-text'  onclick="speakText('panic')"><IMG SRC='speak.png'>恐慌</span></span>　(C)<span class='tooltip'>progress<span class='tooltip-text'  onclick="speakText('progress')"><IMG SRC='speak.png'>進步</span></span>　(D)<span class='tooltip'>prepare<span class='tooltip-text'  onclick="speakText('prepare')"><IMG SRC='speak.png'>準備</span></span> <br><hr>
+
+8.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】許多貴賓參加了他們的結婚典禮。<BR>
+(A)關鍵的　(B)標準　(C)典禮　(D)校園 </span></span>
+Many <span class='tooltip'>distinguished guests<span class='tooltip-text'  onclick="speakText('distinguished guests')"><IMG SRC='speak.png'>貴賓</span></span> <span class='tooltip'>attended<span class='tooltip-text'  onclick="speakText('attended')"><IMG SRC='speak.png'>參加</span></span> their <span class='tooltip'>wedding<span class='tooltip-text'  onclick="speakText('wedding')"><IMG SRC='speak.png'>婚禮</span></span> ____ .
+ <BR>(A)<span class='tooltip'>critical<span class='tooltip-text'  onclick="speakText('critical')"><IMG SRC='speak.png'>關鍵的</span></span>　(B)<span class='tooltip'>criteria<span class='tooltip-text'  onclick="speakText('criteria')"><IMG SRC='speak.png'>標準</span></span>　(C)<span class='tooltip'>ceremony<span class='tooltip-text'  onclick="speakText('ceremony')"><IMG SRC='speak.png'>典禮</span></span>　(D)<span class='tooltip'>campus<span class='tooltip-text'  onclick="speakText('campus')"><IMG SRC='speak.png'>校園</span></span> <br><hr>
+
+二、文法測驗<br>
+9.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】你下個周末要做什麼，Yoshi?你有任何計畫嗎? <br>
+　"be going to V"可以用來表達近期即將發生的未來式，其意思等於於"will you V"</span></span>
+What ____ next weekend ,  Yoshi ? Do you have anything <span class='tooltip'>planned<span class='tooltip-text'  onclick="speakText('planned')"><IMG SRC='speak.png'>計劃</span></span> ?
+ <BR>(A)to do　(B)will do　(C)you do　(D)are you doing <br><hr>
+
+10.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】鎮中心有一座旅店正在蓋，很快它就會是我們鎮上最時尚的一間旅店 <br>
+　很快它就會是我們鎖上最時尚的一間旅店，表示現在還不是(現在還在蓋)，故應用
+現在進行式"be+Ving";又旅店不會自己蓋自己，應是「被人」所建，故應用被動語態"be+p.p."，結合起來變成"be+Ving+p.p"</span></span>
+A new hotel ____ in the center of town. Soon it will be the <span class='tooltip'>fanciest<span class='tooltip-text'  onclick="speakText('fanciest')"><IMG SRC='speak.png'>時尚的</span></span> hotel in our town .
+ <BR>(A)is built　(B)is building　(C)was building　(D)is being built <br><hr>
+
+11.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】她在用電腦工作的時候，她的嬰兒在旁邊睡覺 <br>
+　在英文裡「在某人旁邊」只需用一般名詞表達即可，不須將名詞轉化為所有格</span></span>
+She was working on her computer with her baby sleeping next to ____ .
+ <BR>(A)her　(B)her own　(C)herself　(D)hers <br><hr>
+
+12.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】他在走出銀行時被搶劫 <br>  
+　他在走出銀行時被搶劫，表示兩件事情都發生在過去，且他被搶劫：過去瞬間發生
+的事情，用過去簡單式即可，又本題中他是「被搶劫」，應用被動語態"be+p.p."</span></span>
+He ____ <span class='tooltip'>robbed<span class='tooltip-text'  onclick="speakText('robbed')"><IMG SRC='speak.png'>被搶劫</span></span> as he was <span class='tooltip'>walking out<span class='tooltip-text'  onclick="speakText('walking out')"><IMG SRC='speak.png'>走出</span></span> of the bank .
+ <BR>(A)is　(B)was　(C)did　(D)were <br><hr>
+
+13.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】除非你穿西裝打領帶，不然你不會被允許進入會議室 <br>
+　本題測驗unless的用法。Unless意思為「除非」，通常搭配否定句</span></span>
+You won't be <span class='tooltip'>allowed<span class='tooltip-text'  onclick="speakText('allowed')"><IMG SRC='speak.png'>允許</span></span> into the <span class='tooltip'>conference<span class='tooltip-text'  onclick="speakText('conference')"><IMG SRC='speak.png'>會議</span></span> room ____ you wear a <span class='tooltip'>suit<span class='tooltip-text'  onclick="speakText('suit')"><IMG SRC='speak.png'>套裝</span></span> and <span class='tooltip'>tie<span class='tooltip-text'  onclick="speakText('tie')"><IMG SRC='speak.png'>領帶</span></span> .
+ <BR>(A)if　(B)unless　(C)whether　(D)apart <br><hr>
+
+14.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】 我們還沒從代理商那聽到任何消息。<br>  
+　本題測驗any的適用場合。Any意思為「任何」，常搭配問句或否定句出現</span></span>
+We haven't <span class='tooltip'>heard<span class='tooltip-text'  onclick="speakText('heard')"><IMG SRC='speak.png'>聽到</span></span> ____ news from our <span class='tooltip'>agent<span class='tooltip-text'  onclick="speakText('agent')"><IMG SRC='speak.png'>代理商</span></span> .
+ <BR>(A)some　(B)any　(C)no　(D)none <br><hr>
+
+15.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】最近的一項調查指出，英國是歐洲買車最貴的地方。 <br>  
+　本題在歐洲這個範圍中僅提及英國一處，而無其他比較對象，可見英國唯一一個，故應用最高級the most expensive來表示。</span></span>
+A <span class='tooltip'>recent<span class='tooltip-text'  onclick="speakText('recent')"><IMG SRC='speak.png'>最近的</span></span> <span class='tooltip'>survey<span class='tooltip-text'  onclick="speakText('survey')"><IMG SRC='speak.png'>調查</span></span> <span class='tooltip'>identified<span class='tooltip-text'  onclick="speakText('identified')"><IMG SRC='speak.png'>已確定</span></span> the UK as ____ place in <span class='tooltip'>Europe<span class='tooltip-text'  onclick="speakText('Europe')"><IMG SRC='speak.png'>歐洲</span></span> to buy a car .
+ <BR>(A)most <span class='tooltip'>expensive<span class='tooltip-text'  onclick="speakText('expensive')"><IMG SRC='speak.png'>貴</span></span>　(B)the more expensive　(C)more expensive　(D)the most expensive <br><hr>
+<BR><BR><BR>
+
+

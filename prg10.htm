@@ -8,6 +8,48 @@
 <head>
   <meta charset="utf-8" />
 
+
+<div class="scroll-buttons">
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+</style>
+
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+</script>
 <script>
     function speakText(text) {
       //const text = "Connect to the internet";
@@ -322,14 +364,15 @@ Everyone in the company is asked to attend the meeting tomorrow.Our Chief <span 
 (A)<span class='tooltip'>pronounce<span class='tooltip-text'  onclick="speakText('pronounce')"><IMG SRC='speak.png'>發音</span></span> 　(B)<span class='tooltip'>acquire<span class='tooltip-text'  onclick="speakText('acquire')"><IMG SRC='speak.png'>獲得</span></span> 　(C)<span class='tooltip'>alter<span class='tooltip-text'  onclick="speakText('alter')"><IMG SRC='speak.png'>改變</span></span> 　(D)<span class='tooltip'>announce<span class='tooltip-text'  onclick="speakText('announce')"><IMG SRC='speak.png'>宣告</span></span> <br> <hr>
 
 二、文法測驗 <br>
-9.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】那個小女孩可以聽到我們說話吧，不行嗎?<br>
+9.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】那個小女孩可以聽到我們說話吧，不是嗎?<br>
 　本題測驗詰問句型。詰問句為在肯定句後面加上否定的倒裝疑問句，以表示強烈的詰問語氣。疑問句應寫成can't she?</span></span>
 The little girl can hear us ,  ____ ? <BR>
 (A)can she 　(B)can we 　(C)can't she 　(D)can't we <br> <hr>
 
 10.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】我們跟另外一隊平手，他們跟我們一樣好。<br>
 　"as形容詞as人"意思為「跟某人一樣如何」，故本題中「他們跟我們一樣好」</span></span>
-We got into a tie with the other team. They are ____ we are.<BR>
+We <span class='tooltip'>got into a tie<span class='tooltip-text'  onclick="speakText('got into a tie')"><IMG SRC='speak.png'>打成平手</span></span>
+ with the other team. They are ____ we are.<BR>
 (A)better than 　(B)worse than 　(C)as good as 　(D)be good as <br> <hr>
 
 11.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】他們早上通常不回覆問題，只做簡報。<br>

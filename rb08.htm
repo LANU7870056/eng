@@ -9,7 +9,7 @@
   <meta charset="utf-8" />
 
 <script>
-  function speakText(text) {
+    function speakText(text) {
       //const text = "Connect to the internet";
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
@@ -21,6 +21,32 @@
       const audio = new Audio(ww);
       audio.play();
     }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
 </script>
 
 <script>
@@ -41,6 +67,23 @@ window.open(ur+'?i='+getRandomString(10),'_self');
 </script>
 
 <style>
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
 .bk-box {
     width:100%;
     position: absolute;
@@ -52,19 +95,21 @@ window.open(ur+'?i='+getRandomString(10),'_self');
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 0px solid #ccc; /* 可加上邊框 */
     margin: 0px auto; /* 置中顯示 */
-top:0px;
+    top:0px;
+    left:-1px;
     border-radius: 0px; /* 調整圓角大小 */
   }
 
   .background-box {
-    width:99%;
+    width:100%;
+    align-items: center;   
     background-color: #D2FF78;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
     background-size: cover; /* 圖片填滿區塊 */
     background-position: center; /* 圖片置中 */
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 1px solid #ccc; /* 可加上邊框 */
-    margin: 20px auto; /* 置中顯示 */
+    margin: 20px 1px auto; /* 置中顯示 */
     border-radius: 20px; /* 調整圓角大小 */
   }
 </style>
@@ -84,6 +129,38 @@ top:0px;
   color: #333;
  padding: 0 0.2em; /* 左右各加空白 */
 }
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
   .tooltip3 {
       position: relative;
       display: inline-block;
@@ -97,12 +174,12 @@ top:0px;
       visibility: hidden;
       background-color: #FFFF00;
       color: #FF00FF;
-      text-align: center;
+      text-align: left;
       padding: 3px 8px;
       border-radius: 2px;
       position: absolute;
       bottom: 100%; /* 👈 顯示在上方 */
-      right:0%;
+      left:0%;
       
       transform: translateX(-50%);
       z-index: 1;
@@ -222,41 +299,201 @@ top:0px;
   </style>
 </head>
 <div class="bk-box">
-<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
-<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　回首頁</h3></a></div>
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
 
 <body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
 <BR>
 <div class="background-box" style="font-size: 1.2em;">
 
- <style>
- . pp {
- color: #008800;      /* 字體顏色：紅色（十六進位） */
- text-decoration: underline; /* 加底線 */
+
+
+<div class="scroll-buttons">
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
- </style>
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:98%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+
+
+
 <center>08聖母峰</center>
-　<span class='tooltip'>Experienced<span class='tooltip-text' onclick="speakText('Experienced')"><IMG SRC='speak.png'>有經驗的</span></span> <span class='tooltip'>climbers<span class='tooltip-text' onclick="speakText('climbers')"><IMG SRC='speak.png'>登山者</span></span>  of <span class='tooltip'>Mount Everest<span class='tooltip-text' onclick="speakText('Mount Everest')"><IMG SRC='speak.png'>聖母峰</span></span> are <span class='tooltip'>wondering<span class='tooltip-text' onclick="speakText('wondering')"><IMG SRC='speak.png'>想知道</span></span>  if new <span class='tooltip'>proposed<span class='tooltip-text' onclick="speakText('proposed')"><IMG SRC='speak.png'>建議的</span></span> rules will <span class='tooltip'>deal with<span class='tooltip-text' onclick="speakText('deal with')"><IMG SRC='speak.png'>交易</span></span> the root <span class='tooltip'>causes<span class='tooltip-text' onclick="speakText('causes')"><IMG SRC='speak.png'>原因</span></span> of <span class='tooltip'>deaths<span class='tooltip-text' onclick="speakText('deaths')"><IMG SRC='speak.png'>死亡</span></span> on the world's tallest <span class='tooltip'>mountain<span class='tooltip-text' onclick="speakText('mountain')"><IMG SRC='speak.png'>山</span></span> . <BR>
-　The <span class='tooltip'>proposals<span class='tooltip-text' onclick="speakText('proposals')"><IMG SRC='speak.png'>提案</span></span>  , if <span class='tooltip'>approved<span class='tooltip-text' onclick="speakText('approved')"><IMG SRC='speak.png'>得到正式認可的</span></span> by the <span class='tooltip'>government<span class='tooltip-text' onclick="speakText('government')"><IMG SRC='speak.png'>政府</span></span> of <span class='tooltip'>Nepal<span class='tooltip-text' onclick="speakText('Nepal')"><IMG SRC='speak.png'>尼泊爾</span></span> , would add steps to the <span class='tooltip'>permitting<span class='tooltip-text' onclick="speakText('permitting')"><IMG SRC='speak.png'>允許</span></span> <span class='tooltip'>process<span class='tooltip-text' onclick="speakText('process')"><IMG SRC='speak.png'>過程</span></span> for <span class='tooltip'>climbers<span class='tooltip-text' onclick="speakText('climbers')"><IMG SRC='speak.png'>登山者</span></span> . <BR>
-　American <span class='tooltip'>mountaineers<span class='tooltip-text' onclick="speakText('mountaineers')"><IMG SRC='speak.png'>登山者</span></span> Ed <span class='pp'>Viesturs </span> and Alan <span class='pp'>Arnette </span> said the <span class='tooltip'>measures<span class='tooltip-text' onclick="speakText('measures')"><IMG SRC='speak.png'>措施</span></span> are <span class='tooltip'>unlikely<span class='tooltip-text' onclick="speakText('unlikely')"><IMG SRC='speak.png'>不太可能</span></span> to stop <span class='tooltip'>inexperienced<span class='tooltip-text' onclick="speakText('inexperienced')"><IMG SRC='speak.png'>缺乏經驗</span></span>  <span class='tooltip'>climbers<span class='tooltip-text' onclick="speakText('climbers')"><IMG SRC='speak.png'>登山者</span></span> from trying to travel up <span class='tooltip'>Mount Everest<span class='tooltip-text' onclick="speakText('Mount Everest')"><IMG SRC='speak.png'>聖母峰</span></span> . <BR> <HR>
-　This year , eleven <span class='tooltip'>climbers<span class='tooltip-text' onclick="speakText('climbers')"><IMG SRC='speak.png'>登山者</span></span> died while trying to climb the 8,850-meter high <span class='tooltip'>mountain<span class='tooltip-text' onclick="speakText('mountain')"><IMG SRC='speak.png'>山</span></span> . <BR>
-　Man . of them died in late May after they were stuck in a "<span class='tooltip'>traffic jam<span class='tooltip-text' onclick="speakText('traffic jam')"><IMG SRC='speak.png'>阻塞交通</span></span>" near its <span class='tooltip'>summit<span class='tooltip-text' onclick="speakText('summit')"><IMG SRC='speak.png'>峰頂</span></span> . <BR>
-　 <span class='pp'>Viesturs </span> said that many teams tried to <span class='tooltip'>reach<span class='tooltip-text' onclick="speakText('reach')"><IMG SRC='speak.png'>抵達</span></span> the <span class='tooltip'>summit<span class='tooltip-text' onclick="speakText('summit')"><IMG SRC='speak.png'>峰頂</span></span> as soon as they heard <span class='tooltip'>predictions<span class='tooltip-text' onclick="speakText('predictions')"><IMG SRC='speak.png'>預測</span></span> of good <span class='tooltip'>weather<span class='tooltip-text' onclick="speakText('weather')"><IMG SRC='speak.png'>天氣</span></span> . <BR> <HR>
-　"Everyon . is afraid of missing what might be the one and only <span class='tooltip'>perfect<span class='tooltip-text' onclick="speakText('perfect')"><IMG SRC='speak.png'>完美的</span></span> day . <BR>
-　There are <span class='tooltip'>typically<span class='tooltip-text' onclick="speakText('typically')"><IMG SRC='speak.png'>通常</span></span>  <span class='tooltip'>several<span class='tooltip-text' onclick="speakText('several')"><IMG SRC='speak.png'>一些</span></span> good <span class='tooltip'>summit<span class='tooltip-text' onclick="speakText('summit')"><IMG SRC='speak.png'>峰頂</span></span> days , but there's <span class='tooltip'>pressure<span class='tooltip-text' onclick="speakText('pressure')"><IMG SRC='speak.png'>壓力</span></span> to go when everyone else goes , " he added . <BR>
-　Traditionally , Nepal has given <span class='tooltip'>climbing<span class='tooltip-text' onclick="speakText('climbing')"><IMG SRC='speak.png'>攀爬</span></span> permits to anyone prepared to pay a fee of $11 , 000 . <BR>
-　This year , the <span class='tooltip'>government<span class='tooltip-text' onclick="speakText('government')"><IMG SRC='speak.png'>政府</span></span>  <span class='tooltip'>approved<span class='tooltip-text' onclick="speakText('approved')"><IMG SRC='speak.png'>得到正式認可的</span></span> a record 381 permits . <BR> <HR>
-　With <span class='tooltip'>essential<span class='tooltip-text' onclick="speakText('essential')"><IMG SRC='speak.png'>基本的</span></span> Sherpas and guides added , more than 800 people were trying to <span class='tooltip'>reach<span class='tooltip-text' onclick="speakText('reach')"><IMG SRC='speak.png'>抵達</span></span> the <span class='tooltip'>summit<span class='tooltip-text' onclick="speakText('summit')"><IMG SRC='speak.png'>峰頂</span></span>  <span class='tooltip'>during<span class='tooltip-text' onclick="speakText('during')"><IMG SRC='speak.png'>期間</span></span> the short <span class='tooltip'>weather<span class='tooltip-text' onclick="speakText('weather')"><IMG SRC='speak.png'>天氣</span></span> window . <BR>
-　The <span class='tooltip'>overcrowding<span class='tooltip-text' onclick="speakText('overcrowding')"><IMG SRC='speak.png'>過度擁擠</span></span> led to deadly delays in what is known as the "death zone , " the area above 8 , 000 meters . <BR>
-　It also raised <span class='tooltip'>concerns<span class='tooltip-text' onclick="speakText('concerns')"><IMG SRC='speak.png'>擔憂</span></span> that <span class='tooltip'>guide<span class='tooltip-text' onclick="speakText('guide')"><IMG SRC='speak.png'>指導</span></span>  <span class='tooltip'>companies<span class='tooltip-text' onclick="speakText('companies')"><IMG SRC='speak.png'>公司</span></span> were urging <span class='tooltip'>inexperienced<span class='tooltip-text' onclick="speakText('inexperienced')"><IMG SRC='speak.png'>缺乏經驗</span></span>  <span class='tooltip'>mountaineers<span class='tooltip-text' onclick="speakText('mountaineers')"><IMG SRC='speak.png'>登山者</span></span> to <span class='tooltip'>attempt<span class='tooltip-text' onclick="speakText('attempt')"><IMG SRC='speak.png'>試圖</span></span> the climb . <BR>
-　Among the <span class='tooltip'>suggested<span class='tooltip-text' onclick="speakText('suggested')"><IMG SRC='speak.png'>建議</span></span> changes is a rule for <span class='tooltip'>climbers<span class='tooltip-text' onclick="speakText('climbers')"><IMG SRC='speak.png'>登山者</span></span> to have a <span class='tooltip'>certified<span class='tooltip-text' onclick="speakText('certified')"><IMG SRC='speak.png'>認證</span></span> doctor <span class='tooltip'>prepare<span class='tooltip-text' onclick="speakText('prepare')"><IMG SRC='speak.png'>準備</span></span> a report on their <span class='tooltip'>medical<span class='tooltip-text' onclick="speakText('medical')"><IMG SRC='speak.png'>醫療的</span></span> history and general health . <BR>
-　Another <span class='tooltip'>suggested<span class='tooltip-text' onclick="speakText('suggested')"><IMG SRC='speak.png'>建議</span></span>  <span class='tooltip'>requirement<span class='tooltip-text' onclick="speakText('requirement')"><IMG SRC='speak.png'>要求</span></span> is that <span class='tooltip'>climbers<span class='tooltip-text' onclick="speakText('climbers')"><IMG SRC='speak.png'>登山者</span></span> provide <span class='tooltip'>evidence<span class='tooltip-text' onclick="speakText('evidence')"><IMG SRC='speak.png'>證據</span></span> they have climbed another tall <span class='tooltip'>mountain<span class='tooltip-text' onclick="speakText('mountain')"><IMG SRC='speak.png'>山</span></span> in Nepal . <BR> <HR>
-　The <span class='tooltip'>proposals<span class='tooltip-text' onclick="speakText('proposals')"><IMG SRC='speak.png'>提案</span></span> have been <span class='tooltip'>offered<span class='tooltip-text' onclick="speakText('offered')"><IMG SRC='speak.png'>提供</span></span> to the <span class='tooltip'>cabinet<span class='tooltip-text' onclick="speakText('cabinet')"><IMG SRC='speak.png'>內閣</span></span> for <span class='tooltip'>approval<span class='tooltip-text' onclick="speakText('approval')"><IMG SRC='speak.png'>贊同</span></span> . <BR>
-　Th .  <span class='tooltip'>government<span class='tooltip-text' onclick="speakText('government')"><IMG SRC='speak.png'>政府</span></span> has yet to say when the laws might take effect . <BR>
-　 <span class='pp'>Viesturs </span> said the <span class='tooltip'>proposed<span class='tooltip-text' onclick="speakText('proposed')"><IMG SRC='speak.png'>建議的</span></span> changes will not do enough to stop the "group act" <span class='tooltip'>mentality<span class='tooltip-text' onclick="speakText('mentality')"><IMG SRC='speak.png'>心理</span></span> that led to the <span class='tooltip'>traffic<span class='tooltip-text' onclick="speakText('traffic')"><IMG SRC='speak.png'>交通</span></span> jam in late May . <BR>
-　He said climb <span class='tooltip'>leaders<span class='tooltip-text' onclick="speakText('leaders')"><IMG SRC='speak.png'>領導者</span></span> at base camp also needed to <span class='tooltip'>consider<span class='tooltip-text' onclick="speakText('consider')"><IMG SRC='speak.png'>考慮</span></span> how to fix the problem . <BR> <HR>
-　"I know <span class='tooltip'>several<span class='tooltip-text' onclick="speakText('several')"><IMG SRC='speak.png'>一些</span></span>  <span class='tooltip'>climbers<span class='tooltip-text' onclick="speakText('climbers')"><IMG SRC='speak.png'>登山者</span></span> who waited until later and had the <span class='tooltip'>mountain<span class='tooltip-text' onclick="speakText('mountain')"><IMG SRC='speak.png'>山</span></span> almost to <span class='tooltip'>themselves<span class='tooltip-text' onclick="speakText('themselves')"><IMG SRC='speak.png'>他們自己</span></span> ,  ,  <span class='pp'>Viesturs </span> said of the 2019 <span class='tooltip'>climbing<span class='tooltip-text' onclick="speakText('climbing')"><IMG SRC='speak.png'>攀爬</span></span>  <span class='tooltip'>season<span class='tooltip-text' onclick="speakText('season')"><IMG SRC='speak.png'>季節</span></span>  . <BR>
-　"We really need to answer why so many people are on the <span class='tooltip'>summit<span class='tooltip-text' onclick="speakText('summit')"><IMG SRC='speak.png'>峰頂</span></span> ridge on the same day? How can you <span class='tooltip'>control<span class='tooltip-text' onclick="speakText('control')"><IMG SRC='speak.png'>控制</span></span> it?"
+
+<div class='co2'><img src='len.png' class='clickable-image' onclick='showTextBox(this)'><div id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>
+Experienced climbers of Mount Everest are wondering if <span class='te2'>new proposed rules will deal</span> with <span class='te2'>the root causes of deaths on the world's tallest mountain</span>.
+</div>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>經驗豐富的珠穆朗瑪峰登山者，想知道新提出的規則是否會處理世界最高峰的死亡根本原因。</span></span>
+
+<span class='tooltip'>Experienced<span class='tooltip-text' onclick="speakText('Experienced')"><IMG SRC='speak.png'>有經驗的</span></span> <span class='tooltip'>climbers<span class='tooltip-text' onclick="speakText('climbers')"><IMG SRC='speak.png'>登山者</span></span>  of <span class='tooltip'>Mount Everest<span class='tooltip-text' onclick="speakText('Mount Everest')"><IMG SRC='speak.png'>聖母峰</span></span> are <span class='tooltip'>wondering<span class='tooltip-text' onclick="speakText('wondering')"><IMG SRC='speak.png'>想知道</span></span>  if new <span class='tooltip'>proposed<span class='tooltip-text' onclick="speakText('proposed')"><IMG SRC='speak.png'>建議的</span></span> rules will <span class='tooltip'>deal with<span class='tooltip-text' onclick="speakText('deal with')"><IMG SRC='speak.png'>處理、交易</span></span> the root <span class='tooltip'>causes<span class='tooltip-text' onclick="speakText('causes')"><IMG SRC='speak.png'>原因</span></span> of <span class='tooltip'>deaths<span class='tooltip-text' 
+onclick="speakText('deaths')"><IMG SRC='speak.png'>死亡</span></span> on the world's <span class='tooltip'>tallest mountain<span class='tooltip-text'  onclick="speakText('tallest mountain')"><IMG SRC='speak.png'>最高的山</span></span> . <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>如果該提案得到尼泊爾政府批准，將增加登山許可程序的步驟</span></span>
+The <span class='tooltip'>proposals<span class='tooltip-text' onclick="speakText('proposals')"><IMG SRC='speak.png'>提案</span></span>,  if <span class='tooltip'>approved<span class='tooltip-text' onclick="speakText('approved')"><IMG SRC='speak.png'>得到認可</span></span> by the <span class='tooltip'>government<span class='tooltip-text' onclick="speakText('government')"><IMG SRC='speak.png'>政府</span></span> of <span class='tooltip'>Nepal<span class='tooltip-text' onclick="speakText('Nepal')"><IMG SRC='speak.png'>尼泊爾</span></span>,  would add steps to the <span class='tooltip'>permitting<span class='tooltip-text' onclick="speakText('permitting')"><IMG SRC='speak.png'>允許</span></span> <span class='tooltip'>process<span class='tooltip-text' onclick="speakText('process')"><IMG SRC='speak.png'>過程</span></span> for <span class='tooltip'>climbers<span class='tooltip-text' onclick="speakText('climbers')"><IMG SRC='speak.png'>登山者</span></span> . <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>美國登山家艾德·維斯特斯和艾倫·阿內特表示，這些措施不太可能阻止沒有經驗的登山者嘗試攀登珠穆朗瑪峰</span></span>
+American <span class='tooltip'>mountaineers<span class='tooltip-text' onclick="speakText('mountaineers')"><IMG SRC='speak.png'>登山者</span></span> Ed <span class='pp'>Viesturs</span> and Alan <span class='pp'>Arnette </span> said the <span class='tooltip'>measures<span class='tooltip-text' onclick="speakText('measures')"><IMG SRC='speak.png'>措施</span></span> are <span class='tooltip'>unlikely<span class='tooltip-text' onclick="speakText('unlikely')"><IMG SRC='speak.png'>不太可能</span></span> to stop <span class='tooltip'>inexperienced<span class='tooltip-text' onclick="speakText('inexperienced')"><IMG SRC='speak.png'>缺乏經驗</span></span>  <span class='tooltip'>climbers<span class='tooltip-text' onclick="speakText('climbers')"><IMG SRC='speak.png'>登山者</span></span> from trying to travel up <span class='tooltip'>Mount Everest<span class='tooltip-text' onclick="speakText('Mount Everest')"><IMG SRC='speak.png'>聖母峰</span></span> . <BR>
+ <HR>
+
+<div class='co2'><img src='len.png' class='clickable-image' onclick='showTextBox(this)'><div id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>
+This year,  eleven climbers died while <span class='te2'>trying to climb the 8, 850-meter high mountain</span> .
+</div>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>今年，11名登山者在攀登這座海拔8850公尺的山峰時喪生</span></span>
+This year,  eleven <span class='tooltip'>climbers<span class='tooltip-text' onclick="speakText('climbers')"><IMG SRC='speak.png'>登山者</span></span> died while trying to climb the 8, 850-meter high <span class='tooltip'>mountain<span class='tooltip-text' onclick="speakText('mountain')"><IMG SRC='speak.png'>山</span></span> . <BR>
+
+<div class='co2'><img src='len.png' class='clickable-image' onclick='showTextBox(this)'><div id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>
+Man of them died in late May after they were <span class='te2'>stuck in a "traffic jam" near its summit</span>.
+</div>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>五月下旬，其中一人因在峰頂附近遭遇「交通堵塞」而喪生。</span></span>
+Man of them died in late May after they were <span class='tooltip'>stuck in<span class='tooltip-text'  onclick="speakText('stuck in')"><IMG SRC='speak.png'>卡在</span></span> a "<span class='tooltip'>traffic jam<span class='tooltip-text' onclick="speakText('traffic jam')"><IMG SRC='speak.png'>阻塞交通</span></span>" near its <span class='tooltip'>summit<span class='tooltip-text' onclick="speakText('summit')"><IMG SRC='speak.png'>峰頂</span></span> . <BR>
+
+<div class='co2'><img src='len.png' class='clickable-image' onclick='showTextBox(this)'><div id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>
+<span class='pp'>Viesturs</span> said that <span class='te2'>many teams tried to reach the summit</span> as soon as <span class='te2'>they heard predictions of good weather</span>.
+</div>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>維斯特斯說，許多隊伍一聽到天氣預報說有好天氣就試圖登頂。</span></span>
+<span class='pp'>Viesturs</span> said that many teams tried to <span class='tooltip'>reach<span class='tooltip-text' onclick="speakText('reach')"><IMG SRC='speak.png'>抵達</span></span> the <span class='tooltip'>summit<span class='tooltip-text' onclick="speakText('summit')"><IMG SRC='speak.png'>峰頂</span></span> <span class='tooltip'>as soon as<span class='tooltip-text'  onclick="speakText('as soon as')"><IMG SRC='speak.png'>一…就…</span></span> they heard <span class='tooltip'>predictions<span class='tooltip-text' onclick="speakText('predictions')"><IMG SRC='speak.png'>預測</span></span> of good <span class='tooltip'>weather<span class='tooltip-text' onclick="speakText('weather')"><IMG SRC='speak.png'>天氣</span></span> . <BR>
+ <HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>每個人都害怕錯過那可能是唯一完美的一天。</span></span>
+Everyon. is afraid of missing what might be the one and only <span class='tooltip'>perfect<span class='tooltip-text' onclick="speakText('perfect')"><IMG SRC='speak.png'>完美的</span></span> day . <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>通常來說，這裡有幾個不錯的登頂日，但是當其他人都去的時候，我也會面臨跟去的壓力，」他補充道</span></span>
+"There are <span class='tooltip'>typically<span class='tooltip-text' onclick="speakText('typically')"><IMG SRC='speak.png'>通常</span></span>  <span class='tooltip'>several<span class='tooltip-text' onclick="speakText('several')"><IMG SRC='speak.png'>一些</span></span> good <span class='tooltip'>summit<span class='tooltip-text' onclick="speakText('summit')"><IMG SRC='speak.png'>峰頂</span></span> days,  but there's<span class='tooltip'>pressure<span class='tooltip-text' onclick="speakText('pressure')"><IMG SRC='speak.png'>壓力</span></span> to go when everyone else goes",  he added. <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>傳統上，尼泊爾向願意支付 11, 000 美元費用的任何人發放登山許可證</span></span>
+<span class='tooltip'>Traditionally<span class='tooltip-text'  onclick="speakText('Traditionally')"><IMG SRC='speak.png'>傳統上</span></span>,  Nepal has given <span class='tooltip'>climbing<span class='tooltip-text' onclick="speakText('climbing')"><IMG SRC='speak.png'>攀爬</span></span> permits to anyone prepared to pay a fee of $11,  000 . <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>今年，政府批准了創紀錄的381張許可證</span></span>
+This year,  the <span class='tooltip'>government<span class='tooltip-text' onclick="speakText('government')"><IMG SRC='speak.png'>政府</span></span>  <span class='tooltip'>approved<span class='tooltip-text' onclick="speakText('approved')"><IMG SRC='speak.png'>得到認可</span></span> a record 381 <span class='tooltip'>permits<span class='tooltip-text'  onclick="speakText('permits')"><IMG SRC='speak.png'>授權</span></span>.<BR>
+ <HR>
+
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>在必要的夏爾巴人和嚮導的協助下，超過 800 人試圖在短暫的天氣窗口內登頂</span></span>
+With <span class='tooltip'>essential<span class='tooltip-text' onclick="speakText('essential')"><IMG SRC='speak.png'>基本的</span></span> Sherpas and guides added,  more than 800 people were trying to <span class='tooltip'>reach<span class='tooltip-text' onclick="speakText('reach')"><IMG SRC='speak.png'>抵達</span></span> the <span class='tooltip'>summit<span class='tooltip-text' onclick="speakText('summit')"><IMG SRC='speak.png'>峰頂</span></span>  <span class='tooltip'>during<span class='tooltip-text' onclick="speakText('during')"><IMG SRC='speak.png'>期間</span></span> the short <span class='tooltip'>weather<span class='tooltip-text' onclick="speakText('weather')"><IMG SRC='speak.png'>天氣</span></span> window . <BR>
+
+<div class='co2'><img src='len.png' class='clickable-image' onclick='showTextBox(this)'><div id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>
+<span class='te2'>The overcrowding led to deadly delays</span> in <span class='te2'>what is known as the "death zone"</span>,  the area above 8,  000 meters.
+</div>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>過度擁擠導致了在海拔8000公尺以上的被稱為「死亡區」的地區出現致命的延誤</span></span>
+The <span class='tooltip'>overcrowding<span class='tooltip-text' onclick="speakText('overcrowding')"><IMG SRC='speak.png'>過度擁擠</span></span> led to <span class='tooltip'>deadly<span class='tooltip-text'  onclick="speakText('deadly')"><IMG SRC='speak.png'>致命的</span></span> <span class='tooltip'>delays<span class='tooltip-text'  onclick="speakText('delays')"><IMG SRC='speak.png'>延誤</span></span> in what is known as the "death zone",  the area above 8, 000 meters . <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這也引發了人們對導遊公司鼓勵缺乏經驗的登山者嘗試攀登的擔憂。</span></span>
+It also raised <span class='tooltip'>concerns<span class='tooltip-text' onclick="speakText('concerns')"><IMG SRC='speak.png'>擔憂</span></span> that <span class='tooltip'>guide<span class='tooltip-text' onclick="speakText('guide')"><IMG SRC='speak.png'>指導</span></span>  <span class='tooltip'>companies<span class='tooltip-text' onclick="speakText('companies')"><IMG SRC='speak.png'>公司</span></span> were urging <span class='tooltip'>inexperienced<span class='tooltip-text' onclick="speakText('inexperienced')"><IMG SRC='speak.png'>缺乏經驗</span></span>  <span class='tooltip'>mountaineers<span class='tooltip-text' onclick="speakText('mountaineers')"><IMG SRC='speak.png'>登山者</span></span> to <span class='tooltip'>attempt<span class='tooltip-text' onclick="speakText('attempt')"><IMG SRC='speak.png'>試圖</span></span> the climb . <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>建議的修改之一是，要求登山者必須由持證醫生準備一份關於其病史和整體健康狀況的報告</span></span>
+Among the <span class='tooltip'>suggested<span class='tooltip-text' onclick="speakText('suggested')"><IMG SRC='speak.png'>建議</span></span> changes is a rule for <span class='tooltip'>climbers<span class='tooltip-text' onclick="speakText('climbers')"><IMG SRC='speak.png'>登山者</span></span> to have a <span class='tooltip'>certified<span class='tooltip-text' onclick="speakText('certified')"><IMG SRC='speak.png'>認證</span></span> doctor <span class='tooltip'>prepare<span class='tooltip-text' onclick="speakText('prepare')"><IMG SRC='speak.png'>準備</span></span> a report on their <span class='tooltip'>medical<span class='tooltip-text' onclick="speakText('medical')"><IMG SRC='speak.png'>醫療的</span></span> history and general health . <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>另一個建議的要求是，登山者必須提供證據證明，他們曾經攀登過尼泊爾的另一座高山。</span></span>
+Another <span class='tooltip'>suggested<span class='tooltip-text' onclick="speakText('suggested')"><IMG SRC='speak.png'>建議</span></span>  <span class='tooltip'>requirement<span class='tooltip-text' onclick="speakText('requirement')"><IMG SRC='speak.png'>要求</span></span> is that <span class='tooltip'>climbers<span class='tooltip-text' onclick="speakText('climbers')"><IMG SRC='speak.png'>登山者</span></span> provide <span class='tooltip'>evidence<span class='tooltip-text' onclick="speakText('evidence')"><IMG SRC='speak.png'>證據</span></span> they have climbed another tall <span class='tooltip'>mountain<span class='tooltip-text' onclick="speakText('mountain')"><IMG SRC='speak.png'>山</span></span> in Nepal . <BR>
+ <HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>該提案已提交內閣批准</span></span>
+The <span class='tooltip'>proposals<span class='tooltip-text' onclick="speakText('proposals')"><IMG SRC='speak.png'>提案</span></span> have been <span class='tooltip'>offered<span class='tooltip-text' onclick="speakText('offered')"><IMG SRC='speak.png'>提供</span></span> to the <span class='tooltip'>cabinet<span class='tooltip-text' onclick="speakText('cabinet')"><IMG SRC='speak.png'>內閣</span></span> for <span class='tooltip'>approval<span class='tooltip-text' onclick="speakText('approval')"><IMG SRC='speak.png'>贊同</span></span> . <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>政府尚未透露該法律何時生效。</span></span>
+The <span class='tooltip'>government<span class='tooltip-text' onclick="speakText('government')"><IMG SRC='speak.png'>政府</span></span> has yet to say when the laws might take effect . <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>維斯特爾斯表示，擬議的改革不足以阻止導致 5 月底交通堵塞的「集體行為」心態</span></span>
+<span class='pp'>Viesturs</span> said the <span class='tooltip'>proposed<span class='tooltip-text' onclick="speakText('proposed')"><IMG SRC='speak.png'>建議的</span></span> changes will not do enough to stop the "group act" <span class='tooltip'>mentality<span class='tooltip-text' onclick="speakText('mentality')"><IMG SRC='speak.png'>心理</span></span> that led to the <span class='tooltip'>traffic<span class='tooltip-text' onclick="speakText('traffic')"><IMG SRC='speak.png'>交通</span></span> jam in late May . <BR>
+
+<div class='co2'><img src='len.png' class='clickable-image' onclick='showTextBox(this)'><div id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>
+He said <span class='te2'>climb leaders at base camp</span> also <span class='te2'>needed to consider how to fix the problem</span>.
+</div>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他說，大本營的登山領隊也需要考慮如何解決這個問題。</span></span>
+He said climb <span class='tooltip'>leaders<span class='tooltip-text' onclick="speakText('leaders')"><IMG SRC='speak.png'>領導者</span></span> at <span class='tooltip'>base camp<span class='tooltip-text'  onclick="speakText('base camp')"><IMG SRC='speak.png'>大本營</span></span> also needed to <span class='tooltip'>consider<span class='tooltip-text' onclick="speakText('consider')"><IMG SRC='speak.png'>考慮</span></span> how to fix the problem . <BR>
+<HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>維斯特斯在談到 2019 年的登山季時說道：“我知道有幾位登山者等到了很晚才開始攀登，幾乎整個山峰就只剩下他們了</span></span>
+"I know <span class='tooltip'>several<span class='tooltip-text' onclick="speakText('several')"><IMG SRC='speak.png'>一些</span></span>  <span class='tooltip'>climbers<span class='tooltip-text' onclick="speakText('climbers')"><IMG SRC='speak.png'>登山者</span></span> who waited until later and had the <span class='tooltip'>mountain<span class='tooltip-text' onclick="speakText('mountain')"><IMG SRC='speak.png'>山</span></span> almost to <span class='tooltip'>themselves"<span class='tooltip-text' onclick="speakText('themselves')"><IMG SRC='speak.png'>他們自己</span></span>,  <span class='pp'>Viesturs</span> said of the 2019 <span class='tooltip'>climbing<span class='tooltip-text' onclick="speakText('climbing')"><IMG SRC='speak.png'>攀爬</span></span>  <span class='tooltip'>season<span class='tooltip-text' onclick="speakText('season')"><IMG SRC='speak.png'>季節</span></span>.<BR>
+
+<div class='co2'><img src='len.png' class='clickable-image' onclick='showTextBox(this)'><div id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>
+We really need to answer <span class='te2'>why so many people are on the summit ridge</span> on the same day? <span class='te2'>How can you control it</span>?
+</div>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>我們真的需要回答，為什麼同一天會有這麼多人登上山脊？如何控制？</span></span>
+"We really need to answer why so many people are on the <span class='tooltip'>summit<span class='tooltip-text' onclick="speakText('summit')"><IMG SRC='speak.png'>峰頂</span></span> <span class='tooltip'>ridge<span class='tooltip-text'  onclick="speakText('ridge')"><IMG SRC='speak.png'>山脊</span></span> on the same day? How can you <span class='tooltip'>control<span class='tooltip-text' onclick="speakText('control')"><IMG SRC='speak.png'>控制</span></span> it?"
+<BR><BR><BR>
+<BR><BR><BR>
+
 
 

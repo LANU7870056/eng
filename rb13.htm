@@ -1,0 +1,469 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+    width:100%;
+    position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index3.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+
+
+
+<CENTER>13文宣廣告</CENTER>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>你對昂貴的郵資處理費用感到厭煩嗎？現在你有一個更好的選擇，在Post.com，
+我們更感興趣的是為您省錢，而不是從您那裡拿錢。</span></span>
+<span class='tooltip'>Tired<span class='tooltip-text'  onclick="speakText('Tired')"><IMG SRC='speak.png'>疲勞的</span></span> of <span class='tooltip'>expensive<span class='tooltip-text'  onclick="speakText('expensive')"><IMG SRC='speak.png'>昂貴的</span></span> <span class='tooltip'>postage meters<span class='tooltip-text'  onclick="speakText('postage meters')"><IMG SRC='speak.png'>郵資計價器</span></span> <span class='tooltip'>operation<span class='tooltip-text'  onclick="speakText('operation')"><IMG SRC='speak.png'>操作</span></span> <span class='tooltip'>fees<span class='tooltip-text'  onclick="speakText('fees')"><IMG SRC='speak.png'>費用</span></span> ? Now you have a better <span class='tooltip'>choice<span class='tooltip-text'  onclick="speakText('choice')"><IMG SRC='speak.png'>選擇</span></span>. At Post.com ,  we're more interested in <span class='tooltip'>saving<span class='tooltip-text'  onclick="speakText('saving')"><IMG SRC='speak.png'>儲存</span></span> you money than taking it from you.<br>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這就是為什麼跟傳統的郵資計相比，我們保證讓你省下至少50%的處理費用。我們沒有任何隱藏的費用、沒有長達數年的綁約，只有每個月固定的低額費用</span></span>
+That's why we <span class='tooltip'>guarantee<span class='tooltip-text'  onclick="speakText('guarantee')"><IMG SRC='speak.png'>保證</span></span> savings of at least 50% compared to <span class='tooltip'>traditional<span class='tooltip-text'  onclick="speakText('traditional')"><IMG SRC='speak.png'>傳統的</span></span> <span class='tooltip'>postage meters<span class='tooltip-text'  onclick="speakText('postage meters')"><IMG SRC='speak.png'>郵資計價器</span></span>. No hidden fees. No multi-year <span class='tooltip'>leases<span class='tooltip-text'  onclick="speakText('leases')"><IMG SRC='speak.png'>租賃</span></span>. Just one low <span class='tooltip'>flat-rate fee<span class='tooltip-text'  onclick="speakText('flat-rate fee')"><IMG SRC='speak.png'>低費率</span></span> every month.<BR> <hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>現在即可獲得有關美國郵政服務 (USPS) 郵寄和運輸的詳細且易於訪問的信息</span></span>
+Now <span class='tooltip'>gain<span class='tooltip-text'  onclick="speakText('gain')"><IMG SRC='speak.png'>獲得</span></span> <span class='tooltip'>detailed<span class='tooltip-text'  onclick="speakText('detailed')"><IMG SRC='speak.png'>詳細的</span></span> ,  easy-to-access <span class='tooltip'>information<span class='tooltip-text'  onclick="speakText('information')"><IMG SRC='speak.png'>資訊</span></span> about your United States Postal Service(USPS) mailing and <span class='tooltip'>shipping<span class='tooltip-text'  onclick="speakText('shipping')"><IMG SRC='speak.png'>船運</span></span>. <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>Post.com企業方案讓您全面了解郵資支出和使用情況 - 無論您的辦公室網絡有多大或多分散</span></span>
+The Post.com <span class='tooltip'>Enterprise solution<span class='tooltip-text'  onclick="speakText('Enterprise solution')"><IMG SRC='speak.png'>企業方案</span></span> gives you <span class='tooltip'>complete<span class='tooltip-text'  onclick="speakText('complete')"><IMG SRC='speak.png'>完全的</span></span> <span class='tooltip'>visibility<span class='tooltip-text'  onclick="speakText('visibility')"><IMG SRC='speak.png'>能見度、透明度</span></span> into your <span class='tooltip'>postage<span class='tooltip-text'  onclick="speakText('postage')"><IMG SRC='speak.png'>郵資</span></span> <span class='tooltip'>spending<span class='tooltip-text'  onclick="speakText('spending')"><IMG SRC='speak.png'>開支</span></span> and <span class='tooltip'>usage<span class='tooltip-text'  onclick="speakText('usage')"><IMG SRC='speak.png'>用法</span></span> – no matter how large or <span class='tooltip'>dispersed<span class='tooltip-text'  onclick="speakText('dispersed')"><IMG SRC='speak.png'>分散</span></span> your network of offices may be.<BR> <hr>
+
+<span class='tooltip'>Detailed<span class='tooltip-text'  onclick="speakText('Detailed')"><IMG SRC='speak.png'>詳細</span></span>:<br>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>你可以在詳細的報告中看到：</span></span>
+reports allow you to see: <br>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>按使用者和/或辦公地點劃分的郵費。</span></span>
+• Postage <span class='tooltip'>expenses<span class='tooltip-text'  onclick="speakText('expenses')"><IMG SRC='speak.png'>費用</span></span> by user and/or office location <br>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>郵票購買、印刷和最新郵票餘額</span></span>
+• Postage <span class='tooltip'>purchases<span class='tooltip-text'  onclick="speakText('purchases')"><IMG SRC='speak.png'>購買</span></span> ,  printing and <span class='tooltip'>up-to-date<span class='tooltip-text'  onclick="speakText('up-to-date')"><IMG SRC='speak.png'>最新</span></span> postage <span class='tooltip'>balances<span class='tooltip-text'  onclick="speakText('balances')"><IMG SRC='speak.png'>餘額</span></span> <br>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>按郵件類別、特殊服務和參考代碼劃分的郵資支出</span></span>
+• Postage <span class='tooltip'>spending<span class='tooltip-text'  onclick="speakText('spending')"><IMG SRC='speak.png'>開支</span></span> by mail class ,  by <span class='tooltip'>special<span class='tooltip-text'  onclick="speakText('special')"><IMG SRC='speak.png'>特別的</span></span> services and <span class='tooltip'>reference<span class='tooltip-text'  onclick="speakText('reference')"><IMG SRC='speak.png'>參考</span></span> code <br>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>過去兩年郵資使用的歷史趨勢</span></span>
+• <span class='tooltip'>Historical trends<span class='tooltip-text'  onclick="speakText('Historical trends')"><IMG SRC='speak.png'>歷史趨勢</span></span> for the last 2 years of <span class='tooltip'>postage<span class='tooltip-text'  onclick="speakText('postage')"><IMG SRC='speak.png'>郵資</span></span> use <br>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>保險及其他相關費用</span></span>
+• <span class='tooltip'>Insurance<span class='tooltip-text'  onclick="speakText('Insurance')"><IMG SRC='speak.png'>保險</span></span> and other <span class='tooltip'>related<span class='tooltip-text'  onclick="speakText('related')"><IMG SRC='speak.png'>有關的</span></span> <span class='tooltip'>expenses<span class='tooltip-text'  onclick="speakText('expenses')"><IMG SRC='speak.png'>費用</span></span> <br> <hr>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>雖然傳統郵資計費器不具備防止浪費、濫用或超支的功能，但 Post.com Enterprise 可讓您嚴格控制郵資的使用對象、內容、地點、時間和方式。</span></span>
+While <span class='tooltip'>traditional<span class='tooltip-text'  onclick="speakText('traditional')"><IMG SRC='speak.png'>傳統的</span></span> postage meters are not <span class='tooltip'>featured<span class='tooltip-text'  onclick="speakText('featured')"><IMG SRC='speak.png'>特色</span></span> to guard <span class='tooltip'>against<span class='tooltip-text'  onclick="speakText('against')"><IMG SRC='speak.png'>反對</span></span> <span class='tooltip'>waste<span class='tooltip-text'  onclick="speakText('waste')"><IMG SRC='speak.png'>浪費</span></span> ,  abuse or <span class='tooltip'>overspending<span class='tooltip-text'  onclick="speakText('spending')"><IMG SRC='speak.png'>超支</span></span> ,  Post.com Enterprise gives you tight control over who ,  what ,  where ,  when and how postage dollars are spent.<BR>
+
+<div class='co2'><img src='len.png' class='clickable-image' onclick='showTextBox(this)'><div id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>
+<span class='te2'>You'll have complete visibility over your mailing and shipping expenses</span> across <span class='te2'>your entire network of offices</span>.
+</div>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>[complete over完成] 您將全面了解整個辦公室網路的郵寄和運輸費用。</span></span>
+You'll have <span class='tooltip'>complete<span class='tooltip-text'  onclick="speakText('complete')"><IMG SRC='speak.png'>完成</span></span> <span class='tooltip'>visibility<span class='tooltip-text'  onclick="speakText('visibility')"><IMG SRC='speak.png'>可見</span></span> over your mailing and shipping <span class='tooltip'>expenses<span class='tooltip-text'  onclick="speakText('expenses')"><IMG SRC='speak.png'>費用</span></span> across your <span class='tooltip'>entire<span class='tooltip-text'  onclick="speakText('entire')"><IMG SRC='speak.png'>全部的</span></span> network of offices.<BR> <hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>集中管理控制包括</span></span>
+<span class='tooltip'>Centralized<span class='tooltip-text'  onclick="speakText('Centralized')"><IMG SRC='speak.png'>集中</span></span> management controls <span class='tooltip'>include<span class='tooltip-text'  onclick="speakText('include')"><IMG SRC='speak.png'>包含</span></span>:<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>管理員工存取權限</span></span>
+•Managing <span class='tooltip'>employee<span class='tooltip-text'  onclick="speakText('employee')"><IMG SRC='speak.png'>員工</span></span> access <br> 
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>個人使用者或辦公室的郵資限制和限額</span></span>
+•<span class='tooltip'>Postage<span class='tooltip-text'  onclick="speakText('Postage')"><IMG SRC='speak.png'>郵資</span></span> <span class='tooltip'>restrictions<span class='tooltip-text'  onclick="speakText('restrictions')"><IMG SRC='speak.png'>限額</span></span> and <span class='tooltip'>limits<span class='tooltip-text'  onclick="speakText('limits')"><IMG SRC='speak.png'>限制</span></span> by <span class='tooltip'>individual<span class='tooltip-text'  onclick="speakText('individual')"><IMG SRC='speak.png'>個人</span></span> user or office <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>郵件等級和特殊服務限制</span></span>
+•<span class='tooltip'>Mail class<span class='tooltip-text'  onclick="speakText('Mail class')"><IMG SRC='speak.png'>郵件等級</span></span> and <span class='tooltip'>special service<span class='tooltip-text'  onclick="speakText('special service')"><IMG SRC='speak.png'>特別服務</span></span> <span class='tooltip'>restrictions<span class='tooltip-text'  onclick="speakText('restrictions')"><IMG SRC='speak.png'>限制</span></span> <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>完全透明，防止郵資浪費</span></span>
+•<span class='tooltip'>Complete<span class='tooltip-text'  onclick="speakText('Complete')"><IMG SRC='speak.png'>完全的</span></span> <span class='tooltip'>transparency<span class='tooltip-text'  onclick="speakText('transparency')"><IMG SRC='speak.png'>透明度</span></span> to <span class='tooltip'>prevent<span class='tooltip-text'  onclick="speakText('prevent')"><IMG SRC='speak.png'>防止</span></span> postage <span class='tooltip'>waste<span class='tooltip-text'  onclick="speakText('waste')"><IMG SRC='speak.png'>浪費</span></span> <br> <hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>從您成為 Post.com 客戶的那一刻起，我們就會關注您的每一個問題。</span></span>
+From the moment you become a Post.com <span class='tooltip'>customer<span class='tooltip-text'  onclick="speakText('customer')"><IMG SRC='speak.png'>顧客</span></span> ,  we <span class='tooltip'>take care<span class='tooltip-text'  onclick="speakText('take care')"><IMG SRC='speak.png'>照顧、關心</span></span> of your every <span class='tooltip'>single<span class='tooltip-text'  onclick="speakText('single')"><IMG SRC='speak.png'>每一個</span></span> <span class='tooltip'>question<span class='tooltip-text'  onclick="speakText('question')"><IMG SRC='speak.png'>問題</span></span>. <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>我們全天候提供真人線上客戶服務</span></span>
+We <span class='tooltip'>offer<span class='tooltip-text'  onclick="speakText('offer')"><IMG SRC='speak.png'>提供</span></span> real-person online <span class='tooltip'>customer<span class='tooltip-text'  onclick="speakText('customer')"><IMG SRC='speak.png'>顧客</span></span> services 24-7.<BR>
+
+<div class='co2'><img src='len.png' class='clickable-image' onclick='showTextBox(this)'><div id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>
+Whether <span class='te2'>you need technical support</span> or <span class='te2'>just some advice on USPS shipping options</span>,  <span class='te2'>our shipping experts are ready to help</span> at any time.
+</div>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>無論您需要技術支援還是僅需要有關 USPS 運輸選項的一些建議，我們的運輸專家都隨時準備為您提供協助</span></span>
+Whether you need <span class='tooltip'>technical<span class='tooltip-text'  onclick="speakText('technical')"><IMG SRC='speak.png'>技術的</span></span> support or just some <span class='tooltip'>advice<span class='tooltip-text'  onclick="speakText('advice')"><IMG SRC='speak.png'>建議</span></span> on USPS shipping <span class='tooltip'>options<span class='tooltip-text'  onclick="speakText('options')"><IMG SRC='speak.png'>選項、項目</span></span> ,  our shipping <span class='tooltip'>experts<span class='tooltip-text'  onclick="speakText('experts')"><IMG SRC='speak.png'>專家</span></span> are ready to help at any time.<BR> <hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>當然，您無需支付額外費用即可獲得我們經驗豐富的支援團隊的幫助</span></span>
+And <span class='tooltip'>of course<span class='tooltip-text'  onclick="speakText('of course')"><IMG SRC='speak.png'>當然</span></span> ,  you'll never have to pay extra fees to get <span class='tooltip'>assistance<span class='tooltip-text'  onclick="speakText('assistance')"><IMG SRC='speak.png'>協助</span></span> from our <span class='tooltip'>experienced<span class='tooltip-text'  onclick="speakText('experienced')"><IMG SRC='speak.png'>經驗豐富的</span></span> <span class='tooltip'>support<span class='tooltip-text'  onclick="speakText('support')"><IMG SRC='speak.png'>支援</span></span> team.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>如果您想了解有關我們交易的更多資訊或獲得免費演示，請致電8937-1438或透過電子郵件 post.com@enterprise.com 與我們聯絡。立即加入 Post.com，即可獲得第一筆月費 20% 的折價券，並為您的企業帶來最佳的郵寄和運輸體驗！</span></span>
+If you would like to learn more about our deals or get a free demo , please call 8937-1438 or contact us via our email post.com@enterprise.com.Join Post.com today to <span class='tooltip'>receive<span class='tooltip-text'  onclick="speakText('receive')"><IMG SRC='speak.png'>收到</span></span> a 20% off <span class='tooltip'>coupon<span class='tooltip-text'  onclick="speakText('coupon')"><IMG SRC='speak.png'>優惠券</span></span> on your first monthly <span class='tooltip'>charge<span class='tooltip-text'  onclick="speakText('charge')"><IMG SRC='speak.png'>收費</span></span> and the best mailing and <span class='tooltip'>shipping<span class='tooltip-text'  onclick="speakText('shipping')"><IMG SRC='speak.png'>船運</span></span> <span class='tooltip'>experience<span class='tooltip-text'  onclick="speakText('experience')"><IMG SRC='speak.png'>經驗</span></span> ever for your business! <br> <hr>
+<BR><BR><BR>

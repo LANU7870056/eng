@@ -7,16 +7,6 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
-<script>
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function scrollToBottom() {
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-}
-
-</script>
 
 <script>
     function speakText(text) {
@@ -95,10 +85,9 @@ body {
 }
 
 .bk-box {
-position: fixed;
-z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    //position: absolute;
+    position: fixed;
+    z-index: 3000; /* 確保在其他元素之上 */
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -161,7 +150,7 @@ font-size: 0.8em;
   padding: 2px 0;
   word-break: break-word;
   white-space: normal;
-  z-index: 2000;
+  z-index: 1000;
   visibility: hidden;
   opacity: 0;
   text-align: left;      
@@ -406,56 +395,51 @@ font-size: 0.9em;
 }
 </style>
 
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
 
 
 
 
-<center>02動植物生存</center>
+<center>07圖書館情色展出</center>
 
-<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>所有人類和動物都需要空氣才能生存。沒有空氣，人類都會死亡。同樣，植物也需要空氣才能生存。</span></span>
-All human beings and animals need air to <span class='tooltip'>survive<span class='tooltip-text' onclick="speakText('survive')"><IMG SRC='speak.png'>存活</span></span>.
-Without air human beings would all die.<BR>
-<div class="cir">1</div>,  <span class='tooltip'>plants<span class='tooltip-text' onclick="speakText('plants')"><IMG SRC='speak.png'>植物</span></span> needs air to live. <BR>
-<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：人和動物需要空氣，接著說植物也需要，所以「同樣地」</span></span>
-1.(A)Firstly　(B)Generally　(C)Continuously　(D)<span class='tooltip'>Similarly<span class='tooltip-text' onclick="speakText('Similarly')"><IMG SRC='speak.png'>同樣地</span></span> <BR><HR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>麥當娜、奧斯卡王爾德和喜劇團體蒙提派森有什麼共同點？牛津大學的圖書館員都認為他們的作品很淫穢</span></span>
+What do <span class='tooltip'>Madonna<span class='tooltip-text'  onclick="speakText('Madonna')"><IMG SRC='speak.png'>麥當娜</span></span>,  <span class='pp'>Oscar Wilde</span> 
+and the <span class='tooltip'>comedy<span class='tooltip-text'  onclick="speakText('comedy')"><IMG SRC='speak.png'>喜劇</span></span> group <span class='pp'>Monty Python</span> have in <div class='cir'>16 </div> ? They've all been <span class='tooltip'>considered<span class='tooltip-text'  onclick="speakText('considered')"><IMG SRC='speak.png'>考慮的、被認為</span></span> <span class='tooltip'>obscene<span class='tooltip-text'  onclick="speakText('obscene')"><IMG SRC='speak.png'>淫穢的</span></span> by <span class='tooltip'>librarians<span class='tooltip-text'  onclick="speakText('librarians')"><IMG SRC='speak.png'>圖書館員</span></span> at the <span class='tooltip'>University of Oxford<span class='tooltip-text'  onclick="speakText('University of Oxford')"><IMG SRC='speak.png'>牛津大學</span></span>.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>說明【B】In common 共同的、相同的</span></span>
+16.(A)<span class='tooltip'>contrast<span class='tooltip-text'  onclick="speakText('contrast')"><IMG SRC='speak.png'>對比</span></span>　(B)<span class='tooltip'>common<span class='tooltip-text'  onclick="speakText('common')"><IMG SRC='speak.png'>常見的</span></span>　(C)<span class='tooltip'>similar<span class='tooltip-text'  onclick="speakText('similar')"><IMG SRC='speak.png'>相似的</span></span>　(D)<span class='tooltip'>particular<span class='tooltip-text'  onclick="speakText('particular')"><IMG SRC='speak.png'>特別的</span></span> <BR><hr>
 
-<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>它們利用陽光和空氣中的二氧化碳製造食物，然後釋放氧氣。</span></span>
-They use <span class='tooltip'>sunlight<span class='tooltip-text' onclick="speakText('sunlight')"><IMG SRC='speak.png'>陽光</span></span> and the <span class='tooltip'>carbon<span class='tooltip-text' onclick="speakText('carbon')"><IMG SRC='speak.png'>碳</span></span> <span class='tooltip'>dioxide<span class='tooltip-text' onclick="speakText('dioxide')"><IMG SRC='speak.png'>二氧化碳</span></span> in air to make food,   and then <div class="cir">2</div> <span class='tooltip'>oxygen<span class='tooltip-text' onclick="speakText('oxygen')"><IMG SRC='speak.png'>氧</span></span>.<BR>
-<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：植物吸收陽光與二氧化碳，而後產出氧氣，因此空格中的答案要選(A)</span></span>
-2.(A)<span class='tooltip'>give off<span class='tooltip-text' onclick="speakText('give off')"><IMG SRC='speak.png'>釋放出</span></span>　
-(B)<span class='tooltip'>make up<span class='tooltip-text'  onclick="speakText('make up')"><IMG SRC='speak.png'>化妝品</span></span>　(C)<span class='tooltip'>pass out<span class='tooltip-text'  onclick="speakText('pass out')"><IMG SRC='speak.png'>昏倒</span></span>　(D)<span class='tooltip'>turn into<span class='tooltip-text'  onclick="speakText('turn into')"><IMG SRC='speak.png'>變成</span></span>  <BR><HR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>但該大學最大的圖書館收藏了數千本涉及色情的書籍，這些書籍已經隱藏了136年，現在將向公眾開放</span></span>
+But a <span class='tooltip'>restricted<span class='tooltip-text'  onclick="speakText('restricted')"><IMG SRC='speak.png'>受限制的</span></span> <span class='tooltip'>collection<span class='tooltip-text'  onclick="speakText('collection')"><IMG SRC='speak.png'>收藏</span></span> of <span class='tooltip'>thousands<span class='tooltip-text'  onclick="speakText('thousands')"><IMG SRC='speak.png'>數千</span></span> of <span class='tooltip'>sexually<span class='tooltip-text'  onclick="speakText('sexually')"><IMG SRC='speak.png'>性方面</span></span><span class='tooltip'>explicit<span class='tooltip-text'  onclick="speakText('explicit')"><IMG SRC='speak.png'>明確的</span></span> books,  <div class='cir'>17 </div> has spent 136 years hidden away within the <span class='tooltip'>university's<span class='tooltip-text'  onclick="speakText('university's')"><IMG SRC='speak.png'>大學的</span></span> largest library,  is now <span class='tooltip'>opening<span class='tooltip-text'  onclick="speakText('opening')"><IMG SRC='speak.png'>開幕</span></span> to the public.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>說明【A】關係代名詞，使用which，指前面「數千本涉及色情的書籍」，它已經隱藏了136年…</span></span>
+17.(A)which　(B)where　(C)who　(D)whom <BR><hr>
 
-<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>我們呼吸著環繞地球的空氣。空氣由以下氣體組成：約78%的氮氣、21%的氧氣、1%的二氧化碳、其他氣體和水蒸氣。</span></span>
-We all <span class='tooltip'>breathe<span class='tooltip-text' onclick="speakText('breathe')"><IMG SRC='speak.png'>呼吸</span></span> the air that <span class='tooltip'>surrounds<span class='tooltip-text' onclick="speakText('surrounds')"><IMG SRC='speak.png'>包圍</span></span> the Earth.
-The air is made up <div class="cir">3</div> <span class='tooltip'>gases<span class='tooltip-text' onclick="speakText('gases')"><IMG SRC='speak.png'>氣體</span></span>:<BR>
-around 78% <span class='tooltip'>nitrogen<span class='tooltip-text' onclick="speakText('nitrogen')"><IMG SRC='speak.png'>氮</span></span>,   21% oxygen,   and 1% carbon dioxide,   other gases and water <span class='tooltip'>vapor<span class='tooltip-text' onclick="speakText('vapor')"><IMG SRC='speak.png'>氣</span></span>.<BR>
-<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：make up of (由………………組成)</span></span>
-3.(A)in　(B)<span class='tooltip'>of<span class='tooltip-text' onclick="speakText('of')"><IMG SRC='speak.png'>make up of由…組成</span></span>　(C)by　(D)on <BR><HR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>牛津大學博德利圖書館正在展出一些之前被認為「不道德」、不宜讓學生觀看的作品</span></span>
+Oxford's <span class='pp'>Bodleian</span> <span class='tooltip'>Library<span class='tooltip-text'  onclick="speakText('Library')"><IMG SRC='speak.png'>圖書館</span></span> is putting on display some of those works that had <span class='tooltip'>previously<span class='tooltip-text'  onclick="speakText('previously')"><IMG SRC='speak.png'>之前</span></span> been <span class='tooltip'>deemed<span class='tooltip-text'  onclick="speakText('deemed')"><IMG SRC='speak.png'>視為</span></span> <div class='cir'>18</div> "<span class='tooltip'>immoral<span class='tooltip-text'  onclick="speakText('immoral')"><IMG SRC='speak.png'>不道德</span></span>" to be viewed by students, <BR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>其中包括麥當娜 1992 年出版的色情咖啡桌書《性》、1974 年暢銷手冊《性的歡樂》以及一本封面上有裸體臀部的蒙提·派森的書</span></span>
+including <span class='pp'>Madonna's risqué 1992 coffee table book "Sex"</span>,  the <span class='tooltip'>bestselling<span class='tooltip-text'  onclick="speakText('bestselling')"><IMG SRC='speak.png'>暢銷書</span></span> 1974 <span class='tooltip'>manual<span class='tooltip-text'  onclick="speakText('manual')"><IMG SRC='speak.png'>手動的</span></span> "The Joy of Sex,  " and a Monty Python book that <span class='tooltip'>featured<span class='tooltip-text'  onclick="speakText('featured')"><IMG SRC='speak.png'>特色</span></span> a <span class='tooltip'>nude<span class='tooltip-text'  onclick="speakText('nude')"><IMG SRC='speak.png'>裸體</span></span> <span class='tooltip'>posterior<span class='tooltip-text'  onclick="speakText('posterior')"><IMG SRC='speak.png'>後部</span></span> on its cover.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>說明【C】「too to 太…不能…」，太不道德的作品，不能給學生觀看</span></span>
+18.(A)to　(B)very　(C)too　(D)likely <BR><hr>
 
-<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>由於空氣是生命的基礎，因此透過減少或防止空氣污染來保持空氣清潔非常重要。</span></span>
-Because air is so basic to life,   it is very important to keep the air clean by <span class='tooltip'>reducing<span class='tooltip-text' onclick="speakText('reducing')"><IMG SRC='speak.png'>減少</span></span> or <div class="cir">4</div> <span class='tooltip'>air pollution<span class='tooltip-text' onclick="speakText('air pollution')"><IMG SRC='speak.png'>空氣污染</span></span>.<BR>
-<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：減少reducing或防範preventing空氣污染</span></span>
-4.(A)expending　(B)increasing　(C)<span class='tooltip'>preventing<span class='tooltip-text' onclick="speakText('preventing')"><IMG SRC='speak.png'>防範</span></span>　(D)softening <BR><HR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>牛津大學是世界上最古老的大學，在此之前，學生若想閱讀其中一本書，需要獲得導師的同意信。</span></span>
+Students at Oxford,  the world's <span class='tooltip'>oldest<span class='tooltip-text'  onclick="speakText('oldest')"><IMG SRC='speak.png'>最老的</span></span> <span class='tooltip'>university<span class='tooltip-text'  onclick="speakText('university')"><IMG SRC='speak.png'>大學</span></span>,  had <span class='tooltip'>previously<span class='tooltip-text'  onclick="speakText('previously')"><IMG SRC='speak.png'>之前</span></span> needed a letter <div class='cir'>19 </div> <span class='tooltip'>approval<span class='tooltip-text'  onclick="speakText('approval')"><IMG SRC='speak.png'>贊同、同意</span></span> from a <span class='tooltip'>tutor<span class='tooltip-text'  onclick="speakText('tutor')"><IMG SRC='speak.png'>導師</span></span> if they wished to read one of the books.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>說明【A】a letter of approval：一封同意信</span></span>
+19.(A)of　(B)by　(C)with　(D)from <BR><hr>
 
-<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>如今，空氣污染在世界各地造成了許多嚴重問題，其中之一就是酸雨。</span></span>
-Today,  <span class='tooltip'>air pollution<span class='tooltip-text'  onclick="speakText('air pollution')"><IMG SRC='speak.png'>空氣污染</span></span> <span class='tooltip'>causes<span class='tooltip-text' onclick="speakText('causes')"><IMG SRC='speak.png'>造成</span></span> several 
-<span class='tooltip'>serious<span class='tooltip-text'  onclick="speakText('serious')"><IMG SRC='speak.png'>嚴重的</span></span> <span class='tooltip'>problems<span class='tooltip-text' onclick="speakText('problems')"><IMG SRC='speak.png'>問題</span></span> <span class='tooltip'>worldwide<span class='tooltip-text' onclick="speakText('worldwide')"><IMG SRC='speak.png'>全世界</span></span> one of <div class="cir">5</div> is <span class='tooltip'>Acid rain<span class='tooltip-text' onclick="speakText('Acid rain')"><IMG SRC='speak.png'>酸雨</span></span>.<BR>
-<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：one of which其中之一。無連接詞連接兩個子句，所以空格處應選(B)which關係代名詞</span></span>
-5.(A)them　(B)<span class='tooltip'>which<span class='tooltip-text' onclick="speakText('which')"><IMG SRC='speak.png'>關係代名詞</span></span>　(C)those　(D)that  <BR><HR>
 
-<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>酸雨是由釋放到空氣中的化學物質引起的，這些化學物質使雨水比平常更酸。</span></span>
-<span class='tooltip'>Acid rain<span class='tooltip-text' onclick="speakText('Acid rain')"><IMG SRC='speak.png'>酸雨</span></span> is caused by <span class='tooltip'>chemicals<span class='tooltip-text' onclick="speakText('chemicals')"><IMG SRC='speak.png'>化學品</span></span> that are <div class="cir">6</div> into the air and cause rain <div class="cir">7</div> more <span class='tooltip'>acidic<span class='tooltip-text' onclick="speakText('acidic')"><IMG SRC='speak.png'>酸性的</span></span> than <span class='tooltip'>usual<span class='tooltip-text' onclick="speakText('usual')"><IMG SRC='speak.png'>通常</span></span>.<BR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>杜倫大學拉丁語教授恩尼弗‧英格爾哈特 (ennifer Ingleheart) 是此次展覽的策展人</span></span>
+<span class='pp'>Jennifer Ingleheart</span>,  a <span class='tooltip'>professor<span class='tooltip-text'  onclick="speakText('professor')"><IMG SRC='speak.png'>教授</span></span> of <span class='tooltip'>Latin<span class='tooltip-text'  onclick="speakText('Latin')"><IMG SRC='speak.png'>拉丁</span></span> at the <span class='tooltip'>University of Durham<span class='tooltip-text'  onclick="speakText('University of Durham')"><IMG SRC='speak.png'>杜倫大學</span></span>,  who is <span class='tooltip'>curating<span class='tooltip-text'  onclick="speakText('curating')"><IMG SRC='speak.png'>策展</span></span> the <span class='tooltip'>exhibition<span class='tooltip-text'  onclick="speakText('exhibition')"><IMG SRC='speak.png'>展覽</span></span>, <BR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>希望此次展覽能夠探索「關於性和合適的閱讀材料的觀念是如何隨著時間的推移而改變的」。</span></span>
+ <div class='cir'>20 </div> the <span class='tooltip'>exhibition<span class='tooltip-text'  onclick="speakText('exhibition')"><IMG SRC='speak.png'>展覽</span></span> will <span class='tooltip'>explore<span class='tooltip-text'  onclick="speakText('explore')"><IMG SRC='speak.png'>探索</span></span> "how <span class='tooltip'>ideas about<span class='tooltip-text'  onclick="speakText('ideas about')"><IMG SRC='speak.png'>關於的想法</span></span> <span class='tooltip'>sexuality<span class='tooltip-text'  onclick="speakText('sexuality')"><IMG SRC='speak.png'>性慾</span></span> and <span class='tooltip'>suitable<span class='tooltip-text'  onclick="speakText('suitable')"><IMG SRC='speak.png'>合適的</span></span> reading <span class='tooltip'>material<span class='tooltip-text'  onclick="speakText('material')"><IMG SRC='speak.png'>材料</span></span> have changed over time." <BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>說明【A】「，」後為同位語，He被省略，後接V，第3人稱，故加s</span></span>
+20.(A)hopes　(B)hoping　(C)will hope　(D)hoped <BR><hr>
 
-<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>酸雨會對人類、動物和植物造成巨大的危害。</span></span>
-<span class='tooltip'>Acid rain<span class='tooltip-text' onclick="speakText('Acid rain')"><IMG SRC='speak.png'>酸雨</span></span> can do great <span class='tooltip'>damage<span class='tooltip-text' onclick="speakText('damage')"><IMG SRC='speak.png'>傷害</span></span> to people,   animals,   and plants.<BR>
-
-<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：released into the air→釋放到空氣中</span></span>
-6.(A)<span class='tooltip'>released<span class='tooltip-text' onclick="speakText('released')"><IMG SRC='speak.png'>釋放</span></span>　(B)exploded　(C)decreased　(D)manufactured <BR>
-<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：cause to +V。(A)(原形動詞) (B) (過去分詞) (C)(現在分詞) (D)(不定詞)</span></span>
-7.(A)be　(B)been　(C)being　(D)<span class='tooltip'>to be<span class='tooltip-text' onclick="speakText('to be')"><IMG SRC='speak.png'>不定詞</span></span> <BR><HR>
-
-<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>它還會對湖水造成危害，經常殺死生活在那裡的植物和魚類。</span></span> 
-It is also <div class="cir">8</div> to water in lakes,   often killing plants and fish that live there.<BR>
-<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：不僅對人類、動物和植物有害, 連對湖水也有害</span></span>
-8.(A)polluted　(B)beneficial　(C)<span class='tooltip'>harmful<span class='tooltip-text' onclick="speakText('harmful')"><IMG SRC='speak.png'>傷害</span></span>　(D)damaged
-<BR><HR><BR><HR><BR><HR>
+<br><br><br><br>

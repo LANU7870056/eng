@@ -1,0 +1,485 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+    width:100%;
+    position: fixed;
+    z-index: 3000; /* 確保在其他元素之上 */
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+
+
+
+ <center>09頸部按摩器</center>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>我們都喜歡聽這樣的笑話：早上起床不發出任何聲音有多麼困難，或者當你到了25歲，你的背就會開始每天疼痛。</span></span>
+We all like <span class='tooltip'>jokes<span class='tooltip-text'  onclick="speakText('jokes')"><IMG SRC='speak.png'>笑話</span></span> about how hard it is to get out of bed in the morning without <div class='cir'>16</div> noises,  or how when you hit 25 your back starts <span class='tooltip'>hurting<span class='tooltip-text'  onclick="speakText('hurting')"><IMG SRC='speak.png'>受傷</span></span> every day.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>說明【D】without+N 或 without+Ving。morning without making noises早上沒有製造噪音</span></span>
+16.(A)make 　(B)made 　(C)to make 　(D)making <br><hr>
+
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>你是那種上班時包包裡有止痛藥，在家又有單獨一片的人嗎？以防某種肌肉疼痛讓你無法忍受這一天</span></span>
+Are you one of those people who have <span class='tooltip'>Advil<span class='tooltip-text'  onclick="speakText('Advil')"><IMG SRC='speak.png'>止痛藥</span></span> in their <span class='tooltip'>purse<span class='tooltip-text'  onclick="speakText('purse')"><IMG SRC='speak.png'>錢包</span></span> for work and a <span class='tooltip'>separate<span class='tooltip-text'  onclick="speakText('separate')"><IMG SRC='speak.png'>分離</span></span> <span class='tooltip'>strip<span class='tooltip-text'  onclick="speakText('strip')"><IMG SRC='speak.png'>條</span></span> at home,  just in case some kind of <span class='tooltip'>muscle pain<span class='tooltip-text'  onclick="speakText('muscle pain')"><IMG SRC='speak.png'>肌肉酸痛</span></span> makes it <span class='tooltip'>unbearable<span class='tooltip-text'  onclick="speakText('unbearable')"><IMG SRC='speak.png'>難以忍受</span></span> to get through the day ?<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>您不必再擔心，因為頸部按摩器就在這裡！</span></span>
+You don't have to <span class='tooltip'>worry<span class='tooltip-text'  onclick="speakText('worry')"><IMG SRC='speak.png'>擔心</span></span> anymore because the <span class='tooltip'>Neck Massageris<span class='tooltip-text'  onclick="speakText('Neck Massageris')"><IMG SRC='speak.png'>頸部按摩器</span></span> here!<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>我們很自豪能夠提供一種可以立即緩解您的背部和頸部疼痛的小工具！</span></span>
+We <span class='tooltip'>are proud to<span class='tooltip-text'  onclick="speakText('are proud to')"><IMG SRC='speak.png'>自豪</span></span> <span class='tooltip'>offer<span class='tooltip-text'  onclick="speakText('offer')"><IMG SRC='speak.png'>提供</span></span> a <span class='tooltip'>gadget<span class='tooltip-text'  onclick="speakText('gadget')"><IMG SRC='speak.png'>小工具</span></span> that will <span class='tooltip'>relieve<span class='tooltip-text'  onclick="speakText('relieve')"><IMG SRC='speak.png'>緩解</span></span> your back and neck pain <span class='tooltip'>instantly<span class='tooltip-text'  onclick="speakText('instantly')"><IMG SRC='speak.png'>即刻</span></span>! <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>頸部按摩器很小，使用方便。</span></span>
+The <span class='tooltip'>Neck Massageris<span class='tooltip-text'  onclick="speakText('Neck Massageris')"><IMG SRC='speak.png'>頸部按摩器</span></span> small and easy to use.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>您可以在家中、車上、辦公室甚至旅行中使用它</span></span>
+You can use it at home,  in your car,  in your office,  or even on a trip.<br><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>只需2顆AAA電池即可使用4～6小時，具體取決於您選擇的模式。</span></span>
+It only takes 2 AAA <span class='tooltip'>batteries<span class='tooltip-text'  onclick="speakText('batteries')"><IMG SRC='speak.png'>電池</span></span> <span class='tooltip'>to last for<span class='tooltip-text'  onclick="speakText('to last for')"><IMG SRC='speak.png'>持續</span></span> 4～6 hours,  <div class='cir'>17</div> on the mode you choose.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>說明【D】當2個句子中的主詞相同，避免提到2次主詞，第2句主詞省略，第2苟的動詞為主動、被動，改為Ving 或PP型態</span></span>
+17.(A)<span class='tooltip'>depend<span class='tooltip-text'  onclick="speakText('depend')"><IMG SRC='speak.png'>依賴</span></span> 　(B)depends 　(C)to depend 　(D)depending <BR><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>有了這款頸部按摩器，每當您感到緊張時，您都能夠快速緩解壓力！</span></span>
+With this <span class='tooltip'>Neck Massageris<span class='tooltip-text'  onclick="speakText('Neck Massageris')"><IMG SRC='speak.png'>頸部按摩器</span></span>,  you will be able to experience fast stress relief whenever tension strikes! <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>頸部按摩器如此有效的原因肯定是它創新、深思熟慮的設計和科學、經過時間考驗的方法，它針對您身體的疼痛部位並為您帶來期待已久的緩解。</span></span>
+The reason why <span class='tooltip'>Neck Massageris<span class='tooltip-text'  onclick="speakText('Neck Massageris')"><IMG SRC='speak.png'>頸部按摩器</span></span> so <span class='tooltip'>effective<span class='tooltip-text'  onclick="speakText('effective')"><IMG SRC='speak.png'>有效的</span></span> is <span class='tooltip'>definitely<span class='tooltip-text'  onclick="speakText('definitely')"><IMG SRC='speak.png'>確實</span></span> its <span class='tooltip'>innovative<span class='tooltip-text'  onclick="speakText('innovative')"><IMG SRC='speak.png'>創新的</span></span>,  well-thought-out <span class='tooltip'>design<span class='tooltip-text'  onclick="speakText('design')"><IMG SRC='speak.png'>設計</span></span> and the scientific,  time-<div class='cir'>18</div> methods that it uses to <span class='tooltip'>target<span class='tooltip-text'  onclick="speakText('target')"><IMG SRC='speak.png'>目標</span></span> the aching areas of your body and bring you long-awaited relief.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>說明【D】a time-consuming job一份費時的工作、apeace-loving person一個愛好和平的人;
+a hand-made purse一個手工製作的錢包、an open-minded person一個思想開放的人。
+動詞再句子裡為主動，就用Ving，如果該動詞再句子裡為被動，就用p.p.。主詞「method方法」是「被人」測試的，所以動詞應改為p.p</span></span>
+18.(A)test 　(B)tests 　(C)testing 　(D)tested <br><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這個神奇的裝置不僅可以減輕疼痛和緊張，還可以改善您的情緒和整體健康！</span></span>
+Not only does this <span class='tooltip'>miracle device<span class='tooltip-text'  onclick="speakText('miracle device')"><IMG SRC='speak.png'>奇蹟設備</span></span> <span class='tooltip'>reduce<span class='tooltip-text'  onclick="speakText('reduce')"><IMG SRC='speak.png'>減少</span></span> pain and <span class='tooltip'>tension<span class='tooltip-text'  onclick="speakText('tension')"><IMG SRC='speak.png'>緊張</span></span>,  but also <span class='tooltip'>improves<span class='tooltip-text'  onclick="speakText('improves')"><IMG SRC='speak.png'>改善</span></span> your <span class='tooltip'>mood<span class='tooltip-text'  onclick="speakText('mood')"><IMG SRC='speak.png'>情緒</span></span> and <span class='tooltip'>overall health<span class='tooltip-text'  onclick="speakText('overall health')"><IMG SRC='speak.png'>整體健康</span></span>!<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>頸部按摩器利用治療超音波為您提供即時疼痛緩解。</span></span>
+The <span class='tooltip'>Neck Massagerutilizes<span class='tooltip-text'  onclick="speakText('Neck Massagerutilizes')"><IMG SRC='speak.png'>頸部按摩器</span></span> <span class='tooltip'>therapeutic<span class='tooltip-text'  onclick="speakText('therapeutic')"><IMG SRC='speak.png'>治療性</span></span> <span class='tooltip'>ultrasound<span class='tooltip-text'  onclick="speakText('ultrasound')"><IMG SRC='speak.png'>超音波</span></span> to provide you <div class='cir'>19</div> <span class='tooltip'>instant pain relief<span class='tooltip-text'  onclick="speakText('instant pain relief')"><IMG SRC='speak.png'>即時緩解疼痛</span></span>.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>說明【B】provide 目 with 物：提供某人某物</span></span>
+19.(A)by 　(B)with 　(C)for 　(D)to <br><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>超音波被專業人士廣泛用於治療醫療問題，尤其是損傷引起的發炎等。</span></span>
+<span class='tooltip'>Ultrasound<span class='tooltip-text'  onclick="speakText('Ultrasound')"><IMG SRC='speak.png'>超音波</span></span> is widely used by <span class='tooltip'>professionals<span class='tooltip-text'  onclick="speakText('professionals')"><IMG SRC='speak.png'>專業人士</span></span> to treat <span class='tooltip'>medical<span class='tooltip-text'  onclick="speakText('medical')"><IMG SRC='speak.png'>醫療的</span></span> problems,  <span class='tooltip'>especially<span class='tooltip-text'  onclick="speakText('especially')"><IMG SRC='speak.png'>尤其</span></span> things like <span class='tooltip'>inflammation<span class='tooltip-text'  onclick="speakText('inflammation')"><IMG SRC='speak.png'>炎</span></span> from injuries.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>它是一種高頻振動，可以刺激皮膚表面下的組織並促進自然癒合過程。</span></span>
+It's a high <span class='tooltip'>frequency<span class='tooltip-text'  onclick="speakText('frequency')"><IMG SRC='speak.png'>頻率</span></span><span class='tooltip'>vibration<span class='tooltip-text'  onclick="speakText('vibration')"><IMG SRC='speak.png'>振動</span></span> that <span class='tooltip'>stimulates<span class='tooltip-text'  onclick="speakText('stimulates')"><IMG SRC='speak.png'>刺激</span></span> the <span class='tooltip'>tissue<span class='tooltip-text'  onclick="speakText('tissue')"><IMG SRC='speak.png'>組織</span></span><span class='tooltip'>beneath<span class='tooltip-text'  onclick="speakText('beneath')"><IMG SRC='speak.png'>下面</span></span> the skin's <span class='tooltip'>surface<span class='tooltip-text'  onclick="speakText('surface')"><IMG SRC='speak.png'>表面</span></span> and <span class='tooltip'>encourages<span class='tooltip-text'  onclick="speakText('encourages')"><IMG SRC='speak.png'>鼓勵</span></span> a natural healing process.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>雖然，您不必擔心任何副作用。</span></span>
+You don't have to <span class='tooltip'>worry<span class='tooltip-text'  onclick="speakText('worry')"><IMG SRC='speak.png'>擔心</span></span> about any side effect,  though.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>該設備不會損害您的健康，絕對安全</span></span>
+This <span class='tooltip'>device<span class='tooltip-text'  onclick="speakText('device')"><IMG SRC='speak.png'>裝置</span></span> will do no harm to your <span class='tooltip'>health<span class='tooltip-text'  onclick="speakText('health')"><IMG SRC='speak.png'>健康</span></span>,  and it is <span class='tooltip'>absolutely<span class='tooltip-text'  onclick="speakText('absolutely')"><IMG SRC='speak.png'>絕對地</span></span> safe.<br><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>造訪網站為自己訂購頸部按摩器。您將始終感到放鬆和充滿活力！</span></span>
+Check our website to order a <span class='tooltip'>Neck Massageris<span class='tooltip-text'  onclick="speakText('Neck Massageris')"><IMG SRC='speak.png'>頸部按摩器</span></span> for yourself.<br>
+
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>現在您可以忘記慢性疼痛和取消計劃</span></span>
+Now you can forget about <span class='tooltip'>chronic pain<span class='tooltip-text'  onclick="speakText('chronic pain')"><IMG SRC='speak.png'>慢性痛</span></span> and <span class='tooltip'>cancelling<span class='tooltip-text'  onclick="speakText('cancelling')"><IMG SRC='speak.png'>取消</span></span> your plans,  as you will always feel <div class='cir'>20</div> and full of <span class='tooltip'>energy<span class='tooltip-text'  onclick="speakText('energy')"><IMG SRC='speak.png'>活力</span></span> <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>當您開始使用頸部按摩器來照顧身體時</span></span>
+when you start <span class='tooltip'>taking care<span class='tooltip-text'  onclick="speakText('taking care')"><IMG SRC='speak.png'>照顧</span></span> of your body with the <span class='tooltip'>Neck Massageris<span class='tooltip-text'  onclick="speakText('Neck Massageris')"><IMG SRC='speak.png'>頸部按摩器</span></span> ! <br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>說明【C】形容人的感受，故應用「動詞+ed」的寫法，變成relaxed。</span></span>
+20.(A)relax 　(B)relaxing 　(C)<span class='tooltip'>relaxed<span class='tooltip-text'  onclick="speakText('relaxed')"><IMG SRC='speak.png'>輕鬆</span></span> 　(D)to relax <br><hr>
+
+<br><br><br><br><br>
+
+
+

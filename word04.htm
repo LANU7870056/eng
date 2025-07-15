@@ -8,7 +8,18 @@
 <head>
   <meta charset="utf-8" />
 <script>
-   function speakText(text) {
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+<script>
+    function speakText(text) {
       //const text = "Connect to the internet";
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
@@ -20,7 +31,34 @@
       const audio = new Audio(ww);
       audio.play();
     }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
 </script>
+
 <script>
 function gen(ur) {
 
@@ -36,11 +74,31 @@ function getRandomString(length) {
 window.open(ur+'?i='+getRandomString(10),'_self');
 
   }
-</script> 
+</script>
+
 <style>
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -49,47 +107,77 @@ window.open(ur+'?i='+getRandomString(10),'_self');
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 0px solid #ccc; /* 可加上邊框 */
     margin: 0px auto; /* 置中顯示 */
-top:0px;
+    top:0px;
+    left:-1px;
     border-radius: 0px; /* 調整圓角大小 */
   }
 
   .background-box {
     width:100%;
+    align-items: center;   
     background-color: #D2FF78;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
     background-size: cover; /* 圖片填滿區塊 */
     background-position: center; /* 圖片置中 */
     background-repeat: no-repeat; /* 不重複顯示圖片 */
-    border: 0px solid #ccc; /* 可加上邊框 */
-    margin: 20px auto; /* 置中顯示 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
     border-radius: 20px; /* 調整圓角大小 */
   }
 </style>
 
 
 <style>
-a {
-  font-size: 1.0em; 
-}
-
 .cir {
   display: inline-block;
   width: 35px;
-  height: 35px;
-  line-height: 35px;
+  height: 25px;
+  line-height: 25px;
   text-align: center;
-  font-size: 1.0em;
+  font-size: 1.2em;
   font-weight: bold;
-  border: 1px solid #F0F;
+  border: 1px solid #333;
   border-radius: 30%;
   color: #333;
  padding: 0 0.2em; /* 左右各加空白 */
 }
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
   .tooltip3 {
       position: relative;
       display: inline-block;
       cursor: pointer;
-      font-size: 1.3em;
+      font-size: 1.0em;
       color: green; 
     }
  
@@ -98,16 +186,18 @@ a {
       visibility: hidden;
       background-color: #FFFF00;
       color: #FF00FF;
-      text-align: center;
+      text-align: left;
       padding: 3px 8px;
-      border-radius: 6px;
+      border-radius: 2px;
       position: absolute;
       bottom: 100%; /* 👈 顯示在上方 */
-      left: 50%;
+      left:0%;
+      
       transform: translateX(-50%);
       z-index: 1;
       white-space: nowrap;
       opacity: 0;
+      font-size: 0.8em;
       transition: opacity 0.2s;
     }
 
@@ -134,7 +224,7 @@ a {
       position: relative;
       display: inline-block;
       cursor: pointer;
-      font-size: 1.3em;
+      font-size: 1.0em;
       color: blue; 
     }
  
@@ -189,7 +279,7 @@ a {
       background-color: #333;
       color: #fff;
       text-align: center;
-      padding: 5px 8px;
+      padding: 2px 8px;
       border-radius: 6px;
       position: absolute;
       bottom: 100%; /* 👈 顯示在上方 */
@@ -217,51 +307,159 @@ a {
       border-width: 5px;
       border-style: solid;
       border-color: #333 transparent transparent transparent;
-    }  
-
- 
+    }   
   </style>
 </head>
-<body><div class="bk-box">
-<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
-<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>克漏字學習　　回首頁</h3></a></div>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
 
-<h1 style="font-size: 1.5em;"><font-size: 1.5em;><BR>
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
 <div class="background-box" style="font-size: 1.2em;">
-<center>地球海洋</center>
-　Life would be <span class='tooltip'>impossible<span class='tooltip-text' onclick="speakText('impossible')"><IMG SRC='speak.png'>不可能的</span></span> without water. <span class='tooltip'>Fortunately,<span class='tooltip-text' onclick="speakText('Fortunately,')"><IMG SRC='speak.png'>幸運的是</span></span> the earth is a
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
+<center>04地球海洋</center>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>沒有水，生命就不可能存在。幸運的是，地球是一個美麗的藍綠色球體，大部分被水覆蓋。</span></span>
+Life would be <span class='tooltip'>impossible<span class='tooltip-text' onclick="speakText('impossible')"><IMG SRC='speak.png'>不可能的</span></span> without water.<BR><span class='tooltip'>Fortunately, <span class='tooltip-text' onclick="speakText('Fortunately, ')"><IMG SRC='speak.png'>幸運的是</span></span> the earth is a
 beautiful blue-green <span class='tooltip'>sphere<span class='tooltip-text' onclick="speakText('sphere')"><IMG SRC='speak.png'>領域</span></span> <div class="cir">1</div> water for the most part.<BR>
-<IMG SRC='arrow.png'>(A)which covered with　(B)covered by　(C)which is covered　(D)<img src="ans.png"><span class='tooltip'>covered with<span class='tooltip-text' onclick="speakText('covered with')"><IMG SRC='speak.png'>覆蓋著</span></span> <BR><Hr>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：covered with water 被水覆蓋</span></span>
+1.(A)which covered with　(B)covered by　(C)which is covered　(D)<span class='tooltip'>covered with<span class='tooltip-text' onclick="speakText('covered with')"><IMG SRC='speak.png'>覆蓋著</span></span> <BR><Hr>
 
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這些海洋提供氧氣和水分，也影響我們的天氣</span></span>
+These <span class='tooltip'>oceans<span class='tooltip-text' onclick="speakText('oceans')"><IMG SRC='speak.png'>海洋</span></span> <span class='tooltip'>provide<span class='tooltip-text' onclick="speakText('provide')"><IMG SRC='speak.png'>提供</span></span> <span class='tooltip'>oxygen<span class='tooltip-text' onclick="speakText('oxygen')"><IMG SRC='speak.png'>氧</span></span> and <span class='tooltip'>moisture<span class='tooltip-text' onclick="speakText('moisture')"><IMG SRC='speak.png'>水分</span></span> and also <div class="cir">2</div> our weather. <BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：affect our weather.影響我們的天氣</span></span>
+2.(A)efface　(B)effect　(C)<span class='tooltip'>affect<span class='tooltip-text' onclick="speakText('affect')"><IMG SRC='speak.png'>影響</span></span>　(D)have an influence <BR><HR>
 
- These <span class='tooltip'>oceans<span class='tooltip-text' onclick="speakText('oceans')"><IMG SRC='speak.png'>海洋</span></span> <span class='tooltip'>provide<span class='tooltip-text' onclick="speakText('provide')"><IMG SRC='speak.png'>提供</span></span> <span class='tooltip'>oxygen<span class='tooltip-text' onclick="speakText('oxygen')"><IMG SRC='speak.png'>氧</span></span> and <span class='tooltip'>moisture<span class='tooltip-text' onclick="speakText('moisture')"><IMG SRC='speak.png'>水分</span></span> and also <div class="cir">2</div> our weather. <BR>
-<IMG SRC='arrow.png'>(A)efface　(B)effect　(C)<img src="ans.png"><span class='tooltip'>affect<span class='tooltip-text' onclick="speakText('affect')"><IMG SRC='speak.png'>影響</span></span>　(D)have an influence <BR><HR>
-
-We use them for <span class='tooltip'>transportation,<span class='tooltip-text' onclick="speakText('transportation,')"><IMG SRC='speak.png'>運輸</span></span> 
-
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>我們利用它們進行交通、娛樂，它們也是我們生存所需的海洋植物和動物的家園</span></span>
+We use them for <span class='tooltip'>transportation, <span class='tooltip-text' onclick="speakText('transportation, ')"><IMG SRC='speak.png'>運輸、交通</span></span> 
 <span class='tooltip'>recreation<span class='tooltip-text' onclick="speakText('recreation')"><IMG SRC='speak.png'>娛樂</span></span> and they are the homes of <span class='tooltip'>marine<span class='tooltip-text' onclick="speakText('marine')"><IMG SRC='speak.png'>海洋</span></span> plants and
 animals we need for <div class="cir">3</div>.<BR>
-<IMG SRC='arrow.png'>(A)<span class='tooltip'>cultivation<span class='tooltip-text' onclick="speakText('cultivation')"><IMG SRC='speak.png'>文化、教化</span></span>　(B)<img src="ans.png"><span class='tooltip'>survival<span class='tooltip-text' onclick="speakText('survival')"><IMG SRC='speak.png'>生存</span></span>　(C)<span class='tooltip'>agriculture<span class='tooltip-text' onclick="speakText('agriculture')"><IMG SRC='speak.png'>農業</span></span>　(D)<span class='tooltip'>survivors<span class='tooltip-text' onclick="speakText('survivors')"><IMG SRC='speak.png'>倖存者</span></span> <BR><HR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：我們生存 we need for survival</span></span>
+3.(A)<span class='tooltip'>cultivation<span class='tooltip-text' onclick="speakText('cultivation')"><IMG SRC='speak.png'>文化、教化</span></span>　(B)<span class='tooltip'>survival<span class='tooltip-text' onclick="speakText('survival')"><IMG SRC='speak.png'>生存</span></span>　(C)<span class='tooltip'>agriculture<span class='tooltip-text' onclick="speakText('agriculture')"><IMG SRC='speak.png'>農業</span></span>　(D)<span class='tooltip'>survivors<span class='tooltip-text' onclick="speakText('survivors')"><IMG SRC='speak.png'>倖存者</span></span> <BR><HR>
 
- <span class='tooltip'>Oceans<span class='tooltip-text' onclick="speakText('Oceans')"><IMG SRC='speak.png'>海洋</span></span> make the life we <div class="cir">4</div> possible.<BR>
-<IMG SRC='arrow.png'>(A)<img src="ans.png"><span class='tooltip'>are used to<span class='tooltip-text' onclick="speakText('are used to')"><IMG SRC='speak.png'>習慣於</span></span>　(B)<span class='tooltip'>used to<span class='tooltip-text' onclick="speakText('used to')"><IMG SRC='speak.png'>過去時常</span></span>　(C)<span class='tooltip'>are enjoyed<span class='tooltip-text' onclick="speakText('are enjoyed')"><IMG SRC='speak.png'>被喜歡</span></span>　(D)<span class='tooltip'>accustomed to<span class='tooltip-text' onclick="speakText('accustomed to')"><IMG SRC='speak.png'>習慣於</span></span> <BR><HR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>海洋使我們習以為常的生活成為可能。</span></span>
+<span class='tooltip'>Oceans<span class='tooltip-text' onclick="speakText('Oceans')"><IMG SRC='speak.png'>海洋</span></span> make the life we <div class="cir">4</div> possible.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：are used to習慣於</span></span>
+4.(A)<span class='tooltip'>are used to<span class='tooltip-text' onclick="speakText('are used to')"><IMG SRC='speak.png'>習慣於</span></span>　(B)<span class='tooltip'>used to<span class='tooltip-text' onclick="speakText('used to')"><IMG SRC='speak.png'>過去時常</span></span>　(C)<span class='tooltip'>are enjoyed<span class='tooltip-text' onclick="speakText('are enjoyed')"><IMG SRC='speak.png'>被喜歡</span></span>　(D)<span class='tooltip'>accustomed to<span class='tooltip-text' onclick="speakText('accustomed to')"><IMG SRC='speak.png'>習慣於</span></span> <BR><HR>
 
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>由於它們體型如此之大，似乎不可能傷害它們。</span></span>
+Since they are so large,  <div class="cir">5</div> seems <span class='tooltip'>impossible<span class='tooltip-text' onclick="speakText('impossible')"><IMG SRC='speak.png'>不可能</span></span> to hurt them.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：前面體型龐大指的是海洋，後句缺少主詞，用it代表</span></span>
+5.(A)which　(B)that　(C)<span class='tooltip'>it<span class='tooltip-text' onclick="speakText('it')"><IMG SRC='speak.png'>缺主詞，用it</span></span>　(D)what <BR><HR>
 
- Since they are so large, <div class="cir">5</div> seems <span class='tooltip'>impossible<span class='tooltip-text' onclick="speakText('impossible')"><IMG SRC='speak.png'>不可能</span></span> to hurt them.<BR>
-<IMG SRC='arrow.png'>(A)which　(B)that　(C)<img src="ans.png"><span class='tooltip'>it<span class='tooltip-text' onclick="speakText('it')"><IMG SRC='speak.png'>缺主詞，用it</span></span>　(D)what <BR><HR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>世代以來，我們一直向海洋傾倒垃圾，濫用海洋。</span></span>
+For <span class='tooltip'>generations<span class='tooltip-text' onclick="speakText('generations')"><IMG SRC='speak.png'>世代</span></span> we have <span class='tooltip'>misused<span class='tooltip-text' onclick="speakText('misused')"><IMG SRC='speak.png'>誤用</span></span> our oceans by <div class="cir">6</div> <span class='tooltip'>garbage<span class='tooltip-text' onclick="speakText('garbage')"><IMG SRC='speak.png'>垃圾</span></span> in them.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：dumping garbage傾倒垃圾</span></span>
+6.(A)<span class='tooltip'>running<span class='tooltip-text' onclick="speakText('running')"><IMG SRC='speak.png'>跑步</span></span>　(B)<span class='tooltip'>dumping<span class='tooltip-text' onclick="speakText('dumping')"><IMG SRC='speak.png'>傾倒;拋棄</span></span>　(C)<span class='tooltip'>carrying<span class='tooltip-text' onclick="speakText('carrying')"><IMG SRC='speak.png'>攜帶</span></span>　(D)<span class='tooltip'>jumping<span class='tooltip-text' onclick="speakText('jumping')"><IMG SRC='speak.png'>跳躍</span></span> <BR><HR>
 
- For <span class='tooltip'>generations<span class='tooltip-text' onclick="speakText('generations')"><IMG SRC='speak.png'>世代</span></span> we have <span class='tooltip'>misused<span class='tooltip-text' onclick="speakText('misused')"><IMG SRC='speak.png'>誤用</span></span> our oceans by <div class="cir">6</div> <span class='tooltip'>garbage<span class='tooltip-text' onclick="speakText('garbage')"><IMG SRC='speak.png'>垃圾</span></span> in them.<BR>
-<IMG SRC='arrow.png'>(A)<span class='tooltip'>running<span class='tooltip-text' onclick="speakText('running')"><IMG SRC='speak.png'>跑步</span></span>　(B)<img src="ans.png"><span class='tooltip'>dumping<span class='tooltip-text' onclick="speakText('dumping')"><IMG SRC='speak.png'>傾倒;拋棄</span></span>　(C)<span class='tooltip'>carrying<span class='tooltip-text' onclick="speakText('carrying')"><IMG SRC='speak.png'>攜帶</span></span>　(D)<span class='tooltip'>jumping<span class='tooltip-text' onclick="speakText('jumping')"><IMG SRC='speak.png'>跳躍</span></span> <BR><HR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>今天我們體認到，它們雖然巨大的，但卻很脆弱，我們必須好好照顧它們</span></span>
+Today we <span class='tooltip'>realize<span class='tooltip-text' onclick="speakText('realize')"><IMG SRC='speak.png'>意識到</span></span> that although they are <span class='tooltip'>vast<span class='tooltip-text' onclick="speakText('vast')"><IMG SRC='speak.png'>巨大的</span></span>, 
+they are <div class="cir">7</div> and we must take <span class='tooltip'>good care<span class='tooltip-text' onclick="speakText('good care')"><IMG SRC='speak.png'>照顧</span></span> of them. <BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：</span></span>7.(A)<span class='tooltip'>powerful<span class='tooltip-text' onclick="speakText('powerful')"><IMG SRC='speak.png'>有力的</span></span>　(B)<span class='tooltip'>long-lasing<span class='tooltip-text' onclick="speakText('long-lasing')"><IMG SRC='speak.png'>持久的</span></span>　(C)<span class='tooltip'>fragile<span class='tooltip-text' onclick="speakText('fragile')"><IMG SRC='speak.png'>脆弱的</span></span>　(D)<span class='tooltip'>invulnerable<span class='tooltip-text' onclick="speakText('invulnerable')"><IMG SRC='speak.png'>不會受傷害的</span></span> <BR><HR>
 
-
- Today we <span class='tooltip'>realize<span class='tooltip-text' onclick="speakText('realize')"><IMG SRC='speak.png'>意識到</span></span> that although they are <span class='tooltip'>vast<span class='tooltip-text' onclick="speakText('vast')"><IMG SRC='speak.png'>廣闊的</span></span>,
- they are <div class="cir">7</div> and we must take <span class='tooltip'>good care<span class='tooltip-text' onclick="speakText('good care')"><IMG SRC='speak.png'>照顧</span></span> of them. <BR>
-<IMG SRC='arrow.png'>(A)<span class='tooltip'>powerful<span class='tooltip-text' onclick="speakText('powerful')"><IMG SRC='speak.png'>有力的</span></span>　(B)<span class='tooltip'>long-lasing<span class='tooltip-text' onclick="speakText('long-lasing')"><IMG SRC='speak.png'>持久的</span></span>　(C)<img src="ans.png"><span class='tooltip'>fragile<span class='tooltip-text' onclick="speakText('fragile')"><IMG SRC='speak.png'>脆弱的</span></span>　(D)<span class='tooltip'>invulnerable<span class='tooltip-text' onclick="speakText('invulnerable')"><IMG SRC='speak.png'>不會受傷害的</span></span> <BR><HR>
-
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>改變我們對待海洋的方式並不是一項困難的任務</span></span>
 <div class="cir">8</div> the way we <span class='tooltip'>treat<span class='tooltip-text' onclick="speakText('treat')"><IMG SRC='speak.png'>對待</span></span> our oceans is not a <span class='tooltip'>difficult<span class='tooltip-text' onclick="speakText('difficult')"><IMG SRC='speak.png'>難的</span></span> <div class="cir">9</div>;<br>
-<IMG SRC='arrow.png'>8(A)Following　(B)<img src="ans.png"><span class='tooltip'>Changing<span class='tooltip-text' onclick="speakText('Changing')"><IMG SRC='speak.png'>改變</span></span>　(C)<span class='tooltip'>Obeying<span class='tooltip-text' onclick="speakText('Obeying')"><IMG SRC='speak.png'>遵守</span></span>　(D)Learning <BR>
-<IMG SRC='arrow.png'>9(A)<img src="ans.png"><span class='tooltip'>task<span class='tooltip-text' onclick="speakText('task')"><IMG SRC='speak.png'>任務</span></span>　(B)<span class='tooltip'>hobby<span class='tooltip-text' onclick="speakText('hobby')"><IMG SRC='speak.png'>嗜好</span></span>　(C)<span class='tooltip'>amusement<span class='tooltip-text' onclick="speakText('amusement')"><IMG SRC='speak.png'>娛樂</span></span>　(D)work <BR><hr>
-<div class="cir">10</div> everyone can help to clean them and keep them clean.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：要想改變我們對待海洋的方法並非難事，改變為句首，使用動名詞 Ving</span></span>
+8.(A)Following　(B)<span class='tooltip'>Changing<span class='tooltip-text' onclick="speakText('Changing')"><IMG SRC='speak.png'>改變</span></span>　(C)<span class='tooltip'>Obeying<span class='tooltip-text' onclick="speakText('Obeying')"><IMG SRC='speak.png'>遵守</span></span>　(D)Learning <BR>
 
-<IMG SRC='arrow.png'>10(A)<img src="ans.png"><span class='tooltip'>in fact<span class='tooltip-text' onclick="speakText('in fact')"><IMG SRC='speak.png'>事實上</span></span>　(B)<span class='tooltip'>nevertheless<span class='tooltip-text' onclick="speakText('nevertheless')"><IMG SRC='speak.png'>然而</span></span>　(D)<span class='tooltip'>in contrast<span class='tooltip-text' onclick="speakText('in contrast')"><IMG SRC='speak.png'>然而</span></span>　(C)<span class='tooltip'>however<span class='tooltip-text' onclick="speakText('however')"><IMG SRC='speak.png'>相對地</span></span>  <BR><HR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：困難任務→difficult task。task和work當名詞用時，其意義相近。</span></span>
+9.(A)<span class='tooltip'>task<span class='tooltip-text' onclick="speakText('task')"><IMG SRC='speak.png'>任務</span></span>　(B)<span class='tooltip'>hobby<span class='tooltip-text' onclick="speakText('hobby')"><IMG SRC='speak.png'>嗜好</span></span>　(C)<span class='tooltip'>amusement<span class='tooltip-text' onclick="speakText('amusement')"><IMG SRC='speak.png'>娛樂</span></span>　(D)work <BR><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>事情上，每個人都可以幫助清理它們並保持它們的清潔</span></span>
+<div class="cir">10</div>,  everyone can help to clean them and keep them clean.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：「每個人都可以幫忙淨化海洋」，和前句的意義是連貫的，因此空格中的答案要選(A)。</span></span>
+10.(A)<span class='tooltip'>in fact<span class='tooltip-text' onclick="speakText('in fact')"><IMG SRC='speak.png'>事實上</span></span>　(B)<span class='tooltip'>nevertheless<span class='tooltip-text' onclick="speakText('nevertheless')"><IMG SRC='speak.png'>然而</span></span>　(D)<span class='tooltip'>in contrast<span class='tooltip-text' onclick="speakText('in contrast')"><IMG SRC='speak.png'>然而</span></span>　(C)<span class='tooltip'>however<span class='tooltip-text' onclick="speakText('however')"><IMG SRC='speak.png'>相對地</span></span>  <BR><HR>
+<BR><BR><BR><BR>

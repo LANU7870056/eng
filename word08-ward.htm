@@ -1,0 +1,515 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+    width:100%;
+    position: fixed;
+    z-index: 3000; /* 確保在其他元素之上 */
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+
+
+
+<center>08賽跑買狗</center>
+<div class='co2'><img src='len.png' class='clickable-image' onclick='showTextBox(this)'><div id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>
+Cody and his little sister April <span class='te2'>decide they want a dog</span>.
+</div>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>科迪和他的妹妹艾普莉決定要一隻狗。</span></span>
+<span class='pp'>Cody</span> and his little sister <span class='pp'>April</span> <span class='tooltip'>decide<span class='tooltip-text'  onclick="speakText('decide')"><IMG SRC='speak.png'>決定</span></span> they want a dog.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他們前往當地的寵物商店參觀。</span></span>
+They <span class='tooltip'>head down<span class='tooltip-text'  onclick="speakText('head down')"><IMG SRC='speak.png'>全力以赴、集中精神、低頭</span></span> to the local pet store and have a <span class='tooltip'>look around<span class='tooltip-text'  onclick="speakText('look around')"><IMG SRC='speak.png'>參觀、環顧四周</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這是一家很小的寵物店，裡面的動物不多。</span></span>
+It is a very small pet store that doesn't have many <span class='tooltip'>animals<span class='tooltip-text'  onclick="speakText('animals')"><IMG SRC='speak.png'>動物</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這家商店的老闆是一位和藹可親的老人，名叫史密斯先生。</span></span>
+The owner of the shop is a nice old man named <span class='pp'>Mr.Smith.</span> <br>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他走過去和科迪和艾普麗爾打招呼。</span></span>
+He <span class='tooltip'>walks over<span class='tooltip-text'  onclick="speakText('walks over')"><IMG SRC='speak.png'>走過去</span></span> and <span class='tooltip'>greets<span class='tooltip-text'  onclick="speakText('greets')"><IMG SRC='speak.png'>打招呼</span></span> <span class='pp'>Cody</span> and <span class='pp'>April</span>.<br>
+
+"How can I help you ?" he asks.<br>
+
+"We would like to buy a dog",  <span class='pp'>April</span> <span class='tooltip'>responds<span class='tooltip-text'  onclick="speakText('responds')"><IMG SRC='speak.png'>回應</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>啊，我們不是大型寵物店</span></span>
+"Ah,  well,  we are not a big pet shop, " <span class='pp'>Mr.Smith.</span> tells her.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>所以我們只有兩隻狗可供選擇</span></span>
+"So we only have two dogs to <span class='tooltip'>choose<span class='tooltip-text'  onclick="speakText('choose')"><IMG SRC='speak.png'>選擇</span></span> <div class='cir'>16 </div>".<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>說明【D】choose from "從中選擇"</span></span>16.(A)at　(B)of　(C)by　(D)from <br><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他們請史密斯先生帶他們看狗</span></span> 
+They ask <span class='pp'>Mr.Smith.</span> to show them the dogs.<br>
+
+<div class='co2'><img src='len.png' class='clickable-image' onclick='showTextBox(this)'><div id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>
+Mr.Smith. <span class='te2'>leads them to the back of store</span> where <span class='te2'>the two dogs are</span>.
+</div>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>史密斯先生帶領他們來到商店後面，那裡有兩隻狗。 </span></span> 
+<span class='pp'>Mr.Smith.</span> leads them to the back of store where the two dogs are.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>其中一隻是一隻體型很大的鬥牛犬，名字叫「巴斯特」</span></span> 
+One of them is a very big <span class='tooltip'>bulldog<span class='tooltip-text'  onclick="speakText('bulldog')"><IMG SRC='speak.png'>鬥牛犬</span></span> named <span class='pp'>Buster</span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>另一隻則是一隻名叫「茶杯」的體型非常小的吉娃娃。 </span></span> 
+<div class='cir'>17 </div> is a very tiny <span class='tooltip'>chihuahua<span class='tooltip-text'  onclick="speakText('chihuahua')"><IMG SRC='speak.png'>吉娃娃</span></span> named <span class='pp'>Teacup</span>.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>說明【C】other和others分別代替「未限定範圍」的單數與複數名詞；而the other跟the other則分別代替「限定範圍」的單數與複數名詞。
+而吉娃娃只有一隻，故應用the other。</span></span>17.(A)Other　(B)Others　(C)The other　(D)The others <br><hr>
+ 
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>艾普麗爾想要「茶杯」，但科迪想要「巴斯特」，而不是他們走到外面討論</span></span>
+<span class='pp'>April</span> wants <span class='pp'>Teacup</span>. But <span class='pp'>Cody</span> wants <span class='pp'>Buster</span> <div class='cir'>18 </div> They <span class='tooltip'>walk outside<span class='tooltip-text'  onclick="speakText('walk outside')"><IMG SRC='speak.png'>走到外面</span></span> to <span class='tooltip'>discuss<span class='tooltip-text'  onclick="speakText('discuss')"><IMG SRC='speak.png'>討論</span></span>.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>說明【B】副詞instead有「反而」的意思，放在句首或句尾<BR>
+I don't want pizza. I want chocolate instead. = I don't want pizza. Instead， I want chocolate. （我不想要披薩，但我想要巧克力）<BR>
+instead of或rather than表達「而不是…」的意思，則後面必須接N/Ving，
+</span></span>18.(A)better　(B)instead　(C)rather　(D)rather than<br><HR>
+
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>但他們仍未就養狗事情，達成一致。</span></span>
+Yet they still can't agree on a dog.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>艾普莉爾建議他們回家。</span></span>
+<span class='pp'>April</span> suggests they <span class='tooltip'>race home<span class='tooltip-text'  onclick="speakText('race home')"><IMG SRC='speak.png'>比賽回家</span></span> for it.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>比賽的獲勝者選擇狗</span></span>
+The winner of the race chooses the dog.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>科迪同意了，然後告訴艾普麗她的鞋帶鬆了。</span></span>
+<span class='pp'>Cody</span> agrees,  then tells <span class='pp'>April</span> her <span class='tooltip'>shoelace<span class='tooltip-text'  onclick="speakText('shoelace')"><IMG SRC='speak.png'>鞋帶</span></span> is <span class='tooltip'>untied<span class='tooltip-text'  onclick="speakText('untied')"><IMG SRC='speak.png'>解開</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>當April 低頭時，他跑開了並搶佔了先機。</span></span>
+When <span class='pp'>April</span> looks down,  he <span class='tooltip'>runs off<span class='tooltip-text'  onclick="speakText('runs off')"><IMG SRC='speak.png'>跑開</span></span> and gets a <span class='tooltip'>head start<span class='tooltip-text'  onclick="speakText('head start')"><IMG SRC='speak.png'>取得先機</span></span>.<br><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>科迪拼命地奔跑。他真的想要那隻鬥牛犬。</span></span>
+<span class='pp'>Cody</span> runs as hard as he can. He really wants that <span class='tooltip'>bulldog<span class='tooltip-text'  onclick="speakText('bulldog')"><IMG SRC='speak.png'>鬥牛犬</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他回頭一看，艾普莉已經落後太遠，他甚至看不到她</span></span>
+He looks back.<span class='pp'>April</span> is so <span class='tooltip'>far<span class='tooltip-text'  onclick="speakText('far')"><IMG SRC='speak.png'>遠的</span></span> <span class='tooltip'>behind<span class='tooltip-text'  onclick="speakText('behind')"><IMG SRC='speak.png'>在後面</span></span> that he can't even see her.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>科迪終於回家了。他很累，但很開心。</span></span>
+<span class='pp'>Cody</span> <span class='tooltip'>finally<span class='tooltip-text'  onclick="speakText('finally')"><IMG SRC='speak.png'>最後</span></span> gets home. He <div class='cir'>19 </div> yet <span class='tooltip'>joyful<span class='tooltip-text'  onclick="speakText('joyful')"><IMG SRC='speak.png'>快樂</span></span>.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>說明【B】I am tired.→我很累  This job is tiring.→工作讓人累(Ving是讓人累)。<BR>
+本句是在描述Cody感到累，故應用(B)tired.
+</span></span>19.(A)tire　(B)tired　(C)tiring　(D)to tire <br><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他知道自己是贏家。艾普莉比科迪晚幾分鐘到達，並向他表示祝賀。</span></span>
+He knows he is the <span class='tooltip'>winner<span class='tooltip-text'  onclick="speakText('winner')"><IMG SRC='speak.png'>優勝者</span></span>.<span class='pp'>April</span> arrives a few minutes after <span class='pp'>Cody</span> and <span class='tooltip'>congratulates<span class='tooltip-text'  onclick="speakText('congratulates')"><IMG SRC='speak.png'>恭喜</span></span> him.<br>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他們回到寵物店購買鬥牛犬巴斯特。</span></span>
+They return to the pet store to <span class='tooltip'>purchase<span class='tooltip-text'  onclick="speakText('purchase')"><IMG SRC='speak.png'>購買</span></span> <span class='pp'>Buster</span> the bulldog.<br> <hr>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>然而，當他們到達時，他們只看到了茶杯吉娃娃。他們問史密斯先生巴斯特在哪裡。</span></span>
+<div class='cir'>20 </div> when they <span class='tooltip'>arrive<span class='tooltip-text'  onclick="speakText('arrive')"><IMG SRC='speak.png'>到達</span></span> they only see <span class='pp'>Teacup</span> the chihuahus. They ask <span class='pp'>Mr.Smith.</span> where <span class='pp'>Buster</span> is.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>說明【D】</span></span>20.(A)So　(B)Since　(C)Because　(D)However <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>史密斯先生解釋說，艾普麗爾和科迪離開幾分鐘後，兩個男孩走進來買下了這隻鬥牛犬。</span></span>
+<span class='pp'>Mr.Smith.</span> explains that a few minutes after <span class='pp'>April</span> and <span class='pp'>Cody</span> leave,  two boys walk in and buy the bulldog.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>科迪看著艾普莉，她露出一絲微笑。科迪嘆了口氣。他轉身面向史密斯先生</span></span>
+<span class='pp'>Cody</span> looks at <span class='pp'>April</span>,  and she holds <span class='tooltip'>hack<span class='tooltip-text'  onclick="speakText('hack')"><IMG SRC='speak.png'>駭客</span></span> a smile.<span class='pp'>Cody</span> <span class='tooltip'>sighs<span class='tooltip-text'  onclick="speakText('sighs')"><IMG SRC='speak.png'>嘆息</span></span>. He turns back to <span class='pp'>Mr.Smith.</span>.<br>
+
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>「有時候你贏了比賽，卻拿不到獎品！」科迪苦笑著說。“我們想要那隻吉娃娃，謝謝。</span></span>
+"Sometimes you win the <span class='tooltip'>race<span class='tooltip-text'  onclick="speakText('race')"><IMG SRC='speak.png'>種族</span></span>,  but not the <span class='tooltip'>prize<span class='tooltip-text'  onclick="speakText('prize')"><IMG SRC='speak.png'>獎</span></span>!" <span class='pp'>Cody</span> <span class='tooltip'>smiles sadly<span class='tooltip-text'  onclick="speakText('smiles sadly')"><IMG SRC='speak.png'>苦笑</span></span>. "We'll take the <span class='tooltip'>chihuahua<span class='tooltip-text'  onclick="speakText('chihuahua')"><IMG SRC='speak.png'>吉娃娃</span></span>,  please."<br> <hr>
+
+
+ 
+
+
+

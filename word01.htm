@@ -7,6 +7,16 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
 
 <script>
     function speakText(text) {
@@ -21,8 +31,35 @@
       const audio = new Audio(ww);
       audio.play();
     }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
 </script>
-  <script>
+
+<script>
 function gen(ur) {
 
 function getRandomString(length) {
@@ -35,14 +72,32 @@ function getRandomString(length) {
 }
 
 window.open(ur+'?i='+getRandomString(10),'_self');
-  }
-</script>  
 
+  }
+</script>
 
 <style>
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
 .bk-box {
     width:100%;
-    position: absolute;
+   position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -51,42 +106,77 @@ window.open(ur+'?i='+getRandomString(10),'_self');
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 0px solid #ccc; /* 可加上邊框 */
     margin: 0px auto; /* 置中顯示 */
-top:0px;
+    top:0px;
+    left:-1px;
     border-radius: 0px; /* 調整圓角大小 */
   }
 
   .background-box {
     width:100%;
+    align-items: center;   
     background-color: #D2FF78;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
     background-size: cover; /* 圖片填滿區塊 */
     background-position: center; /* 圖片置中 */
     background-repeat: no-repeat; /* 不重複顯示圖片 */
-    border: 0px solid #ccc; /* 可加上邊框 */
-    margin: 20px auto; /* 置中顯示 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
     border-radius: 20px; /* 調整圓角大小 */
   }
 </style>
+
 
 <style>
 .cir {
   display: inline-block;
   width: 35px;
-  height: 35px;
-  line-height: 35px;
+  height: 25px;
+  line-height: 25px;
   text-align: center;
-  font-size: 1.0em;
+  font-size: 1.2em;
   font-weight: bold;
-  border: 1px solid #F0F;
+  border: 1px solid #333;
   border-radius: 30%;
   color: #333;
  padding: 0 0.2em; /* 左右各加空白 */
 }
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
   .tooltip3 {
       position: relative;
       display: inline-block;
       cursor: pointer;
-      font-size: 1.2em;
+      font-size: 1.0em;
       color: green; 
     }
  
@@ -95,16 +185,18 @@ top:0px;
       visibility: hidden;
       background-color: #FFFF00;
       color: #FF00FF;
-      text-align: center;
+      text-align: left;
       padding: 3px 8px;
-      border-radius: 6px;
+      border-radius: 2px;
       position: absolute;
       bottom: 100%; /* 👈 顯示在上方 */
-      left: 50%;
+      left:0%;
+      
       transform: translateX(-50%);
       z-index: 1;
       white-space: nowrap;
       opacity: 0;
+      font-size: 0.8em;
       transition: opacity 0.2s;
     }
 
@@ -131,7 +223,7 @@ top:0px;
       position: relative;
       display: inline-block;
       cursor: pointer;
-      font-size: 1.2em;
+      font-size: 1.0em;
       color: blue; 
     }
  
@@ -176,7 +268,7 @@ top:0px;
       position: relative;
       display: inline-block;
       cursor: pointer;
-      font-size: 1.2em;
+      font-size: 1.0em;
       color: red; 
     }
  
@@ -214,43 +306,146 @@ top:0px;
       border-width: 5px;
       border-style: solid;
       border-color: #333 transparent transparent transparent;
-    }  
-
- 
+    }   
   </style>
 </head>
-<body><div class="bk-box">
-<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
-<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>克漏字學習　回首頁</h3></a></div>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
 
 <body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
 <BR>
 <div class="background-box" style="font-size: 1.2em;">
-<center>以物易物</center>
-　People first <span class='tooltip'>started<span class='tooltip-text' onclick="speakText('started')"><IMG SRC='speak.png'>開始</span></span> using money in order to <span class='tooltip'>trade<span class='tooltip-text' onclick="speakText('trade')"><IMG SRC='speak.png'>交易</span></span> .
- A <span class='tooltip'>farmer<span class='tooltip-text' onclick="speakText('farmer')"><IMG SRC='speak.png'>農民</span></span> who had <span class='tooltip'>cattle<span class='tooltip-text' onclick="speakText('cattle')"><IMG SRC='speak.png'>牛</span></span> might want to use <div class="cir">1</div> to <span class='tooltip'>preserve<span class='tooltip-text' onclick="speakText('preserve')"><IMG SRC='speak.png'>儲存</span></span> <span class='tooltip'>meat<span class='tooltip-text' onclick="speakText('meat')"><IMG SRC='speak.png'>肉</span></span> or <span class='tooltip'>cloth<span class='tooltip-text' onclick="speakText('cloth')"><IMG SRC='speak.png'>布</span></span> to make <span class='tooltip'>clothing<span class='tooltip-text' onclick="speakText('clothing')"><IMG SRC='speak.png'>N衣服</span></span>.<BR>
-<IMG SRC='arrow.png'>(A)<span class='tooltip'>salad<span class='tooltip-text' onclick="speakText('salad')"><IMG SRC='speak.png'>沙拉</span></span>　(B)<span class='tooltip'>sugar<span class='tooltip-text' onclick="speakText('sugar')"><IMG SRC='speak.png'>糖</span></span>　(C)<span class='tooltip'>soap<span class='tooltip-text' onclick="speakText('soap')"><IMG SRC='speak.png'>肥皂</span></span>　(D)<img src="ans.png"><span class='tooltip'>salt<span class='tooltip-text' onclick="speakText('salt')"><IMG SRC='speak.png'>鹽</span></span> <BR><HR>
-
-　For this <span class='tooltip'>farmer<span class='tooltip-text' onclick="speakText('farmer')"><IMG SRC='speak.png'>農夫</span></span>, a <span class='tooltip'>cow<span class='tooltip-text' onclick="speakText('cow')"><IMG SRC='speak.png'>乳牛</span></span> became a <span class='tooltip'>medium<span class='tooltip-text' onclick="speakText('medium')"><IMG SRC='speak.png'>交換媒介</span></span> of <div class="cir">2</div>
-" -a way of getting things that the <span class='tooltip'>farmer<span class='tooltip-text' onclick="speakText('farmer')"><IMG SRC='speak.png'>農夫</span></span> did not make or grow.<BR>
-<IMG SRC='arrow.png'>(A)life　(B)<span class='tooltip'>grain<span class='tooltip-text' onclick="speakText('grain')"><IMG SRC='speak.png'>穀物</span></span>　(C)<img src="ans.png"><span class='tooltip'>exchange<span class='tooltip-text' onclick="speakText('exchange')"><IMG SRC='speak.png'>交換</span></span>　(D)<span class='tooltip'>communication<span class='tooltip-text' onclick="speakText('communication')"><IMG SRC='speak.png'>傳達</span></span> <BR><HR>
 
 
- <span class='tooltip'>cattle<span class='tooltip-text' onclick="speakText('cattle')"><IMG SRC='speak.png'>牛</span></span> thus became a form of money. <div class="cir">3</div>,<span class='tooltip'>whatever<span class='tooltip-text' onclick="speakText('whatever')"><IMG SRC='speak.png'>任何</span></span> people agreed to <span class='tooltip'>trade<span class='tooltip-text' onclick="speakText('trade')"><IMG SRC='speak.png'>交易</span></span> became the <span class='tooltip'>earliest<span class='tooltip-text' onclick="speakText('earliest')"><IMG SRC='speak.png'>最早</span></span> kinds of money.<BR>
-<IMG SRC='arrow.png'>(A)<img src="ans.png"><span class='tooltip'>In fact<span class='tooltip-text' onclick="speakText('In fact')"><IMG SRC='speak.png'>事實上</span></span>　(B)<span class='tooltip'>In contrast<span class='tooltip-text' onclick="speakText('In contrast')"><IMG SRC='speak.png'>對照</span></span>　(C)In total　(D)<span class='tooltip'>In memory<span class='tooltip-text' onclick="speakText('In memory')"><IMG SRC='speak.png'>記憶中</span></span> <BR><HR>
 
-　By the time of the <span class='tooltip'>Middle Ages<span class='tooltip-text' onclick="speakText('Middle Ages')"><IMG SRC='speak.png'>中世紀</span></span> in Europe(about A.D. 800-1100), gold <div class="cir">4</div> a popular <span class='tooltip'>medium<span class='tooltip-text' onclick="speakText('medium')"><IMG SRC='speak.png'>媒介</span></span> for trade.<BR>
-<IMG SRC='arrow.png'>(A)<span class='tooltip'>become<span class='tooltip-text' onclick="speakText('become')"><IMG SRC='speak.png'>※現在式</span></span>　(B)<span class='tooltip'>becoming<span class='tooltip-text' onclick="speakText('becoming')"><IMG SRC='speak.png'>※現在分詞</span></span>　(C)<img src="ans.png"><span class='tooltip'>had become<span class='tooltip-text' onclick="speakText('had become')"><IMG SRC='speak.png'>※過去完成式</span></span>　(D)<span class='tooltip'>has become<span class='tooltip-text' onclick="speakText('has become')"><IMG SRC='speak.png'>※現在完成式</span></span> <BR><HR>
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
 
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
 
-　But gold was <span class='tooltip'>heavy<span class='tooltip-text' onclick="speakText('heavy')"><IMG SRC='speak.png'>重的</span></span> and <span class='tooltip'>difficult<span class='tooltip-text' onclick="speakText('difficult')"><IMG SRC='speak.png'>困難</span></span> to <span class='tooltip'>carry<span class='tooltip-text' onclick="speakText('carry')"><IMG SRC='speak.png'>攜帶</span></span>, and it was very <span class='tooltip'>dangerous<span class='tooltip-text' onclick="speakText('dangerous')"><IMG SRC='speak.png'>危險的</span></span> to travel with large <div class="cir">5</div> of gold in Europe at that time.<BR>
-<IMG SRC='arrow.png'>(A)<span class='tooltip'>mediums<span class='tooltip-text' onclick="speakText('mediums')"><IMG SRC='speak.png'>媒介</span></span>　(B)<img src="ans.png"><span class='tooltip'>amounts<span class='tooltip-text' onclick="speakText('amounts')"><IMG SRC='speak.png'>數量</span></span>　(C)<span class='tooltip'>examples<span class='tooltip-text' onclick="speakText('examples')"><IMG SRC='speak.png'>例子</span></span>　(D)<span class='tooltip'>contexts<span class='tooltip-text' onclick="speakText('contexts')"><IMG SRC='speak.png'>上下文、前後關係、文章脈絡</span></span> <BR><HR>
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
  
+}
 
-　<div class="cir">6</div> <span class='tooltip'>merchants<span class='tooltip-text' onclick="speakText('merchants')"><IMG SRC='speak.png'>商人</span></span> and <span class='tooltip'>goldsmiths<span class='tooltip-text' onclick="speakText('goldsmiths')"><IMG SRC='speak.png'>金匠</span></span> began <span class='tooltip'>issuing<span class='tooltip-text' onclick="speakText('issuing')"><IMG SRC='speak.png'>發行</span></span> notes <span class='tooltip'>promising<span class='tooltip-text' onclick="speakText('promising')"><IMG SRC='speak.png'>有前途</span></span> to pay gold to the person who <span class='tooltip'>carried<span class='tooltip-text' onclick="speakText('carried')"><IMG SRC='speak.png'>攜帶</span></span> the note. 
- These  "<span class='tooltip'>promissory notes<span class='tooltip-text' onclick="speakText('promissory notes')"><IMG SRC='speak.png'>承諾(本票)</span></span>" were the <div class="cir">7</div> of <span class='tooltip'>paper money<span class='tooltip-text' onclick="speakText('paper money')"><IMG SRC='speak.png'>紙鈔</span></span> in Europe.<BR>
-<IMG SRC='arrow.png'>(A)<img src="ans.png"><span class='tooltip'>So<span class='tooltip-text' onclick="speakText('So')"><IMG SRC='speak.png'>所以</span></span>　(B)Because　(C)Although　(D)<span class='tooltip'>However<span class='tooltip-text' onclick="speakText('However')"><IMG SRC='speak.png'>然而</span></span> <BR>
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 999;
+  transition: transform 0.3s ease;
 
 
-<IMG SRC='arrow.png'>(A)<img src="ans.png"><span class='tooltip'>beginning<span class='tooltip-text' onclick="speakText('beginning')"><IMG SRC='speak.png'>起源</span></span>　(B)<span class='tooltip'>engineer<span class='tooltip-text' onclick="speakText('engineer')"><IMG SRC='speak.png'>工程師</span></span>　(C)truth　(D)<span class='tooltip'>calculator<span class='tooltip-text' onclick="speakText('calculator')"><IMG SRC='speak.png'>計算機</span></span> <BR><HR>
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
+<center>01以物易物</center>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>人們最初使用貨幣是為了進行交易。擁有牲畜的農民可能會想用鹽來保存肉類，或用布料來製作衣服。</span></span>
+People first <span class='tooltip'>started<span class='tooltip-text' onclick="speakText('started')"><IMG SRC='speak.png'>開始</span></span> using money in order to <span class='tooltip'>trade<span class='tooltip-text' onclick="speakText('trade')"><IMG SRC='speak.png'>交易</span></span>.<BR>
+A <span class='tooltip'>farmer<span class='tooltip-text' onclick="speakText('farmer')"><IMG SRC='speak.png'>農民</span></span> who had <span class='tooltip'>cattle<span class='tooltip-text' onclick="speakText('cattle')"><IMG SRC='speak.png'>牛</span></span> might want to use <div class="cir">1</div> to <span class='tooltip'>preserve<span class='tooltip-text' onclick="speakText('preserve')"><IMG SRC='speak.png'>儲存</span></span> <span class='tooltip'>meat<span class='tooltip-text' onclick="speakText('meat')"><IMG SRC='speak.png'>肉</span></span> or <span class='tooltip'>cloth<span class='tooltip-text' onclick="speakText('cloth')"><IMG SRC='speak.png'>布</span></span> to make <span class='tooltip'>clothing<span class='tooltip-text' onclick="speakText('clothing')"><IMG SRC='speak.png'>N衣服</span></span>.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：preserve meat(保存肉類)」, 依常理判斷要使用鹽巴來保存肉類</span></span>
+(A)<span class='tooltip'>salad<span class='tooltip-text' onclick="speakText('salad')"><IMG SRC='speak.png'>沙拉</span></span>　(B)<span class='tooltip'>sugar<span class='tooltip-text' onclick="speakText('sugar')"><IMG SRC='speak.png'>糖</span></span>　(C)<span class='tooltip'>soap<span class='tooltip-text' onclick="speakText('soap')"><IMG SRC='speak.png'>肥皂</span></span>　(D)<span class='tooltip'>salt<span class='tooltip-text' onclick="speakText('salt')"><IMG SRC='speak.png'>鹽</span></span> <BR><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>對這位農民來說，一頭牛成為了一種交換媒介……一種獲取農民沒有生產或種植的東西的方式</span></span>
+For this <span class='tooltip'>farmer<span class='tooltip-text' onclick="speakText('farmer')"><IMG SRC='speak.png'>農夫</span></span>,  a <span class='tooltip'>cow<span class='tooltip-text' onclick="speakText('cow')"><IMG SRC='speak.png'>乳牛</span></span> became a "<span class='tooltip'>medium<span class='tooltip-text' onclick="speakText('medium')"><IMG SRC='speak.png'>交換媒介</span></span> of <div class="cir">2</div>"
+-a way of getting things that the <span class='tooltip'>farmer<span class='tooltip-text' onclick="speakText('farmer')"><IMG SRC='speak.png'>農夫</span></span> did not make or grow.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：medium of exchange→交換媒介</span></span>
+(A)life　(B)<span class='tooltip'>grain<span class='tooltip-text' onclick="speakText('grain')"><IMG SRC='speak.png'>穀物</span></span>　(C)<span class='tooltip'>exchange<span class='tooltip-text' onclick="speakText('exchange')"><IMG SRC='speak.png'>交換</span></span>　(D)<span class='tooltip'>communication<span class='tooltip-text' onclick="speakText('communication')"><IMG SRC='speak.png'>傳達</span></span> <BR><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>因此，牲畜成為了一種貨幣。事實上，人們同意交易的任何東西都成為了最早的貨幣。</span></span>
+<span class='tooltip'>cattle<span class='tooltip-text' onclick="speakText('cattle')"><IMG SRC='speak.png'>牛</span></span> thus became a form of money. <div class="cir">3</div>, <span class='tooltip'>whatever<span class='tooltip-text' onclick="speakText('whatever')"><IMG SRC='speak.png'>任何</span></span> people agreed to <span class='tooltip'>trade<span class='tooltip-text' onclick="speakText('trade')"><IMG SRC='speak.png'>交易</span></span> became the <span class='tooltip'>earliest<span class='tooltip-text' onclick="speakText('earliest')"><IMG SRC='speak.png'>最早</span></span> kinds of money.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：「事實的陳述」，因此要選(A)來強調語氣→事實上</span></span>
+(A)<span class='tooltip'>In fact<span class='tooltip-text' onclick="speakText('In fact')"><IMG SRC='speak.png'>事實上</span></span>　(B)<span class='tooltip'>In contrast<span class='tooltip-text' onclick="speakText('In contrast')"><IMG SRC='speak.png'>對照</span></span>　(C)In total　(D)<span class='tooltip'>In memory<span class='tooltip-text' onclick="speakText('In memory')"><IMG SRC='speak.png'>記憶中</span></span> <BR><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>到了歐洲中世紀（約西元 800-1100 年），黃金已成為一種流行的貿易媒介。</span></span>
+By the time of the <span class='tooltip'>Middle Ages<span class='tooltip-text' onclick="speakText('Middle Ages')"><IMG SRC='speak.png'>中世紀</span></span> in Europe(about A.D. 800-1100),  gold <div class="cir">4</div> a popular <span class='tooltip'>medium<span class='tooltip-text' onclick="speakText('medium')"><IMG SRC='speak.png'>媒介</span></span> for trade.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：歐洲中古時期，所以動詞應該用選項(C)的過去完成式had + pp</span></span>
+(A)<span class='tooltip'>become<span class='tooltip-text' onclick="speakText('become')"><IMG SRC='speak.png'>※現在式</span></span>　(B)<span class='tooltip'>becoming<span class='tooltip-text' onclick="speakText('becoming')"><IMG SRC='speak.png'>※現在分詞</span></span>　(C)<span class='tooltip'>had become<span class='tooltip-text' onclick="speakText('had become')"><IMG SRC='speak.png'>※過去完成式</span></span>　(D)<span class='tooltip'>has become<span class='tooltip-text' onclick="speakText('has become')"><IMG SRC='speak.png'>※現在完成式</span></span> <BR><HR>
+
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>但黃金很重，難以攜帶，在當時的歐洲攜帶大量黃金旅行非常危險。</span></span>
+But gold was <span class='tooltip'>heavy<span class='tooltip-text' onclick="speakText('heavy')"><IMG SRC='speak.png'>重的</span></span> and <span class='tooltip'>difficult<span class='tooltip-text' onclick="speakText('difficult')"><IMG SRC='speak.png'>困難</span></span> to <span class='tooltip'>carry<span class='tooltip-text' onclick="speakText('carry')"><IMG SRC='speak.png'>攜帶</span></span>,  and it was very <span class='tooltip'>dangerous<span class='tooltip-text' onclick="speakText('dangerous')"><IMG SRC='speak.png'>危險的</span></span> to travel with large <div class="cir">5</div> of gold in Europe at that time.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：黃金太重攜帶不易，而且當時在歐洲帶著大量黃金去旅行是很危險的，可知空格中應是以「數量」有關的字，因此要選(B)。</span></span>
+(A)<span class='tooltip'>mediums<span class='tooltip-text' onclick="speakText('mediums')"><IMG SRC='speak.png'>媒介</span></span>　(B)<span class='tooltip'>amounts<span class='tooltip-text' onclick="speakText('amounts')"><IMG SRC='speak.png'>數量</span></span>　(C)<span class='tooltip'>examples<span class='tooltip-text' onclick="speakText('examples')"><IMG SRC='speak.png'>例子</span></span>　(D)<span class='tooltip'>contexts<span class='tooltip-text' onclick="speakText('contexts')"><IMG SRC='speak.png'>上下文、前後關係、文章脈絡</span></span> <BR><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>因此商人和金匠開始發行票據，並承諾向持有票據的人支付黃金</span></span>
+<div class="cir">6</div> <span class='tooltip'>merchants<span class='tooltip-text' onclick="speakText('merchants')"><IMG SRC='speak.png'>商人</span></span> and <span class='tooltip'>goldsmiths<span class='tooltip-text' onclick="speakText('goldsmiths')"><IMG SRC='speak.png'>金匠</span></span> began <span class='tooltip'>issuing<span class='tooltip-text' onclick="speakText('issuing')"><IMG SRC='speak.png'>發行</span></span> notes <span class='tooltip'>promising<span class='tooltip-text' onclick="speakText('promising')"><IMG SRC='speak.png'>承諾</span></span> to pay gold to the person who <span class='tooltip'>carried<span class='tooltip-text' onclick="speakText('carried')"><IMG SRC='speak.png'>攜帶</span></span> the note. <br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：前句陳述的是黃金攜帶不方便，後句說的是鈔票的發行，所以空格中要使用「So(所以)」來連接</span></span>
+(A)<span class='tooltip'>So<span class='tooltip-text' onclick="speakText('So')"><IMG SRC='speak.png'>所以</span></span>　(B)Because　(C)Although　(D)<span class='tooltip'>However<span class='tooltip-text' onclick="speakText('However')"><IMG SRC='speak.png'>然而</span></span> <BR><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這些「本票」是歐洲紙幣的開端。</span></span>
+These "<span class='tooltip'>promissory notes<span class='tooltip-text' onclick="speakText('promissory notes')"><IMG SRC='speak.png'>承諾(本票)</span></span>" were the <div class="cir">7</div> of <span class='tooltip'>paper money<span class='tooltip-text' onclick="speakText('paper money')"><IMG SRC='speak.png'>紙鈔</span></span> in Europe.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：這些「期票」就是歐洲紙鈔的起源。)」，可知鈔票是由此開始的，因此空格中的答案選(A)。</span></span>
+(A)<span class='tooltip'>beginning<span class='tooltip-text' onclick="speakText('beginning')"><IMG SRC='speak.png'>起源</span></span>　(B)<span class='tooltip'>engineer<span class='tooltip-text' onclick="speakText('engineer')"><IMG SRC='speak.png'>工程師</span></span>　(C)truth　(D)<span class='tooltip'>calculator<span class='tooltip-text' onclick="speakText('calculator')"><IMG SRC='speak.png'>計算機</span></span> <BR><HR>
+<BR><BR><BR><BR><BR><BR>

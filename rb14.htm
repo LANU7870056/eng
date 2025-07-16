@@ -7,6 +7,16 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
 
 <script>
     function speakText(text) {
@@ -85,8 +95,10 @@ body {
 }
 
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -149,7 +161,7 @@ font-size: 0.8em;
   padding: 2px 0;
   word-break: break-word;
   white-space: normal;
-  z-index: 1000;
+  z-index: 2000;
   visibility: hidden;
   opacity: 0;
   text-align: left;      
@@ -300,7 +312,7 @@ font-size: 0.9em;
 </head>
 <div class="bk-box">
 <div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
-<a href="javascript: void(0)" onclick="gen('index3.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
 
 <body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
@@ -310,6 +322,7 @@ font-size: 0.9em;
 
 
 <div class="scroll-buttons">
+  <div class="b2"><a href="index2.htm"><img src="home.png"></a></div>
   <button onclick="scrollToTop()">↑</button>
   <button onclick="scrollToBottom()">↓</button>
 </div>
@@ -323,6 +336,13 @@ font-size: 0.9em;
   flex-direction: column;
   gap: 10px;
   z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
 }
 
 .scroll-buttons button {
@@ -362,7 +382,7 @@ font-size: 0.9em;
   padding: 5px;
   font-size: 30px; /* 這裡設定文字大小為 30px */
   border-radius: 10px;
-  z-index: 999;
+  z-index: 1999;
   transition: transform 0.3s ease;
 
 
@@ -386,16 +406,9 @@ font-size: 0.9em;
 }
 </style>
 
-<script>
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 
-function scrollToBottom() {
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-}
 
-</script>
+
 
 
 
@@ -406,11 +419,11 @@ function scrollToBottom() {
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>全球有 56% 的小學生未達最低閱讀能力標準。</span></span>
 There are 56% of <span class='tooltip'>elementary-aged<span class='tooltip-text'  onclick="speakText('elementary-aged')"><IMG SRC='speak.png'>小學階段</span></span> children <span class='tooltip'>around<span class='tooltip-text'  onclick="speakText('around')"><IMG SRC='speak.png'>大約</span></span> the world who don't <span class='tooltip'>meet minimum<span class='tooltip-text'  onclick="speakText('meet minimum')"><IMG SRC='speak.png'>達到最低</span></span> reading <span class='tooltip'>proficiency<span class='tooltip-text'  onclick="speakText('proficiency')"><IMG SRC='speak.png'>熟練程度</span></span> <span class='tooltip'>standards<span class='tooltip-text'  onclick="speakText('standards')"><IMG SRC='speak.png'>標準</span></span> .<br>
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>對他們來說，未來似乎毫無希望。</span></span>
-For them ,  the <span class='tooltip'>future<span class='tooltip-text'  onclick="speakText('future')"><IMG SRC='speak.png'>未來</span></span> seems <span class='tooltip'>hopeless<span class='tooltip-text'  onclick="speakText('hopeless')"><IMG SRC='speak.png'>絕望</span></span> .<br>
+For them ,   the <span class='tooltip'>future<span class='tooltip-text'  onclick="speakText('future')"><IMG SRC='speak.png'>未來</span></span> seems <span class='tooltip'>hopeless<span class='tooltip-text'  onclick="speakText('hopeless')"><IMG SRC='speak.png'>絕望</span></span> .<br>
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>攜手合作，我們能做的不僅是讓孩子走進教室——我們還可以為他們創造更美好的未來</span></span>
-Together ,  we can do more than just get kids in the classroom — we can <span class='tooltip'>empower<span class='tooltip-text'  onclick="speakText('empower')"><IMG SRC='speak.png'>授權</span></span> them for a <span class='tooltip'>brighter<span class='tooltip-text'  onclick="speakText('brighter')"><IMG SRC='speak.png'>更明亮</span></span> <span class='tooltip'>future<span class='tooltip-text'  onclick="speakText('future')"><IMG SRC='speak.png'>未來</span></span> .<br>
+Together ,   we can do more than just get kids in the classroom — we can <span class='tooltip'>empower<span class='tooltip-text'  onclick="speakText('empower')"><IMG SRC='speak.png'>授權</span></span> them for a <span class='tooltip'>brighter<span class='tooltip-text'  onclick="speakText('brighter')"><IMG SRC='speak.png'>更明亮</span></span> <span class='tooltip'>future<span class='tooltip-text'  onclick="speakText('future')"><IMG SRC='speak.png'>未來</span></span> .<br>
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>有了讀寫能力和基本的生活技能，他們長大成人後可以賺取更高的工資，教育自己的孩子，並在社區中擁有發言權</span></span>
-<span class='tooltip'>Equipped with literacy<span class='tooltip-text'  onclick="speakText('Equipped with literacy')"><IMG SRC='speak.png'><span class='tooltip-text'>具備讀寫能力</span></span></span></span> and <span class='tooltip'>essential<span class='tooltip-text'  onclick="speakText('essential')"><IMG SRC='speak.png'>基本的</span></span> life skills ,  they can grow into <span class='tooltip'>adults<span class='tooltip-text'  onclick="speakText('adults')"><IMG SRC='speak.png'>成年人</span></span> who earn higher wages ,  educate their own children ,  and have a <span class='tooltip'>voice<span class='tooltip-text'  onclick="speakText('voice')"><IMG SRC='speak.png'>嗓音、發言</span></span> in their <span class='tooltip'>community<span class='tooltip-text'  onclick="speakText('community')"><IMG SRC='speak.png'>社群</span></span> .<br><HR>
+<span class='tooltip'>Equipped with literacy<span class='tooltip-text'  onclick="speakText('Equipped with literacy')"><IMG SRC='speak.png'><span class='tooltip-text'  onclick="speakText('Equipped with literacy<span class='tooltip-text'  onclick="speakText('Equipped with literacy')"><IMG SRC='speak.png'>')"><IMG SRC='speak.png'>具備讀寫能力</span></span></span></span> and <span class='tooltip'>essential<span class='tooltip-text'  onclick="speakText('essential')"><IMG SRC='speak.png'>基本的</span></span> life skills ,   they can grow into <span class='tooltip'>adults<span class='tooltip-text'  onclick="speakText('adults')"><IMG SRC='speak.png'>成年人</span></span> who earn higher wages ,   educate their own children ,   and have a <span class='tooltip'>voice<span class='tooltip-text'  onclick="speakText('voice')"><IMG SRC='speak.png'>嗓音、發言</span></span> in their <span class='tooltip'>community<span class='tooltip-text'  onclick="speakText('community')"><IMG SRC='speak.png'>社群</span></span> .<br><HR>
 
 <div class='co2'><img src='len.png' class='clickable-image' onclick='showTextBox(this)'><div id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>
 <span class='te2'>You'll help kids break the cycle of poverty</span> by providing resources like:
@@ -446,10 +459,10 @@ Monthly giving is the most <span class='tooltip'>effective<span class='tooltip-t
 Your <span class='tooltip'>donations<span class='tooltip-text'  onclick="speakText('donations')"><IMG SRC='speak.png'>捐款</span></span> will be <span class='tooltip'>delivering<span class='tooltip-text'  onclick="speakText('delivering')"><IMG SRC='speak.png'>交付</span></span> the right <span class='tooltip'>solution<span class='tooltip-text'  onclick="speakText('solution')"><IMG SRC='speak.png'>解決方案</span></span> at just the right time.<br>
 
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>當您的捐贈改變生活時，您將透過我們雜誌的季度更新看到您慷慨的力量。</span></span>
-And while your gifts are changing lives ,  you'll get to see the power of your <span class='tooltip'>generosity<span class='tooltip-text'  onclick="speakText('generosity')"><IMG SRC='speak.png'>慷慨</span></span> through <span class='tooltip'>quarterly<span class='tooltip-text'  onclick="speakText('quarterly')"><IMG SRC='speak.png'>季刊</span></span> <span class='tooltip'>updates<span class='tooltip-text'  onclick="speakText('updates')"><IMG SRC='speak.png'>更新</span></span> on our <span class='tooltip'>magazines<span class='tooltip-text'  onclick="speakText('magazines')"><IMG SRC='speak.png'>雜誌</span></span> .<br>
+And while your gifts are changing lives ,   you'll get to see the power of your <span class='tooltip'>generosity<span class='tooltip-text'  onclick="speakText('generosity')"><IMG SRC='speak.png'>慷慨</span></span> through <span class='tooltip'>quarterly<span class='tooltip-text'  onclick="speakText('quarterly')"><IMG SRC='speak.png'>季刊</span></span> <span class='tooltip'>updates<span class='tooltip-text'  onclick="speakText('updates')"><IMG SRC='speak.png'>更新</span></span> on our <span class='tooltip'>magazines<span class='tooltip-text'  onclick="speakText('magazines')"><IMG SRC='speak.png'>雜誌</span></span> .<br>
 
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>此外，您所支持的孩子會在每年年底給您一封信，與您分享他們的生活和進步</span></span>
-Also ,  the kids you're <span class='tooltip'>supporting<span class='tooltip-text'  onclick="speakText('supporting')"><IMG SRC='speak.png'>支援、支持</span></span> will send you a letter sharing their lives and <span class='tooltip'>progression<span class='tooltip-text'  onclick="speakText('progression')"><IMG SRC='speak.png'>進展</span></span> with you at the end of each year.<br>
+Also ,   the kids you're <span class='tooltip'>supporting<span class='tooltip-text'  onclick="speakText('supporting')"><IMG SRC='speak.png'>支援、支持</span></span> will send you a letter sharing their lives and <span class='tooltip'>progression<span class='tooltip-text'  onclick="speakText('progression')"><IMG SRC='speak.png'>進展</span></span> with you at the end of each year.<br>
 
 <div class="co2"><div id="te" class="te">
 Join our <span class="te2">donation plans</span> right now and <span class="te2">make a change to their lives</span>!

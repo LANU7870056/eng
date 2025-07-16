@@ -7,6 +7,16 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
 
 <script>
     function speakText(text) {
@@ -85,8 +95,10 @@ body {
 }
 
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -149,7 +161,7 @@ font-size: 0.8em;
   padding: 2px 0;
   word-break: break-word;
   white-space: normal;
-  z-index: 1000;
+  z-index: 2000;
   visibility: hidden;
   opacity: 0;
   text-align: left;      
@@ -300,7 +312,7 @@ font-size: 0.9em;
 </head>
 <div class="bk-box">
 <div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
-<a href="javascript: void(0)" onclick="gen('index3.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
 
 <body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
@@ -310,6 +322,7 @@ font-size: 0.9em;
 
 
 <div class="scroll-buttons">
+  <div class="b2"><a href="index2.htm"><img src="home.png"></a></div>
   <button onclick="scrollToTop()">↑</button>
   <button onclick="scrollToBottom()">↓</button>
 </div>
@@ -323,6 +336,13 @@ font-size: 0.9em;
   flex-direction: column;
   gap: 10px;
   z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
 }
 
 .scroll-buttons button {
@@ -362,7 +382,7 @@ font-size: 0.9em;
   padding: 5px;
   font-size: 30px; /* 這裡設定文字大小為 30px */
   border-radius: 10px;
-  z-index: 999;
+  z-index: 1999;
   transition: transform 0.3s ease;
 
 
@@ -386,16 +406,9 @@ font-size: 0.9em;
 }
 </style>
 
-<script>
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 
-function scrollToBottom() {
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-}
 
-</script>
+
 
 
 
@@ -407,34 +420,34 @@ It's hard to <span class='tooltip'>describe<span class='tooltip-text'  onclick="
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>你可以描述你所看到的。你可以向他們展示圖片，但描繪這種感覺卻比較困難。</span></span>
 You can <span class='tooltip'>describe<span class='tooltip-text'  onclick="speakText('describe')"><IMG SRC='speak.png'>描述</span></span> what you see. You can show pictures to them. But <span class='tooltip'>portraying<span class='tooltip-text'  onclick="speakText('portraying')"><IMG SRC='speak.png'>描繪</span></span> that feeling is <span class='tooltip'>harder<span class='tooltip-text'  onclick="speakText('harder')"><IMG SRC='speak.png'>更難</span></span> .<BR>
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>或許，這就像是第一次看到大海一樣，需要你親身去體驗。</span></span>
-Perhaps it's one of those things ,  like seeing the <span class='tooltip'>ocean<span class='tooltip-text'  onclick="speakText('ocean')"><IMG SRC='speak.png'>海洋</span></span> for the first time ,  which you need to <span class='tooltip'>experience<span class='tooltip-text'  onclick="speakText('experience')"><IMG SRC='speak.png'>經驗</span></span> for yourself.<BR> <hr>
+Perhaps it's one of those things ,   like seeing the <span class='tooltip'>ocean<span class='tooltip-text'  onclick="speakText('ocean')"><IMG SRC='speak.png'>海洋</span></span> for the first time ,   which you need to <span class='tooltip'>experience<span class='tooltip-text'  onclick="speakText('experience')"><IMG SRC='speak.png'>經驗</span></span> for yourself.<BR> <hr>
 
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>曾經接近沙漠；蒙古的戈壁、印度的塔爾沙漠、埃及的西部沙漠。</span></span>
-I've <span class='tooltip'>approached<span class='tooltip-text'  onclick="speakText('approached')"><IMG SRC='speak.png'>接近</span></span> <span class='tooltip'>deserts<span class='tooltip-text'  onclick="speakText('deserts')"><IMG SRC='speak.png'>沙漠</span></span> before; <span class='tooltip'>Mongolia's Gobi<span class='tooltip-text'  onclick="speakText('Mongolia's Gobi')"><IMG SRC='speak.png'>蒙古戈壁</span></span> ,  <span class='tooltip'>India's Thar<span class='tooltip-text'  onclick="speakText('India's Thar')"><IMG SRC='speak.png'>印度的塔爾</span></span> ,  <span class='tooltip'>Egypt's Western Desert<span class='tooltip-text'  onclick="speakText('Egypt's Western Desert')"><IMG SRC='speak.png'>埃及西部沙漠</span></span>.<BR>
+I've <span class='tooltip'>approached<span class='tooltip-text'  onclick="speakText('approached')"><IMG SRC='speak.png'>接近</span></span> <span class='tooltip'>deserts<span class='tooltip-text'  onclick="speakText('deserts')"><IMG SRC='speak.png'>沙漠</span></span> before; <span class='tooltip'>Mongolia's Gobi<span class='tooltip-text'  onclick="speakText('Mongolia's Gobi')"><IMG SRC='speak.png'>蒙古戈壁</span></span> ,   <span class='tooltip'>India's Thar<span class='tooltip-text'  onclick="speakText('India's Thar')"><IMG SRC='speak.png'>印度的塔爾</span></span> ,   <span class='tooltip'>Egypt's Western Desert<span class='tooltip-text'  onclick="speakText('Egypt's Western Desert')"><IMG SRC='speak.png'>埃及西部沙漠</span></span>.<BR>
 
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>一切都顯得荒涼而雄偉。然而，撒哈拉卻給人一種不同的感覺。</span></span>
-All were <span class='tooltip'>desolate<span class='tooltip-text'  onclick="speakText('desolate')"><IMG SRC='speak.png'>荒涼</span></span> and <span class='tooltip'>imposing<span class='tooltip-text'  onclick="speakText('imposing')"><IMG SRC='speak.png'>氣勢宏偉</span></span>. <span class='tooltip'>Yet still<span class='tooltip-text'  onclick="speakText('Yet still')"><IMG SRC='speak.png'>然而</span></span>,  the Sahara felt <span class='tooltip'>different<span class='tooltip-text'  onclick="speakText('different')"><IMG SRC='speak.png'>不同的</span></span>.<BR>
+All were <span class='tooltip'>desolate<span class='tooltip-text'  onclick="speakText('desolate')"><IMG SRC='speak.png'>荒涼</span></span> and <span class='tooltip'>imposing<span class='tooltip-text'  onclick="speakText('imposing')"><IMG SRC='speak.png'>氣勢宏偉</span></span>. <span class='tooltip'>Yet still<span class='tooltip-text'  onclick="speakText('Yet still')"><IMG SRC='speak.png'>然而</span></span>,   the Sahara felt <span class='tooltip'>different<span class='tooltip-text'  onclick="speakText('different')"><IMG SRC='speak.png'>不同的</span></span>.<BR>
 
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>我們第一次看到沙漠是在米德勒特，一座位於撒哈拉沙漠和阿特拉斯山脈之間的小鎮。</span></span>
-Our <span class='tooltip'>first sight<span class='tooltip-text'  onclick="speakText('first sight')"><IMG SRC='speak.png'>第一視野</span></span> of the <span class='tooltip'>desert<span class='tooltip-text'  onclick="speakText('desert')"><IMG SRC='speak.png'>沙漠</span></span> was in <pp><span class='pp'>Midelt</span></span>,  a town <span class='tooltip'>situated<span class='tooltip-text'  onclick="speakText('situated')"><IMG SRC='speak.png'>位於</span></span> between the <span class='tooltip'>Sahara Desert<span class='tooltip-text'  onclick="speakText('Sahara Desert')"><IMG SRC='speak.png'>撒哈拉沙漠</span></span> and the <span class='tooltip'>Atlas Mountains<span class='tooltip-text'  onclick="speakText('Atlas Mountains')"><IMG SRC='speak.png'>阿特拉斯山脈</span></span>.<BR><hr>
+Our <span class='tooltip'>first sight<span class='tooltip-text'  onclick="speakText('first sight')"><IMG SRC='speak.png'>第一視野</span></span> of the <span class='tooltip'>desert<span class='tooltip-text'  onclick="speakText('desert')"><IMG SRC='speak.png'>沙漠</span></span> was in <span class='pp'><span class='pp'>Midelt</span></span>,   a town <span class='tooltip'>situated<span class='tooltip-text'  onclick="speakText('situated')"><IMG SRC='speak.png'>位於</span></span> between the <span class='tooltip'>Sahara Desert<span class='tooltip-text'  onclick="speakText('Sahara Desert')"><IMG SRC='speak.png'>撒哈拉沙漠</span></span> and the <span class='tooltip'>Atlas Mountains<span class='tooltip-text'  onclick="speakText('Atlas Mountains')"><IMG SRC='speak.png'>阿特拉斯山脈</span></span>.<BR><hr>
 
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>下午，我們穿過一個當地村莊。孩子們在街上奔跑，試戴我們的太陽眼鏡並拍照，帶給他們特別的樂趣</span></span>
-We took an afternoon <span class='tooltip'>walk through<span class='tooltip-text'  onclick="speakText('walk through')"><IMG SRC='speak.png'>走過</span></span> a local <span class='tooltip'>village<span class='tooltip-text'  onclick="speakText('village')"><IMG SRC='speak.png'>村莊</span></span>. Children <span class='tooltip'>ran through<span class='tooltip-text'  onclick="speakText('ran through')"><IMG SRC='speak.png'>跑過</span></span> the streets ,  finding a <span class='tooltip'>particular<span class='tooltip-text'  onclick="speakText('particular')"><IMG SRC='speak.png'>特別的</span></span> joy in trying on our <span class='tooltip'>sunglasses<span class='tooltip-text'  onclick="speakText('sunglasses')"><IMG SRC='speak.png'>太陽眼鏡</span></span> and having their picture taken with them on.<BR> 
+We took an afternoon <span class='tooltip'>walk through<span class='tooltip-text'  onclick="speakText('walk through')"><IMG SRC='speak.png'>走過</span></span> a local <span class='tooltip'>village<span class='tooltip-text'  onclick="speakText('village')"><IMG SRC='speak.png'>村莊</span></span>. Children <span class='tooltip'>ran through<span class='tooltip-text'  onclick="speakText('ran through')"><IMG SRC='speak.png'>跑過</span></span> the streets ,   finding a <span class='tooltip'>particular<span class='tooltip-text'  onclick="speakText('particular')"><IMG SRC='speak.png'>特別的</span></span> joy in trying on our <span class='tooltip'>sunglasses<span class='tooltip-text'  onclick="speakText('sunglasses')"><IMG SRC='speak.png'>太陽眼鏡</span></span> and having their picture taken with them on.<BR> 
 
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>騎駱駝是進入沙丘的主要交通工具。我們的駱駝主人是一位眼神狂野而溫暖的男人</span></span>
 <span class='tooltip'>Camelback<span class='tooltip-text'  onclick="speakText('Camelback')"><IMG SRC='speak.png'>騎在駱駝背</span></span> is the main mode of <span class='tooltip'>transport<span class='tooltip-text'  onclick="speakText('transport')"><IMG SRC='speak.png'>運輸</span></span> to enter the <span class='tooltip'>dunes<span class='tooltip-text'  onclick="speakText('dunes')"><IMG SRC='speak.png'>沙丘</span></span>. Our <span class='tooltip'>camel master<span class='tooltip-text'  onclick="speakText('camel master')"><IMG SRC='speak.png'>駱駝的主人</span></span> is a man with <span class='tooltip'>wild and warm eyes<span class='tooltip-text'  onclick="speakText('wild and warm eyes')"><IMG SRC='speak.png'>眼神狂野溫暖</span></span>.<BR>
 
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>[wears into戴…形狀]。就像我們在旅途中遇到的其他遊牧民族一樣，他自豪地戴著一條柏爾羅盤形狀的銀項鍊。</span></span>
-Like every other <span class='tooltip'>nomad<span class='tooltip-text'  onclick="speakText('nomad')"><IMG SRC='speak.png'>游牧者</span></span> we've met on the <span class='tooltip'>journey<span class='tooltip-text'  onclick="speakText('journey')"><IMG SRC='speak.png'>旅行</span></span> ,  he <span class='tooltip'>proudly<span class='tooltip-text'  onclick="speakText('proudly')"><IMG SRC='speak.png'>自豪地</span></span> wears a <span class='tooltip'>silver<span class='tooltip-text'  onclick="speakText('silver')"><IMG SRC='speak.png'>銀</span></span> <span class='tooltip'>necklace<span class='tooltip-text'  onclick="speakText('necklace')"><IMG SRC='speak.png'>項鍊</span></span> <span class='tooltip'>shaped<span class='tooltip-text'  onclick="speakText('shaped')"><IMG SRC='speak.png'>形狀</span></span> into a <span class='tooltip'>Berber<span class='tooltip-text'  onclick="speakText('Berber')"><IMG SRC='speak.png'>柏爾人</span></span> <span class='tooltip'>compass<span class='tooltip-text'  onclick="speakText('compass')"><IMG SRC='speak.png'>羅盤</span></span>.<BR><hr>
+Like every other <span class='tooltip'>nomad<span class='tooltip-text'  onclick="speakText('nomad')"><IMG SRC='speak.png'>游牧者</span></span> we've met on the <span class='tooltip'>journey<span class='tooltip-text'  onclick="speakText('journey')"><IMG SRC='speak.png'>旅行</span></span> ,   he <span class='tooltip'>proudly<span class='tooltip-text'  onclick="speakText('proudly')"><IMG SRC='speak.png'>自豪地</span></span> wears a <span class='tooltip'>silver<span class='tooltip-text'  onclick="speakText('silver')"><IMG SRC='speak.png'>銀</span></span> <span class='tooltip'>necklace<span class='tooltip-text'  onclick="speakText('necklace')"><IMG SRC='speak.png'>項鍊</span></span> <span class='tooltip'>shaped<span class='tooltip-text'  onclick="speakText('shaped')"><IMG SRC='speak.png'>形狀</span></span> into a <span class='tooltip'>Berber<span class='tooltip-text'  onclick="speakText('Berber')"><IMG SRC='speak.png'>柏爾人</span></span> <span class='tooltip'>compass<span class='tooltip-text'  onclick="speakText('compass')"><IMG SRC='speak.png'>羅盤</span></span>.<BR><hr>
 
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>我們的導遊穆斯塔法解釋說，沙漠居民總是根據太陽、星星和月亮來了解時間和方向。</span></span>
-Our guide <pp><span class='pp'>Mustafa</span></span> <span class='tooltip'>explains<span class='tooltip-text'  onclick="speakText('explains')"><IMG SRC='speak.png'>解釋</span></span> that people of the desert always know the time and <span class='tooltip'>direction<span class='tooltip-text'  onclick="speakText('direction')"><IMG SRC='speak.png'>方向</span></span> based on the sun ,  stars and moon.<BR>
+Our guide <span class='pp'><span class='pp'>Mustafa</span></span> <span class='tooltip'>explains<span class='tooltip-text'  onclick="speakText('explains')"><IMG SRC='speak.png'>解釋</span></span> that people of the desert always know the time and <span class='tooltip'>direction<span class='tooltip-text'  onclick="speakText('direction')"><IMG SRC='speak.png'>方向</span></span> based on the sun ,   stars and moon.<BR>
 
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>當我拿出我的 iPhone 看看太陽將如何落下時，這些人的本質是透過天空來了解地球。</span></span>
-While I <span class='tooltip'>whip<span class='tooltip-text'  onclick="speakText('whip')"><IMG SRC='speak.png'>拿出</span></span> my iPhone out to check which way the sun will set ,  the nature of these people is to understand the earth based on the sky.<BR>
+While I <span class='tooltip'>whip<span class='tooltip-text'  onclick="speakText('whip')"><IMG SRC='speak.png'>拿出</span></span> my iPhone out to check which way the sun will set ,   the nature of these people is to understand the earth based on the sky.<BR>
 
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>當駱駝將蹄子伸入柔軟的沙灘時，撒哈拉沙漠的風景便展現在我們眼前。</span></span>
-As the <span class='tooltip'>camels<span class='tooltip-text'  onclick="speakText('camels')"><IMG SRC='speak.png'>駱駝</span></span> dip their <span class='tooltip'>hooves<span class='tooltip-text'  onclick="speakText('hooves')"><IMG SRC='speak.png'>蹄子</span></span> into the soft sand ,  the <span class='tooltip'>landscape<span class='tooltip-text'  onclick="speakText('landscape')"><IMG SRC='speak.png'>景觀</span></span> of the Sahara opens up to us.<BR><hr>
+As the <span class='tooltip'>camels<span class='tooltip-text'  onclick="speakText('camels')"><IMG SRC='speak.png'>駱駝</span></span> dip their <span class='tooltip'>hooves<span class='tooltip-text'  onclick="speakText('hooves')"><IMG SRC='speak.png'>蹄子</span></span> into the soft sand ,   the <span class='tooltip'>landscape<span class='tooltip-text'  onclick="speakText('landscape')"><IMG SRC='speak.png'>景觀</span></span> of the Sahara opens up to us.<BR><hr>
 
 <div class='co2'><img src='len.png' class='clickable-image' onclick='showTextBox(this)'><div id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>
 The <span class='te2'>setting sun creates long shadows</span> and <span class='te2'>sand appeared different shades of golden yellow</span>.
@@ -443,16 +456,16 @@ The <span class='te2'>setting sun creates long shadows</span> and <span class='t
 The <span class='tooltip'>setting sun<span class='tooltip-text'  onclick="speakText('setting sun')"><IMG SRC='speak.png'>夕陽</span></span> <span class='tooltip'>creates<span class='tooltip-text'  onclick="speakText('creates')"><IMG SRC='speak.png'>創建</span></span> long <span class='tooltip'>shadows<span class='tooltip-text'  onclick="speakText('shadows')"><IMG SRC='speak.png'>影子</span></span> and sand <span class='tooltip'>appeared<span class='tooltip-text'  onclick="speakText('appeared')"><IMG SRC='speak.png'>出現了</span></span> different <span class='tooltip'>shades<span class='tooltip-text'  onclick="speakText('shades')"><IMG SRC='speak.png'>色調</span></span> of golden yellow.<BR>
 
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>傍晚時分，我們到達了營地。晚餐後，我們在繁星點點的營火旁唱著歌</span></span>
-We reached our camp in the <span class='tooltip'>evening<span class='tooltip-text'  onclick="speakText('evening')"><IMG SRC='speak.png'>晚上</span></span>. After <span class='tooltip'>supper<span class='tooltip-text'  onclick="speakText('supper')"><IMG SRC='speak.png'>晚餐</span></span> ,  music was sung around a <span class='tooltip'>campfire<span class='tooltip-text'  onclick="speakText('campfire')"><IMG SRC='speak.png'>營火</span></span> under <span class='tooltip'>blankets of stars<span class='tooltip-text'  onclick="speakText('blankets of stars')"><IMG SRC='speak.png'>星空覆蓋</span></span>.<BR>
+We reached our camp in the <span class='tooltip'>evening<span class='tooltip-text'  onclick="speakText('evening')"><IMG SRC='speak.png'>晚上</span></span>. After <span class='tooltip'>supper<span class='tooltip-text'  onclick="speakText('supper')"><IMG SRC='speak.png'>晚餐</span></span> ,   music was sung around a <span class='tooltip'>campfire<span class='tooltip-text'  onclick="speakText('campfire')"><IMG SRC='speak.png'>營火</span></span> under <span class='tooltip'>blankets of stars<span class='tooltip-text'  onclick="speakText('blankets of stars')"><IMG SRC='speak.png'>星空覆蓋</span></span>.<BR>
 
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>聽著鼓聲，聽著頭頂的銀河，我進入了沉睡</span></span>
 I fell into <span class='tooltip'>deep<span class='tooltip-text'  onclick="speakText('deep')"><IMG SRC='speak.png'>深的</span></span> sleep with the sound of <span class='tooltip'>drumming<span class='tooltip-text'  onclick="speakText('drumming')"><IMG SRC='speak.png'>擊鼓</span></span> and the <span class='tooltip'>Milky Way<span class='tooltip-text'  onclick="speakText('Milky Way')"><IMG SRC='speak.png'>銀河系</span></span> displayed above my head.<BR> <hr>
 
 <div class='co2'><img src='len.png' class='clickable-image' onclick='showTextBox(this)'><div id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>
-While <span class='te2'>a short trip might show vast landscapes and huge skies</span>,  it's the people that <span class='te2'>call this place home which are the only ones</span> who <span class='te2'>can truly understand the Sahara</span>.
+While <span class='te2'>a short trip might show vast landscapes and huge skies</span>,   it's the people that <span class='te2'>call this place home which are the only ones</span> who <span class='te2'>can truly understand the Sahara</span>.
 </div>
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>儘管短暫旅行可能會看到廣闊的風景和無垠的天空，但只有把這個地方稱為家的人才能真正了解撒哈拉</span></span>
-While a short trip might show <span class='tooltip'>vast<span class='tooltip-text'  onclick="speakText('vast')"><IMG SRC='speak.png'>廣闊的</span></span> <span class='tooltip'>landscapes<span class='tooltip-text'  onclick="speakText('landscapes')"><IMG SRC='speak.png'>風景</span></span> and <span class='tooltip'>huge skies<span class='tooltip-text'  onclick="speakText('huge skies')"><IMG SRC='speak.png'>無垠的天空</span></span>,  it's the people that call this place home which are the only ones who can truly <span class='tooltip'>understand<span class='tooltip-text'  onclick="speakText('understand')"><IMG SRC='speak.png'>理解</span></span> the <span class='tooltip'>Sahara<span class='tooltip-text'  onclick="speakText('Sahara')"><IMG SRC='speak.png'>撒哈拉</span></span>.<BR>
+While a short trip might show <span class='tooltip'>vast<span class='tooltip-text'  onclick="speakText('vast')"><IMG SRC='speak.png'>廣闊的</span></span> <span class='tooltip'>landscapes<span class='tooltip-text'  onclick="speakText('landscapes')"><IMG SRC='speak.png'>風景</span></span> and <span class='tooltip'>huge skies<span class='tooltip-text'  onclick="speakText('huge skies')"><IMG SRC='speak.png'>無垠的天空</span></span>,   it's the people that call this place home which are the only ones who can truly <span class='tooltip'>understand<span class='tooltip-text'  onclick="speakText('understand')"><IMG SRC='speak.png'>理解</span></span> the <span class='tooltip'>Sahara<span class='tooltip-text'  onclick="speakText('Sahara')"><IMG SRC='speak.png'>撒哈拉</span></span>.<BR>
 
 <span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>知道銀河系中每顆星星的意義的遊牧民族。</span></span>
 The <span class='tooltip'>nomads<span class='tooltip-text'  onclick="speakText('nomads')"><IMG SRC='speak.png'>游牧民族</span></span> who know what cach of the stars in the Milky Way mean.<BR>

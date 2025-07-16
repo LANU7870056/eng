@@ -7,9 +7,19 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
 
 <script>
-  function speakText(text) {
+    function speakText(text) {
       //const text = "Connect to the internet";
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
@@ -21,6 +31,32 @@
       const audio = new Audio(ww);
       audio.play();
     }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
 </script>
 
 <script>
@@ -41,9 +77,28 @@ window.open(ur+'?i='+getRandomString(10),'_self');
 </script>
 
 <style>
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -52,19 +107,21 @@ window.open(ur+'?i='+getRandomString(10),'_self');
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 0px solid #ccc; /* 可加上邊框 */
     margin: 0px auto; /* 置中顯示 */
-top:0px;
+    top:0px;
+    left:-1px;
     border-radius: 0px; /* 調整圓角大小 */
   }
 
   .background-box {
-    width:99%;
+    width:100%;
+    align-items: center;   
     background-color: #D2FF78;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
     background-size: cover; /* 圖片填滿區塊 */
     background-position: center; /* 圖片置中 */
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 1px solid #ccc; /* 可加上邊框 */
-    margin: 20px auto; /* 置中顯示 */
+    margin: 20px 1px auto; /* 置中顯示 */
     border-radius: 20px; /* 調整圓角大小 */
   }
 </style>
@@ -84,6 +141,38 @@ top:0px;
   color: #333;
  padding: 0 0.2em; /* 左右各加空白 */
 }
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
   .tooltip3 {
       position: relative;
       display: inline-block;
@@ -97,12 +186,12 @@ top:0px;
       visibility: hidden;
       background-color: #FFFF00;
       color: #FF00FF;
-      text-align: center;
+      text-align: left;
       padding: 3px 8px;
       border-radius: 2px;
       position: absolute;
       bottom: 100%; /* 👈 顯示在上方 */
-      right:0%;
+      left:0%;
       
       transform: translateX(-50%);
       z-index: 1;
@@ -222,35 +311,163 @@ top:0px;
   </style>
 </head>
 <div class="bk-box">
-<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
-<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　回首頁</h3></a></div>
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
 
 <body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
 <BR>
 <div class="background-box" style="font-size: 1.2em;">
 
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index2.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
 <center>12網路戰爭</center>
-　<span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>  <span class='tooltip'>warfare<span class='tooltip-text'  onclick="speakText('warfare')"><IMG SRC='speak.png'>戰爭</span></span>  is not a <span class='tooltip'>futuristic<span class='tooltip-text'  onclick="speakText('futuristic')"><IMG SRC='speak.png'>未來主義</span></span>  <span class='tooltip'>concept<span class='tooltip-text'  onclick="speakText('concept')"><IMG SRC='speak.png'>概念</span></span>  anymore.<BR>
-　In today's <span class='tooltip'>increasingly<span class='tooltip-text'  onclick="speakText('increasingly')"><IMG SRC='speak.png'>日益</span></span>  <span class='tooltip'>digital<span class='tooltip-text'  onclick="speakText('digital')"><IMG SRC='speak.png'>數位的</span></span>  world , it <span class='tooltip'>poses<span class='tooltip-text'  onclick="speakText('poses')"><IMG SRC='speak.png'>姿態  </span></span>  a real and <span class='tooltip'>significant<span class='tooltip-text'  onclick="speakText('significant')"><IMG SRC='speak.png'>重要的</span></span>  <span class='tooltip'>threat<span class='tooltip-text'  onclick="speakText('threat')"><IMG SRC='speak.png'>威脅</span></span>  to a country's <span class='tooltip'>national<span class='tooltip-text'  onclick="speakText('national')"><IMG SRC='speak.png'>國家的</span></span>  <span class='tooltip'>security<span class='tooltip-text'  onclick="speakText('security')"><IMG SRC='speak.png'>安全</span></span>  and <span class='tooltip'>interests<span class='tooltip-text'  onclick="speakText('interests')"><IMG SRC='speak.png'>利益</span></span>.<BR>
-　<span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>  <span class='tooltip'>warfare<span class='tooltip-text'  onclick="speakText('warfare')"><IMG SRC='speak.png'>戰爭</span></span>  <span class='tooltip'>typically<span class='tooltip-text'  onclick="speakText('typically')"><IMG SRC='speak.png'>通常</span></span>  refers to <span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>  <span class='tooltip'>attacks<span class='tooltip-text'  onclick="speakText('attacks')"><IMG SRC='speak.png'>攻擊</span></span>  <span class='tooltip'>committed<span class='tooltip-text'  onclick="speakText('committed')"><IMG SRC='speak.png'>堅定的</span></span>  by one nation <span class='tooltip'>against<span class='tooltip-text'  onclick="speakText('against')"><IMG SRC='speak.png'>反對</span></span>  another.<BR>
-　However , these <span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>--attacks could also be done by <span class='tooltip'>terrorist<span class='tooltip-text'  onclick="speakText('terrorist')"><IMG SRC='speak.png'>恐怖分子</span></span>  groups or <span class='tooltip'>hacker<span class='tooltip-text'  onclick="speakText('hacker')"><IMG SRC='speak.png'>駭客</span></span>  groups.<BR><Hr>
 
-　One of the major <span class='tooltip'>problems<span class='tooltip-text'  onclick="speakText('problems')"><IMG SRC='speak.png'>問題</span></span>  with <span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>  <span class='tooltip'>warfare<span class='tooltip-text'  onclick="speakText('warfare')"><IMG SRC='speak.png'>戰爭</span></span>  is that it is often <span class='tooltip'>difficult<span class='tooltip-text'  onclick="speakText('difficult')"><IMG SRC='speak.png'>困難的</span></span>  to find out who <span class='tooltip'>launched<span class='tooltip-text'  onclick="speakText('launched')"><IMG SRC='speak.png'>發動</span></span>  the <span class='tooltip'>attack<span class='tooltip-text'  onclick="speakText('attack')"><IMG SRC='speak.png'>攻擊</span></span>.<BR>
-　Because people do not show their real names on the internet , and the <span class='tooltip'>hackers<span class='tooltip-text'  onclick="speakText('hackers')"><IMG SRC='speak.png'>駭客</span></span>  use <span class='tooltip'>deceptive<span class='tooltip-text'  onclick="speakText('deceptive')"><IMG SRC='speak.png'>欺騙性的</span></span>  methods to <span class='tooltip'>hide<span class='tooltip-text'  onclick="speakText('hide')"><IMG SRC='speak.png'>隱藏</span></span>  their <span class='tooltip'>tracks<span class='tooltip-text'  onclick="speakText('tracks')"><IMG SRC='speak.png'>行蹤</span></span>.<BR>
-　We could only guess the country , <span class='tooltip'>organization<span class='tooltip-text'  onclick="speakText('organization')"><IMG SRC='speak.png'>組織</span></span>  or person behind the <span class='tooltip'>crime<span class='tooltip-text'  onclick="speakText('crime')"><IMG SRC='speak.png'>犯罪</span></span>  by its <span class='tooltip'>motives<span class='tooltip-text'  onclick="speakText('motives')"><IMG SRC='speak.png'>動機</span></span>  and <span class='tooltip'>potential<span class='tooltip-text'  onclick="speakText('potential')"><IMG SRC='speak.png'>潛在的</span></span>  <span class='tooltip'>interests<span class='tooltip-text'  onclick="speakText('interests')"><IMG SRC='speak.png'>利益</span></span>.<BR>
-　An example of <span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>--attacks is <span class='tooltip'>Russia's<span class='tooltip-text'  onclick="speakText('Russia's')"><IMG SRC='speak.png'>俄羅斯</span></span>  <span class='tooltip'>alleged<span class='tooltip-text'  onclick="speakText('alleged')"><IMG SRC='speak.png'>據稱</span></span>  <span class='tooltip'>manipulation<span class='tooltip-text'  onclick="speakText('manipulation')"><IMG SRC='speak.png'>操縱</span></span>  of <span class='tooltip'>social media<span class='tooltip-text'  onclick="speakText('social media')"><IMG SRC='speak.png'>社群媒體</span></span>  to <span class='tooltip'>influence<span class='tooltip-text'  onclick="speakText('influence')"><IMG SRC='speak.png'>影響</span></span>  the 2016 US <span class='tooltip'>presidential<span class='tooltip-text'  onclick="speakText('presidential')"><IMG SRC='speak.png'>總統</span></span>  <span class='tooltip'>elections<span class='tooltip-text'  onclick="speakText('elections')"><IMG SRC='speak.png'>選舉</span></span>.<BR><HR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>網路戰不再是一個未來概念</span></span>
+<span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>  <span class='tooltip'>warfare<span class='tooltip-text'  onclick="speakText('warfare')"><IMG SRC='speak.png'>戰爭</span></span>  is not a <span class='tooltip'>futuristic<span class='tooltip-text'  onclick="speakText('futuristic')"><IMG SRC='speak.png'>未來主義</span></span>  <span class='tooltip'>concept<span class='tooltip-text'  onclick="speakText('concept')"><IMG SRC='speak.png'>概念</span></span>  anymore.<BR>
 
-　<span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>  <span class='tooltip'>warfare<span class='tooltip-text'  onclick="speakText('warfare')"><IMG SRC='speak.png'>戰爭</span></span>  could be used to <span class='tooltip'>destabilize<span class='tooltip-text'  onclick="speakText('destabilize')"><IMG SRC='speak.png'>破壞穩定</span></span>  a country by <span class='tooltip'>attacking<span class='tooltip-text'  onclick="speakText('attacking')"><IMG SRC='speak.png'>進攻</span></span>  <span class='tooltip'>critical infrastructure<span class='tooltip-text'  onclick="speakText('critical infrastructure')"><IMG SRC='speak.png'>關鍵基礎設施</span></span>  such as <span class='tooltip'>national power grids<span class='tooltip-text'  onclick="speakText('national power grids')"><IMG SRC='speak.png'>國家電網</span></span>, <span class='tooltip'>financial markets<span class='tooltip-text'  onclick="speakText('financial markets')"><IMG SRC='speak.png'>金融市場</span></span>  or <span class='tooltip'>military<span class='tooltip-text'  onclick="speakText('military')"><IMG SRC='speak.png'>軍隊</span></span>  <span class='tooltip'>databases<span class='tooltip-text'  onclick="speakText('databases')"><IMG SRC='speak.png'>資料庫</span></span>.<BR>
-　The <span class='tooltip'>damage<span class='tooltip-text'  onclick="speakText('damage')"><IMG SRC='speak.png'>損害</span></span>  <span class='tooltip'>resulting<span class='tooltip-text'  onclick="speakText('resulting')"><IMG SRC='speak.png'>導致</span></span>  from these <span class='tooltip'>attacks<span class='tooltip-text'  onclick="speakText('attacks')"><IMG SRC='speak.png'>攻擊</span></span>  could be <span class='tooltip'>destructive<span class='tooltip-text'  onclick="speakText('destructive')"><IMG SRC='speak.png'>破壞性的</span></span>.<BR>
-　A Distributed Denial of Service(DDoS) <span class='tooltip'>attack<span class='tooltip-text'  onclick="speakText('attack')"><IMG SRC='speak.png'>攻擊</span></span>  is an <span class='tooltip'>attempt<span class='tooltip-text'  onclick="speakText('attempt')"><IMG SRC='speak.png'>試圖</span></span>  to make an online service <span class='tooltip'>unavailable<span class='tooltip-text'  onclick="speakText('unavailable')"><IMG SRC='speak.png'>抽不開身</span></span>  by <span class='tooltip'>overwhelming<span class='tooltip-text'  onclick="speakText('overwhelming')"><IMG SRC='speak.png'>壓倒</span></span>  it with <span class='tooltip'>huge volumes<span class='tooltip-text'  onclick="speakText('huge volumes')"><IMG SRC='speak.png'>數量龐大</span></span>  of <span class='tooltip'>traffic<span class='tooltip-text'  onclick="speakText('traffic')"><IMG SRC='speak.png'>交通</span></span>  from <span class='tooltip'>various<span class='tooltip-text'  onclick="speakText('various')"><IMG SRC='speak.png'>各種各樣的</span></span>  <span class='tooltip'>sources<span class='tooltip-text'  onclick="speakText('sources')"><IMG SRC='speak.png'>來源</span></span>.<BR>
-　This <span class='tooltip'>attack<span class='tooltip-text'  onclick="speakText('attack')"><IMG SRC='speak.png'>攻擊</span></span>  <span class='tooltip'>method<span class='tooltip-text'  onclick="speakText('method')"><IMG SRC='speak.png'>方法</span></span>  was used in 2007 when <span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>  <span class='tooltip'>warfare<span class='tooltip-text'  onclick="speakText('warfare')"><IMG SRC='speak.png'>戰爭</span></span>  first <span class='tooltip'>appeared<span class='tooltip-text'  onclick="speakText('appeared')"><IMG SRC='speak.png'>出現</span></span>  on the news.<BR>
-　=After <span class='tooltip'>Estonia<span class='tooltip-text'  onclick="speakText('Estonia')"><IMG SRC='speak.png'>愛沙尼亞</span></span>  <span class='tooltip'>attempted<span class='tooltip-text'  onclick="speakText('attempted')"><IMG SRC='speak.png'>嘗試</span></span>  to <span class='tooltip'>relocate<span class='tooltip-text'  onclick="speakText('relocate')"><IMG SRC='speak.png'>搬遷</span></span>  a <span class='tooltip'>Soviet war<span class='tooltip-text'  onclick="speakText('Soviet war')"><IMG SRC='speak.png'>蘇聯戰爭</span></span>  <span class='tooltip'>memorial<span class='tooltip-text'  onclick="speakText('memorial')"><IMG SRC='speak.png'>紀念館</span></span>  , it suffered a huge DDoS <span class='tooltip'>attack<span class='tooltip-text'  onclick="speakText('attack')"><IMG SRC='speak.png'>攻擊</span></span>  , which <span class='tooltip'>caused<span class='tooltip-text'  onclick="speakText('caused')"><IMG SRC='speak.png'>造成</span></span>  <span class='tooltip'>massive<span class='tooltip-text'  onclick="speakText('massive')"><IMG SRC='speak.png'>大量的</span></span>  <span class='tooltip'>disruption<span class='tooltip-text'  onclick="speakText('disruption')"><IMG SRC='speak.png'>中斷</span></span>  and <span class='tooltip'>damage<span class='tooltip-text'  onclick="speakText('damage')"><IMG SRC='speak.png'>損害</span></span>  to the <span class='tooltip'>Estonian<span class='tooltip-text'  onclick="speakText('Estonian')"><IMG SRC='speak.png'>愛沙尼亞</span></span>  <span class='tooltip'>economy<span class='tooltip-text'  onclick="speakText('economy')"><IMG SRC='speak.png'>經濟</span></span>.<BR>
-　It is believed that this <span class='tooltip'>attack<span class='tooltip-text'  onclick="speakText('attack')"><IMG SRC='speak.png'>攻擊</span></span>  was done by <span class='tooltip'>Russia<span class='tooltip-text'  onclick="speakText('Russia')"><IMG SRC='speak.png'>俄羅斯</span></span>  for <span class='tooltip'>revenge<span class='tooltip-text'  onclick="speakText('revenge')"><IMG SRC='speak.png'>復仇</span></span>.<BR><HR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>在當今日益數位化的世界，它對一個國家的國家安全和利益構成了現實而重大的威脅</span></span>
+In today's <span class='tooltip'>increasingly<span class='tooltip-text'  onclick="speakText('increasingly')"><IMG SRC='speak.png'>日益</span></span>  <span class='tooltip'>digital<span class='tooltip-text'  onclick="speakText('digital')"><IMG SRC='speak.png'>數位的</span></span>  world,  it <span class='tooltip'>poses<span class='tooltip-text'  onclick="speakText('poses')"><IMG SRC='speak.png'>姿態  </span></span>  a real and <span class='tooltip'>significant<span class='tooltip-text'  onclick="speakText('significant')"><IMG SRC='speak.png'>重要的</span></span>  <span class='tooltip'>threat<span class='tooltip-text'  onclick="speakText('threat')"><IMG SRC='speak.png'>威脅</span></span>  to a country's <span class='tooltip'>national<span class='tooltip-text'  onclick="speakText('national')"><IMG SRC='speak.png'>國家的</span></span>  <span class='tooltip'>security<span class='tooltip-text'  onclick="speakText('security')"><IMG SRC='speak.png'>安全</span></span>  and <span class='tooltip'>interests<span class='tooltip-text'  onclick="speakText('interests')"><IMG SRC='speak.png'>利益</span></span>.<BR>
 
-　Taiwan is under the <span class='tooltip'>influence<span class='tooltip-text'  onclick="speakText('influence')"><IMG SRC='speak.png'>影響</span></span>  of <span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>--attacks <span class='tooltip'>as well<span class='tooltip-text'  onclick="speakText('as well')"><IMG SRC='speak.png'>還有</span></span>.<BR>
-　The Taiwan <span class='tooltip'>Government<span class='tooltip-text'  onclick="speakText('Government')"><IMG SRC='speak.png'>政府</span></span>  is <span class='tooltip'>threatened<span class='tooltip-text'  onclick="speakText('threatened')"><IMG SRC='speak.png'>受到威脅</span></span>  by an average of 30 million <span class='tooltip'>cross-border<span class='tooltip-text'  onclick="speakText('cross-border')"><IMG SRC='speak.png'>跨學</span></span>  <span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>--attacks per month in 2018.<BR>
-　They are <span class='tooltip'>hurting<span class='tooltip-text'  onclick="speakText('hurting')"><IMG SRC='speak.png'>受傷</span></span>  the Taiwan <span class='tooltip'>Government<span class='tooltip-text'  onclick="speakText('Government')"><IMG SRC='speak.png'>政府</span></span>  , Taiwanese <span class='tooltip'>companies<span class='tooltip-text'  onclick="speakText('companies')"><IMG SRC='speak.png'>公司</span></span>  and the Taiwanese <span class='tooltip'>economy<span class='tooltip-text'  onclick="speakText('economy')"><IMG SRC='speak.png'>經濟</span></span>.<BR>
-　We need to be <span class='tooltip'>aware of<span class='tooltip-text'  onclick="speakText('aware of')"><IMG SRC='speak.png'>意識到</span></span>  this new <span class='tooltip'>form<span class='tooltip-text'  onclick="speakText('form')"><IMG SRC='speak.png'>型態</span></span>  of <span class='tooltip'>warfare<span class='tooltip-text'  onclick="speakText('warfare')"><IMG SRC='speak.png'>戰爭</span></span>  and the <span class='tooltip'>government<span class='tooltip-text'  onclick="speakText('government')"><IMG SRC='speak.png'>政府</span></span>  must take action to <span class='tooltip'>fight against<span class='tooltip-text'  onclick="speakText('fight against')"><IMG SRC='speak.png'>對抗</span></span>  it <span class='tooltip'>as soon as possible<span class='tooltip-text'  onclick="speakText('as soon as possible')"><IMG SRC='speak.png'>盡快地</span></span>.<BR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>網路戰通常是指一個國家對另一個國家實施的網路攻擊</span></span>
+<span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>  <span class='tooltip'>warfare<span class='tooltip-text'  onclick="speakText('warfare')"><IMG SRC='speak.png'>戰爭</span></span>  <span class='tooltip'>typically<span class='tooltip-text'  onclick="speakText('typically')"><IMG SRC='speak.png'>通常</span></span>  refers to <span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>  <span class='tooltip'>attacks<span class='tooltip-text'  onclick="speakText('attacks')"><IMG SRC='speak.png'>攻擊</span></span>  <span class='tooltip'>committed<span class='tooltip-text'  onclick="speakText('committed')"><IMG SRC='speak.png'>堅定的</span></span>  by one nation <span class='tooltip'>against<span class='tooltip-text'  onclick="speakText('against')"><IMG SRC='speak.png'>反對</span></span>  another.<BR>
 
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>然而，這些網路攻擊也可能是由恐怖組織或駭客組織實施的</span></span>
+However,  these <span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>--attacks could also be done by <span class='tooltip'>terrorist<span class='tooltip-text'  onclick="speakText('terrorist')"><IMG SRC='speak.png'>恐怖分子</span></span>  groups or <span class='tooltip'>hacker<span class='tooltip-text'  onclick="speakText('hacker')"><IMG SRC='speak.png'>駭客</span></span>  groups.
+<BR><Hr>
 
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>網路戰的主要問題之一是通常很難找出是誰發動了攻擊</span></span>
+One of the major <span class='tooltip'>problems<span class='tooltip-text'  onclick="speakText('problems')"><IMG SRC='speak.png'>問題</span></span>  with <span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>  <span class='tooltip'>warfare<span class='tooltip-text'  onclick="speakText('warfare')"><IMG SRC='speak.png'>戰爭</span></span>  is that it is often <span class='tooltip'>difficult<span class='tooltip-text'  onclick="speakText('difficult')"><IMG SRC='speak.png'>困難的</span></span>  to find out who <span class='tooltip'>launched<span class='tooltip-text'  onclick="speakText('launched')"><IMG SRC='speak.png'>發動</span></span>  the <span class='tooltip'>attack<span class='tooltip-text'  onclick="speakText('attack')"><IMG SRC='speak.png'>攻擊</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>因為人們在網路上不會顯示他們的真實姓名，而駭客使用欺騙性的方法來隱藏他們的蹤跡</span></span>
+Because people do not show their real names on the internet,  and the <span class='tooltip'>hackers<span class='tooltip-text'  onclick="speakText('hackers')"><IMG SRC='speak.png'>駭客</span></span>  use <span class='tooltip'>deceptive<span class='tooltip-text'  onclick="speakText('deceptive')"><IMG SRC='speak.png'>欺騙性的</span></span>  methods to <span class='tooltip'>hide<span class='tooltip-text'  onclick="speakText('hide')"><IMG SRC='speak.png'>隱藏</span></span>  their <span class='tooltip'>tracks<span class='tooltip-text'  onclick="speakText('tracks')"><IMG SRC='speak.png'>行蹤</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>我們只能根據犯罪動機和潛在利益來猜測犯罪背後的國家、組織或個人</span></span>
+We could only guess the country,  <span class='tooltip'>organization<span class='tooltip-text'  onclick="speakText('organization')"><IMG SRC='speak.png'>組織</span></span>  or person behind the <span class='tooltip'>crime<span class='tooltip-text'  onclick="speakText('crime')"><IMG SRC='speak.png'>犯罪</span></span>  by its <span class='tooltip'>motives<span class='tooltip-text'  onclick="speakText('motives')"><IMG SRC='speak.png'>動機</span></span>  and <span class='tooltip'>potential<span class='tooltip-text'  onclick="speakText('potential')"><IMG SRC='speak.png'>潛在的</span></span>  <span class='tooltip'>interests<span class='tooltip-text'  onclick="speakText('interests')"><IMG SRC='speak.png'>利益</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>網路攻擊的一個例子是俄羅斯涉嫌操縱社群媒體以影響 2016 年美國總統大選</span></span>
+An example of <span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>--attacks is <span class='tooltip'>Russia's<span class='tooltip-text'  onclick="speakText('Russia's')"><IMG SRC='speak.png'>俄羅斯</span></span>  <span class='tooltip'>alleged<span class='tooltip-text'  onclick="speakText('alleged')"><IMG SRC='speak.png'>據稱</span></span>  <span class='tooltip'>manipulation<span class='tooltip-text'  onclick="speakText('manipulation')"><IMG SRC='speak.png'>操縱</span></span>  of <span class='tooltip'>social media<span class='tooltip-text'  onclick="speakText('social media')"><IMG SRC='speak.png'>社群媒體</span></span>  to <span class='tooltip'>influence<span class='tooltip-text'  onclick="speakText('influence')"><IMG SRC='speak.png'>影響</span></span>  the 2016 US <span class='tooltip'>presidential<span class='tooltip-text'  onclick="speakText('presidential')"><IMG SRC='speak.png'>總統</span></span>  <span class='tooltip'>elections
+<span class='tooltip-text'  onclick="speakText('elections')"><IMG SRC='speak.png'>選舉</span></span>.
+<BR><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>網路戰可以透過攻擊國家電網、金融市場或軍事資料庫等關鍵基礎設施來破壞一個國家的穩定</span></span>
+<span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>  <span class='tooltip'>warfare<span class='tooltip-text'  onclick="speakText('warfare')"><IMG SRC='speak.png'>戰爭</span></span>  could be used to <span class='tooltip'>destabilize<span class='tooltip-text'  onclick="speakText('destabilize')"><IMG SRC='speak.png'>破壞穩定</span></span>  a country by <span class='tooltip'>attacking<span class='tooltip-text'  onclick="speakText('attacking')"><IMG SRC='speak.png'>進攻</span></span>  <span class='tooltip'>critical infrastructure<span class='tooltip-text'  onclick="speakText('critical infrastructure')"><IMG SRC='speak.png'>關鍵基礎設施</span></span>  such as <span class='tooltip'>national power grids<span class='tooltip-text'  onclick="speakText('national power grids')"><IMG SRC='speak.png'>國家電網</span></span>,  <span class='tooltip'>financial markets<span class='tooltip-text'  onclick="speakText('financial markets')"><IMG SRC='speak.png'>金融市場</span></span>
+ or <span class='tooltip'>military<span class='tooltip-text'  onclick="speakText('military')"><IMG SRC='speak.png'>軍隊</span></span>  <span class='tooltip'>databases<span class='tooltip-text'  onclick="speakText('databases')"><IMG SRC='speak.png'>資料庫</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這些攻擊造成的損害可能是毀滅性的</span></span>
+The <span class='tooltip'>damage<span class='tooltip-text'  onclick="speakText('damage')"><IMG SRC='speak.png'>損害</span></span>  <span class='tooltip'>resulting<span class='tooltip-text'  onclick="speakText('resulting')"><IMG SRC='speak.png'>導致</span></span>  from these <span class='tooltip'>attacks<span class='tooltip-text'  onclick="speakText('attacks')"><IMG SRC='speak.png'>攻擊</span></span>  could be <span class='tooltip'>destructive<span class='tooltip-text'  onclick="speakText('destructive')"><IMG SRC='speak.png'>破壞性的</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>分散式阻斷服務 (DDoS) 攻擊是一種嘗試，透過從各種來源發送大量流量來壓垮線上服務，使其不可用</span></span>
+A Distributed Denial of Service(DDoS) <span class='tooltip'>attack<span class='tooltip-text'  onclick="speakText('attack')"><IMG SRC='speak.png'>攻擊</span></span>  is an <span class='tooltip'>attempt<span class='tooltip-text'  onclick="speakText('attempt')"><IMG SRC='speak.png'>試圖</span></span>  to make an online service <span class='tooltip'>unavailable<span class='tooltip-text'  onclick="speakText('unavailable')"><IMG SRC='speak.png'>抽不開身</span></span>  by <span class='tooltip'>overwhelming<span class='tooltip-text'  onclick="speakText('overwhelming')"><IMG SRC='speak.png'>壓倒</span></span>  it with <span class='tooltip'>huge volumes<span class='tooltip-text'  onclick="speakText('huge volumes')"><IMG SRC='speak.png'>數量龐大</span></span>  of <span class='tooltip'>traffic<span class='tooltip-text'  onclick="speakText('traffic')"><IMG SRC='speak.png'>交通</span></span>  from <span class='tooltip'>various<span class='tooltip-text'  onclick="speakText('various')"><IMG SRC='speak.png'>各種各樣的</span></span>  <span class='tooltip'>sources<span class='tooltip-text'  onclick="speakText('sources')"><IMG SRC='speak.png'>來源</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這種攻擊方法在2007年網路戰首次出現在新聞中時就被使用過</span></span>
+This <span class='tooltip'>attack<span class='tooltip-text'  onclick="speakText('attack')"><IMG SRC='speak.png'>攻擊</span></span>  <span class='tooltip'>method<span class='tooltip-text'  onclick="speakText('method')"><IMG SRC='speak.png'>方法</span></span>  was used in 2007 when <span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>  <span class='tooltip'>warfare<span class='tooltip-text'  onclick="speakText('warfare')"><IMG SRC='speak.png'>戰爭</span></span>  first <span class='tooltip'>appeared<span class='tooltip-text'  onclick="speakText('appeared')"><IMG SRC='speak.png'>出現</span></span>  on the news.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>愛沙尼亞在試圖遷移一座蘇聯戰爭紀念碑後，遭受了大規模的DDoS攻擊，對愛沙尼亞經濟造成了巨大的破壞和損失</span></span>
+After <span class='tooltip'>Estonia<span class='tooltip-text'  onclick="speakText('Estonia')"><IMG SRC='speak.png'>愛沙尼亞</span></span>  <span class='tooltip'>attempted<span class='tooltip-text'  onclick="speakText('attempted')"><IMG SRC='speak.png'>嘗試</span></span>  to <span class='tooltip'>relocate<span class='tooltip-text'  onclick="speakText('relocate')"><IMG SRC='speak.png'>搬遷</span></span>  a <span class='tooltip'>Soviet war<span class='tooltip-text'  onclick="speakText('Soviet war')"><IMG SRC='speak.png'>蘇聯戰爭</span></span>  <span class='tooltip'>memorial<span class='tooltip-text'  onclick="speakText('memorial')"><IMG SRC='speak.png'>紀念館</span></span> ,  it suffered a huge DDoS <span class='tooltip'>attack<span class='tooltip-text'  onclick="speakText('attack')"><IMG SRC='speak.png'>攻擊</span></span> ,  which <span class='tooltip'>caused<span class='tooltip-text'  onclick="speakText('caused')"><IMG SRC='speak.png'>造成</span></span>  <span class='tooltip'>massive<span class='tooltip-text'  onclick="speakText('massive')"><IMG SRC='speak.png'>大量的</span></span>  <span class='tooltip'>disruption<span class='tooltip-text'  onclick="speakText('disruption')"><IMG SRC='speak.png'>中斷</span></span>  and <span class='tooltip'>damage<span class='tooltip-text'  onclick="speakText('damage')"><IMG SRC='speak.png'>損害</span></span>  to the <span class='tooltip'>Estonian<span class='tooltip-text'  onclick="speakText('Estonian')"><IMG SRC='speak.png'>愛沙尼亞</span></span>  <span class='tooltip'>economy<span class='tooltip-text'  onclick="speakText('economy')"><IMG SRC='speak.png'>經濟</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>人們認為，這起攻擊是俄羅斯的報復行為</span></span>
+It is believed that this <span class='tooltip'>attack<span class='tooltip-text'  onclick="speakText('attack')"><IMG SRC='speak.png'>攻擊</span></span>  was done by <span class='tooltip'>Russia<span class='tooltip-text'  onclick="speakText('Russia')"><IMG SRC='speak.png'>俄羅斯</span></span>  for <span class='tooltip'>revenge<span class='tooltip-text'  onclick="speakText('revenge')"><IMG SRC='speak.png'>復仇</span></span>.
+<BR><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>台灣也受到網路攻擊的影響</span></span>
+Taiwan is under the <span class='tooltip'>influence<span class='tooltip-text'  onclick="speakText('influence')"><IMG SRC='speak.png'>影響</span></span>  of <span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>--attacks <span class='tooltip'>as well<span class='tooltip-text'  onclick="speakText('as well')"><IMG SRC='speak.png'>還有</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>2018年台灣政府平均每月遭受3, 000萬次跨國網路攻擊</span></span>
+The Taiwan <span class='tooltip'>Government<span class='tooltip-text'  onclick="speakText('Government')"><IMG SRC='speak.png'>政府</span></span>  is <span class='tooltip'>threatened<span class='tooltip-text'  onclick="speakText('threatened')"><IMG SRC='speak.png'>受到威脅</span></span>  by an average of 30 million <span class='tooltip'>cross-border<span class='tooltip-text'  onclick="speakText('cross-border')"><IMG SRC='speak.png'>跨學</span></span>  <span class='tooltip'>Cyber<span class='tooltip-text'  onclick="speakText('Cyber')"><IMG SRC='speak.png'>網路</span></span>--attacks per month in 2018.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>它們正在損害台灣政府、台灣企業和台灣經濟</span></span>
+They are <span class='tooltip'>hurting<span class='tooltip-text'  onclick="speakText('hurting')"><IMG SRC='speak.png'>受傷</span></span>  the Taiwan <span class='tooltip'>Government<span class='tooltip-text'  onclick="speakText('Government')"><IMG SRC='speak.png'>政府</span></span> ,  Taiwanese <span class='tooltip'>companies<span class='tooltip-text'  onclick="speakText('companies')"><IMG SRC='speak.png'>公司</span></span>  and the Taiwanese <span class='tooltip'>economy<span class='tooltip-text'  onclick="speakText('economy')"><IMG SRC='speak.png'>經濟</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>我們需要意識到這種新的戰爭形式，政府必須盡快採取行動打擊它</span></span>
+We need to be <span class='tooltip'>aware of<span class='tooltip-text'  onclick="speakText('aware of')"><IMG SRC='speak.png'>意識到</span></span>  this new <span class='tooltip'>form<span class='tooltip-text'  onclick="speakText('form')"><IMG SRC='speak.png'>型態</span></span>  of <span class='tooltip'>warfare<span class='tooltip-text'  onclick="speakText('warfare')"><IMG SRC='speak.png'>戰爭</span></span>  and the <span class='tooltip'>government<span class='tooltip-text'  onclick="speakText('government')"><IMG SRC='speak.png'>政府</span></span>  must take action to <span class='tooltip'>fight against<span class='tooltip-text'  onclick="speakText('fight against')"><IMG SRC='speak.png'>對抗</span></span>  it <span class='tooltip'>as soon as possible<span class='tooltip-text'  onclick="speakText('as soon as possible')"><IMG SRC='speak.png'>盡快地</span></span>.<BR>
+<br><br><br><br><br>

@@ -7,6 +7,16 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
 
 <script>
     function speakText(text) {
@@ -21,6 +31,32 @@
       const audio = new Audio(ww);
       audio.play();
     }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
 </script>
 
 <script>
@@ -41,9 +77,28 @@ window.open(ur+'?i='+getRandomString(10),'_self');
 </script>
 
 <style>
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -52,19 +107,21 @@ window.open(ur+'?i='+getRandomString(10),'_self');
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 0px solid #ccc; /* 可加上邊框 */
     margin: 0px auto; /* 置中顯示 */
-top:0px;
+    top:0px;
+    left:-1px;
     border-radius: 0px; /* 調整圓角大小 */
   }
 
   .background-box {
-    width:99%;
+    width:100%;
+    align-items: center;   
     background-color: #D2FF78;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
     background-size: cover; /* 圖片填滿區塊 */
     background-position: center; /* 圖片置中 */
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 1px solid #ccc; /* 可加上邊框 */
-    margin: 20px auto; /* 置中顯示 */
+    margin: 20px 1px auto; /* 置中顯示 */
     border-radius: 20px; /* 調整圓角大小 */
   }
 </style>
@@ -84,6 +141,38 @@ top:0px;
   color: #333;
  padding: 0 0.2em; /* 左右各加空白 */
 }
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
   .tooltip3 {
       position: relative;
       display: inline-block;
@@ -222,15 +311,106 @@ top:0px;
   </style>
 </head>
 <div class="bk-box">
-<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
-<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　回首頁</h3></a></div>
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index3.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
 
 <body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
 <BR>
 <div class="background-box" style="font-size: 1.2em;">
 
-<CENTER>05臨終醫療　考題</CENTER>
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index3.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
+<center>05臨終醫療　考題</CENTER>
 21.According to this article , what is NOT true about Betsy McNair?
 <span class='tooltip3'>譯<span class='tooltip-text'>根據本文，有關Betsy McNair何者錯誤</span></span><br>
 (A)She is a <span class='tooltip'>tour<span class='tooltip-text'  onclick="speakText('tour')"><IMG SRC='speak.png'>旅遊</span></span>  <span class='tooltip'>guide<span class='tooltip-text'  onclick="speakText('guide')"><IMG SRC='speak.png'>指導</span></span>.<br>

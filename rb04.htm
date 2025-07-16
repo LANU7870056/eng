@@ -8,7 +8,18 @@
 <head>
   <meta charset="utf-8" />
 <script>
-   function speakText(text) {
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+<script>
+    function speakText(text) {
       //const text = "Connect to the internet";
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
@@ -20,15 +31,34 @@
       const audio = new Audio(ww);
       audio.play();
     }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
 </script>
-  <script>
-    function speakText(text) {
-      //const text = "Connect to the internet";
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
-      speechSynthesis.speak(utterance);
-    }
-  </script>
+
 <script>
 function gen(ur) {
 
@@ -47,13 +77,28 @@ window.open(ur+'?i='+getRandomString(10),'_self');
 </script>
 
 <style>
-.p{
-font-size: 1.0em;
-height:20px;
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
 }
+
+body {
+  background-color: #D2FF78;
+}
+
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -62,19 +107,21 @@ height:20px;
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 0px solid #ccc; /* 可加上邊框 */
     margin: 0px auto; /* 置中顯示 */
-top:0px;
+    top:0px;
+    left:-1px;
     border-radius: 0px; /* 調整圓角大小 */
   }
 
   .background-box {
-    width:99%;
+    width:100%;
+    align-items: center;   
     background-color: #D2FF78;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
     background-size: cover; /* 圖片填滿區塊 */
     background-position: center; /* 圖片置中 */
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 1px solid #ccc; /* 可加上邊框 */
-    margin: 20px auto; /* 置中顯示 */
+    margin: 20px 1px auto; /* 置中顯示 */
     border-radius: 20px; /* 調整圓角大小 */
   }
 </style>
@@ -94,6 +141,38 @@ top:0px;
   color: #333;
  padding: 0 0.2em; /* 左右各加空白 */
 }
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
   .tooltip3 {
       position: relative;
       display: inline-block;
@@ -107,12 +186,12 @@ top:0px;
       visibility: hidden;
       background-color: #FFFF00;
       color: #FF00FF;
-      text-align: center;
+      text-align: left;
       padding: 3px 8px;
       border-radius: 2px;
       position: absolute;
       bottom: 100%; /* 👈 顯示在上方 */
-      right:0%;
+      left:0%;
       
       transform: translateX(-50%);
       z-index: 1;
@@ -232,44 +311,185 @@ top:0px;
   </style>
 </head>
 <div class="bk-box">
-<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
-<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　　回首頁</h3></a></div>
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
 
 <body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
 <BR>
 <div class="background-box" style="font-size: 1.2em;">
 
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index2.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
 <center>04失憶症</center>
-　Many Americans gather together as families and spend time with each other over the <span class='tooltip'>winter<span class='tooltip-text' onclick="speakText('winter')">冬季</span></span> <span class='tooltip'>holidays<span class='tooltip-text' onclick="speakText('holidays')">假日</span></span>.<br>
-　But it can be <span class='tooltip'>difficult<span class='tooltip-text' onclick="speakText('difficult')">困難的</span></span> when a family member <span class='tooltip'>suffers<span class='tooltip-text' onclick="speakText('suffers')">遭受</span></span> from <span class='tooltip'>memory loss<span class='tooltip-text' onclick="speakText('memory loss')">失憶症</span></span>.<BR>
-　<U>Tim Hollingsworth</U> knows it well.
-The well-known American <span class='tooltip'>chef<span class='tooltip-text' onclick="speakText('chef')">主廚</span></span> learned to <span class='tooltip'>cook<span class='tooltip-text' onclick="speakText('cook')">烹煮</span></span> at his mother's side when he was growing up. <br>
-　<U>Hollingsworth</U> would <span class='tooltip'>measure<span class='tooltip-text' onclick="speakText('measure')">測量</span></span> <span class='tooltip'>ingredients<span class='tooltip-text' onclick="speakText('ingredients')">烹調的原料</span></span> to help her make <span class='tooltip'>dinner<span class='tooltip-text' onclick="speakText('dinner')">晚餐</span></span>. <br><HR>
 
-　He would talk with his mother and <span class='tooltip'>taste<span class='tooltip-text' onclick="speakText('taste')">嚐到</span></span> the food as they cooked.<br>
-　Today, he is the <span class='tooltip'>winner<span class='tooltip-text' onclick="speakText('winner')">勝利者</span></span> of "The Final Table" <span class='tooltip'>competition<span class='tooltip-text' onclick="speakText('competition')">競爭</span></span> on Netflix, the media <span class='tooltip'>production<span class='tooltip-text' onclick="speakText('production')">製作</span></span> <span class='tooltip'>company<span class='tooltip-text' onclick="speakText('company')">公司</span></span>. <br>
-　He also is the owner of <span class='tooltip'>Otium<span class='tooltip-text' onclick="speakText('Otium')">餐館名稱</span></span> , a <span class='tooltip'>restaurant<span class='tooltip-text' onclick="speakText('restaurant')">餐廳</span></span> in Los Angeles, <span class='tooltip'>California<span class='tooltip-text' onclick="speakText('California')">加州</span></span>.<BR>
-　<U>Hollingsworth</U> still cooks with his mother, but it is <span class='tooltip'>different<span class='tooltip-text' onclick="speakText('different')">不同的</span></span> now. <br>
-　She <span class='tooltip'>struggles<span class='tooltip-text' onclick="speakText('struggles')">掙扎</span></span> with <span class='tooltip'>memory loss<span class='tooltip-text' onclick="speakText('memory loss')">失憶症</span></span>. <br><HR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>許多美國人在冬季假期期間全家團聚在一起共度時光</span></span>
+Many Americans gather together as families and spend time with each other over the <span class='tooltip'>winter<span class='tooltip-text' onclick="speakText('winter')"><img src='speak.png'>冬季</span></span> <span class='tooltip'>holidays<span class='tooltip-text' onclick="speakText('holidays')"><img src='speak.png'>假日</span></span>.<br>
 
-　She sits with him as he <span class='tooltip'>prepares<span class='tooltip-text' onclick="speakText('prepares')">準備</span></span> <span class='tooltip'>meals<span class='tooltip-text' onclick="speakText('meals')">餐點</span></span> from her favorite <span class='tooltip'>recipes<span class='tooltip-text' onclick="speakText('recipes')">食譜</span></span>. <br>
-　These include recipes for "<span class='tooltip'>comfort<span class='tooltip-text' onclick="speakText('comfort')">舒適</span></span> foods"—ones that fill your <span class='tooltip'>stomach<span class='tooltip-text' onclick="speakText('stomach')">胃</span></span> and warm your heart with happy memories, while filling a home with a <span class='tooltip'>pleasant smell<span class='tooltip-text' onclick="speakText('pleasant smell')">聞出令人愉快的</span></span>. <BR>
-　His mother does not cook anymore. <br><HR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>但當家人患上記憶喪失時，情況就會變得很艱難。蒂姆·霍林斯沃思對此深有體會</span></span>
+But it can be <span class='tooltip'>difficult<span class='tooltip-text' onclick="speakText('difficult')"><img src='speak.png'>困難的</span></span> when a family member <span class='tooltip'>suffers<span class='tooltip-text' onclick="speakText('suffers')"><img src='speak.png'>遭受</span></span> from <span class='tooltip'>memory loss<span class='tooltip-text' onclick="speakText('memory loss')"><img src='speak.png'>失憶症</span></span>.<BR>
+<span class='pp'>Tim Hollingsworth</span> knows it well.<BR>
 
-　But being <span class='tooltip'>present<span class='tooltip-text' onclick="speakText('present')">展示</span></span> at the cooking and eating foods she may <span class='tooltip'>remember<span class='tooltip-text' onclick="speakText('remember')">記住</span></span> help close the <span class='tooltip'>distance<span class='tooltip-text' onclick="speakText('distance')">距離</span></span> that <span class='tooltip'>dementia<span class='tooltip-text' onclick="speakText('dementia')">失智</span></span> can <span class='tooltip'>create<span class='tooltip-text' onclick="speakText('create')">創造</span></span>. <br>
-　<span class='tooltip'>Dementia<span class='tooltip-text' onclick="speakText('Dementia')">癡呆症</span></span> and <span class='tooltip'>Alzheimer<span class='tooltip-text' onclick="speakText('Alzheimer')">阿茲海默症</span></span>'s <span class='tooltip'>disease<span class='tooltip-text' onclick="speakText('disease')">疾病</span></span> <span class='tooltip'>affect<span class='tooltip-text' onclick="speakText('affect')">影響</span></span> older people's <span class='tooltip'>memories<span class='tooltip-text' onclick="speakText('memories')">記憶</span></span>. <br>
-　<span class='tooltip'>Over time<span class='tooltip-text' onclick="speakText('Over time')">隨著時間</span></span>, <span class='tooltip'>patients<span class='tooltip-text' onclick="speakText('patients')">病人</span></span> lose their <span class='tooltip'>memories<span class='tooltip-text' onclick="speakText('memories')">記憶</span></span>, <span class='tooltip'>piece by piece<span class='tooltip-text' onclick="speakText('piece by piece')">一點一點</span></span>. <br>
-　The first to go are usually the <span class='tooltip'>newer memories<span class='tooltip-text' onclick="speakText('newer memories')">較新的記憶</span></span>. <br>
-　The older <span class='tooltip'>memories<span class='tooltip-text' onclick="speakText('memories')">記憶</span></span>, from when they were young, can be the last to <span class='tooltip'>disappear<span class='tooltip-text' onclick="speakText('disappear')">消失</span></span>.<BR>
-　Being with family and doing things <span class='tooltip'>together<span class='tooltip-text' onclick="speakText('together')">一起</span></span> can help. <br><HR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>蒂姆·霍林斯沃思對此深有體會。這位著名的美國廚師從小就在母親身邊學習烹飪</span></span>
+The well-known American <span class='tooltip'>chef<span class='tooltip-text' onclick="speakText('chef')"><img src='speak.png'>主廚</span></span> learned to <span class='tooltip'>cook<span class='tooltip-text' onclick="speakText('cook')"><img src='speak.png'>烹煮</span></span> at his mother's side when he was growing up. <br>
 
-　They give the <span class='tooltip'>patients<span class='tooltip-text' onclick="speakText('patients')">病人</span></span> a sense of <span class='tooltip'>usefulness<span class='tooltip-text' onclick="speakText('usefulness')">有用</span></span> and <span class='tooltip'>belonging<span class='tooltip-text' onclick="speakText('belonging')">歸屬感</span></span>. <br>
-　Family members with <span class='tooltip'>dementia<span class='tooltip-text' onclick="speakText('dementia')">失智症</span></span> can be involved <span class='tooltip'>in meal<span class='tooltip-text' onclick="speakText('in meal')">吃飯</span></span> <span class='tooltip'>preparation<span class='tooltip-text' onclick="speakText('preparation')">準備</span></span> or setting the table. <br>
-　It helps them feel like part of a family or <span class='tooltip'>community<span class='tooltip-text' onclick="speakText('community')">社群</span></span>.<BR><HR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>霍林斯沃斯會稱量食材來幫她做晚餐</span></span>
+<span class='pp'>Hollingsworth</span> would <span class='tooltip'>measure<span class='tooltip-text' onclick="speakText('measure')"><img src='speak.png'>測量</span></span> <span class='tooltip'>ingredients<span class='tooltip-text' onclick="speakText('ingredients')"><img src='speak.png'>烹調的原料</span></span> to help her make <span class='tooltip'>dinner<span class='tooltip-text' onclick="speakText('dinner')"><img src='speak.png'>晚餐</span></span>. 
+<br><HR>
 
-　What they ate was not <span class='tooltip'>important<span class='tooltip-text' onclick="speakText('important')">重要的</span></span>. <br>
-　It was <span class='tooltip'>instead<span class='tooltip-text' onclick="speakText('instead')">準備</span></span> the <span class='tooltip'>familiar<span class='tooltip-text' onclick="speakText('familiar')">熟悉的</span></span> and <span class='tooltip'>comforting<span class='tooltip-text' onclick="speakText('comforting')">令人欣慰的</span></span> <span class='tooltip'>experience<span class='tooltip-text' onclick="speakText('experience')">經驗</span></span> of sitting around the table together, even after the family had finished eating. <br>
-　It is the meal made with love that can truly bring out a person with <span class='tooltip'>dementia<span class='tooltip-text' onclick="speakText('dementia')">失智症</span></span> and bring them real 
-<span class='tooltip'>joy<span class='tooltip-text' onclick="speakText('joy')">
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他會一邊和媽媽聊天，一邊品嚐他們做的飯菜</span></span>
+He would talk with his mother and <span class='tooltip'>taste<span class='tooltip-text' onclick="speakText('taste')"><img src='speak.png'>嚐到</span></span> the food as they cooked.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>如今，他是媒體製作公司 Netflix 的「The Final Table」比賽的獲勝者</span></span>
+Today,  he is the <span class='tooltip'>winner<span class='tooltip-text' onclick="speakText('winner')"><img src='speak.png'>勝利者</span></span> of "The Final Table" <span class='tooltip'>competition<span class='tooltip-text' onclick="speakText('competition')"><img src='speak.png'>競爭</span></span> on Netflix,  the media <span class='tooltip'>production<span class='tooltip-text' onclick="speakText('production')"><img src='speak.png'>製作</span></span> <span class='tooltip'>company<span class='tooltip-text' onclick="speakText('company')"><img src='speak.png'>公司</span></span>. <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他也是加州洛杉磯餐廳 Otium 的老闆</span></span>
+He also is the owner of <span class='tooltip'>Otium<span class='tooltip-text' onclick="speakText('Otium')"><img src='speak.png'>餐館名稱</span></span> ,  a <span class='tooltip'>restaurant<span class='tooltip-text' onclick="speakText('restaurant')"><img src='speak.png'>餐廳</span></span> in Los Angeles,  <span class='tooltip'>California<span class='tooltip-text' onclick="speakText('California')"><img src='speak.png'>加州</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>霍林斯沃思仍然和母親一起做飯，但現在情況不同了</span></span>
+<span class='pp'>Hollingsworth</span> still cooks with his mother,  but it is <span class='tooltip'>different<span class='tooltip-text' onclick="speakText('different')"><img src='speak.png'>不同的</span></span> now. <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>她正在與記憶喪失作鬥爭</span></span>
+She <span class='tooltip'>struggles<span class='tooltip-text' onclick="speakText('struggles')"><img src='speak.png'>掙扎</span></span> with <span class='tooltip'>memory loss<span class='tooltip-text' onclick="speakText('memory loss')"><img src='speak.png'>失憶症</span></span>.
+<br><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>當他按照她最喜歡的食譜準備飯菜時，她坐在他旁邊</span></span>
+She sits with him as he <span class='tooltip'>prepares<span class='tooltip-text' onclick="speakText('prepares')"><img src='speak.png'>準備</span></span> <span class='tooltip'>meals<span class='tooltip-text' onclick="speakText('meals')"><img src='speak.png'>餐點</span></span> from her favorite <span class='tooltip'>recipes<span class='tooltip-text' onclick="speakText('recipes')"><img src='speak.png'>食譜</span></span>. <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>其中包括「舒適食品」的食譜——它們能填飽你的肚子，用快樂的回憶溫暖你的心，同時讓家裡充滿宜人的氣味。</span></span>
+These include recipes for "<span class='tooltip'>comfort<span class='tooltip-text' onclick="speakText('comfort')"><img src='speak.png'>舒適</span></span> foods"—ones that fill your <span class='tooltip'>stomach<span class='tooltip-text' onclick="speakText('stomach')"><img src='speak.png'>胃</span></span> and warm your heart with happy memories,  while filling a home with a <span class='tooltip'>pleasant smell<span class='tooltip-text' onclick="speakText('pleasant smell')"><img src='speak.png'>聞出令人愉快的</span></span>. <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他的母親不再做飯了</span></span>
+His mother does not cook anymore.
+<br><HR>
+
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>但在烹飪和吃她可能記得的食物時，她會縮短癡呆症造成的距離</span></span>
+But being <span class='tooltip'>present<span class='tooltip-text' onclick="speakText('present')"><img src='speak.png'>展示</span></span> at the cooking and eating foods she may <span class='tooltip'>remember<span class='tooltip-text' onclick="speakText('remember')"><img src='speak.png'>記住</span></span> help close the <span class='tooltip'>distance<span class='tooltip-text' onclick="speakText('distance')"><img src='speak.png'>距離</span></span> that <span class='tooltip'>dementia<span class='tooltip-text' onclick="speakText('dementia')"><img src='speak.png'>失智</span></span> can <span class='tooltip'>create<span class='tooltip-text' onclick="speakText('create')"><img src='speak.png'>創造</span></span>. <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>癡呆症和阿茲海默症會影響老年人的記憶力</span></span>
+<span class='tooltip'>Dementia<span class='tooltip-text' onclick="speakText('Dementia')"><img src='speak.png'>癡呆症</span></span> and <span class='tooltip'>Alzheimer<span class='tooltip-text' onclick="speakText('Alzheimer')"><img src='speak.png'>阿茲海默症</span></span>'s <span class='tooltip'>disease<span class='tooltip-text' onclick="speakText('disease')"><img src='speak.png'>疾病</span></span> <span class='tooltip'>affect<span class='tooltip-text' onclick="speakText('affect')"><img src='speak.png'>影響</span></span> older people's <span class='tooltip'>memories<span class='tooltip-text' onclick="speakText('memories')"><img src='speak.png'>記憶</span></span>. <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>隨著時間的流逝，患者的記憶逐漸消失</span></span>
+<span class='tooltip'>Over time<span class='tooltip-text' onclick="speakText('Over time')"><img src='speak.png'>隨著時間</span></span>,  <span class='tooltip'>patients<span class='tooltip-text' onclick="speakText('patients')"><img src='speak.png'>病人</span></span> lose their <span class='tooltip'>memories<span class='tooltip-text' onclick="speakText('memories')"><img src='speak.png'>記憶</span></span>,  <span class='tooltip'>piece by piece<span class='tooltip-text' onclick="speakText('piece by piece')"><img src='speak.png'>一點一點</span></span>. <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>最先消失的通常是較新的記憶</span></span>
+The first to go are usually the <span class='tooltip'>newer memories<span class='tooltip-text' onclick="speakText('newer memories')"><img src='speak.png'>較新的記憶</span></span>. <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>那些年幼時的舊記憶可能是最後消失的</span></span>
+The older <span class='tooltip'>memories<span class='tooltip-text' onclick="speakText('memories')"><img src='speak.png'>記憶</span></span>,  from when they were young,  can be the last to <span class='tooltip'>disappear<span class='tooltip-text' onclick="speakText('disappear')"><img src='speak.png'>消失</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>與家人在一起並一起做事會有所幫助。</span></span>
+Being with family and doing things <span class='tooltip'>together<span class='tooltip-text' onclick="speakText('together')"><img src='speak.png'>一起</span></span> can help.
+<br><HR>
+
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他們讓病人感受到自己的用處和歸屬感</span></span>
+They give the <span class='tooltip'>patients<span class='tooltip-text' onclick="speakText('patients')"><img src='speak.png'>病人</span></span> a sense of <span class='tooltip'>usefulness<span class='tooltip-text' onclick="speakText('usefulness')"><img src='speak.png'>有用</span></span> and <span class='tooltip'>belonging<span class='tooltip-text' onclick="speakText('belonging')"><img src='speak.png'>歸屬感</span></span>. <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>患有失智症的家庭成員可以參與準備餐點或擺放餐桌</span></span>
+Family members with <span class='tooltip'>dementia<span class='tooltip-text' onclick="speakText('dementia')"><img src='speak.png'>失智症</span></span> can be involved <span class='tooltip'>in meal<span class='tooltip-text' onclick="speakText('in meal')"><img src='speak.png'>吃飯</span></span> <span class='tooltip'>preparation<span class='tooltip-text' onclick="speakText('preparation')"><img src='speak.png'>準備</span></span> or setting the table. <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這讓他們感覺自己是家庭或社區的一部分</span></span>
+It helps them feel like part of a family or <span class='tooltip'>community<span class='tooltip-text' onclick="speakText('community')"><img src='speak.png'>社群</span></span>.
+<BR><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他們吃什麼並不重要</span></span>
+What they ate was not <span class='tooltip'>important<span class='tooltip-text' onclick="speakText('important')"><img src='speak.png'>重要的</span></span>. <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>即使一家人已經吃完飯，圍坐在餐桌旁也是一種熟悉舒適的體驗。</span></span>
+It was <span class='tooltip'>instead<span class='tooltip-text' onclick="speakText('instead')"><img src='speak.png'>準備</span></span> the <span class='tooltip'>familiar<span class='tooltip-text' onclick="speakText('familiar')"><img src='speak.png'>熟悉的</span></span> and <span class='tooltip'>comforting<span class='tooltip-text' onclick="speakText('comforting')"><img src='speak.png'>令人欣慰的</span></span> <span class='tooltip'>experience<span class='tooltip-text' onclick="speakText('experience')"><img src='speak.png'>經驗</span></span> of sitting around the table together,  even after the family had finished eating. <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>正是用愛心烹調的餐點才能真正喚醒失智症患者，帶給他們真正的快樂</span></span>
+It is the meal made with love that can truly bring out a person with <span class='tooltip'>dementia<span class='tooltip-text' onclick="speakText('dementia')"><img src='speak.png'>失智症</span></span> and bring them real 
+<span class='tooltip'>joy<span class='tooltip-text' onclick="speakText('joy')"><img src='speak.png'>
 歡樂</span></span>.<br>

@@ -5,7 +5,18 @@
 <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <META HTTP-EQUIV="expires" CONTENT="0">
-<head><meta charset="utf-8" />
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
 
 <script>
     function speakText(text) {
@@ -21,6 +32,34 @@
       audio.play();
     }
 
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
 function gen(ur) {
 
 function getRandomString(length) {
@@ -31,14 +70,35 @@ function getRandomString(length) {
   }
   return result;
 }
+
 window.open(ur+'?i='+getRandomString(10),'_self');
+
   }
-</script>     		
+</script>
 
 <style>
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -47,24 +107,27 @@ window.open(ur+'?i='+getRandomString(10),'_self');
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 0px solid #ccc; /* 可加上邊框 */
     margin: 0px auto; /* 置中顯示 */
-top:0px;
+    top:0px;
+    left:-1px;
     border-radius: 0px; /* 調整圓角大小 */
   }
 
   .background-box {
     width:100%;
+    align-items: center;   
     background-color: #D2FF78;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
     background-size: cover; /* 圖片填滿區塊 */
     background-position: center; /* 圖片置中 */
     background-repeat: no-repeat; /* 不重複顯示圖片 */
-    border: 0px solid #ccc; /* 可加上邊框 */
-    margin: 20px auto; /* 置中顯示 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
     border-radius: 20px; /* 調整圓角大小 */
   }
 </style>
-  <style>
 
+
+<style>
 .cir {
   display: inline-block;
   width: 35px;
@@ -78,11 +141,43 @@ top:0px;
   color: #333;
  padding: 0 0.2em; /* 左右各加空白 */
 }
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
   .tooltip3 {
       position: relative;
       display: inline-block;
       cursor: pointer;
-      font-size: 0.7em;
+      font-size: 1.0em;
       color: green; 
     }
  
@@ -91,12 +186,12 @@ top:0px;
       visibility: hidden;
       background-color: #FFFF00;
       color: #FF00FF;
-      text-align: center;
+      text-align: left;
       padding: 3px 8px;
       border-radius: 2px;
       position: absolute;
       bottom: 100%; /* 👈 顯示在上方 */
-      left: 50%;
+      left:0%;
       
       transform: translateX(-50%);
       z-index: 1;
@@ -129,7 +224,7 @@ top:0px;
       position: relative;
       display: inline-block;
       cursor: pointer;
-      font-size: 1.2em;
+      font-size: 1.0em;
       color: blue; 
     }
  
@@ -142,7 +237,7 @@ top:0px;
       padding: 5px 8px;
       border-radius: 6px;
       position: absolute;
-      bottom: 125%; /* 👈 顯示在上方 */
+      bottom: 100%; /* 👈 顯示在上方 */
       left: 50%;
       transform: translateX(-50%);
       z-index: 1;
@@ -212,65 +307,172 @@ top:0px;
       border-width: 5px;
       border-style: solid;
       border-color: #333 transparent transparent transparent;
-    }  
-
- 
+    }   
   </style>
 </head>
-
 <div class="bk-box">
-<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
-<a href="#" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　　回首頁</h3></a></div>
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
 
 <body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
 <div class="background-box" style="font-size: 1.2em;">
 
 
-<div class="background-box" style="font-size: 1.2em;"><BR>
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index2.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
 <center>01義大利競技場</center>
-The <span class='tooltip'>Coliseum<span class='tooltip-text' onclick="speakText('Coliseum')"><img src="speak.png">競技場</span></span> is an <span class='tooltip'>ancient<span class='tooltip-text' onclick="speakText('ancient')"><img src="speak.png">古老的</span></span> <span class='tooltip'>stadium<span class='tooltip-text' onclick="speakText('stadium')"><img src="speak.png">體育場</span></span> in the center of Rome.<span class='tooltip3'>釋<span class='tooltip-text'>羅馬競技場是一座位在羅馬中心的古老體育場。</span></span><BR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>羅馬競技場是一座位在羅馬中心的古老體育場。</span></span>
+The <span class='tooltip'>Coliseum<span class='tooltip-text' onclick="speakText('Coliseum')"><img src="speak.png">競技場</span></span> is an <span class='tooltip'>ancient<span class='tooltip-text' onclick="speakText('ancient')"><img src="speak.png">古老的</span></span> <span class='tooltip'>stadium<span class='tooltip-text' onclick="speakText('stadium')"><img src="speak.png">體育場</span></span> in the center of Rome.<BR>
 
-<span class='tooltip'>Gruesome<span class='tooltip-text' onclick="speakText('Gruesome')"><img src="speak.png">令人毛骨悚然</span></span> games where men <span class='tooltip'>fought<span class='tooltip-text' onclick="speakText('fought')"><img src="speak.png">戰鬥</span></span> <span class='tooltip'>against<span class='tooltip-text' onclick="speakText('against')"><img src="speak.png">反對</span></span> <span class='tooltip'>lions<span class='tooltip-text' onclick="speakText('lions')"><img src="speak.png">獅子</span></span> , tigers, and bears <span class='tooltip'>took place<span class='tooltip-text' onclick="speakText('took place')"><img src="speak.png">發生了</span></span> in it.<span class='tooltip3'>釋<span class='tooltip-text'>由人類對抗獅子、老虎和熊的恐怖鬥獸競賽都在那裡舉行。</span></span><BR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>由人類對抗獅子、老虎和熊的恐怖鬥獸競賽都在那裡舉行。</span></span>
+<span class='tooltip'>Gruesome<span class='tooltip-text' onclick="speakText('Gruesome')"><img src="speak.png">令人毛骨悚然</span></span> games where men <span class='tooltip'>fought<span class='tooltip-text' onclick="speakText('fought')"><img src="speak.png">戰鬥</span></span> <span class='tooltip'>against<span class='tooltip-text' onclick="speakText('against')"><img src="speak.png">反對</span></span> <span class='tooltip'>lions<span class='tooltip-text' onclick="speakText('lions')"><img src="speak.png">獅子</span></span> ,  tigers,  and bears <span class='tooltip'>took place<span class='tooltip-text' onclick="speakText('took place')"><img src="speak.png">發生了</span></span> in it.<BR>
 
-These games were <span class='tooltip'>dreadful<span class='tooltip-text' onclick="speakText('dreadful')"><img src="speak.png">可怕</span></span>, but most of the people loved it.<span class='tooltip3'>譯<span class='tooltip-text'><img src="speak.png">儘管這些競賽很可怕,但當時大部分的人卻很愛。</span></span> <BR>
-The <span class='tooltip'>Coliseum<span class='tooltip-text' onclick="speakText('Coliseum')"><img src="speak.png">競技場</span></span> has been <span class='tooltip'>damaged<span class='tooltip-text' onclick="speakText('damaged')"><img src="speak.png">損壞的</span></span> many times over the years.<span class='tooltip3'>譯<span class='tooltip-text'>羅馬競技場多年來歷經數次摧殘</span></span><BR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>儘管這些競賽很可怕, 但當時大部分的人卻很愛。</span></span>
+These games were <span class='tooltip'>dreadful<span class='tooltip-text' onclick="speakText('dreadful')"><img src="speak.png">可怕</span></span>,  but most of the people loved it.<BR>
 
-It was <span class='tooltip'>struck<span class='tooltip-text' onclick="speakText('struck')"><img src="speak.png">受到打擊</span></span> by <span class='tooltip'>lightning<span class='tooltip-text' onclick="speakText('lightning')"><img src="speak.png">閃電</span></span> in the year 217, and this <span class='tooltip'>caused<span class='tooltip-text' onclick="speakText('caused')"><img src="speak.png">造成</span></span> a fire.<span class='tooltip3'>釋<span class='tooltip-text'>在217年,它遭到閃電攻擊,並造成火災</span></span><BR><hr>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>羅馬競技場多年來歷經數次摧殘</span></span>
+The <span class='tooltip'>Coliseum<span class='tooltip-text' onclick="speakText('Coliseum')"><img src="speak.png">競技場</span></span> has been <span class='tooltip'>damaged<span class='tooltip-text' onclick="speakText('damaged')"><img src="speak.png">損壞的</span></span> many times over the years.<BR>
 
-Much of the <span class='tooltip'>Coliseum<span class='tooltip-text' onclick="speakText('Coliseum')"><img src="speak.png">競技場</span></span> is made of <span class='tooltip'>stone<span class='tooltip-text' onclick="speakText('stone')"><img src="speak.png">石頭</span></span>. But the fire <span class='tooltip'>damaged<span class='tooltip-text' onclick="speakText('damaged')"><img src="speak.png">損壞的</span></span> the upper levels which were made of <span class='tooltip'>wood<span class='tooltip-text' onclick="speakText('wood')"><img src="speak.png">木頭</span></span>.<span class='tooltip3'>譯<span class='tooltip-text'>雖然羅馬競技場大多由石頭組成,但木造的上半部仍因火災毀損</span></span><BR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>在217年, 它遭到閃電攻擊, 並造成火災</span></span>
+It was <span class='tooltip'>struck<span class='tooltip-text' onclick="speakText('struck')"><img src="speak.png">受到打擊</span></span> by <span class='tooltip'>lightning<span class='tooltip-text' onclick="speakText('lightning')"><img src="speak.png">閃電</span></span> in the year 217,  and this <span class='tooltip'>caused<span class='tooltip-text' onclick="speakText('caused')"><img src="speak.png">造成</span></span> a fire.<BR><hr>
 
-This damage took many years to <span class='tooltip'>repair<span class='tooltip-text' onclick="speakText('repair')"><img src="speak.png">維修</span></span> .<span class='tooltip3'>譯<span class='tooltip-text'>並歷經多年才修復。</span></span><BR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>雖然羅馬競技場大多由石頭組成, 但木造的上半部仍因火災毀損</span></span>
+Much of the <span class='tooltip'>Coliseum<span class='tooltip-text' onclick="speakText('Coliseum')"><img src="speak.png">競技場</span></span> is made of <span class='tooltip'>stone<span class='tooltip-text' onclick="speakText('stone')"><img src="speak.png">石頭</span></span>. But the fire <span class='tooltip'>damaged<span class='tooltip-text' onclick="speakText('damaged')"><img src="speak.png">損壞的</span></span> the upper levels which were made of <span class='tooltip'>wood<span class='tooltip-text' onclick="speakText('wood')"><img src="speak.png">木頭</span></span>.<BR>
 
-The worst damage happened in 1349.<span class='tooltip3'>譯<span class='tooltip-text'>最嚴重的一次災害發生在1349年</span></span><BR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>並歷經多年才修復。</span></span>
+This damage took many years to <span class='tooltip'>repair<span class='tooltip-text' onclick="speakText('repair')"><img src="speak.png">維修</span></span>.<BR>
 
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>最嚴重的一次災害發生在1349年</span></span>
+The worst damage happened in 1349.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>強震撼動了羅馬和羅馬競技場</span></span>
 A <span class='tooltip'>mighty<span class='tooltip-text' onclick="speakText('mighty')"><img src="speak.png">強大的</span></span> <span class='tooltip'>earthquake<span class='tooltip-text' onclick="speakText('earthquake')"><img src="speak.png">地震</span></span> shook Rome and the <span class='tooltip'>Coliseum<span class='tooltip-text' onclick="speakText('Coliseum')"><img src="speak.png">競技場</span></span>.
-<span class='tooltip3'>譯<span class='tooltip-text'>強震撼動了羅馬和羅馬競技場,</span></span><BR><hr>
+<BR><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>地面上滿是這個體育場的斷垣殘片</span></span>
+The south side of the building <span class='tooltip'>collapse<span class='tooltip-text' onclick="speakText('collapse')"><img src="speak.png">崩塌</span></span>.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>羅馬競技場的南側建築倒塌</span></span><BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>競技場的碎片散落在地面上。</span></span>
+Pieces of the <span class='tooltip'>arena<span class='tooltip-text' onclick="speakText('arena')"><img src="speak.png">競技場</span></span> were all over the ground.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>許多人拿走掉落的石頭來修補房屋跟教堂。</span></span>
+Many people took the <span class='tooltip'>fallen stones<span class='tooltip-text' onclick="speakText('fallen stones')"><img src="speak.png">掉落石頭</span></span> to <span class='tooltip'>repair<span class='tooltip-text' onclick="speakText('repair')"><img src="speak.png">修理</span></span> houses and <span class='tooltip'>churches<span class='tooltip-text' onclick="speakText('churches')"><img src="speak.png">教堂</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>那個年代的羅馬人對羅馬競技場沒有特殊的情感</span></span>
+The Romans of those days were not <span class='tooltip'>connected<span class='tooltip-text' onclick="speakText('connected')"><img src="speak.png">已連接</span></span> to the <span class='tooltip'>Coliseum<span class='tooltip-text' onclick="speakText('Coliseum')"><img src="speak.png">競技場</span></span>.<Br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>它最後被用來當作堡壘, 而在那之前, 它是一座墳墓</span></span>
+It had last been used as a <span class='tooltip'>castle<span class='tooltip-text' onclick="speakText('castle')"><img src="speak.png">城堡</span></span>. Before that it was a <span class='tooltip'>graveyard<span class='tooltip-text' onclick="speakText('graveyard')"><img src="speak.png">墓園</span></span>.<Br><HR>
 
 
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>奧運至今已有數百年歷史</span></span>
+It has been <span class='tooltip'>hundreds<span class='tooltip-text' onclick="speakText('hundreds')"><img src="speak.png">數百</span></span> of years since the <span class='tooltip'>games<span class='tooltip-text' onclick="speakText('games')"><img src="speak.png">競賽</span></span>. <BR>
 
-The south side of the building <span class='tooltip'>collapse<span class='tooltip-text' onclick="speakText('collapse')"><img src="speak.png">崩塌</span></span>.<span class='tooltip3'>譯<span class='tooltip-text'>羅馬競技場的南側建築倒塌</span></span><BR>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>羅馬競技場的損壞至今仍未修復</span></span>
+The <span class='tooltip'>damage<span class='tooltip-text' onclick="speakText('damage')"><img src="speak.png">損害</span></span> to the <span class='tooltip'>Coliseum<span class='tooltip-text' onclick="speakText('Coliseum')"><img src="speak.png">競技場</span></span> was never <span class='tooltip'>repaired
+<span class='tooltip-text' onclick="speakText('repaired')"><img src="speak.png">修復了</span></span> .<BR>
 
- Pieces of the <span class='tooltip'>arena<span class='tooltip-text' onclick="speakText('arena')"><img src="speak.png">競技場</span></span> were all over the ground.
-<span class='tooltip3'>譯<span class='tooltip-text'>地面上滿是這個體育場的斷垣殘片</span></span><BR>
-
- Many people took the <span class='tooltip'>fallen stones<span class='tooltip-text' onclick="speakText('fallen stones')"><img src="speak.png">掉落石頭</span></span> to <span class='tooltip'>repair<span class='tooltip-text' onclick="speakText('repair')"><img src="speak.png">修理</span></span> houses and <span class='tooltip'>churches<span class='tooltip-text' onclick="speakText('churches')"><img src="speak.png">教堂</span></span>.
-<span class='tooltip3'>譯<span class='tooltip-text'>許多人拿走掉落的石頭來修補房屋跟教堂。</span></span><BR>
-
-The Romans of those days were not <span class='tooltip'>connected<span class='tooltip-text' onclick="speakText('connected')"><img src="speak.png">已連接</span></span> to the <span class='tooltip'>Coliseum<span class='tooltip-text' onclick="speakText('Coliseum')"><img src="speak.png">競技場</span></span> .<span class='tooltip3'>譯<span class='tooltip-text'>那個年代的羅馬人對羅馬競技場沒有特殊的情感</span></span><Br>
-
-It had last been used as a <span class='tooltip'>castle<span class='tooltip-text' onclick="speakText('castle')"><img src="speak.png">城堡</span></span>. Before that it was a <span class='tooltip'>graveyard<span class='tooltip-text' onclick="speakText('graveyard')"><img src="speak.png">墓園</span></span>.
-
-<span class='tooltip3'>譯<span class='tooltip-text'>它最後被用來當作堡壘,而在那之前,它是一座墳墓</span></span><Br><HR>
-
-
-It has been <span class='tooltip'>hundreds<span class='tooltip-text' onclick="speakText('hundreds')"><img src="speak.png">數百</span></span> of years since the <span class='tooltip'>games<span class='tooltip-text' onclick="speakText('games')"><img src="speak.png">競賽</span></span>. 
-The <span class='tooltip'>damage<span class='tooltip-text' onclick="speakText('damage')"><img src="speak.png">損害</span></span> to the <span class='tooltip'>Coliseum<span class='tooltip-text' onclick="speakText('Coliseum')"><img src="speak.png">競技場</span></span> was never <span class='tooltip'>repaired<span class='tooltip-text' onclick="speakText('repaired')"><img src="speak.png">修復了</span></span> .<span class='tooltip3'>譯<span class='tooltip-text'>自鬥獸競賽舉辦時,到現在已經歷經數百年</span></span><BR>
-
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>幸好它的外牆仍然堅固</span></span>
 It's a good thing the outer wall of it still stands strong.<BR>
-Today the <span class='tooltip'>Coliseum<span class='tooltip-text' onclick="speakText('Coliseum')"><img src="speak.png">競技場</span></span> is one of Rome's most <span class='tooltip'>popular<span class='tooltip-text' onclick="speakText('popular')"><img src="speak.png">受歡迎的</span></span> <span class='tooltip'>attractions<span class='tooltip-text' onclick="speakText('attractions')"><img src="speak.png">景點</span></span>.<span class='tooltip3'>譯<span class='tooltip-text'>毀壞的羅馬競技場沒有被復原,幸運的是它的外牆仍屹立不搖。現在羅馬競技場是羅馬最熱門的景點之一</span></span><br><HR>
 
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>毀壞的羅馬競技場沒有被復原, 幸運的是它的外牆仍屹立不搖。現在羅馬競技場是羅馬最熱門的景點之一</span></span>
+Today the <span class='tooltip'>Coliseum<span class='tooltip-text' onclick="speakText('Coliseum')"><img src="speak.png">競技場</span></span> is one of Rome's most <span class='tooltip'>popular<span class='tooltip-text' onclick="speakText('popular')"><img src="speak.png">受歡迎的</span></span> <span class='tooltip'>attractions<span class='tooltip-text' onclick="speakText('attractions')"><img src="speak.png">景點</span></span>.<br><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>來自世界各地的人們來到義大利參觀。</span></span>
 People from all over the world come to <span class='tooltip'>Italy<span class='tooltip-text' onclick="speakText('Italy')"><img src="speak.png">義大利</span></span> to visit it.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>每年耶穌受難日，教宗都會帶領大家圍繞它進行大規模遊行</span></span>
 The <span class='tooltip'>Pope<span class='tooltip-text' onclick="speakText('Pope')"><img src="speak.png">教宗</span></span> <span class='tooltip'>leads<span class='tooltip-text' onclick="speakText('leads')"><img src="speak.png">帶領</span></span> a big <span class='tooltip'>march<span class='tooltip-text' onclick="speakText('march')"><img src="speak.png">行進</span></span> around it every Good Friday.<BR>
-<span class='tooltip'>Coliseum<span class='tooltip-text' onclick="speakText('Coliseum')"><img src="speak.png">競技場</span></span> has become a <span class='tooltip'>symbol<span class='tooltip-text' onclick="speakText('symbol')"><img src="speak.png">象徵</span></span> of <span class='tooltip'>Italy<span class='tooltip-text' onclick="speakText('Italy')"><img src="speak.png">義大利</span></span> that is known to the world today.
-<span class='tooltip3'>譯<span class='tooltip-text'>來自世界各地的人都來到義大利參訪羅馬競技場,教宗每逢聖周五就會在羅馬競技場附近舉辦盛大的遊行,現今羅馬競技場已經成為世界聞名的義大利象徵。</span></span><BR><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>鬥獸場如今已成為世界聞名的義大利的象徵</span></span>
+<span class='tooltip'>Coliseum<span class='tooltip-text' onclick="speakText('Coliseum')"><img src="speak.png">競技場</span></span> has become a <span class='tooltip'>symbol<span class='tooltip-text' onclick="speakText('symbol')"><img src="speak.png">象徵</span></span> of <span class='tooltip'>Italy<span class='tooltip-text' onclick="speakText('Italy')"><img src="speak.png">義大利</span></span> that is known to the world today.<BR><HR>

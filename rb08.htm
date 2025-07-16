@@ -7,6 +7,16 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
 
 <script>
     function speakText(text) {
@@ -85,8 +95,10 @@ body {
 }
 
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -149,7 +161,7 @@ font-size: 0.8em;
   padding: 2px 0;
   word-break: break-word;
   white-space: normal;
-  z-index: 1000;
+  z-index: 2000;
   visibility: hidden;
   opacity: 0;
   text-align: left;      
@@ -310,6 +322,7 @@ font-size: 0.9em;
 
 
 <div class="scroll-buttons">
+  <div class="b2"><a href="index2.htm"><img src="home.png"></a></div>
   <button onclick="scrollToTop()">↑</button>
   <button onclick="scrollToBottom()">↓</button>
 </div>
@@ -322,6 +335,14 @@ font-size: 0.9em;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
 }
 
 .scroll-buttons button {
@@ -352,7 +373,7 @@ font-size: 0.9em;
 .te {
   position: fixed; 
   bottom:0px;       
-  width:98%;
+  width:99%;
   left: 50%;
   font-family: Times New Roman, sans-serif;
   transform: translateX(-50%) scale(0);
@@ -361,7 +382,7 @@ font-size: 0.9em;
   padding: 5px;
   font-size: 30px; /* 這裡設定文字大小為 30px */
   border-radius: 10px;
-  z-index: 999;
+  z-index: 1999;
   transition: transform 0.3s ease;
 
 
@@ -385,16 +406,6 @@ font-size: 0.9em;
 }
 </style>
 
-<script>
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function scrollToBottom() {
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-}
-
-</script>
 
 
 

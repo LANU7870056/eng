@@ -7,6 +7,16 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
 
 <script>
     function speakText(text) {
@@ -24,7 +34,20 @@
 
 let isVisible = false;
 
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
 function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
 
 
  const box = img.nextElementSibling;
@@ -72,8 +95,10 @@ body {
 }
 
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -136,7 +161,7 @@ font-size: 0.8em;
   padding: 2px 0;
   word-break: break-word;
   white-space: normal;
-  z-index: 1000;
+  z-index: 2000;
   visibility: hidden;
   opacity: 0;
   text-align: left;      
@@ -297,6 +322,7 @@ font-size: 0.9em;
 
 
 <div class="scroll-buttons">
+  <div class="b2"><a href="index2.htm"><img src="home.png"></a></div>
   <button onclick="scrollToTop()">↑</button>
   <button onclick="scrollToBottom()">↓</button>
 </div>
@@ -309,6 +335,14 @@ font-size: 0.9em;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
 }
 
 .scroll-buttons button {
@@ -339,41 +373,39 @@ font-size: 0.9em;
 .te {
   position: fixed; 
   bottom:0px;       
-  width:100%;
+  width:99%;
   left: 50%;
   font-family: Times New Roman, sans-serif;
   transform: translateX(-50%) scale(0);
-  background-color: rgba(255,255,0, 1);
-  color: #00F;
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
   padding: 5px;
-  font-size: 40px; /* 這裡設定文字大小為 30px */
+  font-size: 30px; /* 這裡設定文字大小為 30px */
   border-radius: 10px;
-  z-index: 999;
+  z-index: 1999;
   transition: transform 0.3s ease;
+
+
 }
 .te2 {
-  border: 1px solid #333;       /* 方框邊框 */
+  border: 1px solid #f00;       /* 方框邊框 */
   padding: 1px;                /* 內距讓文字不貼邊 */
-  font-size: 40px;              /* 文字大小 */
+  font-size: 30px;              /* 文字大小 */
   font-family: Arial, sans-serif; /* 字型 */
-  background-color: #FFF;    /* 背景色，可選 */
+  background-color: #FF50A7;    /* 背景色，可選 */
   border-radius: 8px;           /* 圓角，可選 */
   width: fit-content;           /* 自動調整寬度 */
-  margin: 2px auto;            /* 置中顯示 */
- line-height: 50px;  
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
 }
 </style>
 
-<script>
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function scrollToBottom() {
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-}
-
-</script>
 
 
 

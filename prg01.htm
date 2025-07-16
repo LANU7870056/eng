@@ -7,41 +7,6 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
-
-
-<div class="scroll-buttons">
-  <button onclick="scrollToTop()">↑</button>
-  <button onclick="scrollToBottom()">↓</button>
-</div>
-
-<style>
-.scroll-buttons {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1500;
-}
-
-.scroll-buttons button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-.scroll-buttons button:hover {
-  background-color: #0056b3;
-}
-</style>
-
 <script>
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -50,7 +15,9 @@ function scrollToTop() {
 function scrollToBottom() {
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
+
 </script>
+
 <script>
     function speakText(text) {
       //const text = "Connect to the internet";
@@ -64,6 +31,32 @@ function scrollToBottom() {
       const audio = new Audio(ww);
       audio.play();
     }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
 </script>
 
 <script>
@@ -97,10 +90,15 @@ color:#F0F;
   font-weight: bold;
 }
 
+body {
+  background-color: #D2FF78;
+}
 
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -109,19 +107,21 @@ color:#F0F;
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 0px solid #ccc; /* 可加上邊框 */
     margin: 0px auto; /* 置中顯示 */
-top:0px;
+    top:0px;
+    left:-1px;
     border-radius: 0px; /* 調整圓角大小 */
   }
 
   .background-box {
     width:100%;
+    align-items: center;   
     background-color: #D2FF78;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
     background-size: cover; /* 圖片填滿區塊 */
     background-position: center; /* 圖片置中 */
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 1px solid #ccc; /* 可加上邊框 */
-    margin: 20px auto; /* 置中顯示 */
+    margin: 20px 1px auto; /* 置中顯示 */
     border-radius: 20px; /* 調整圓角大小 */
   }
 </style>
@@ -161,7 +161,7 @@ font-size: 0.8em;
   padding: 2px 0;
   word-break: break-word;
   white-space: normal;
-  z-index: 1000;
+  z-index: 2000;
   visibility: hidden;
   opacity: 0;
   text-align: left;      
@@ -311,7 +311,7 @@ font-size: 0.9em;
   </style>
 </head>
 <div class="bk-box">
-<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
 <a href="javascript: void(0)" onclick="gen('index3.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
 
@@ -319,11 +319,102 @@ font-size: 0.9em;
 <BR>
 <div class="background-box" style="font-size: 1.2em;">
 
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index3.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
 <center>第01回  單字及文法</center>
 一、單字測驗<BR>
 1.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】撰寫正式書信時，最好能維持內容簡明扼要，並切入重點。(A)簡明扼要　(B)足夠的　(C)補充物　(D)適用的</span></span>
 When writing a <span class='tooltip'>formal<span class='tooltip-text' onclick="speakText('formal')"><IMG SRC='speak.png'>
-正式</span></span> letter, it is better to keep the <span class='tooltip'>content<span class='tooltip-text' onclick = "speakText('content')"><IMG SRC='speak.png'>內容</span></span> _____ and to the point.
+正式</span></span> letter,  it is better to keep the <span class='tooltip'>content<span class='tooltip-text' onclick = "speakText('content')"><IMG SRC='speak.png'>內容</span></span> _____ and to the point.
 <BR>(A)<span class='tooltip'>succinct<span class='tooltip-text' onclick = "speakText('succinct')"><IMG SRC='speak.png'>簡潔</span></span>　(B)<span class='tooltip'>sufficient<span class='tooltip-text' onclick = "speakText('sufficient')"><IMG SRC='speak.png'>足夠的</span></span>　(C)<span class='tooltip'>supplement<span class='tooltip-text' onclick = "speakText('supplement')"><IMG SRC='speak.png'>補充物</span></span>　(D)<span class='tooltip'>applicable<span class='tooltip-text' onclick = "speakText('applicable')"><IMG SRC='speak.png'>適用的</span></span> <BR><HR>
 
 2.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】購買新公寓是一個重大的決定，我們應該在做最終買賣前經過詳細的研究和討論。(A)值得的　(B)數位的　(C)重大的　(D)潛在的</span></span>
@@ -331,12 +422,12 @@ Purchasing a new <span class='tooltip'>apartment<span class='tooltip-text' oncli
 <BR>(A)<span class='tooltip'>worthwhile<span class='tooltip-text' onclick = "speakText('worthwhile')"><IMG SRC='speak.png'>值得的</span></span>　(B)<span class='tooltip'>digital<span class='tooltip-text' onclick = "speakText('digital')"><IMG SRC='speak.png'>數位的</span></span>　(C)<span class='tooltip'>critical<span class='tooltip-text' onclick = "speakText('critical')"><IMG SRC='speak.png'>批判的、謹嚴的</span></span>　(D)<span class='tooltip'>potential<span class='tooltip-text' onclick = "speakText('potential')"><IMG SRC='speak.png'>潛在的</span></span> <BR><HR>
 
 3.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】那位兇手無法否認指向他的證據，便聲稱警方捏造對他不利的證據。(A)完成　(B)複雜的　(C)沉思　(D)捏</span></span>
-Unable to <span class='tooltip'>deny<span class='tooltip-text' onclick = "speakText('deny')"><IMG SRC='speak.png'>否定</span></span> the <span class='tooltip'>evidence<span class='tooltip-text' onclick = "speakText('evidence')"><IMG SRC='speak.png'>證據</span></span> pointing to him, 
+Unable to <span class='tooltip'>deny<span class='tooltip-text' onclick = "speakText('deny')"><IMG SRC='speak.png'>否定</span></span> the <span class='tooltip'>evidence<span class='tooltip-text' onclick = "speakText('evidence')"><IMG SRC='speak.png'>證據</span></span> pointing to him,  
 the <span class='tooltip'>murderer<span class='tooltip-text' onclick = "speakText('murderer')"><IMG SRC='speak.png'>兇手</span></span> <span class='tooltip'>claims<span class='tooltip-text' onclick = "speakText('claims')"><IMG SRC='speak.png'>聲稱</span></span> that the police _____ <span class='tooltip'>evidence<span class='tooltip-text' onclick = "speakText('evidence')"><IMG SRC='speak.png'>證據</span></span> <span class='tooltip'>against<span class='tooltip-text' onclick = "speakText('against')"><IMG SRC='speak.png'>反對、不利</span></span> him.
 <BR>(A)<span class='tooltip'>completed<span class='tooltip-text' onclick = "speakText('completed')"><IMG SRC='speak.png'>完全的</span></span>　(B)<span class='tooltip'>complicated<span class='tooltip-text' onclick = "speakText('complicated')"><IMG SRC='speak.png'>複雜的</span></span>　(C)<span class='tooltip'>contemplated<span class='tooltip-text' onclick = "speakText('contemplated')"><IMG SRC='speak.png'>考慮過的</span></span>　(D)<span class='tooltip'>fabricated<span class='tooltip-text' onclick = "speakText('fabricated')"><IMG SRC='speak.png'>捏造的</span></span> <BR><HR>
 
 4.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】在十二月份，整座城市都充滿歡樂的氣氛。我們都陶醉於沿路的聖誕燈飾及擺設。(A)遊蕩　(B)提倡　(C)增加　(D)陶醉</span></span>
-In December, the whole city is <span class='tooltip'>filled with<span class='tooltip-text' onclick = "speakText('filled with')"><IMG SRC='speak.png'>充滿</span></span> <span class='tooltip'>joyful<span class='tooltip-text' onclick = "speakText('joyful')"><IMG SRC='speak.png'>歡樂</span></span> <span class='tooltip'>atmosphere<span class='tooltip-text' onclick = "speakText('atmosphere')"><IMG SRC='speak.png'>氣氛</span></span>. We were _____ by the Christmas lights and <span class='tooltip'>decorations<span class='tooltip-text' onclick = "speakText('decorations')"><IMG SRC='speak.png'>裝飾</span></span> along the streets.
+In December,  the whole city is <span class='tooltip'>filled with<span class='tooltip-text' onclick = "speakText('filled with')"><IMG SRC='speak.png'>充滿</span></span> <span class='tooltip'>joyful<span class='tooltip-text' onclick = "speakText('joyful')"><IMG SRC='speak.png'>歡樂</span></span> <span class='tooltip'>atmosphere<span class='tooltip-text' onclick = "speakText('atmosphere')"><IMG SRC='speak.png'>氣氛</span></span>. We were _____ by the Christmas lights and <span class='tooltip'>decorations<span class='tooltip-text' onclick = "speakText('decorations')"><IMG SRC='speak.png'>裝飾</span></span> along the streets.
 <BR>(A)<span class='tooltip'>wandered<span class='tooltip-text' onclick = "speakText('wandered')"><IMG SRC='speak.png'>遊盪、徘徊</span></span>　(B)<span class='tooltip'>advocated<span class='tooltip-text' onclick = "speakText('advocated')"><IMG SRC='speak.png'>提議</span></span>　(C)<span class='tooltip'>enhanced<span class='tooltip-text' onclick = "speakText('enhanced')"><IMG SRC='speak.png'>增加、增強</span></span>　(D)<span class='tooltip'>enchanted<span class='tooltip-text' onclick = "speakText('enchanted')"><IMG SRC='speak.png'>陶醉、著迷的</span></span> <BR><HR>
 
 5.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】我們公司計畫要蓋新工廠來容納越來越多的訂單，但我們還沒找到理想的廠址。(A)圖書館　(B)懲罰　(C)廠址　(D)集會</span></span>
@@ -345,7 +436,7 @@ Our company plans to build new <span class='tooltip'>factories<span class='toolt
 <BR>(A)<span class='tooltip'>libraries<span class='tooltip-text' onclick = "speakText('libraries')"><IMG SRC='speak.png'>圖書館</span></span>　(B)<span class='tooltip'>penalties<span class='tooltip-text' onclick = "speakText('penalties')"><IMG SRC='speak.png'>處罰</span></span>　(C)<span class='tooltip'>premises<span class='tooltip-text' onclick = "speakText('premises')"><IMG SRC='speak.png'>廠區、前提</span></span>　(D)<span class='tooltip'>assemblies<span class='tooltip-text' onclick = "speakText('assemblies')"><IMG SRC='speak.png'>組件</span></span> <BR><HR>
 
 6.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】因為恐怖攻擊事件頻繁發生，每個人在進入市政廳前都必須通過安全檢查。(A)保育　(B)輻射　(C)安全　(D)機密的</span></span>
-Due to <span class='tooltip'>frequently<span class='tooltip-text' onclick = "speakText('frequently')"><IMG SRC='speak.png'>頻繁地</span></span> <span class='tooltip'>occurred<span class='tooltip-text' onclick = "speakText('occurred')"><IMG SRC='speak.png'>發生</span></span> <span class='tooltip'>terrorist<span class='tooltip-text' onclick = "speakText('terrorist')"><IMG SRC='speak.png'>恐怖分子</span></span> <span class='tooltip'>attack<span class='tooltip-text' onclick = "speakText('attack')"><IMG SRC='speak.png'>攻擊</span></span>, everyone is <span class='tooltip'>required<span class='tooltip-text' onclick = "speakText('required')"><IMG SRC='speak.png'>必需的</span></span> to go through the _____ check before entering the city <span class='tooltip'>hall<span class='tooltip-text' onclick = "speakText('hall')"><IMG SRC='speak.png'>大廳</span></span> .
+Due to <span class='tooltip'>frequently<span class='tooltip-text' onclick = "speakText('frequently')"><IMG SRC='speak.png'>頻繁地</span></span> <span class='tooltip'>occurred<span class='tooltip-text' onclick = "speakText('occurred')"><IMG SRC='speak.png'>發生</span></span> <span class='tooltip'>terrorist<span class='tooltip-text' onclick = "speakText('terrorist')"><IMG SRC='speak.png'>恐怖分子</span></span> <span class='tooltip'>attack<span class='tooltip-text' onclick = "speakText('attack')"><IMG SRC='speak.png'>攻擊</span></span>,  everyone is <span class='tooltip'>required<span class='tooltip-text' onclick = "speakText('required')"><IMG SRC='speak.png'>必需的</span></span> to go through the _____ check before entering the city <span class='tooltip'>hall<span class='tooltip-text' onclick = "speakText('hall')"><IMG SRC='speak.png'>大廳</span></span> .
 <BR>(A)<span class='tooltip'>conservation<span class='tooltip-text' onclick = "speakText('conservation')"><IMG SRC='speak.png'>保護</span></span>　(B)<span class='tooltip'>radiation<span class='tooltip-text' onclick = "speakText('radiation')"><IMG SRC='speak.png'>輻射</span></span>　(C)<span class='tooltip'>security<span class='tooltip-text' onclick = "speakText('security')"><IMG SRC='speak.png'>安全</span></span>　(D)<span class='tooltip'>confidential<span class='tooltip-text' onclick = "speakText('confidential')"><IMG SRC='speak.png'>機密的</span></span> <BR><HR>
 
 7.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】Jerry是一個很明智的人，他在做每個決定前都會思考各個可能的選擇並分析其利弊。<BR>(A)敏感的　(B)侵入性的　(C)明智的　(D)相當的</span></span>
@@ -359,17 +450,17 @@ She was <span class='tooltip'>released<span class='tooltip-text' onclick = "spea
 
 二、文法測驗<BR>
 9.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】那組客人提出客訴說牛肉湯裡有蒼蠅，所以經理決定給他們一碗牛肉湯的免費兌換券。<BR>主動就用Ving，被動就用Ved </span></span>
-The customers <span class='tooltip'>filed a complaint<span class='tooltip-text'  onclick="speakText('filed a complaint')"><IMG SRC='speak.png'>提出客訴</span></span>  _____ that there was a <span class='tooltip'>fly<span class='tooltip-text' onclick = "speakText('fly')"><IMG SRC='speak.png'>蒼蠅</span></span> in the <span class='tooltip'>beef soup<span class='tooltip-text' onclick = "speakText('beef soup')"><IMG SRC='speak.png'>牛肉湯</span></span>. Therefore, the manager decided to give them a <span class='tooltip'>voucher<span class='tooltip-text' onclick = "speakText('voucher')"><IMG SRC='speak.png'>兌換券</span></span> for another beef soup for free.
+The customers <span class='tooltip'>filed a complaint<span class='tooltip-text'  onclick="speakText('filed a complaint')"><IMG SRC='speak.png'>提出客訴</span></span>  _____ that there was a <span class='tooltip'>fly<span class='tooltip-text' onclick = "speakText('fly')"><IMG SRC='speak.png'>蒼蠅</span></span> in the <span class='tooltip'>beef soup<span class='tooltip-text' onclick = "speakText('beef soup')"><IMG SRC='speak.png'>牛肉湯</span></span>. Therefore,  the manager decided to give them a <span class='tooltip'>voucher<span class='tooltip-text' onclick = "speakText('voucher')"><IMG SRC='speak.png'>兌換券</span></span> for another beef soup for free.
 <BR>(A)alleged　(B)alleging　(C)has alleged　 (D)allege to <BR><HR>
 
 10.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】「如果我是你，我會多買幾張不同的股票，不會都賭在同一張股票上。不要把雞蛋放在同一個籃子裡是比較明智的做法」<BR>
 假設語氣中「與現在事實相反的假設」「If+過去簡單式，would/could+動詞原形」If後面的are變化為過去簡單式were</span></span>
-If I _____ you, I would buy more different stocks instead of betting on a single one. It is wiser not to put all the eggs in one basket.
+If I _____ you,  I would buy more different stocks instead of betting on a single one. It is wiser not to put all the eggs in one basket.
 <BR>(A)am　(B)was　(C)would be　(D)were <BR><HR>
 
 11.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】「要申請研究所，你必須寫好自傳、準備推薦信，並彙整你過去的作品變成你個人的作品集」<BR>
 本題測驗的是「To V.， S + V」的句型</span></span>
-_____ for a graduate school, you need to write your <span class='tooltip'>personal statement<span class='tooltip-text'  onclick="speakText('personal statement')"><IMG SRC='speak.png'>個人陳述、自傳。</span></span>, prepare letters of recommendation, and gather your previous work into your own portfolio.
+_____ for a graduate school,  you need to write your <span class='tooltip'>personal statement<span class='tooltip-text'  onclick="speakText('personal statement')"><IMG SRC='speak.png'>個人陳述、自傳。</span></span>,  prepare letters of recommendation,  and gather your previous work into your own portfolio.
 <BR>(A)Applied　(B)To apply　(C)Apply　(D)Be applied <BR><HR>
 
 12.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】「三位學生在老師講課時大聲笑著衝進教室，老師責備他們沒有禮貌打斷他上課」。<BR>
@@ -384,7 +475,7 @@ Jane's parents let her ___ computer games for an hour after she finished her hom
 
 14.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】你去過紐約嗎?我聽說那裡有很多博物館跟購物中心，你可以買一張公車票到處走走」<BR>
 過去完成式常用來表達「從過去到現在為止累積的經驗，本題的問句"Have you been to New York?"我們可以將它翻譯為「從過去到現在為止，你是否有到過紐約的經驗?」所以本句即是詢問對方「從過去到現在為止累積的經驗」，必須使用過去完成式have been</span></span>
-Have you __ to New York? I heard that there are many <span class='tooltip'>museums<span class='tooltip-text' onclick = "speakText('museums')"><IMG SRC='speak.png'>博物館</span></span> and shopping malls, and you can buy a <span class='tooltip'>bus pass<span class='tooltip-text' onclick = "speakText('bus pass')"><IMG SRC='speak.png'>公車票</span></span> to <span class='tooltip'>move around<span class='tooltip-text' onclick = "speakText('move around')"><IMG SRC='speak.png'>到處走走</span></span>.
+Have you __ to New York? I heard that there are many <span class='tooltip'>museums<span class='tooltip-text' onclick = "speakText('museums')"><IMG SRC='speak.png'>博物館</span></span> and shopping malls,  and you can buy a <span class='tooltip'>bus pass<span class='tooltip-text' onclick = "speakText('bus pass')"><IMG SRC='speak.png'>公車票</span></span> to <span class='tooltip'>move around<span class='tooltip-text' onclick = "speakText('move around')"><IMG SRC='speak.png'>到處走走</span></span>.
 <BR>(A)been　(B)be going　(C)went　(D)go <BR><HR>
 
 15.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】你可以搭公車或走路去這間餐廳。這是一間很熱門的餐廳，記得提早訂位。<BR>

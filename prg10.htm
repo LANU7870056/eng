@@ -7,41 +7,6 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
-
-
-<div class="scroll-buttons">
-  <button onclick="scrollToTop()">↑</button>
-  <button onclick="scrollToBottom()">↓</button>
-</div>
-
-<style>
-.scroll-buttons {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1500;
-}
-
-.scroll-buttons button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-.scroll-buttons button:hover {
-  background-color: #0056b3;
-}
-</style>
-
 <script>
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -50,7 +15,9 @@ function scrollToTop() {
 function scrollToBottom() {
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
+
 </script>
+
 <script>
     function speakText(text) {
       //const text = "Connect to the internet";
@@ -64,6 +31,31 @@ function scrollToBottom() {
       const audio = new Audio(ww);
       audio.play();
     }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
 
 </script>
 
@@ -98,10 +90,15 @@ color:#F0F;
   font-weight: bold;
 }
 
+body {
+  background-color: #D2FF78;
+}
 
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -110,19 +107,21 @@ color:#F0F;
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 0px solid #ccc; /* 可加上邊框 */
     margin: 0px auto; /* 置中顯示 */
-top:0px;
+    top:0px;
+    left:-1px;
     border-radius: 0px; /* 調整圓角大小 */
   }
 
   .background-box {
     width:100%;
+    align-items: center;   
     background-color: #D2FF78;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
     background-size: cover; /* 圖片填滿區塊 */
     background-position: center; /* 圖片置中 */
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 1px solid #ccc; /* 可加上邊框 */
-    margin: 20px auto; /* 置中顯示 */
+    margin: 20px 1px auto; /* 置中顯示 */
     border-radius: 20px; /* 調整圓角大小 */
   }
 </style>
@@ -162,7 +161,7 @@ font-size: 0.8em;
   padding: 2px 0;
   word-break: break-word;
   white-space: normal;
-  z-index: 1000;
+  z-index: 2000;
   visibility: hidden;
   opacity: 0;
   text-align: left;      
@@ -312,13 +311,105 @@ font-size: 0.9em;
   </style>
 </head>
 <div class="bk-box">
-<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
 <a href="javascript: void(0)" onclick="gen('index3.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
 
 <body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
 <BR>
 <div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index3.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
 
 <CENTER>第10回 英單及文法 </CENTER>
 一、單字測驗 <br>
@@ -367,7 +458,7 @@ Everyone in the company is asked to attend the meeting tomorrow.Our Chief <span 
 二、文法測驗 <br>
 9.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】那個小女孩可以聽到我們說話吧，不是嗎?<br>
 　本題測驗詰問句型。詰問句為在肯定句後面加上否定的倒裝疑問句，以表示強烈的詰問語氣。疑問句應寫成can't she?</span></span>
-The little girl can hear us ,  ____ ? <BR>
+The little girl can hear us ,   ____ ? <BR>
 (A)can she 　(B)can we 　(C)can't she 　(D)can't we <br> <hr>
 
 10.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】我們跟另外一隊平手，他們跟我們一樣好。<br>
@@ -393,7 +484,7 @@ Basil ___ an <span class='tooltip'>operation<span class='tooltip-text'  onclick=
 
 14.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】Marcy通常都在周末上班，所以他很少跟朋友約出去<br>
 　「在周末」→on weekends.。「在平日」→"on weekdays."</span></span>
-Marcy usually works ___ weekends ,  so he <span class='tooltip'>seldom<span class='tooltip-text'  onclick="speakText('seldom')"><IMG SRC='speak.png'>很少</span></span> hang out with his friends.<BR>
+Marcy usually works ___ weekends ,   so he <span class='tooltip'>seldom<span class='tooltip-text'  onclick="speakText('seldom')"><IMG SRC='speak.png'>很少</span></span> hang out with his friends.<BR>
 (A)in 　(B)at 　(C)on 　(D)for <br> <hr>
 
 15.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】我想你諮詢哪一位律師都可以，他們都很成功，這位律師跟另一位律師一樣有經驗。<br>

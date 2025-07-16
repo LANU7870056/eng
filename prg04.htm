@@ -7,41 +7,6 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
-
-
-<div class="scroll-buttons">
-  <button onclick="scrollToTop()">↑</button>
-  <button onclick="scrollToBottom()">↓</button>
-</div>
-
-<style>
-.scroll-buttons {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1500;
-}
-
-.scroll-buttons button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-.scroll-buttons button:hover {
-  background-color: #0056b3;
-}
-</style>
-
 <script>
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -50,20 +15,47 @@ function scrollToTop() {
 function scrollToBottom() {
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
+
 </script>
+
 <script>
-    function speakText2(text) {
+    function speakText(text) {
       //const text = "Connect to the internet";
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
       speechSynthesis.speak(utterance);
     }
     
-    function speakText(text) {
+    function speakText2(text) {
       const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
       const audio = new Audio(ww);
       audio.play();
     }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
 
 </script>
 
@@ -98,10 +90,15 @@ color:#F0F;
   font-weight: bold;
 }
 
+body {
+  background-color: #D2FF78;
+}
 
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -110,19 +107,21 @@ color:#F0F;
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 0px solid #ccc; /* 可加上邊框 */
     margin: 0px auto; /* 置中顯示 */
-top:0px;
+    top:0px;
+    left:-1px;
     border-radius: 0px; /* 調整圓角大小 */
   }
 
   .background-box {
     width:100%;
+    align-items: center;   
     background-color: #D2FF78;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
     background-size: cover; /* 圖片填滿區塊 */
     background-position: center; /* 圖片置中 */
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 1px solid #ccc; /* 可加上邊框 */
-    margin: 20px auto; /* 置中顯示 */
+    margin: 20px 1px auto; /* 置中顯示 */
     border-radius: 20px; /* 調整圓角大小 */
   }
 </style>
@@ -162,7 +161,7 @@ font-size: 0.8em;
   padding: 2px 0;
   word-break: break-word;
   white-space: normal;
-  z-index: 1000;
+  z-index: 2000;
   visibility: hidden;
   opacity: 0;
   text-align: left;      
@@ -312,13 +311,104 @@ font-size: 0.9em;
   </style>
 </head>
 <div class="bk-box">
-<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
 <a href="javascript: void(0)" onclick="gen('index3.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
 
 <body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
 <BR>
 <div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index3.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
 
  <center>第４回 英單及文法 </center>
 一、單字測驗 <br>
@@ -329,17 +419,17 @@ The <span class='tooltip'>latest<span class='tooltip-text'  onclick="speakText('
 
 2.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】如翻轉牌已改變了21世紀的教學模式，先進的教學工具越來越應用在課堂上。學生們不再需要來記憶課本中的內容，而是更需要來掌握他們所需的技能。<br>
 　(A)燒烤　(B)利用　(C)名譽　(D)狀況 </span></span>
- <span class='tooltip'>Knowledge<span class='tooltip-text'  onclick="speakText('Knowledge')"><IMG SRC='speak.png'>知識</span></span> _____ has changed the way of education in the 21st century. Advanced digital teaching tools are <span class='tooltip'>applied<span class='tooltip-text'  onclick="speakText('applied')"><IMG SRC='speak.png'>應用</span></span> in classrooms. Students are no longer asked to <span class='tooltip'>memorize<span class='tooltip-text'  onclick="speakText('memorize')"><IMG SRC='speak.png'>記住</span></span> <span class='tooltip'>contents<span class='tooltip-text'  onclick="speakText('contents')"><IMG SRC='speak.png'>內容</span></span> in the <span class='tooltip'>textbooks<span class='tooltip-text'  onclick="speakText('textbooks')"><IMG SRC='speak.png'>教科書</span></span> ,  but <span class='tooltip'>rather<span class='tooltip-text'  onclick="speakText('rather')"><IMG SRC='speak.png'>相當</span></span> asked to <span class='tooltip'>search<span class='tooltip-text'  onclick="speakText('search')"><IMG SRC='speak.png'>搜尋</span></span> for <span class='tooltip'>information<span class='tooltip-text'  onclick="speakText('information')"><IMG SRC='speak.png'>資訊</span></span> they need.<BR>
+ <span class='tooltip'>Knowledge<span class='tooltip-text'  onclick="speakText('Knowledge')"><IMG SRC='speak.png'>知識</span></span> _____ has changed the way of education in the 21st century. Advanced digital teaching tools are <span class='tooltip'>applied<span class='tooltip-text'  onclick="speakText('applied')"><IMG SRC='speak.png'>應用</span></span> in classrooms. Students are no longer asked to <span class='tooltip'>memorize<span class='tooltip-text'  onclick="speakText('memorize')"><IMG SRC='speak.png'>記住</span></span> <span class='tooltip'>contents<span class='tooltip-text'  onclick="speakText('contents')"><IMG SRC='speak.png'>內容</span></span> in the <span class='tooltip'>textbooks<span class='tooltip-text'  onclick="speakText('textbooks')"><IMG SRC='speak.png'>教科書</span></span> ,   but <span class='tooltip'>rather<span class='tooltip-text'  onclick="speakText('rather')"><IMG SRC='speak.png'>相當</span></span> asked to <span class='tooltip'>search<span class='tooltip-text'  onclick="speakText('search')"><IMG SRC='speak.png'>搜尋</span></span> for <span class='tooltip'>information<span class='tooltip-text'  onclick="speakText('information')"><IMG SRC='speak.png'>資訊</span></span> they need.<BR>
 (A)<span class='tooltip'>explosion<span class='tooltip-text'  onclick="speakText('explosion')"><IMG SRC='speak.png'>霹靂</span></span>　(B)<span class='tooltip'>exploitation<span class='tooltip-text'  onclick="speakText('exploitation')"><IMG SRC='speak.png'>開發</span></span>　(C)<span class='tooltip'>reputation<span class='tooltip-text'  onclick="speakText('reputation')"><IMG SRC='speak.png'>名譽</span></span>　(D)<span class='tooltip'>condition<span class='tooltip-text'  onclick="speakText('condition')"><IMG SRC='speak.png'>狀況</span></span> <br><hr>
 
 3.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】沒有你的幫忙，這個團隊案很難完成。我們感激你的及時幫助。<BR>
 　(A)協助　(B)助理　(C)立即的　(D)反抗 </span></span>
-Without your _____ ,  this <span class='tooltip'>project<span class='tooltip-text'  onclick="speakText('project')"><IMG SRC='speak.png'>專案</span></span> could not be <span class='tooltip'>completed<span class='tooltip-text'  onclick="speakText('completed')"><IMG SRC='speak.png'>完全的</span></span>. We <span class='tooltip'>sincerely<span class='tooltip-text'  onclick="speakText('sincerely')"><IMG SRC='speak.png'>真摯地</span></span> <span class='tooltip'>appreciate<span class='tooltip-text'  onclick="speakText('appreciate')"><IMG SRC='speak.png'>欣賞</span></span> your timely help.<BR>
+Without your _____ ,   this <span class='tooltip'>project<span class='tooltip-text'  onclick="speakText('project')"><IMG SRC='speak.png'>專案</span></span> could not be <span class='tooltip'>completed<span class='tooltip-text'  onclick="speakText('completed')"><IMG SRC='speak.png'>完全的</span></span>. We <span class='tooltip'>sincerely<span class='tooltip-text'  onclick="speakText('sincerely')"><IMG SRC='speak.png'>真摯地</span></span> <span class='tooltip'>appreciate<span class='tooltip-text'  onclick="speakText('appreciate')"><IMG SRC='speak.png'>欣賞</span></span> your timely help.<BR>
 (A)<span class='tooltip'>assistance<span class='tooltip-text'  onclick="speakText('assistance')"><IMG SRC='speak.png'>協助</span></span>　(B)<span class='tooltip'>assistant<span class='tooltip-text'  onclick="speakText('assistant')"><IMG SRC='speak.png'>助理</span></span>　(C)<span class='tooltip'>instant<span class='tooltip-text'  onclick="speakText('instant')"><IMG SRC='speak.png'>立即的</span></span>　(D)<span class='tooltip'>resistance<span class='tooltip-text'  onclick="speakText('resistance')"><IMG SRC='speak.png'>反抗</span></span> <br><hr>
 
 4.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】為了減輕擁擠，這個組織系統需要大家能增加公共設施，諸如停車場、圖書館以及河濱公園。<br>
 　(A)設施　(B)幻想　(C)責任　(D)困難 </span></span>
-To win the <span class='tooltip'>campaign<span class='tooltip-text'  onclick="speakText('campaign')"><IMG SRC='speak.png'>活動</span></span> ,  the <span class='tooltip'>presidential<span class='tooltip-text'  onclick="speakText('presidential')"><IMG SRC='speak.png'>總統</span></span> <span class='tooltip'>candidate<span class='tooltip-text'  onclick="speakText('candidate')"><IMG SRC='speak.png'>候選人</span></span> <span class='tooltip'>promised<span class='tooltip-text'  onclick="speakText('promised')"><IMG SRC='speak.png'>承諾</span></span> to increase _____ such as parking lots ,  libraries ,  and <span class='tooltip'>riverbank<span class='tooltip-text'  onclick="speakText('riverbank')"><IMG SRC='speak.png'>河岸</span></span> parks.<BR>
+To win the <span class='tooltip'>campaign<span class='tooltip-text'  onclick="speakText('campaign')"><IMG SRC='speak.png'>活動</span></span> ,   the <span class='tooltip'>presidential<span class='tooltip-text'  onclick="speakText('presidential')"><IMG SRC='speak.png'>總統</span></span> <span class='tooltip'>candidate<span class='tooltip-text'  onclick="speakText('candidate')"><IMG SRC='speak.png'>候選人</span></span> <span class='tooltip'>promised<span class='tooltip-text'  onclick="speakText('promised')"><IMG SRC='speak.png'>承諾</span></span> to increase _____ such as parking lots ,   libraries ,   and <span class='tooltip'>riverbank<span class='tooltip-text'  onclick="speakText('riverbank')"><IMG SRC='speak.png'>河岸</span></span> parks.<BR>
 (A)<span class='tooltip'>facilities<span class='tooltip-text'  onclick="speakText('facilities')"><IMG SRC='speak.png'>設施</span></span>　(B)<span class='tooltip'>fantasies<span class='tooltip-text'  onclick="speakText('fantasies')"><IMG SRC='speak.png'>幻想</span></span>　(C)<span class='tooltip'>duties<span class='tooltip-text'  onclick="speakText('duties')"><IMG SRC='speak.png'>責任</span></span>　(D)<span class='tooltip'>difficulties<span class='tooltip-text'  onclick="speakText('difficulties')"><IMG SRC='speak.png'>困難</span></span> <br><hr>
 
 5.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】Brown先生現在沒有空，請於14:30他的午餐會議結束後聯繫他。<BR>
@@ -349,37 +439,37 @@ Mr. Brown is not _____ right now. Please contact him later after he finishes his
 
 6.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】他支持將防疫政策的調適合乎邏輯，但很多人無理解他的觀點。<BR>
 　(A)論點　(B)概念　(C)邏輯　(D)首領 </span></span>
-His ＿＿＿＿ for tax increase policy is reasonable ,  yet many people could not understand his point.<BR>
+His ＿＿＿＿ for tax increase policy is reasonable ,   yet many people could not understand his point.<BR>
 (A)<span class='tooltip'>argument<span class='tooltip-text'  onclick="speakText('argument')"><IMG SRC='speak.png'>爭論</span></span>　(B)<span class='tooltip'>tradition<span class='tooltip-text'  onclick="speakText('tradition')"><IMG SRC='speak.png'>傳統</span></span>　(C)compliment　(D)capital <br><hr>
 
 7.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】大眾捷運系統（MRT）是臺北最方便的交通工具。有了它，你可以在短時間內到達很多地方。<BR>
 　(A)沙木　(B)交通工具　(C)干涉　(D)決心 </span></span>
-<span class='tooltip'>Mass Rapid Transit<span class='tooltip-text'  onclick="speakText('Mass Rapid Transit')"><IMG SRC='speak.png'>捷運</span></span>(MRT)is the most <span class='tooltip'>convenient<span class='tooltip-text'  onclick="speakText('convenient')"><IMG SRC='speak.png'>方便的</span></span> ＿＿＿＿ in Taipei. With it,  you can travel to many places in a short time.<BR>
+<span class='tooltip'>Mass Rapid Transit<span class='tooltip-text'  onclick="speakText('Mass Rapid Transit')"><IMG SRC='speak.png'>捷運</span></span>(MRT)is the most <span class='tooltip'>convenient<span class='tooltip-text'  onclick="speakText('convenient')"><IMG SRC='speak.png'>方便的</span></span> ＿＿＿＿ in Taipei. With it,   you can travel to many places in a short time.<BR>
 (A)<span class='tooltip'>transcripti on<span class='tooltip-text'  onclick="speakText('transcripti on')"><IMG SRC='speak.png'>成績單</span></span>　(B)<span class='tooltip'>transportati on<span class='tooltip-text'  onclick="speakText('transportati on')"><IMG SRC='speak.png'>攜帶</span></span>　(C)<span class='tooltip'>pollution<span class='tooltip-text'  onclick="speakText('pollution')"><IMG SRC='speak.png'>污染</span></span>　(D)<span class='tooltip'>resolution<span class='tooltip-text'  onclick="speakText('resolution')"><IMG SRC='speak.png'>解決</span></span> <br><hr>
 
 8.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】國小和國中教育是臺灣每個孩童的義務，他們必須去上學，否則他們的父母會受到懲罰。<br>
 　(A)外科手術　(B)義務性的　(C)信託的　(D)字典</span></span>
-<span class='tooltip'>Elementary<span class='tooltip-text'  onclick="speakText('Elementary')"><IMG SRC='speak.png'>初級</span></span> and <span class='tooltip'>Junior<span class='tooltip-text'  onclick="speakText('Junior')"><IMG SRC='speak.png'>初級</span></span> <span class='tooltip'>High School Education<span class='tooltip-text'  onclick="speakText('High School Education')"><IMG SRC='speak.png'>高中教育</span></span> is ____. for every child in Taiwan. They have to go to school ,  or their <span class='tooltip'>parents<span class='tooltip-text'  onclick="speakText('parents')"><IMG SRC='speak.png'>父母</span></span> will <span class='tooltip'>receive<span class='tooltip-text'  onclick="speakText('receive')"><IMG SRC='speak.png'>收到</span></span> punishment.<BR>
+<span class='tooltip'>Elementary<span class='tooltip-text'  onclick="speakText('Elementary')"><IMG SRC='speak.png'>初級</span></span> and <span class='tooltip'>Junior<span class='tooltip-text'  onclick="speakText('Junior')"><IMG SRC='speak.png'>初級</span></span> <span class='tooltip'>High School Education<span class='tooltip-text'  onclick="speakText('High School Education')"><IMG SRC='speak.png'>高中教育</span></span> is ____. for every child in Taiwan. They have to go to school ,   or their <span class='tooltip'>parents<span class='tooltip-text'  onclick="speakText('parents')"><IMG SRC='speak.png'>父母</span></span> will <span class='tooltip'>receive<span class='tooltip-text'  onclick="speakText('receive')"><IMG SRC='speak.png'>收到</span></span> punishment.<BR>
 (A)surgery　(B)compulsory　(C)fiduciary　(D)dictionary<br><hr>
 
 二、文法測驗 <br>
 9.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】Vicky對粉紅色深深著迷，她用的跟穿的每一樣東西都是粉紅色的。<BR>
-　obsessed with+N, 意指「著迷於某事物」</span></span>
+　obsessed with+N,  意指「著迷於某事物」</span></span>
 Vicky is deeply <span class='tooltip'>obsessed<span class='tooltip-text'  onclick="speakText('obsessed')"><IMG SRC='speak.png'>迷戀</span></span> ___ the color <span class='tooltip'>pink<span class='tooltip-text'  onclick="speakText('pink')"><IMG SRC='speak.png'>粉紅色的</span></span>. Everything she uses and wears is <span class='tooltip'>pink<span class='tooltip-text'  onclick="speakText('pink')"><IMG SRC='speak.png'>粉紅色的</span></span>.<BR>
 (A)with　(B)by　(C)of　(D)on <br><hr>
 
 10.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】只要你每個月都達成銷售目標，年終你就會獲得5%的薪水漲幅。<BR>
-　as long as, 意為「只要……就」</span></span>
-As _____ as you <span class='tooltip'>reach<span class='tooltip-text'  onclick="speakText('reach')"><IMG SRC='speak.png'>達到</span></span> the sales <span class='tooltip'>goal<span class='tooltip-text'  onclick="speakText('goal')"><IMG SRC='speak.png'>目標</span></span> every month ,  you will get a 5% <span class='tooltip'>pay<span class='tooltip-text'  onclick="speakText('pay')"><IMG SRC='speak.png'>薪資</span></span> <span class='tooltip'>raise<span class='tooltip-text'  onclick="speakText('raise')"><IMG SRC='speak.png'>增加</span></span> at the end of the year.<BR>
+　as long as,  意為「只要……就」</span></span>
+As _____ as you <span class='tooltip'>reach<span class='tooltip-text'  onclick="speakText('reach')"><IMG SRC='speak.png'>達到</span></span> the sales <span class='tooltip'>goal<span class='tooltip-text'  onclick="speakText('goal')"><IMG SRC='speak.png'>目標</span></span> every month ,   you will get a 5% <span class='tooltip'>pay<span class='tooltip-text'  onclick="speakText('pay')"><IMG SRC='speak.png'>薪資</span></span> <span class='tooltip'>raise<span class='tooltip-text'  onclick="speakText('raise')"><IMG SRC='speak.png'>增加</span></span> at the end of the year.<BR>
 (A)good　(B)far　(C)long　(D)well　<br><hr>
 
 11.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】如果明天下雨，花園派對就會被取消。<BR>
 　被動語態。假設明天下雨，假設未來的句型→If+現在式表示假設的條件，並搭配未來式表示假設的結果
 。搭配未來式I will V 表示假設的結果</span></span>
-If it rains tomorrow ,  the <span class='tooltip'>garden<span class='tooltip-text'  onclick="speakText('garden')"><IMG SRC='speak.png'>花園</span></span> party _____ <span class='tooltip'>cancelled<span class='tooltip-text'  onclick="speakText('cancelled')"><IMG SRC='speak.png'>取消</span></span>. (A)is　(B)would　 (C)has　(D)will be<br><hr>
+If it rains tomorrow ,   the <span class='tooltip'>garden<span class='tooltip-text'  onclick="speakText('garden')"><IMG SRC='speak.png'>花園</span></span> party _____ <span class='tooltip'>cancelled<span class='tooltip-text'  onclick="speakText('cancelled')"><IMG SRC='speak.png'>取消</span></span>. (A)is　(B)would　 (C)has　(D)will be<br><hr>
 
 12.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】睡前故事講完了，現在閉上你的眼睛睡覺。<BR>
-　使役動詞。此處close跟go皆為使役動詞, 皆應以原形動詞來呈現</span></span>
+　使役動詞。此處close跟go皆為使役動詞,  皆應以原形動詞來呈現</span></span>
 Bedtime story is <span class='tooltip'>over<span class='tooltip-text'  onclick="speakText('over')"><IMG SRC='speak.png'>結束</span></span>. Now ___ your eyes and go to bed.<BR>
 (A)to close　(B)close　(C)closed　(D)closing <br><hr>
 

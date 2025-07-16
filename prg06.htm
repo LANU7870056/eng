@@ -7,41 +7,6 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
-
-
-<div class="scroll-buttons">
-  <button onclick="scrollToTop()">↑</button>
-  <button onclick="scrollToBottom()">↓</button>
-</div>
-
-<style>
-.scroll-buttons {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1500;
-}
-
-.scroll-buttons button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-.scroll-buttons button:hover {
-  background-color: #0056b3;
-}
-</style>
-
 <script>
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -50,7 +15,9 @@ function scrollToTop() {
 function scrollToBottom() {
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
+
 </script>
+
 <script>
     function speakText(text) {
       //const text = "Connect to the internet";
@@ -64,6 +31,31 @@ function scrollToBottom() {
       const audio = new Audio(ww);
       audio.play();
     }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
 
 </script>
 
@@ -98,10 +90,15 @@ color:#F0F;
   font-weight: bold;
 }
 
+body {
+  background-color: #D2FF78;
+}
 
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -110,19 +107,21 @@ color:#F0F;
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 0px solid #ccc; /* 可加上邊框 */
     margin: 0px auto; /* 置中顯示 */
-top:0px;
+    top:0px;
+    left:-1px;
     border-radius: 0px; /* 調整圓角大小 */
   }
 
   .background-box {
     width:100%;
+    align-items: center;   
     background-color: #D2FF78;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
     background-size: cover; /* 圖片填滿區塊 */
     background-position: center; /* 圖片置中 */
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 1px solid #ccc; /* 可加上邊框 */
-    margin: 20px auto; /* 置中顯示 */
+    margin: 20px 1px auto; /* 置中顯示 */
     border-radius: 20px; /* 調整圓角大小 */
   }
 </style>
@@ -162,7 +161,7 @@ font-size: 0.8em;
   padding: 2px 0;
   word-break: break-word;
   white-space: normal;
-  z-index: 1000;
+  z-index: 2000;
   visibility: hidden;
   opacity: 0;
   text-align: left;      
@@ -312,7 +311,7 @@ font-size: 0.9em;
   </style>
 </head>
 <div class="bk-box">
-<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
 <a href="javascript: void(0)" onclick="gen('index3.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
 
@@ -320,9 +319,100 @@ font-size: 0.9em;
 <BR>
 <div class="background-box" style="font-size: 1.2em;">
 
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index3.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
 <center>第6回 英單及文法</center>
 一、單字外測驗 <br>
-1.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】這條魚嚐起來怪怪的, 你從超市買來後放了多久?<BR>
+1.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】這條魚嚐起來怪怪的,  你從超市買來後放了多久?<BR>
 　(A)烤　(B)品嚐　(C)測驗　(D)對待 </span></span>
 The fish ____ funny. How long has it been since you <span class='tooltip'>bought<span class='tooltip-text'  onclick="speakText('bought')"><IMG SRC='speak.png'>買</span></span> it from the <span class='tooltip'>supermarket<span class='tooltip-text'  onclick="speakText('supermarket')"><IMG SRC='speak.png'>超市場</span></span> ? <br>
 (A)<span class='tooltip'>toasted<span class='tooltip-text'  onclick="speakText('toasted')"><IMG SRC='speak.png'>烤</span></span>　(B)<span class='tooltip'>tasted<span class='tooltip-text'  onclick="speakText('tasted')"><IMG SRC='speak.png'>品嚐</span></span>　(C)<span class='tooltip'>tested<span class='tooltip-text'  onclick="speakText('tested')"><IMG SRC='speak.png'>測試</span></span>　(D)<span class='tooltip'>treated<span class='tooltip-text'  onclick="speakText('treated')"><IMG SRC='speak.png'>對待</span></span><br><hr> 
@@ -332,7 +422,7 @@ The fish ____ funny. How long has it been since you <span class='tooltip'>bought
 Amanda ____ to take out the <span class='tooltip'>garbage<span class='tooltip-text'  onclick="speakText('garbage')"><IMG SRC='speak.png'>垃圾</span></span>. She is always happy to help others.<br>
 (A)<span class='tooltip'>volunteered<span class='tooltip-text'  onclick="speakText('volunteered')"><IMG SRC='speak.png'>自願</span></span>　(B)<span class='tooltip'>voted<span class='tooltip-text'  onclick="speakText('voted')"><IMG SRC='speak.png'>投票</span></span>　(C)<span class='tooltip'>vomited<span class='tooltip-text'  onclick="speakText('vomited')"><IMG SRC='speak.png'>嘔吐</span></span>　(D)<span class='tooltip'>welcomed<span class='tooltip-text'  onclick="speakText('welcomed')"><IMG SRC='speak.png'>歡迎</span></span><br><hr>
 
-3.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】你可以在這些學生的臉上看到焦慮, 因為大學入學學科能力測驗就快要到了。<BR>
+3.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】你可以在這些學生的臉上看到焦慮,  因為大學入學學科能力測驗就快要到了。<BR>
 　(A)印象　(B)農業　(C)焦慮　(D)津貼</span></span>
 You can see the ____ on these students' <span class='tooltip'>faces<span class='tooltip-text'  onclick="speakText('faces')"><IMG SRC='speak.png'>臉孔</span></span> because the college <span class='tooltip'>entrance<span class='tooltip-text'  onclick="speakText('entrance')"><IMG SRC='speak.png'>入口</span></span> exam is around the <span class='tooltip'>corner<span class='tooltip-text'  onclick="speakText('corner')"><IMG SRC='speak.png'>角落、轉角</span></span> .<br>
 (A)<span class='tooltip'>impression<span class='tooltip-text'  onclick="speakText('impression')"><IMG SRC='speak.png'>印象</span></span>　(B)<span class='tooltip'>agriculture<span class='tooltip-text'  onclick="speakText('agriculture')"><IMG SRC='speak.png'>農業</span></span>　(C)<span class='tooltip'>anxiety<span class='tooltip-text'  onclick="speakText('anxiety')"><IMG SRC='speak.png'>焦慮</span></span>　(D)<span class='tooltip'>allowance<span class='tooltip-text'  onclick="speakText('allowance')"><IMG SRC='speak.png'>津貼</span></span><br><hr>
@@ -342,7 +432,7 @@ You can see the ____ on these students' <span class='tooltip'>faces<span class='
 This <span class='tooltip'>automatic<span class='tooltip-text'  onclick="speakText('automatic')"><IMG SRC='speak.png'>自動的</span></span> water <span class='tooltip'>dispenser<span class='tooltip-text'  onclick="speakText('dispenser')"><IMG SRC='speak.png'>自動販賣機</span></span> has many <span class='tooltip'>delicate<span class='tooltip-text'  onclick="speakText('delicate')"><IMG SRC='speak.png'>精緻的</span></span> <span class='tooltip'>components<span class='tooltip-text'  onclick="speakText('components')"><IMG SRC='speak.png'>成分、零件</span></span>. Please read the ____ <span class='tooltip'>manual<span class='tooltip-text'  onclick="speakText('manual')"><IMG SRC='speak.png'>手冊</span></span> before using it.<br>
 (A)<span class='tooltip'>operation<span class='tooltip-text'  onclick="speakText('operation')"><IMG SRC='speak.png'>操作、手術</span></span>　(B)<span class='tooltip'>oppression<span class='tooltip-text'  onclick="speakText('oppression')"><IMG SRC='speak.png'>壓迫</span></span>　(C)<span class='tooltip'>depression<span class='tooltip-text'  onclick="speakText('depression')"><IMG SRC='speak.png'>憂鬱</span></span>　(D)<span class='tooltip'>extension<span class='tooltip-text'  onclick="speakText('extension')"><IMG SRC='speak.png'>擴大</span></span><br><hr>
 
-5.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】 你可以在這對兄弟身上找到很多相似處, 他們的長相跟說話方式都很像。<BR>
+5.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】 你可以在這對兄弟身上找到很多相似處,  他們的長相跟說話方式都很像。<BR>
 　(A)相似處　(B)相異處　(C)宣布　(D)變化</span></span>
 You can find a lot of ____ between these two brothers.Their <span class='tooltip'>appearances<span class='tooltip-text'  onclick="speakText('appearances')"><IMG SRC='speak.png'>出場</span></span> and the way they talk are <span class='tooltip'>alike<span class='tooltip-text'  onclick="speakText('alike')"><IMG SRC='speak.png'>相似</span></span> .<br>
 (A)<span class='tooltip'>similarities<span class='tooltip-text'  onclick="speakText('similarities')"><IMG SRC='speak.png'>相似處</span></span>　(B)<span class='tooltip'>differences<span class='tooltip-text'  onclick="speakText('differences')"><IMG SRC='speak.png'>相異處</span></span>　(C)<span class='tooltip'>announcement<span class='tooltip-text'  onclick="speakText('announcement')"><IMG SRC='speak.png'>宣布</span></span>　(D)<span class='tooltip'>varieties<span class='tooltip-text'  onclick="speakText('varieties')"><IMG SRC='speak.png'>變化</span></span><br><hr>
@@ -379,7 +469,7 @@ They made fun ____ her when she <span class='tooltip'>accidentally<span class='t
 (A) at　(B) by　(C) on　(D) of <br><hr>
 
 12.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】我不知道現在說出實話是不是已經太遲了<br>
-　too.. to.. →「太…不能…」；so.. that..→「太…所以…」</span></span>
+　too. to. →「太…不能…」；so. that.→「太…所以…」</span></span>
 I don't know if it is ____ late ____ tell the truth.<br>
 (A)so…that　(B)so…for　(C)too…to　(D)too…for<br><hr>
 
@@ -388,13 +478,13 @@ I don't know if it is ____ late ____ tell the truth.<br>
 The new <span class='tooltip'>movie<span class='tooltip-text'  onclick="speakText('movie')"><IMG SRC='speak.png'>電影</span></span> sounds ____.Let's go watch it this weekend.<br>
 (A)excited　(B)exciting　(C)excitement　(D)to excite <br><hr>
 
-14.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】她聽到她的小寶貝在哭, 但她找不到她的小寶貝<br>
+14.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】她聽到她的小寶貝在哭,  但她找不到她的小寶貝<br>
 　感官動詞的用法。感官動詞如hear、see、watch、look、listen接Ving</span></span>
 She heard her baby _____ but she couldn't find her baby.<br>
 (A)cried　(B)crying　(C)to cry　(D)was crying<br><hr>
 
 15.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】他說他不會放棄，直到他贏得比賽為止<br>
-　not.. until.. →「直到……之前，都不會…」</span></span>
+　not. until. →「直到……之前，都不會…」</span></span>
 He says that he will not <span class='tooltip'>give up<span class='tooltip-text'  onclick="speakText('give up')"><IMG SRC='speak.png'>放棄</span></span> _____ he wins the <span class='tooltip'>race<span class='tooltip-text'  onclick="speakText('race')"><IMG SRC='speak.png'>比賽</span></span> .<br>
 (A)since　(B)while　(C)until　(D)no sooner than <br><hr>
 <BR><BR>

@@ -7,6 +7,16 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
 
 <script>
     function speakText(text) {
@@ -21,6 +31,31 @@
       const audio = new Audio(ww);
       audio.play();
     }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
 
 </script>
 
@@ -60,8 +95,10 @@ body {
 }
 
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -124,7 +161,7 @@ font-size: 0.8em;
   padding: 2px 0;
   word-break: break-word;
   white-space: normal;
-  z-index: 1000;
+  z-index: 2000;
   visibility: hidden;
   opacity: 0;
   text-align: left;      
@@ -285,6 +322,7 @@ font-size: 0.9em;
 
 
 <div class="scroll-buttons">
+  <div class="b2"><a href="index3.htm"><img src="home.png"></a></div>
   <button onclick="scrollToTop()">↑</button>
   <button onclick="scrollToBottom()">↓</button>
 </div>
@@ -298,6 +336,13 @@ font-size: 0.9em;
   flex-direction: column;
   gap: 10px;
   z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
 }
 
 .scroll-buttons button {
@@ -315,17 +360,56 @@ font-size: 0.9em;
 .scroll-buttons button:hover {
   background-color: #0056b3;
 }
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
 </style>
 
-<script>
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 
-function scrollToBottom() {
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-}
-</script>
+
+
+
  <center>第15回 英單及文法 </center>
 一、單字測驗 <BR>
 1.<span class='tooltip4'><img src='sol.png'> <span class='tooltip-text'>【D】我們決定將派對延期到我爸媽從美國回來時。<br>
@@ -340,7 +424,7 @@ A ____ of <span class='tooltip'>urgent<span class='tooltip-text'  onclick="speak
 
 3.<span class='tooltip4'><img src='sol.png'> <span class='tooltip-text'>【C】他們認為她殺死了她先生，但他們沒有確切的證據。<br>
 　(A)連結　(B)考慮　(C)具體的　(D)遵守</span></span>
-They think she killed her <span class='tooltip'>husband<span class='tooltip-text'  onclick="speakText('husband')"><IMG SRC='speak.png'>丈夫</span></span> ,  but they have no ____ <span class='tooltip'>evidence<span class='tooltip-text'  onclick="speakText('evidence')"><IMG SRC='speak.png'>證據</span></span> .<br>
+They think she killed her <span class='tooltip'>husband<span class='tooltip-text'  onclick="speakText('husband')"><IMG SRC='speak.png'>丈夫</span></span> ,   but they have no ____ <span class='tooltip'>evidence<span class='tooltip-text'  onclick="speakText('evidence')"><IMG SRC='speak.png'>證據</span></span> .<br>
 (A)<span class='tooltip'>connect<span class='tooltip-text'  onclick="speakText('connect')"><IMG SRC='speak.png'>連接</span></span>　(B)<span class='tooltip'>consider<span class='tooltip-text'  onclick="speakText('consider')"><IMG SRC='speak.png'>考慮</span></span>　(C)<span class='tooltip'>concrete<span class='tooltip-text'  onclick="speakText('concrete')"><IMG SRC='speak.png'>具體的</span></span>　(D)<span class='tooltip'>comply<span class='tooltip-text'  onclick="speakText('comply')"><IMG SRC='speak.png'>遵守</span></span> <br><hr>
  
 4.<span class='tooltip4'><img src='sol.png'> <span class='tooltip-text'>【D】學校的目的是要為孩子們介紹各種學科概要的背景知識。<br>
@@ -353,17 +437,17 @@ The school <span class='tooltip'>aims<span class='tooltip-text'  onclick="speakT
 I'll have to <span class='tooltip'>consult<span class='tooltip-text'  onclick="speakText('consult')"><IMG SRC='speak.png'>諮詢</span></span> my <span class='tooltip'>colleagues<span class='tooltip-text'  onclick="speakText('colleagues')"><IMG SRC='speak.png'>同事</span></span> about the <span class='tooltip'>agendas<span class='tooltip-text'  onclick="speakText('agendas')"><IMG SRC='speak.png'>議程</span></span> .<br>
 (A)<span class='tooltip'>consider<span class='tooltip-text'  onclick="speakText('consider')"><IMG SRC='speak.png'>考慮</span></span>　(B)<span class='tooltip'>compare<span class='tooltip-text'  onclick="speakText('compare')"><IMG SRC='speak.png'>比較</span></span>　(C)<span class='tooltip'>consult<span class='tooltip-text'  onclick="speakText('consult')"><IMG SRC='speak.png'>詢問</span></span>　(D)<span class='tooltip'>count<span class='tooltip-text'  onclick="speakText('count')"><IMG SRC='speak.png'>數量</span></span><br><hr>
 
-6.<span class='tooltip4'><img src='sol.png'> <span class='tooltip-text'>【A】你從一個完全不同的觀點切入這個問題, 我之前都沒想到這些。<br>
+6.<span class='tooltip4'><img src='sol.png'> <span class='tooltip-text'>【A】你從一個完全不同的觀點切入這個問題,  我之前都沒想到這些。<br>
 　(A)觀點　(B)藥方　(C)提供　(D)目標</span></span>
 You're <span class='tooltip'>approaching<span class='tooltip-text'  onclick="speakText('approaching')"><IMG SRC='speak.png'>接近</span></span> the <span class='tooltip'>problem<span class='tooltip-text'  onclick="speakText('problem')"><IMG SRC='speak.png'>問題</span></span> from a completely different _____.I have never thought about this.<br>
 (A)<span class='tooltip'>perspective<span class='tooltip-text'  onclick="speakText('perspective')"><IMG SRC='speak.png'>觀點</span></span>　(B)<span class='tooltip'>prescription<span class='tooltip-text'  onclick="speakText('prescription')"><IMG SRC='speak.png'>藥方</span></span>　(C)<span class='tooltip'>provision<span class='tooltip-text'  onclick="speakText('provision')"><IMG SRC='speak.png'>提供</span></span>　(D)<span class='tooltip'>target<span class='tooltip-text'  onclick="speakText('target')"><IMG SRC='speak.png'>目標</span></span><br><hr>
 
-7.<span class='tooltip4'><img src='sol.png'> <span class='tooltip-text'>【A】如果我在兩年內得不到升遷, 我就要換工作了。<br>
+7.<span class='tooltip4'><img src='sol.png'> <span class='tooltip-text'>【A】如果我在兩年內得不到升遷,  我就要換工作了。<br>
 　(A)升遷　(B)供電　(C)預測　(D)假裝</span></span>
-If I'm not _____ within the next two years ,  I'm going to <span class='tooltip'>change<span class='tooltip-text'  onclick="speakText('change')"><IMG SRC='speak.png'>改變</span></span> jobs.<br>
+If I'm not _____ within the next two years ,   I'm going to <span class='tooltip'>change<span class='tooltip-text'  onclick="speakText('change')"><IMG SRC='speak.png'>改變</span></span> jobs.<br>
 (A)<span class='tooltip'>promoted<span class='tooltip-text'  onclick="speakText('promoted')"><IMG SRC='speak.png'>升遷</span></span>　(B)<span class='tooltip'>powered<span class='tooltip-text'  onclick="speakText('powered')"><IMG SRC='speak.png'>供電</span></span>　(C)<span class='tooltip'>predicted<span class='tooltip-text'  onclick="speakText('predicted')"><IMG SRC='speak.png'>預測</span></span>　(D)<span class='tooltip'>pretended<span class='tooltip-text'  onclick="speakText('pretended')"><IMG SRC='speak.png'>假裝</span></span>　 <br><hr>
 
-8.<span class='tooltip4'><img src='sol.png'> <span class='tooltip-text'>【B】在一個強而有力的政府的領導下, 這個國家正逐漸繁榮起來。<br>
+8.<span class='tooltip4'><img src='sol.png'> <span class='tooltip-text'>【B】在一個強而有力的政府的領導下,  這個國家正逐漸繁榮起來。<br>
 　(A)保護　(B)繁榮　(C)提供　(D)預防</span></span>
 The country is _____ under a strong <span class='tooltip'>government<span class='tooltip-text'  onclick="speakText('government')"><IMG SRC='speak.png'>政府</span></span> .<br>
 (A)<span class='tooltip'>protecting<span class='tooltip-text'  onclick="speakText('protecting')"><IMG SRC='speak.png'>保護</span></span>　(B)<span class='tooltip'>prospering<span class='tooltip-text'  onclick="speakText('prospering')"><IMG SRC='speak.png'>繁榮</span></span>　(C)<span class='tooltip'>providing<span class='tooltip-text'  onclick="speakText('providing')"><IMG SRC='speak.png'>提供</span></span>　(D)<span class='tooltip'>preventing<span class='tooltip-text'  onclick="speakText('preventing')"><IMG SRC='speak.png'>預防</span></span> <br><hr>
@@ -402,7 +486,7 @@ She would rather wash clothes by hand ____ using a washing machine.<br>
 15.<span class='tooltip4'><img src='sol.png'> <span class='tooltip-text'>【D】雖然我整個月都很忙，但我還是努力趕上最後交件日期。<br>
 　(X)However→但是。(X)despite跟in spite of後接N/Ving。<BR>
 although後面可以接S+V</span></span>
-____ I was busy <span class='tooltip'>throughout<span class='tooltip-text'  onclick="speakText('throughout')"><IMG SRC='speak.png'>自始至終</span></span> the month ,  I managed to <span class='tooltip'>meet the deadlines<span class='tooltip-text'  onclick="speakText('meet the deadlines')"><IMG SRC='speak.png'>滿足最後期限</span></span> .<br>
+____ I was busy <span class='tooltip'>throughout<span class='tooltip-text'  onclick="speakText('throughout')"><IMG SRC='speak.png'>自始至終</span></span> the month ,   I managed to <span class='tooltip'>meet the deadlines<span class='tooltip-text'  onclick="speakText('meet the deadlines')"><IMG SRC='speak.png'>滿足最後期限</span></span> .<br>
 (A)However　(B)<span class='tooltip'>Despite<span class='tooltip-text'  onclick="speakText('Despite')"><IMG SRC='speak.png'>儘管</span></span>　(C)In spite of　(D)Although <br><hr>
 
 <br><br><br>

@@ -7,41 +7,6 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
-
-
-<div class="scroll-buttons">
-  <button onclick="scrollToTop()">↑</button>
-  <button onclick="scrollToBottom()">↓</button>
-</div>
-
-<style>
-.scroll-buttons {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1500;
-}
-
-.scroll-buttons button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-.scroll-buttons button:hover {
-  background-color: #0056b3;
-}
-</style>
-
 <script>
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -50,7 +15,9 @@ function scrollToTop() {
 function scrollToBottom() {
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
+
 </script>
+
 <script>
     function speakText(text) {
       //const text = "Connect to the internet";
@@ -64,6 +31,31 @@ function scrollToBottom() {
       const audio = new Audio(ww);
       audio.play();
     }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
 
 </script>
 
@@ -103,8 +95,10 @@ body {
 }
 
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -167,7 +161,7 @@ font-size: 0.8em;
   padding: 2px 0;
   word-break: break-word;
   white-space: normal;
-  z-index: 1000;
+  z-index: 2000;
   visibility: hidden;
   opacity: 0;
   text-align: left;      
@@ -325,6 +319,98 @@ font-size: 0.9em;
 <BR>
 <div class="background-box" style="font-size: 1.2em;">
 
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index3.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
+
 <CENTER>第13回 英單及文法 </CENTER>
 一、單字測驗 <br>
 1.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】現代科技已經取代傳統的溝通方式。<br>
@@ -339,7 +425,7 @@ It is ___of you to <span class='tooltip'>yield<span class='tooltip-text'  onclic
 
 3.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】美國被視為機會之地，每個人只要努力都能達成夢想，無論那個人是誰。<br>
 　(A)反對　(B)解決　(C)職業　(D)機會</span></span> 
-America is known as the land of ___where one could <span class='tooltip'>achieve<span class='tooltip-text'  onclick="speakText('achieve')"><IMG SRC='speak.png'>到達</span></span> anything they put their <span class='tooltip'>mind<span class='tooltip-text'  onclick="speakText('mind')"><IMG SRC='speak.png'>想法</span></span> to ,  no <span class='tooltip'>matter<span class='tooltip-text'  onclick="speakText('matter')"><IMG SRC='speak.png'>事</span></span> who they are.<br>
+America is known as the land of ___where one could <span class='tooltip'>achieve<span class='tooltip-text'  onclick="speakText('achieve')"><IMG SRC='speak.png'>到達</span></span> anything they put their <span class='tooltip'>mind<span class='tooltip-text'  onclick="speakText('mind')"><IMG SRC='speak.png'>想法</span></span> to ,   no <span class='tooltip'>matter<span class='tooltip-text'  onclick="speakText('matter')"><IMG SRC='speak.png'>事</span></span> who they are.<br>
 (A)<span class='tooltip'>opposition<span class='tooltip-text'  onclick="speakText('opposition')"><IMG SRC='speak.png'>反對</span></span>　(B)<span class='tooltip'>resolution<span class='tooltip-text'  onclick="speakText('resolution')"><IMG SRC='speak.png'>解決</span></span>　(C)<span class='tooltip'>occupation<span class='tooltip-text'  onclick="speakText('occupation')"><IMG SRC='speak.png'>職業</span></span>　(D)<span class='tooltip'>opportunity<span class='tooltip-text'  onclick="speakText('opportunity')"><IMG SRC='speak.png'>機會</span></span> <br><hr>
 
 4.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】這個基金會被創立來幫助來自貧窮家庭的孩子們上學。<br>
@@ -349,7 +435,7 @@ This <span class='tooltip'>foundation<span class='tooltip-text'  onclick="speakT
 
 5.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】當這個火災警報器偵测到煙，它就會響。<BR>
 (A)收到　(B)欺騙　(C)偵測　(D)昆蟲 </span></span> 
-When the fire <span class='tooltip'>alarm<span class='tooltip-text'  onclick="speakText('alarm')"><IMG SRC='speak.png'>警報</span></span> ___smoke ,  it will <span class='tooltip'>go off<span class='tooltip-text'  onclick="speakText('go off')"><IMG SRC='speak.png'>響起</span></span>.<br>
+When the fire <span class='tooltip'>alarm<span class='tooltip-text'  onclick="speakText('alarm')"><IMG SRC='speak.png'>警報</span></span> ___smoke ,   it will <span class='tooltip'>go off<span class='tooltip-text'  onclick="speakText('go off')"><IMG SRC='speak.png'>響起</span></span>.<br>
 (A)<span class='tooltip'>receives<span class='tooltip-text'  onclick="speakText('receives')"><IMG SRC='speak.png'>接收</span></span>　(B)<span class='tooltip'>deceives<span class='tooltip-text'  onclick="speakText('deceives')"><IMG SRC='speak.png'>欺騙</span></span>　(C)<span class='tooltip'>detects<span class='tooltip-text'  onclick="speakText('detects')"><IMG SRC='speak.png'>偵測</span></span>　(D)<span class='tooltip'>insects<span class='tooltip-text'  onclick="speakText('insects')"><IMG SRC='speak.png'>昆蟲</span></span> <br><hr>
 
 6.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】Sara覺得不舒服，所以她預約看器生。<BR>

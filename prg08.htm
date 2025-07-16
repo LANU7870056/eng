@@ -7,41 +7,6 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
-
-
-<div class="scroll-buttons">
-  <button onclick="scrollToTop()">↑</button>
-  <button onclick="scrollToBottom()">↓</button>
-</div>
-
-<style>
-.scroll-buttons {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1500;
-}
-
-.scroll-buttons button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-.scroll-buttons button:hover {
-  background-color: #0056b3;
-}
-</style>
-
 <script>
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -50,7 +15,9 @@ function scrollToTop() {
 function scrollToBottom() {
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
+
 </script>
+
 <script>
     function speakText(text) {
       //const text = "Connect to the internet";
@@ -64,6 +31,31 @@ function scrollToBottom() {
       const audio = new Audio(ww);
       audio.play();
     }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
 
 </script>
 
@@ -98,10 +90,15 @@ color:#F0F;
   font-weight: bold;
 }
 
+body {
+  background-color: #D2FF78;
+}
 
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -110,19 +107,21 @@ color:#F0F;
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 0px solid #ccc; /* 可加上邊框 */
     margin: 0px auto; /* 置中顯示 */
-top:0px;
+    top:0px;
+    left:-1px;
     border-radius: 0px; /* 調整圓角大小 */
   }
 
   .background-box {
     width:100%;
+    align-items: center;   
     background-color: #D2FF78;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
     background-size: cover; /* 圖片填滿區塊 */
     background-position: center; /* 圖片置中 */
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 1px solid #ccc; /* 可加上邊框 */
-    margin: 20px auto; /* 置中顯示 */
+    margin: 20px 1px auto; /* 置中顯示 */
     border-radius: 20px; /* 調整圓角大小 */
   }
 </style>
@@ -162,7 +161,7 @@ font-size: 0.8em;
   padding: 2px 0;
   word-break: break-word;
   white-space: normal;
-  z-index: 1000;
+  z-index: 2000;
   visibility: hidden;
   opacity: 0;
   text-align: left;      
@@ -312,7 +311,7 @@ font-size: 0.9em;
   </style>
 </head>
 <div class="bk-box">
-<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
 <a href="javascript: void(0)" onclick="gen('index3.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
 
@@ -320,12 +319,103 @@ font-size: 0.9em;
 <BR>
 <div class="background-box" style="font-size: 1.2em;">
 
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index3.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
 <center>第8回 英單及文法</center>
 一、單字測驗<BR>
 1.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】我們很榮幸地邀請到嘉賓(傑出的來賓)Joanna作為今晚的主講人，她在太空科學界已經達成了相當多成就，她今天會跟我們分享一些鼓勵的話。<BR>
 　(A)厭惡的　(B)傑出的　(C)衍生的　(D)分散 </span></span>
 We are <span class='tooltip'>honored<span class='tooltip-text'  onclick="speakText('honored')"><IMG SRC='speak.png'>榮幸</span></span> to <span class='tooltip'>invite<span class='tooltip-text'  onclick="speakText('invite')"><IMG SRC='speak.png'>邀請</span></span> our ____ guest Joanna as the <span class='tooltip'>keynote<span class='tooltip-text'  onclick="speakText('keynote')"><IMG SRC='speak.png'>基調</span></span> speaker for <span class='tooltip'>tonight<span class='tooltip-text'  onclick="speakText('tonight')"><IMG SRC='speak.png'>今晚</span></span>.<br>
- She has <span class='tooltip'>accomplished<span class='tooltip-text'  onclick="speakText('accomplished')"><IMG SRC='speak.png'>完成的</span></span> lots of <span class='tooltip'>achievements<span class='tooltip-text'  onclick="speakText('achievements')"><IMG SRC='speak.png'>成就</span></span> in the <span class='tooltip'>field<span class='tooltip-text'  onclick="speakText('field')"><IMG SRC='speak.png'>場地</span></span> of space <span class='tooltip'>science<span class='tooltip-text'  onclick="speakText('science')"><IMG SRC='speak.png'>科學</span></span>, <br>
+ She has <span class='tooltip'>accomplished<span class='tooltip-text'  onclick="speakText('accomplished')"><IMG SRC='speak.png'>完成的</span></span> lots of <span class='tooltip'>achievements<span class='tooltip-text'  onclick="speakText('achievements')"><IMG SRC='speak.png'>成就</span></span> in the <span class='tooltip'>field<span class='tooltip-text'  onclick="speakText('field')"><IMG SRC='speak.png'>場地</span></span> of space <span class='tooltip'>science<span class='tooltip-text'  onclick="speakText('science')"><IMG SRC='speak.png'>科學</span></span>,  <br>
  and he will share some <span class='tooltip'>inspiring<span class='tooltip-text'  onclick="speakText('inspiring')"><IMG SRC='speak.png'>鼓舞人心</span></span> words with us.  <br>
 (A)<span class='tooltip'>disgusted<span class='tooltip-text'  onclick="speakText('disgusted')"><IMG SRC='speak.png'>厭惡的</span></span>　(B)<span class='tooltip'>distinguished<span class='tooltip-text'  onclick="speakText('distinguished')"><IMG SRC='speak.png'>傑出的</span></span>　(C)<span class='tooltip'>derived<span class='tooltip-text'  onclick="speakText('derived')"><IMG SRC='speak.png'>衍生的</span></span>　(D)<span class='tooltip'>distributed<span class='tooltip-text'  onclick="speakText('distributed')"><IMG SRC='speak.png'>分散</span></span> <br><hr>
 
@@ -338,13 +428,13 @@ The judges have not ____ who is the <span class='tooltip'>final<span class='tool
 
 3.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】 最好不要干涉伴侶間的吵架，因為你永遠無法知道誰對誰錯，而且就算你知道了，這也對他們的關係修復也沒有任何幫助。<BR>
 　(A)干擾　(B)介面　(C)優越的　(D)稀有的</span></span>
-It is better not to ____ with a fight between <span class='tooltip'>couples<span class='tooltip-text'  onclick="speakText('couples')"><IMG SRC='speak.png'>夫妻</span></span>,  because you can never tell who is right and <span class='tooltip'>wrong<span class='tooltip-text'  onclick="speakText('wrong')"><IMG SRC='speak.png'>錯誤的</span></span>.<br>
- And even if you can,  this still doesn't do any help in <span class='tooltip'>recovering<span class='tooltip-text'  onclick="speakText('recovering')"><IMG SRC='speak.png'>恢復</span></span> their <span class='tooltip'>relationship<span class='tooltip-text'  onclick="speakText('relationship')"><IMG SRC='speak.png'>關係</span></span>. <br>
+It is better not to ____ with a fight between <span class='tooltip'>couples<span class='tooltip-text'  onclick="speakText('couples')"><IMG SRC='speak.png'>夫妻</span></span>,   because you can never tell who is right and <span class='tooltip'>wrong<span class='tooltip-text'  onclick="speakText('wrong')"><IMG SRC='speak.png'>錯誤的</span></span>.<br>
+ And even if you can,   this still doesn't do any help in <span class='tooltip'>recovering<span class='tooltip-text'  onclick="speakText('recovering')"><IMG SRC='speak.png'>恢復</span></span> their <span class='tooltip'>relationship<span class='tooltip-text'  onclick="speakText('relationship')"><IMG SRC='speak.png'>關係</span></span>. <br>
 (A)<span class='tooltip'>interfere<span class='tooltip-text'  onclick="speakText('interfere')"><IMG SRC='speak.png'>干擾</span></span>　(B)<span class='tooltip'>interface<span class='tooltip-text'  onclick="speakText('interface')"><IMG SRC='speak.png'>介面</span></span>　(C)<span class='tooltip'>superior<span class='tooltip-text'  onclick="speakText('superior')"><IMG SRC='speak.png'>優越的</span></span>　(D)<span class='tooltip'>scarce<span class='tooltip-text'  onclick="speakText('scarce')"><IMG SRC='speak.png'>稀有的</span></span> <br><hr>
 
 4.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】通貨膨脹造成生活費提高，尤其是在像紐約和加州這樣的大城市，要在這些城市裡生活並存錢越來越困難。 <br>
 　(A)(通貨)膨脹　(B)介紹　(C)學費　(D)定義 </span></span>
-The ____ has <span class='tooltip'>caused<span class='tooltip-text'  onclick="speakText('caused')"><IMG SRC='speak.png'>造成</span></span> <span class='tooltip'>rising<span class='tooltip-text'  onclick="speakText('rising')"><IMG SRC='speak.png'>上升</span></span> of living <span class='tooltip'>expenses<span class='tooltip-text'  onclick="speakText('expenses')"><IMG SRC='speak.png'>開支</span></span>,  <span class='tooltip'>especially<span class='tooltip-text'  onclick="speakText('especially')"><IMG SRC='speak.png'>尤其</span></span> in big cities like New York and California.<br> 
+The ____ has <span class='tooltip'>caused<span class='tooltip-text'  onclick="speakText('caused')"><IMG SRC='speak.png'>造成</span></span> <span class='tooltip'>rising<span class='tooltip-text'  onclick="speakText('rising')"><IMG SRC='speak.png'>上升</span></span> of living <span class='tooltip'>expenses<span class='tooltip-text'  onclick="speakText('expenses')"><IMG SRC='speak.png'>開支</span></span>,   <span class='tooltip'>especially<span class='tooltip-text'  onclick="speakText('especially')"><IMG SRC='speak.png'>尤其</span></span> in big cities like New York and California.<br> 
  It is harder and harder to live in these <span class='tooltip'>cities<span class='tooltip-text'  onclick="speakText('cities')"><IMG SRC='speak.png'>城市</span></span> and save money. 
  <br>
 (A)<span class='tooltip'>inflation<span class='tooltip-text'  onclick="speakText('inflation')"><IMG SRC='speak.png'>通貨膨脹</span></span>　(B)<span class='tooltip'>introduction<span class='tooltip-text'  onclick="speakText('introduction')"><IMG SRC='speak.png'>介紹</span></span>　(C)<span class='tooltip'>tuition<span class='tooltip-text'  onclick="speakText('tuition')"><IMG SRC='speak.png'>學費</span></span>　(D)<span class='tooltip'>definition<span class='tooltip-text'  onclick="speakText('definition')"><IMG SRC='speak.png'>定義</span></span> <br><hr>
@@ -357,13 +447,13 @@ Danny ____ to his friend for yelling at him the other day.<br>
 
 6.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】要搭高速鐵路(高鐵)去高雄的話，你必須在臺北車站轉乘。 <br>
 　(A)傳送　(B)翻譯　(C)轉移　(D)超越 </span></span>
-In order to take the High Speed Rail to Kaohsiung,  you have to ____ at Taipei <span class='tooltip'>Main Station<span class='tooltip-text'  onclick="speakText('Main Station')"><IMG SRC='speak.png'>車站</span></span>.<br>
+In order to take the High Speed Rail to Kaohsiung,   you have to ____ at Taipei <span class='tooltip'>Main Station<span class='tooltip-text'  onclick="speakText('Main Station')"><IMG SRC='speak.png'>車站</span></span>.<br>
 (A)<span class='tooltip'>transmit<span class='tooltip-text'  onclick="speakText('transmit')"><IMG SRC='speak.png'>傳送</span></span>　(B)<span class='tooltip'>translate<span class='tooltip-text'  onclick="speakText('translate')"><IMG SRC='speak.png'>翻譯</span></span>　(C)<span class='tooltip'>transfer<span class='tooltip-text'  onclick="speakText('transfer')"><IMG SRC='speak.png'>轉移</span></span>　(D)<span class='tooltip'>transcend<span class='tooltip-text'  onclick="speakText('transcend')"><IMG SRC='speak.png'>超越</span></span> <br><hr>
 
 7.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】Hanson是一位便利商店的店員，當他輪大夜班沒事做時，他喜歡觀察行人並試圖猜測他們的工作是什麼。<BR>
 　(A)操作　(B)儲存　(C)防止　(D)觀察</span></span>
 Hanson is a <span class='tooltip'>convenient<span class='tooltip-text'  onclick="speakText('convenient')"><IMG SRC='speak.png'>方便的</span></span> store <span class='tooltip'>clerk<span class='tooltip-text'  onclick="speakText('clerk')"><IMG SRC='speak.png'>辦事員</span></span>.<br>
- When he has nothing to do during late night <span class='tooltip'>shifts<span class='tooltip-text'  onclick="speakText('shifts')"><IMG SRC='speak.png'>輪班</span></span>, <br>
+ When he has nothing to do during late night <span class='tooltip'>shifts<span class='tooltip-text'  onclick="speakText('shifts')"><IMG SRC='speak.png'>輪班</span></span>,  <br>
  he likes to ____ the passers-by and try to guess their jobs.<br>
 (A)<span class='tooltip'>operate<span class='tooltip-text'  onclick="speakText('operate')"><IMG SRC='speak.png'>操作</span></span>　(B)<span class='tooltip'>preserve<span class='tooltip-text'  onclick="speakText('preserve')"><IMG SRC='speak.png'>儲存</span></span>　(C)<span class='tooltip'>prevent<span class='tooltip-text'  onclick="speakText('prevent')"><IMG SRC='speak.png'>防止</span></span>　(D)<span class='tooltip'>observe<span class='tooltip-text'  onclick="speakText('observe')"><IMG SRC='speak.png'>觀察</span></span> <br><hr>
 
@@ -401,7 +491,7 @@ Jane: "What _____ in the <span class='tooltip'>evenings<span class='tooltip-text
 
 14.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】Melody今天穿藍色牛仔褲，但她平常都是短裙或連身洋裝。<BR>
 　動詞時態。本題後面用but帶出「她平常都是短裙或連身洋裝」，今天較為不同的穿著，故應以is wearing來表示正在發生的動作</span></span>
-Melody ____ her blue <span class='tooltip'>jeans<span class='tooltip-text'  onclick="speakText('jeans')"><IMG SRC='speak.png'>牛仔褲</span></span> today,  but usually she <span class='tooltip'>wears<span class='tooltip-text'  onclick="speakText('wears')"><IMG SRC='speak.png'>穿</span></span> a <span class='tooltip'>skirt<span class='tooltip-text'  onclick="speakText('skirt')"><IMG SRC='speak.png'>短裙</span></span> or a <span class='tooltip'>dress<span class='tooltip-text'  onclick="speakText('dress')"><IMG SRC='speak.png'>洋裝</span></span>. 
+Melody ____ her blue <span class='tooltip'>jeans<span class='tooltip-text'  onclick="speakText('jeans')"><IMG SRC='speak.png'>牛仔褲</span></span> today,   but usually she <span class='tooltip'>wears<span class='tooltip-text'  onclick="speakText('wears')"><IMG SRC='speak.png'>穿</span></span> a <span class='tooltip'>skirt<span class='tooltip-text'  onclick="speakText('skirt')"><IMG SRC='speak.png'>短裙</span></span> or a <span class='tooltip'>dress<span class='tooltip-text'  onclick="speakText('dress')"><IMG SRC='speak.png'>洋裝</span></span>. 
  <br>
 (A)<span class='tooltip'>wear<span class='tooltip-text'  onclick="speakText('wear')"><IMG SRC='speak.png'>穿</span></span>　(B)wears　(C)wearing　(D)is wearing <br><hr>
 

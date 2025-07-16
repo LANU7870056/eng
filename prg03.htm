@@ -7,41 +7,6 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
-
-
-<div class="scroll-buttons">
-  <button onclick="scrollToTop()">↑</button>
-  <button onclick="scrollToBottom()">↓</button>
-</div>
-
-<style>
-.scroll-buttons {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1500;
-}
-
-.scroll-buttons button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-.scroll-buttons button:hover {
-  background-color: #0056b3;
-}
-</style>
-
 <script>
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -50,20 +15,47 @@ function scrollToTop() {
 function scrollToBottom() {
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
+
 </script>
+
 <script>
-    function speakText2(text) {
+    function speakText(text) {
       //const text = "Connect to the internet";
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
       speechSynthesis.speak(utterance);
     }
     
-    function speakText(text) {
+    function speakText2(text) {
       const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
       const audio = new Audio(ww);
       audio.play();
     }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
 
 </script>
 
@@ -98,10 +90,15 @@ color:#F0F;
   font-weight: bold;
 }
 
+body {
+  background-color: #D2FF78;
+}
 
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -110,19 +107,21 @@ color:#F0F;
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 0px solid #ccc; /* 可加上邊框 */
     margin: 0px auto; /* 置中顯示 */
-top:0px;
+    top:0px;
+    left:-1px;
     border-radius: 0px; /* 調整圓角大小 */
   }
 
   .background-box {
     width:100%;
+    align-items: center;   
     background-color: #D2FF78;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
     background-size: cover; /* 圖片填滿區塊 */
     background-position: center; /* 圖片置中 */
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 1px solid #ccc; /* 可加上邊框 */
-    margin: 20px auto; /* 置中顯示 */
+    margin: 20px 1px auto; /* 置中顯示 */
     border-radius: 20px; /* 調整圓角大小 */
   }
 </style>
@@ -162,7 +161,7 @@ font-size: 0.8em;
   padding: 2px 0;
   word-break: break-word;
   white-space: normal;
-  z-index: 1000;
+  z-index: 2000;
   visibility: hidden;
   opacity: 0;
   text-align: left;      
@@ -312,7 +311,7 @@ font-size: 0.9em;
   </style>
 </head>
 <div class="bk-box">
-<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
 <a href="javascript: void(0)" onclick="gen('index3.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
 
@@ -320,12 +319,104 @@ font-size: 0.9em;
 <BR>
 <div class="background-box" style="font-size: 1.2em;">
 
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index3.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
+
 <center>第03回  單字及文法</center>
 一、單字測驗<BR>
-1.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】這間餐廳座落於市中心，餐廳老闆是義大利人, 他們提供新鮮、美味又道地的義式餐點。<BR>
+1.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】這間餐廳座落於市中心，餐廳老闆是義大利人,  他們提供新鮮、美味又道地的義式餐點。<BR>
 (A)服務、提供　(B)服務　(C)生存　(D)解決</span></span>
 This <span class='tooltip'>restaurant<span class='tooltip-text'  onclick="speakText('restaurant')"><IMG SRC='speak.png'>餐廳</span></span> is <span class='tooltip'>located<span class='tooltip-text'  onclick="speakText('located')"><IMG SRC='speak.png'>位於</span></span> downtown. The <span class='tooltip'>restaurant<span class='tooltip-text'  onclick="speakText('restaurant')"><IMG SRC='speak.png'>餐廳</span></span> owner is Italian.
- They ______ fresh ,  <span class='tooltip'>delicious<span class='tooltip-text'  onclick="speakText('delicious')"><IMG SRC='speak.png'>可口的</span></span> and <span class='tooltip'>authentic<span class='tooltip-text'  onclick="speakText('authentic')"><IMG SRC='speak.png'>真正的</span></span> Italian foods.<Br>
+ They ______ fresh ,   <span class='tooltip'>delicious<span class='tooltip-text'  onclick="speakText('delicious')"><IMG SRC='speak.png'>可口的</span></span> and <span class='tooltip'>authentic<span class='tooltip-text'  onclick="speakText('authentic')"><IMG SRC='speak.png'>真正的</span></span> Italian foods.<Br>
 (A)<span class='tooltip'>serve<span class='tooltip-text'  onclick="speakText('serve')"><IMG SRC='speak.png'>服務、提供</span></span>　(B)<span class='tooltip'>service<span class='tooltip-text'  onclick="speakText('service')"><IMG SRC='speak.png'>服務</span></span>　(C)<span class='tooltip'>survive<span class='tooltip-text'  onclick="speakText('survive')"><IMG SRC='speak.png'>生存</span></span>　(D)<span class='tooltip'>settle<span class='tooltip-text'  onclick="speakText('settle')"><IMG SRC='speak.png'>定居、解決</span></span> <BR><HR>
 
 2.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】勞工工會決定罷工來訴求加薪以及更友善的工作環境。<BR>
@@ -339,16 +430,16 @@ People without a <span class='tooltip'>staff<span class='tooltip-text'  onclick=
  The <span class='tooltip'>guard<span class='tooltip-text'  onclick="speakText('guard')"><IMG SRC='speak.png'>警衛</span></span> will check everyone's <span class='tooltip'>identity<span class='tooltip-text'  onclick="speakText('identity')"><IMG SRC='speak.png'>身分</span></span> at the front gate to make sure that no <span class='tooltip'>suspicious<span class='tooltip-text'  onclick="speakText('suspicious')"><IMG SRC='speak.png'>可疑的</span></span> person will enter the Building.<Br>
 (A)<span class='tooltip'>promoted<span class='tooltip-text'  onclick="speakText('promoted')"><IMG SRC='speak.png'>晉升、提升</span></span>　(B)<span class='tooltip'>permitted<span class='tooltip-text'  onclick="speakText('permitted')"><IMG SRC='speak.png'>允許</span></span>　(C)<span class='tooltip'>prescriBed<span class='tooltip-text'  onclick="speakText('prescriBed')"><IMG SRC='speak.png'>處方、開藥</span></span>　(D)<span class='tooltip'>pretended<span class='tooltip-text'  onclick="speakText('pretended')"><IMG SRC='speak.png'>假裝</span></span> <BR><HR>
 
-4.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】<BR>健康飲食有很多優點, 包括提升健康狀況與獲得理想身材。<BR>
+4.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】<BR>健康飲食有很多優點,  包括提升健康狀況與獲得理想身材。<BR>
 (A)用途、用法　(B)比賽　(C)損害　(D)優點</span></span>
-There are various ______ to eating a healthy diet ,  <span class='tooltip'>including<span class='tooltip-text'  onclick="speakText('including')"><IMG SRC='speak.png'>包括</span></span> Better health <span class='tooltip'>condition<span class='tooltip-text'  onclick="speakText('condition')"><IMG SRC='speak.png'>狀態</span></span> and ideal Body shape.<Br>
+There are various ______ to eating a healthy diet ,   <span class='tooltip'>including<span class='tooltip-text'  onclick="speakText('including')"><IMG SRC='speak.png'>包括</span></span> Better health <span class='tooltip'>condition<span class='tooltip-text'  onclick="speakText('condition')"><IMG SRC='speak.png'>狀態</span></span> and ideal Body shape.<Br>
 (A)<span class='tooltip'>usages<span class='tooltip-text'  onclick="speakText('usages')"><IMG SRC='speak.png'>用途、用法</span></span>　(B)<span class='tooltip'>competitions<span class='tooltip-text'  onclick="speakText('competitions')"><IMG SRC='speak.png'>比賽</span></span>　(C)<span class='tooltip'>damages<span class='tooltip-text'  onclick="speakText('damages')"><IMG SRC='speak.png'>損害</span></span>　(D)<span class='tooltip'>advantages<span class='tooltip-text'  onclick="speakText('advantages')"><IMG SRC='speak.png'>優點</span></span> <BR><HR>
 
 5.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】Jimmy在這間公司努力工作了超過十年，在今年年底，老闆給他一個大紅包，作為他對公司偉大貢獻的獎勵。<BR>
 (A)獎勵、報酬　(B)向前　(C)復仇　(D)競選活動</span></span>
 Jimmy has worked <span class='tooltip'>hard<span class='tooltip-text'  onclick="speakText('hard')"><IMG SRC='speak.png'>難的</span></span> in this company for more than ten years.
  at the end of this year 
- ,  the Boss gave him a Big red <span class='tooltip'>envelope<span class='tooltip-text'  onclick="speakText('envelope')"><IMG SRC='speak.png'>信封</span></span> as a ______ for his great <span class='tooltip'>contriBution<span class='tooltip-text'  onclick="speakText('contriBution')"><IMG SRC='speak.png'>貢獻</span></span> to the company.<Br>
+ ,   the Boss gave him a Big red <span class='tooltip'>envelope<span class='tooltip-text'  onclick="speakText('envelope')"><IMG SRC='speak.png'>信封</span></span> as a ______ for his great <span class='tooltip'>contriBution<span class='tooltip-text'  onclick="speakText('contriBution')"><IMG SRC='speak.png'>貢獻</span></span> to the company.<Br>
 (A)<span class='tooltip'>reward<span class='tooltip-text'  onclick="speakText('reward')"><IMG SRC='speak.png'>獎勵、報酬</span></span>　(B)<span class='tooltip'>forward<span class='tooltip-text'  onclick="speakText('forward')"><IMG SRC='speak.png'>向前</span></span>　(C)<span class='tooltip'>revenge<span class='tooltip-text'  onclick="speakText('revenge')"><IMG SRC='speak.png'>復仇</span></span>　(D)<span class='tooltip'>campaign<span class='tooltip-text'  onclick="speakText('campaign')"><IMG SRC='speak.png'>競選活動</span></span> <BR><HR>
 
 6.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【A】時尚產業變化非常快速，時尚品牌每一季都會推出很多新款式。<BR>
@@ -364,14 +455,14 @@ Send this ______ to the secretary at the front desk on third floor.
 
 8.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】專家鼓勵孩童在年紀小時學習游泳，因為早點開始學，他們通常會學得比較快。<BR>
 (A)參與　(B)鼓勵　(C)致力於　(D)消失</span></span>
-It is ______ By <span class='tooltip'>experts<span class='tooltip-text'  onclick="speakText('experts')"><IMG SRC='speak.png'>專家</span></span> to have children learn <span class='tooltip'>swimming<span class='tooltip-text'  onclick="speakText('swimming')"><IMG SRC='speak.png'>游泳</span></span> at a young age ,  
+It is ______ By <span class='tooltip'>experts<span class='tooltip-text'  onclick="speakText('experts')"><IMG SRC='speak.png'>專家</span></span> to have children learn <span class='tooltip'>swimming<span class='tooltip-text'  onclick="speakText('swimming')"><IMG SRC='speak.png'>游泳</span></span> at a young age ,   
 since they <span class='tooltip'>tend<span class='tooltip-text'  onclick="speakText('tend')"><IMG SRC='speak.png'>趨向</span></span> to learn faster when they start learning <span class='tooltip'>earlier<span class='tooltip-text'  onclick="speakText('earlier')"><IMG SRC='speak.png'>早些時候</span></span> .<Br>
 (A)<span class='tooltip'>engaged<span class='tooltip-text'  onclick="speakText('engaged')"><IMG SRC='speak.png'>參與</span></span>　(B)<span class='tooltip'>encouraged<span class='tooltip-text'  onclick="speakText('encouraged')"><IMG SRC='speak.png'>鼓勵</span></span>　(C)<span class='tooltip'>dedicated<span class='tooltip-text'  onclick="speakText('dedicated')"><IMG SRC='speak.png'>投入的</span></span>　(D)<span class='tooltip'>vanished<span class='tooltip-text'  onclick="speakText('vanished')"><IMG SRC='speak.png'>消失</span></span><BR><HR>
 
 二、文法測驗<BR>
-9.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】在這家企業的所有員工之中, Raina工作最認真。她的勤奮經常被老闆稱讚。<BR>
+9.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】在這家企業的所有員工之中,  Raina工作最認真。她的勤奮經常被老闆稱讚。<BR>
 題測驗形容詞最高級，Raina是該企業所有員工中「最認真」的，</span></span>
-Among all the employees in this <span class='tooltip'>corporation<span class='tooltip-text'  onclick="speakText('corporation')"><IMG SRC='speak.png'>公司</span></span> ,  
+Among all the employees in this <span class='tooltip'>corporation<span class='tooltip-text'  onclick="speakText('corporation')"><IMG SRC='speak.png'>公司</span></span> ,   
  Raina works ______. She is often <span class='tooltip'>praised<span class='tooltip-text'  onclick="speakText('praised')"><IMG SRC='speak.png'>受到讚揚</span></span> By her Boss for her <span class='tooltip'>diligence<span class='tooltip-text'  onclick="speakText('diligence')"><IMG SRC='speak.png'>勤勉</span></span> .<Br>
 (A)hard　(B)harder　(C)hardest　(D)the hardest <BR><HR>
 
@@ -380,7 +471,7 @@ Among all the employees in this <span class='tooltip'>corporation<span class='to
 Norman was ______ By her <span class='tooltip'>parents<span class='tooltip-text'  onclick="speakText('parents')"><IMG SRC='speak.png'>父母</span></span> for getting <span class='tooltip'>poor grades<span class='tooltip-text'  onclick="speakText('poor grades')"><IMG SRC='speak.png'>成績差</span></span> on <span class='tooltip'>final<span class='tooltip-text'  onclick="speakText('final')"><IMG SRC='speak.png'>最終的</span></span> exams.<Br>
 (A)<span class='tooltip'>punish<span class='tooltip-text'  onclick="speakText('punish')"><IMG SRC='speak.png'>懲罰</span></span>　(B)<span class='tooltip'>punished<span class='tooltip-text'  onclick="speakText('punished')"><IMG SRC='speak.png'>懲罰</span></span>　(C)<span class='tooltip'>punishing<span class='tooltip-text'  onclick="speakText('punishing')"><IMG SRC='speak.png'>懲罰</span></span>　(D)to <span class='tooltip'>punish<span class='tooltip-text'  onclick="speakText('punish')"><IMG SRC='speak.png'>懲罰</span></span> <BR><HR>
 
-11.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】Nick總是忙著講電話, 他平均每個月的電話費都超過一千元<BR>
+11.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】Nick總是忙著講電話,  他平均每個月的電話費都超過一千元<BR>
 形容詞片語，"busy+Ving"意指「忙著做某事」</span></span>
 Nick is always Busy ______ on the phone.
  His <span class='tooltip'>average<span class='tooltip-text'  onclick="speakText('average')"><IMG SRC='speak.png'>平均的</span></span> cell phone Bill is over a thousand dollars a month.<Br>
@@ -389,8 +480,8 @@ Nick is always Busy ______ on the phone.
 12.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【D】我們今晚入住的飯店是一間五星級飯店。它可以容納超過三千名客人，還有一個游泳池、三溫暖跟天空花園。<BR>
 live"指的是長期居住；「住飯店」用"stay"來表達「短暫停留幾天」即可。</span></span>
 The hotel we are ________ tonight is a five star hotel. 
- It can <span class='tooltip'>accommodate<span class='tooltip-text'  onclick="speakText('accommodate')"><IMG SRC='speak.png'>容納</span></span> more than three thousand guests,  
- and it has a <span class='tooltip'>swimming<span class='tooltip-text'  onclick="speakText('swimming')"><IMG SRC='speak.png'>游泳</span></span> pool,  a <span class='tooltip'>sauna<span class='tooltip-text'  onclick="speakText('sauna')"><IMG SRC='speak.png'>三溫暖</span></span> and a sky garden.<Br>
+ It can <span class='tooltip'>accommodate<span class='tooltip-text'  onclick="speakText('accommodate')"><IMG SRC='speak.png'>容納</span></span> more than three thousand guests,   
+ and it has a <span class='tooltip'>swimming<span class='tooltip-text'  onclick="speakText('swimming')"><IMG SRC='speak.png'>游泳</span></span> pool,   a <span class='tooltip'>sauna<span class='tooltip-text'  onclick="speakText('sauna')"><IMG SRC='speak.png'>三溫暖</span></span> and a sky garden.<Br>
 (A)live　(B)living　(C)stay　(D)staying<BR><HR>
 
 13.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【C】日月潭是每當他感到疲倦、需要休息時就會去的地方<BR>
@@ -403,9 +494,9 @@ The hotel we are ________ tonight is a five star hotel.
 The teacher ________ <span class='tooltip'>taught<span class='tooltip-text'  onclick="speakText('taught')"><IMG SRC='speak.png'>教過的</span></span> me when I was in fifth grade is now <span class='tooltip'>married<span class='tooltip-text'  onclick="speakText('married')"><IMG SRC='speak.png'>結婚</span></span> and <span class='tooltip'>living abroad<span class='tooltip-text'  onclick="speakText('living abroad')"><IMG SRC='speak.png'>住在國外</span></span>.<Br>
 (A)who　(B)whom　(C)she　(D)have <BR><HR>
 
-15.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】當John聽到他的狗在半夜吠叫, 他衝下樓去查看有沒有小偷<BR>
-感官動詞。常見的感官動詞如see,  look,  watch看到、hear聽到、notice注意到。感官動詞後面可以接原形動詞或是Ving</span></span>
-When John heard his dog ________ in the <span class='tooltip'>middle of the night<span class='tooltip-text'  onclick="speakText('middle of the night')"><IMG SRC='speak.png'>半夜</span></span>,  
+15.<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>【B】當John聽到他的狗在半夜吠叫,  他衝下樓去查看有沒有小偷<BR>
+感官動詞。常見的感官動詞如see,   look,   watch看到、hear聽到、notice注意到。感官動詞後面可以接原形動詞或是Ving</span></span>
+When John heard his dog ________ in the <span class='tooltip'>middle of the night<span class='tooltip-text'  onclick="speakText('middle of the night')"><IMG SRC='speak.png'>半夜</span></span>,   
  he <span class='tooltip'>rushed<span class='tooltip-text'  onclick="speakText('rushed')"><IMG SRC='speak.png'>匆忙</span></span> <span class='tooltip'>downstairs<span class='tooltip-text'  onclick="speakText('downstairs')"><IMG SRC='speak.png'>樓下</span></span> to check if there was any <span class='tooltip'>thief<span class='tooltip-text'  onclick="speakText('thief')"><IMG SRC='speak.png'>賊</span></span>.<Br>
 (A)Barked　(B)Barking　(C)to Bark　(D)have harked 
 

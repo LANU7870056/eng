@@ -7,41 +7,6 @@
 <META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
-
-
-<div class="scroll-buttons">
-  <button onclick="scrollToTop()">↑</button>
-  <button onclick="scrollToBottom()">↓</button>
-</div>
-
-<style>
-.scroll-buttons {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1500;
-}
-
-.scroll-buttons button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-.scroll-buttons button:hover {
-  background-color: #0056b3;
-}
-</style>
-
 <script>
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -50,7 +15,9 @@ function scrollToTop() {
 function scrollToBottom() {
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
+
 </script>
+
 <script>
     function speakText(text) {
       //const text = "Connect to the internet";
@@ -64,6 +31,31 @@ function scrollToBottom() {
       const audio = new Audio(ww);
       audio.play();
     }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
 
 </script>
 
@@ -103,8 +95,10 @@ body {
 }
 
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -167,7 +161,7 @@ font-size: 0.8em;
   padding: 2px 0;
   word-break: break-word;
   white-space: normal;
-  z-index: 1000;
+  z-index: 2000;
   visibility: hidden;
   opacity: 0;
   text-align: left;      
@@ -325,6 +319,97 @@ font-size: 0.9em;
 <BR>
 <div class="background-box" style="font-size: 1.2em;">
 
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index3.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
 <center>第11回 英單及文法</center>
 一、單字測驗 <BR>
 1.<span class='tooltip4'><img src='sol.png'> <span class='tooltip-text'>
@@ -333,7 +418,7 @@ font-size: 0.9em;
 
 If you are <span class='tooltip'>seeking<span class='tooltip-text'  onclick="speakText('seeking')"><IMG SRC='speak.png'>尋求</span></span>
  a higher ______ in this <span class='tooltip'>company<span class='tooltip-text'  onclick="speakText('company')"><IMG SRC='speak.png'>公司</span></span>
- ,   you might want to try and <span class='tooltip'>contact<span class='tooltip-text'  onclick="speakText('contact')"><IMG SRC='speak.png'>接觸</span></span>
+ ,    you might want to try and <span class='tooltip'>contact<span class='tooltip-text'  onclick="speakText('contact')"><IMG SRC='speak.png'>接觸</span></span>
  the <span class='tooltip'>headhunters<span class='tooltip-text'  onclick="speakText('headhunters')"><IMG SRC='speak.png'>獵人頭</span></span>
  .<br>
 (A)<span class='tooltip'>proposal<span class='tooltip-text'  onclick="speakText('proposal')"><IMG SRC='speak.png'>提議</span></span>
@@ -364,7 +449,7 @@ The <span class='tooltip'>sparrow<span class='tooltip-text'  onclick="speakText(
  was <span class='tooltip'>searching<span class='tooltip-text'  onclick="speakText('searching')"><IMG SRC='speak.png'>搜尋</span></span>
  for food <span class='tooltip'>attentively<span class='tooltip-text'  onclick="speakText('attentively')"><IMG SRC='speak.png'>專心地</span></span>
  .It did not <span class='tooltip'>notice<span class='tooltip-text'  onclick="speakText('notice')"><IMG SRC='speak.png'>注意</span></span>
- its ______ standing <span class='tooltip'>behind<span class='tooltip-text'  onclick="speakText('behind')"><IMG SRC='speak.png'>在後面</span></span> ,   ready to <span class='tooltip'>prey on<span class='tooltip-text'  onclick="speakText('prey on')"><IMG SRC='speak.png'>捕食</span></span> it.<br>
+ its ______ standing <span class='tooltip'>behind<span class='tooltip-text'  onclick="speakText('behind')"><IMG SRC='speak.png'>在後面</span></span> ,    ready to <span class='tooltip'>prey on<span class='tooltip-text'  onclick="speakText('prey on')"><IMG SRC='speak.png'>捕食</span></span> it.<br>
 (A)<span class='tooltip'>predator<span class='tooltip-text'  onclick="speakText('predator')"><IMG SRC='speak.png'>掠食者</span></span>
 　(B)<span class='tooltip'>producer<span class='tooltip-text'  onclick="speakText('producer')"><IMG SRC='speak.png'>生產者</span></span>
 　(C)<span class='tooltip'>publisher<span class='tooltip-text'  onclick="speakText('publisher')"><IMG SRC='speak.png'>出版社</span></span>
@@ -391,7 +476,7 @@ A group of <span class='tooltip'>legislators<span class='tooltip-text'  onclick=
 　(A)具體的　(B)常規　(C)選修的　(D)選修的</span></span>
 
 They were going home in ______ <span class='tooltip'>directions<span class='tooltip-text'  onclick="speakText('directions')"><IMG SRC='speak.png'>方向</span></span>
- ,   so they <span class='tooltip'>waved<span class='tooltip-text'  onclick="speakText('waved')"><IMG SRC='speak.png'>揮手</span></span>
+ ,    so they <span class='tooltip'>waved<span class='tooltip-text'  onclick="speakText('waved')"><IMG SRC='speak.png'>揮手</span></span>
  goodbye at the bus stop and took <span class='tooltip'>different<span class='tooltip-text'  onclick="speakText('different')"><IMG SRC='speak.png'>不同的</span></span>
  <span class='tooltip'>routes<span class='tooltip-text'  onclick="speakText('routes')"><IMG SRC='speak.png'>路線</span></span> home.<br>
 (A)<span class='tooltip'>specific<span class='tooltip-text'  onclick="speakText('specific')"><IMG SRC='speak.png'>具體的</span></span>
@@ -420,7 +505,7 @@ The new <span class='tooltip'>regulation<span class='tooltip-text'  onclick="spe
 　(A)認出　(B)推薦　(C)回想　(D)零售</span></span>
 
 If you are a big <span class='tooltip'>fan<span class='tooltip-text'  onclick="speakText('fan')"><IMG SRC='speak.png'>喜愛</span></span> of <span class='tooltip'>sweets<span class='tooltip-text'  onclick="speakText('sweets')"><IMG SRC='speak.png'>糖果</span></span>
- ,   we would _______ you to try our <span class='tooltip'>classic<span class='tooltip-text'  onclick="speakText('classic')"><IMG SRC='speak.png'>經典的</span></span>
+ ,    we would _______ you to try our <span class='tooltip'>classic<span class='tooltip-text'  onclick="speakText('classic')"><IMG SRC='speak.png'>經典的</span></span>
  <span class='tooltip'>chocolate<span class='tooltip-text'  onclick="speakText('chocolate')"><IMG SRC='speak.png'>巧克力</span></span>
  <span class='tooltip'>ice cream<span class='tooltip-text'  onclick="speakText('ice cream')"><IMG SRC='speak.png'>冰淇淋</span></span>.<br>
 (A)<span class='tooltip'>recognize<span class='tooltip-text'  onclick="speakText('recognize')"><IMG SRC='speak.png'>認出</span></span>
@@ -458,7 +543,7 @@ My older brother can't <span class='tooltip'>understand<span class='tooltip-text
 【A】如果他明天不幫我，我自己完成工作就會有困難。 <br> 
 　假設句型。本題中假設明天他不會幫我，為假設未來不確定的事實→「現在否定句」If he doesn't help me tomorrow.。</span></span>
 
-If he _______ help me tomorrow ,   I would have some <span class='tooltip'>difficulty<span class='tooltip-text'  onclick="speakText('difficulty')"><IMG SRC='speak.png'>困難</span></span>
+If he _______ help me tomorrow ,    I would have some <span class='tooltip'>difficulty<span class='tooltip-text'  onclick="speakText('difficulty')"><IMG SRC='speak.png'>困難</span></span>
  doing the work on my own.<br>
 (A)doesn't　(B)didn't　(C)isn't　(D)wasn't <BR> <hR>
 

@@ -19,7 +19,7 @@
 <link rel="apple-touch-icon-precomposed" href="https://lib.cpu.edu.tw/var/file/36/1036/msys_1036_2538920_14953.ico">
 <link rel="apple-touch-icon" href="https://lib.cpu.edu.tw/var/file/36/1036/msys_1036_2538920_14953.ico">
 
-<link rel="stylesheet" href="combine-zh-tw2.css?t=001D" type="text/css" />
+<link rel="stylesheet" href="combine-zh-tw.css?t=001D" type="text/css" />
 <style>@media (min-width: 481px) {.row_0 .col_01 { width: 0%;}.row_0 .col_02 { width: 100%;}.row_0 .col_03 { width: 0%;}}</style>
 
 
@@ -75,6 +75,31 @@ document.getElementById("funnel").style.display = "block";
 			<style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;700&display=swap');
 </style>
+<style>
+.hea {
+  position: absolute;
+  top:35px;
+  left: 80;
+  width: 100%;
+  height: 5px;
+  box-shadow: 0 4px 6px rgba(255,0 , 0, 0.1);
+  background-color: #FFD700;
+  z-index: 80; /* 確保在最上層 */
+}
+
+@media screen and (max-width: 768px) {
+.hea2 {
+  position: fixed;
+  top:82px;
+  left: 80;
+  width: 100%;
+  height: 5px;
+  box-shadow: 0 4px 6px rgba(255,0 , 0, 0.1);
+  background-color:#FFD700;
+  z-index: 80; /* 確保在最上層 */
+}}
+</style>
+
 
 <div class="head container">
 
@@ -91,22 +116,11 @@ document.getElementById("funnel").style.display = "block";
 
 
     <div class="mycollapse">
-
         <button class="navbar-toggle" data-target=".nav-toggle" data-toggle="collapse" type="button">
             <span class="glyphicons show_lines">Menu</span>
         </button>
         <div class="navbar-collapse collapse nav-toggle" id="collapseExample2">
-
-
-
-            <div class="mainmenu">
-                
-
-
-
-
-
-   
+            <div class="mainmenu">  <div class="hea"></div>
 <div class="headnavcust">
 	<div class="mnavbar mn-collapse">
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".hd-mainmenu" aria-expanded="false">
@@ -174,7 +188,7 @@ $(document).ready(function(){
 
    
 <div class="headnavcust">
-	<div class="mnavbar mn-collapse">
+	<div class="mnavbar mn-collapse"><div class="hea2"></div>
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".hd-topnav" aria-expanded="false">
 			<span class="glyphicons show_lines">Menu</span>
 		</button>
@@ -322,23 +336,7 @@ $(document).ready(function(){
 <button style="background-color: #0D6EFD;padding-right:1px;padding-left:1px;justify-content:center;align-items:center;height:35px;width:120px;color:#FFF;font-size:1.1em;font-weight: bold; type="button" href="javascript: void(0)" onclick="gen('index.htm')" class="btn btn-warning">【克漏字】</button> 
 　<button style="background-color: #FFC107;padding-right:1px;padding-left:1px;justify-content:center;align-items:center;height:35px;width:120px;color:#000;font-size:1.1em;font-weight: bold; type="button" href="javascript: void(0)" onclick="gen('index2.htm')" class="btn btn-warning">【英文閱讀】</button>
 　<button style="background-color: #78FFDD;padding-right:1px;padding-left:1px;justify-content:center;align-items:center;height:35px;width:120px;color:#000;font-size:1.1em;font-weight: bold; type="button" href="javascript: void(0)" onclick="gen('index3.htm')" class="btn btn-warning">【單字文法】</button>
-					
-
-
-	
-
-
-	
-
-		
-		</div>
-	</div>
-
-</div>
-
-	
-		
-		
+</div></div></div>
 
 
 	
@@ -549,14 +547,18 @@ $(document).ready(function(){
 <div class="minner container">
 
 
-
-
-
-
-
 <div class="copyright">
 <div class="meditor">
-	<div class="closing"><span class="closeBtn"></span>
-<div id="links">&nbsp;</div>
-</div>
+<div class="closing">
+<span class="closeBtn" style="height:40px;align-items: center;">致勝研究室 製作</span>
+<div id="links"></div>
+</div></div></div>
 
+</div></div></div>
+		
+	
+		
+		
+
+
+	

@@ -1,0 +1,509 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
+<center>02紀念日快樂【克漏字戰場】</center>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>克洛伊和凱文喜歡去義大利餐廳</span></span>
+<span class='pp'>Chloe</span> and <span class='pp'>Kevin</span> <span class='tooltip'>enjoy<span class='tooltip-text'  onclick="speakText('enjoy')"><IMG SRC='speak.png'>享受</span></span> <div class="cir">16</div> out to Italian <span class='tooltip'>restaurants<span class='tooltip-text'  onclick="speakText('restaurants')"><IMG SRC='speak.png'>餐廳</span></span>.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明： enjoy+Ving</span></span>
+16.(A)go 　(B)to go 　(C)going 　(D)to going <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他們喜歡吃義大利麵、分享甜點和喝濃縮咖啡</span></span>
+They love to eat <span class='tooltip'>pasta<span class='tooltip-text'  onclick="speakText('pasta')"><IMG SRC='speak.png'>義大利麵</span></span>,  share a <span class='tooltip'>dessert<span class='tooltip-text'  onclick="speakText('dessert')"><IMG SRC='speak.png'>甜點</span></span>,  and have <span class='tooltip'>espresso<span class='tooltip-text'  onclick="speakText('espresso')"><IMG SRC='speak.png'>濃縮咖啡</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>克洛伊和凱文的周年紀念日即將到來</span></span>
+<span class='pp'>Chloe</span> and <span class='pp'>Kevin</span>'s <span class='tooltip'>anniversary<span class='tooltip-text'  onclick="speakText('anniversary')"><IMG SRC='speak.png'>週年紀念日</span></span> is coming <div class="cir">17</div> .<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：is coming up即將到來</span></span>
+17.(A)at 　(B)by 　(C)up 　(D)out <BR><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>凱文想去鎮上的一家義大利餐廳度過一個美好的夜晚</span></span>
+<span class='pp'>Kevin</span> wants to plan a night out at an Italian <span class='tooltip'>restaurant<span class='tooltip-text'  onclick="speakText('restaurant')"><IMG SRC='speak.png'>餐廳</span></span> in town.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他打電話給一家餐廳預訂座位，但是餐廳已經沒有空位了</span></span>
+He calls a <span class='tooltip'>restaurant<span class='tooltip-text'  onclick="speakText('restaurant')"><IMG SRC='speak.png'>餐廳</span></span> to <div class="cir">18</div> a reservation but they have no tables available.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：make a reservation預約</span></span>
+18.(A)take 　(B)make 　(C)deal 　(D)book <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他打電話給另一家餐館，但他們也沒有空位</span></span>
+He calls another <span class='tooltip'>restaurant<span class='tooltip-text'  onclick="speakText('restaurant')"><IMG SRC='speak.png'>餐廳</span></span>,  but they have no <span class='tooltip'>availability<span class='tooltip-text'  onclick="speakText('availability')"><IMG SRC='speak.png'>可用性</span></span> either.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>凱文一邊思考，一邊在屋子裡踱步</span></span>
+<span class='pp'>Kevin</span> thinks and <span class='tooltip'>paces<span class='tooltip-text'  onclick="speakText('paces')"><IMG SRC='speak.png'>步伐</span></span> around the house.<br><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他知道克洛伊最喜歡義大利菜</span></span>
+He knows that <span class='pp'>Chloe</span> loves Italian food more than anything else.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他知道沒有什麼比這更讓她開心了</span></span>
+He knows that nothing makes her happier.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>但鎮上僅有的兩家義大利餐廳卻生意太差，凱文有一個主意</span></span>
+But the only two Italian <span class='tooltip'>places<span class='tooltip-text'  onclick="speakText('places')"><IMG SRC='speak.png'>地方</span></span> in town are too busy.<span class='pp'>Kevin</span> has an idea.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>如果他為克洛伊做一頓義大利菜會怎麼樣？</span></span>
+What if he <span class='tooltip'>cooks<span class='tooltip-text'  onclick="speakText('cooks')"><IMG SRC='speak.png'>廚師</span></span> <span class='tooltip'><span class='pp'>Chloe</span><span class='tooltip-text'>克洛伊</span></span> a homemade Italian meal ? <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>凱文想著這樣的場景：他鋪上漂亮的桌布，點上幾根蠟燭，播放浪漫的義大利音樂</span></span>
+<span class='pp'>Kevin</span> pictures it: he puts down a fancy tablecloth,  lights some <span class='tooltip'>candles<span class='tooltip-text'  onclick="speakText('candles')"><IMG SRC='speak.png'>蠟燭</span></span>,  and plays <span class='tooltip'>romantic<span class='tooltip-text'  onclick="speakText('romantic')"><IMG SRC='speak.png'>浪漫的</span></span> Italian music.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>克洛伊喜歡凱文的努力。</span></span>
+<span class='pp'>Chloe</span> loves when <span class='pp'>Kevin</span> makes an <span class='tooltip'>effort<span class='tooltip-text'  onclick="speakText('effort')"><IMG SRC='speak.png'>努力</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>只有一件事。凱文不是一個好廚師</span></span>
+There's only one thing.<span class='pp'>Kevin</span> isn't a good cook.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>事實上，凱文的廚藝很糟糕</span></span>
+<div class="cir">19</div>,  <span class='pp'>Kevin</span> is a <span class='tooltip'>terrible<span class='tooltip-text'  onclick="speakText('terrible')"><IMG SRC='speak.png'>糟糕的</span></span> cook.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：In fact事實上</span></span>
+19.(A)So 　(B)But 　(C)Yet 　(D)In fact <BR><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>當他嘗試做早餐時，他把雞蛋烤焦了；當他嘗試做午餐時，他把沙拉弄亂了；當他嘗試做晚餐時，甚至鄰居都聞到了晚餐有多難吃</span></span>
+When he <span class='tooltip'>tries<span class='tooltip-text'  onclick="speakText('tries')"><IMG SRC='speak.png'>嘗試</span></span> to make <span class='tooltip'>breakfast<span class='tooltip-text'  onclick="speakText('breakfast')"><IMG SRC='speak.png'>早餐</span></span> he burns the eggs,  when he tries to make <span class='tooltip'>lunch<span class='tooltip-text'  onclick="speakText('lunch')"><IMG SRC='speak.png'>午餐</span></span> he <span class='tooltip'>screws<span class='tooltip-text'  onclick="speakText('screws')"><IMG SRC='speak.png'>螺絲</span></span> up the <span class='tooltip'>salad<span class='tooltip-text'  onclick="speakText('salad')"><IMG SRC='speak.png'>沙拉</span></span>,  when he tries to make <span class='tooltip'>dinner<span class='tooltip-text'  onclick="speakText('dinner')"><IMG SRC='speak.png'>晚餐</span></span> even the neighbors smell how bad it is.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>凱文又想了一個主意：如果他在克洛伊回家之前給其中一家餐廳打電話訂外賣，他就能用那家餐廳的菜來代替他那糟糕的廚藝！這一天終於來了</span></span>
+<span class='pp'>Kevin</span> has another idea: if he calls up one of the restaurants before <span class='pp'>Chloe</span> gets home and orders take-out,  he can serve that food <span class='tooltip'>instead<span class='tooltip-text'  onclick="speakText('instead')"><IMG SRC='speak.png'>反而</span></span> of his bad cooking! The day arrives.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>當凱文訂餐、取餐並帶回家時，克洛伊仍在工作。</span></span>
+<span class='pp'>Chloe</span> is still at work while <span class='pp'>Kevin</span> orders the food,  picks it up,  and brings it back home.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>當他擺好餐具、點燃蠟燭、放好音樂時，克洛伊走了進來</span></span>
+<div class="cir">20</div> he lays down the <span class='tooltip'>place<span class='tooltip-text'  onclick="speakText('place')"><IMG SRC='speak.png'>地方</span></span> settings,  lights the candles and puts the music on,  <span class='tooltip'><span class='pp'>Chloe</span><span class='tooltip-text'>克洛伊</span></span> walks in.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：as當時間副詞時，等於when</span></span>
+20.(A)As 　(B)By 　(C)So 　(D)Since <BR><HR>
+
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>週年快樂！ 」凱文告訴克洛伊</span></span>
+"Happy Anniversary!" <span class='pp'>Kevin</span> tells <span class='pp'>Chloe</span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他微笑著展示他們浪漫的晚餐場景。</span></span>
+He shows off their <span class='tooltip'>romantic<span class='tooltip-text'  onclick="speakText('romantic')"><IMG SRC='speak.png'>浪漫的</span></span> <span class='tooltip'>dinner<span class='tooltip-text'  onclick="speakText('dinner')"><IMG SRC='speak.png'>晚餐</span></span> setting,  <span class='tooltip'>smiling<span class='tooltip-text'  onclick="speakText('smiling')"><IMG SRC='speak.png'>微笑</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>克洛伊一臉困惑。明天是我們的結婚紀念日，凱文。</span></span>
+<span class='pp'>Chloe</span> looks confused. Our <span class='tooltip'>anniversary<span class='tooltip-text'  onclick="speakText('anniversary')"><IMG SRC='speak.png'>週年紀念日</span></span> is tomorrow,  <span class='pp'>Kevin</span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>「凱文停頓了一下，看了看日曆，意識到她是對的</span></span>
+<span class='pp'>Kevin</span> pauses,  looks at the <span class='tooltip'>calendar<span class='tooltip-text'  onclick="speakText('calendar')"><IMG SRC='speak.png'>日曆</span></span> and realizes she's right.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他回頭看著她</span></span>
+He looks back at her.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>「我想多練習總是好的！」他說</span></span>
+"I guess it's always good to <span class='tooltip'>practice<span class='tooltip-text'  onclick="speakText('practice')"><IMG SRC='speak.png'>實踐</span></span> !" he says.<br><hr>
+</div>
+<br><br><br><br><br>
+
+
+

@@ -1,0 +1,481 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
+<center>03貓咪</center>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>貓是一種有四條腿、一條尾巴和柔軟皮毛的小動物</span></span>
+A cat is a small <span class='tooltip'>animal<span class='tooltip-text'  onclick="speakText('animal')"><IMG SRC='speak.png'>動物</span></span> with four legs ,  a tail and soft <span class='tooltip'>fur<span class='tooltip-text'  onclick="speakText('fur')"><IMG SRC='speak.png'>皮草</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>人們常把它當作寵物飼養</span></span>
+People often keep it <div class='cir'>16</div> a pet.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：keep A as B→把A當做B，把它當做寵物</span></span>
+16.(A)as　(B)to　(C)he　(D)like <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這隻貓有一個印象深刻的"家族"，獅子、老虎、獵豹和許多其他動物都是他的親戚</span></span>
+The cat has an <span class='tooltip'>impressive<span class='tooltip-text'  onclick="speakText('impressive')"><IMG SRC='speak.png'>感人的、印象深刻</span></span>" family.
+<span class='tooltip'>Lions<span class='tooltip-text'  onclick="speakText('Lions')"><IMG SRC='speak.png'>獅子</span></span> ,  <span class='tooltip'>tigers<span class='tooltip-text'  onclick="speakText('tigers')"><IMG SRC='speak.png'>老虎</span></span> ,  <span class='tooltip'>cheetahs<span class='tooltip-text'  onclick="speakText('cheetahs')"><IMG SRC='speak.png'>獵豹</span></span> and many others are his <span class='tooltip'>biological<span class='tooltip-text'  onclick="speakText('biological')"><IMG SRC='speak.png'>生物</span></span> <span class='tooltip'>relatives<span class='tooltip-text'  onclick="speakText('relatives')"><IMG SRC='speak.png'>親屬</span></span>.
+<BR><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>貓通常是非常熟練的獵手，會無所畏懼地追捕獵物，但還是會逃離水</span></span>
+Cats are usually very <span class='tooltip'>skilled<span class='tooltip-text'  onclick="speakText('skilled')"><IMG SRC='speak.png'>熟練</span></span> <span class='tooltip'>hunters<span class='tooltip-text'  onclick="speakText('hunters')"><IMG SRC='speak.png'>獵人</span></span> ,  and will <span class='tooltip'>pursue<span class='tooltip-text'  onclick="speakText('pursue')"><IMG SRC='speak.png'>追求</span></span> their <span class='tooltip'>prey<span class='tooltip-text'  onclick="speakText('prey')"><IMG SRC='speak.png'>獵物</span></span> <span class='tooltip'>fearlessly<span class='tooltip-text'  onclick="speakText('fearlessly')"><IMG SRC='speak.png'>無畏地</span></span> ,  but would <div class='cir'>17</div> run away from water.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：連接詞，這裡為轉折語氣，故用nevertheless</span></span>
+17.(A)because　(B)so　(C)so far　(D)<span class='tooltip'>nevertheless<span class='tooltip-text'  onclick="speakText('nevertheless')"><IMG SRC='speak.png'>儘管如此</span></span> <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這就是為什麼大多數貓討厭洗澡的原因</span></span>
+That is why most cats hate to take a <span class='tooltip'>shower<span class='tooltip-text'  onclick="speakText('shower')"><IMG SRC='speak.png'>淋浴</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>它們通常用舌頭清潔毛髮</span></span>
+They usually clean their fur with their <span class='tooltip'>tongues<span class='tooltip-text'  onclick="speakText('tongues')"><IMG SRC='speak.png'>舌頭</span></span>.
+<BR><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>它們擁有靈活、強健的身體和高度發展的感官</span></span>
+They have <span class='tooltip'>flexible<span class='tooltip-text'  onclick="speakText('flexible')"><IMG SRC='speak.png'>靈活的</span></span>,  <span class='tooltip'>muscular<span class='tooltip-text'  onclick="speakText('muscular')"><IMG SRC='speak.png'>肌肉發達</span></span> <span class='tooltip'>bodies<span class='tooltip-text'  onclick="speakText('bodies')"><IMG SRC='speak.png'>機構</span></span> and <div class='cir'>18</div>  <span class='tooltip'>developed<span class='tooltip-text'  onclick="speakText('developed')"><IMG SRC='speak.png'>發達</span></span> <span class='tooltip'>senses<span class='tooltip-text'  onclick="speakText('senses')"><IMG SRC='speak.png'>感官</span></span>.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：highly副詞修飾動詞developed</span></span>
+18.(A)high　(B)good　(C)better　(D)highly <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他們的夜視能力特別好</span></span>
+Their <span class='tooltip'>night vision<span class='tooltip-text'  onclick="speakText('night vision')"><IMG SRC='speak.png'>夜視</span></span> is <span class='tooltip'>especially<span class='tooltip-text'  onclick="speakText('especially')"><IMG SRC='speak.png'>尤其</span></span> good.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>耳朵很大，對高頻聲音非常敏感</span></span>
+The ears are <span class='tooltip'>large<span class='tooltip-text'  onclick="speakText('large')"><IMG SRC='speak.png'>大的</span></span> ,  and very <span class='tooltip'>sensitive<span class='tooltip-text'  onclick="speakText('sensitive')"><IMG SRC='speak.png'>敏感的</span></span> to <span class='tooltip'>high-frequency<span class='tooltip-text'  onclick="speakText('high-frequency')"><IMG SRC='speak.png'>高頻</span></span> sounds.
+<BR><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>它們還擁有敏銳的嗅覺和一副非常有用的尖銳牙齒！貓咪跌倒後能夠用腳著地</span></span>
+They also <span class='tooltip'>possess<span class='tooltip-text'  onclick="speakText('possess')"><IMG SRC='speak.png'>具有</span></span> a good sense of smell,  and a very useful <span class='tooltip'>sharp<span class='tooltip-text'  onclick="speakText('sharp')"><IMG SRC='speak.png'>鋒利的</span></span> set of <span class='tooltip'>teeth!<span class='tooltip-text'  onclick="speakText('teeth!')"><IMG SRC='speak.png'>牙齒！</span></span> Cats <div class='cir'>19</div> land on their feet after a fall.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：are able to V</span></span>
+19.(A)are able　(B)are able to　(C)are able of　(D)are capable to <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這是一種結合了視覺和平衡感的美妙能力</span></span>
+This is a beautiful <span class='tooltip'>ability<span class='tooltip-text'  onclick="speakText('ability')"><IMG SRC='speak.png'>能力</span></span> which <span class='tooltip'>combines<span class='tooltip-text'  onclick="speakText('combines')"><IMG SRC='speak.png'>結合</span></span> both vision and a <span class='tooltip'>sense<span class='tooltip-text'  onclick="speakText('sense')"><IMG SRC='speak.png'>感覺</span></span> of <span class='tooltip'>balance<span class='tooltip-text'  onclick="speakText('balance')"><IMG SRC='speak.png'>平衡</span></span>.
+<BR><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>貓可能是危險的掠食者，但同時也是優雅的伴侶</span></span>
+Cats can be a <span class='tooltip'>dangerous<span class='tooltip-text'  onclick="speakText('dangerous')"><IMG SRC='speak.png'>危險的</span></span> <span class='tooltip'>predator<span class='tooltip-text'  onclick="speakText('predator')"><IMG SRC='speak.png'>掠食者</span></span> ,  and <span class='tooltip'>together<span class='tooltip-text'  onclick="speakText('together')"><IMG SRC='speak.png'>一起</span></span> with that – a <span class='tooltip'>graceful<span class='tooltip-text'  onclick="speakText('graceful')"><IMG SRC='speak.png'>優美</span></span> <span class='tooltip'>companion<span class='tooltip-text'  onclick="speakText('companion')"><IMG SRC='speak.png'>伴侶</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>從古埃及時代直到今天，人類和貓已經共同生活了數千年</span></span>
+<span class='tooltip'>Humans<span class='tooltip-text'  onclick="speakText('Humans')"><IMG SRC='speak.png'>人類</span></span> and <span class='tooltip'>cats<span class='tooltip-text'  onclick="speakText('cats')"><IMG SRC='speak.png'>貓</span></span> have lived <span class='tooltip'>together<span class='tooltip-text'  onclick="speakText('together')"><IMG SRC='speak.png'>一起</span></span> for <div class='cir'>20</div> years ,  from the <span class='tooltip'>ancient<span class='tooltip-text'  onclick="speakText('ancient')"><IMG SRC='speak.png'>古老的</span></span> <span class='tooltip'>Egyptians<span class='tooltip-text'  onclick="speakText('Egyptians')"><IMG SRC='speak.png'>埃及人</span></span> up to this day and age.<BR>
+
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：thousands of year→數千年</span></span>
+20.(A)thousand　(B)a thousand　(C)one thousand　(D)thousands of <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>它們長期以來一直是人類的好朋友</span></span>
+They have long been good friends of <span class='tooltip'>humans<span class='tooltip-text'  onclick="speakText('humans')"><IMG SRC='speak.png'>人類</span></span>.
+<BR><hr>
+</div>
+<BR><BR><BR><BR><BR>

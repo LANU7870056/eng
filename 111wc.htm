@@ -2,8 +2,22 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
 <head>
   <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
 <script>
     function speakText(text) {
       //const text = "Connect to the internet";
@@ -11,7 +25,40 @@
       utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
       speechSynthesis.speak(utterance);
     }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
 </script>
+
 <script>
 function gen(ur) {
 
@@ -27,11 +74,31 @@ function getRandomString(length) {
 window.open(ur+'?i='+getRandomString(10),'_self');
 
   }
-</script> 
+</script>
+
 <style>
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
 .bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
     width:100%;
-    position: absolute;
+    //position: absolute;
     align-items: center;   
     height: 60px;background-color: #854D92;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
@@ -40,39 +107,77 @@ window.open(ur+'?i='+getRandomString(10),'_self');
     background-repeat: no-repeat; /* 不重複顯示圖片 */
     border: 0px solid #ccc; /* 可加上邊框 */
     margin: 0px auto; /* 置中顯示 */
-top:0px;
+    top:0px;
+    left:-1px;
     border-radius: 0px; /* 調整圓角大小 */
   }
 
   .background-box {
     width:100%;
+    align-items: center;   
     background-color: #D2FF78;
     background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
     background-size: cover; /* 圖片填滿區塊 */
     background-position: center; /* 圖片置中 */
     background-repeat: no-repeat; /* 不重複顯示圖片 */
-    border: 0px solid #ccc; /* 可加上邊框 */
-    margin: 20px auto; /* 置中顯示 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
     border-radius: 20px; /* 調整圓角大小 */
   }
 </style>
+
+
 <style>
 .cir {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      line-height: 30px;
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-      border: 1px solid #333;
-      border-radius: 30%;
-      color: #333;
-    }
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
   .tooltip3 {
       position: relative;
       display: inline-block;
       cursor: pointer;
+      font-size: 1.0em;
       color: green; 
     }
  
@@ -81,16 +186,18 @@ top:0px;
       visibility: hidden;
       background-color: #FFFF00;
       color: #FF00FF;
-      text-align: center;
+      text-align: left;
       padding: 3px 8px;
-      border-radius: 6px;
+      border-radius: 2px;
       position: absolute;
       bottom: 100%; /* 👈 顯示在上方 */
-      left: 50%;
+      left:0%;
+      
       transform: translateX(-50%);
       z-index: 1;
       white-space: nowrap;
       opacity: 0;
+      font-size: 0.8em;
       transition: opacity 0.2s;
     }
 
@@ -117,7 +224,7 @@ top:0px;
       position: relative;
       display: inline-block;
       cursor: pointer;
-      font-size: 30px;
+      font-size: 1.0em;
       color: blue; 
     }
  
@@ -130,7 +237,7 @@ top:0px;
       padding: 5px 8px;
       border-radius: 6px;
       position: absolute;
-      bottom: 125%; /* 👈 顯示在上方 */
+      bottom: 100%; /* 👈 顯示在上方 */
       left: 50%;
       transform: translateX(-50%);
       z-index: 1;
@@ -162,6 +269,7 @@ top:0px;
       position: relative;
       display: inline-block;
       cursor: pointer;
+      font-size: 1.0em;
       color: red; 
     }
  
@@ -171,10 +279,10 @@ top:0px;
       background-color: #333;
       color: #fff;
       text-align: center;
-      padding: 5px 8px;
+      padding: 2px 8px;
       border-radius: 6px;
       position: absolute;
-      bottom: 125%; /* 👈 顯示在上方 */
+      bottom: 100%; /* 👈 顯示在上方 */
       left: 50%;
       transform: translateX(-50%);
       z-index: 1;
@@ -199,43 +307,148 @@ top:0px;
       border-width: 5px;
       border-style: solid;
       border-color: #333 transparent transparent transparent;
-    }  
-
- 
+    }   
   </style>
 </head>
-<body>
 <div class="bk-box">
-<div style="align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;" >
-<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>英文閱讀學習　回首頁</h3></a></div>
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
 </div>
-<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;><BR>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
 <div class="background-box" style="font-size: 1.2em;">
 
 
-  46.What did Nola do after her husband's death in 1972?<span class='tooltip'>譯<span class='tooltip-text' onclick="speakText('譯')">在1972年丈夫去世後做了什麼?</span></span><BR>
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index2.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
+<center>羅蘭好學的奶奶【112外】</center>
+
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：她開始上課並獲得副學士學位</span></span>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>在1972年丈夫去世後做了什麼?</span></span>
+46.What did Nola do after her husband's death in 1972?<BR>
 (A)She wrote a book.<BR>
 (B)She started a business.<BR>
 (C)She moved to a different country.<BR>
-<span class='tooltip2'>(D)She began taking classes and earned an associate degree.<span class='tooltip-text'>她開始上課並獲得副學士學位</span></span><BR>
+(D)She began taking classes and earned an <span class='tooltip'>associate degree<span class='tooltip-text'  onclick="speakText('associate degree')"><IMG SRC='speak.png'>副學士學位</span></span>.
+<BR><HR>
 
-<HR>47.Why did Nola enjoy attending classes?<span class='tooltip'>譯<span class='tooltip-text' onclick="speakText('譯')"> 為什麼喜歡上課?</span></span><BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：她發現這是一種愉快的消遣方式。</span></span>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>為什麼喜歡上課?</span></span>
+47.Why did Nola enjoy attending classes?<BR>
 (A)She wanted to make new friends.<BR>
 (B)She wanted to become a teacher.<BR>
 (C)She was forced to attend by her family.<BR>
-<span class='tooltip2'>(D)She found it to be a pleasant way to spend her time.<span class='tooltip-text'>她發現這是一種愉快的消遣方式。</span></span><BR>
+(D)She found it to be a <span class='tooltip'>pleasant<span class='tooltip-text'  onclick="speakText('pleasant')"><IMG SRC='speak.png'>令人愉快的</span></span> way to spend her time.
+<BR><HR>
 
-<HR>48.What did Nola do when she had 30 hours of school left?<span class='tooltip'>譯<span class='tooltip-text' onclick="speakText('譯')">當 Nola 剩下30小時的學程時,她做了什麼?</span></span><BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：她搬了100英里, 親自到課</span></span>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>當 Nola 剩下30小時的學程時, 她做了什麼?</span></span>
+48.What did Nola do when she had 30 hours of school left?<BR>
 (A)She took a break from studying.<BR>
-<span class='tooltip2'>(B)She moved 100 miles away and attended classes in person.<span class='tooltip-text'>她搬了100英里,親自到課</span></span><BR>
+(B)She moved 100 miles away and attended classes <span class='tooltip'>in person<span class='tooltip-text'  onclick="speakText('in person')"><IMG SRC='speak.png'>親自</span></span>.<BR>
 (C)She decided to study online.<BR>
-(D)She dropped out of school.<BR>
+(D)She dropped out of school.<BR><HR>
 
-<HR>49.When did Nola finish her memoir?<span class='tooltip'>譯<span class='tooltip-text' onclick="speakText('譯')"> Nola 在什麼時候完成她的回憶錄?</span></span><BR>
-(A)At age 90　(B)At age 95　(C)At age 100　(D)<span class='tooltip2'>At age 105<span class='tooltip-text'>105歲</span></span><BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：105歲</span></span>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>Nola 在什麼時候完成她的回憶錄?</span></span>
+49.When did Nola finish her memoir?<BR>
+(A)At age 90　(B)At age 95　(C)At age 100　(D)At age 105
+<BR><HR>
 
-<HR>50.What is the main idea of the story about Nola Ochs?<span class='tooltip'>譯<span class='tooltip-text' onclick="speakText('譯')">有關 Nola Ochs故事的主要觀點是什麼?</span></span><BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：終身學習的追求和永不放棄</span></span>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>有關 Nola Ochs故事的主要觀點是什麼?</span></span>
+50.What is the main idea of the story about Nola Ochs?<BR>
 (A)The challenges of moving to a new place.<BR>
 (B)The importance of family ties and relationships.<BR>
-<span class='tooltip2'>(C)The lifelong pursuit of learning and never giving up.<span class='tooltip-text'>終身學習的追求和永不放棄。</span></span><BR>
-(D)The process of writing a memoir.<BR>
+(C)The lifelong <span class='tooltip'>pursuit of learning<span class='tooltip-text'  onclick="speakText('pursuit of learning')"><IMG SRC='speak.png'>追求學習</span></span> and never <span class='tooltip'>giving up<span class='tooltip-text'  onclick="speakText('giving up')"><IMG SRC='speak.png'>放棄</span></span>.<BR>
+(D)The process of writing a memoir.
+<BR><HR>

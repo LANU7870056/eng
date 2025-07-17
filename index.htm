@@ -44,9 +44,6 @@ document.getElementById("funnel").style.display =  "block";
   }
 </script>
 
-
-
-
 <script type="text/javascript" src="https://lib.cpu.edu.tw/var/file/js/combine_fr_9692b3c6b4.js" ></script>
 </head>
  
@@ -64,52 +61,61 @@ document.getElementById("funnel").style.display =  "block";
 <div id="Dyn_head">
 <noscript>您的瀏覽器不支援JavaScript功能，若網頁功能無法正常使用時，請開啟瀏覽器JavaScript狀態</noscript>
 <div class="header">
-	<div class="minner container">
 
-
-
-
-
-
-
-	
+<div class="minner container">	
 <div class="selfhead">
-		<div class="meditor">
+<div class="meditor" >
 	
       
          
-			<style>
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;700&display=swap');
 </style>
+<style>
+.hea {
+  position: fixed;
+  top:125px;
+  left: 80;
+  width: 100%;
+  height: 5px;
+  box-shadow: 0 4px 6px rgba(255,0 , 0, 0.1);
+  background-color: #FFD700;
+  z-index: 80; /* 確保在最上層 */
+}
+
+@media screen and (max-width: 768px) {
+.hea2 {
+  position: fixed;
+  top:82px;
+  left: 80;
+  width: 100%;
+  height: 5px;
+  box-shadow: 0 4px 6px rgba(255,0 , 0, 0.1);
+  background-color:#FFD700;
+  z-index: 80; /* 確保在最上層 */
+}}
+</style>
+
 
 <div class="head container">
 
     <div class="mlogo">
-        <h1>
-            <a href="#" title="">
-                
-            </a>
-        </h1>
+        <h1><a href="#" title=""></a></h1>
 <h2><span class="logoTitle" style="font-weight:700">英文學習網</span>
 <span class="logoTitleEn" style="font-weight:300">Stying English for you.</span>
 </h2>
     </div>
 
 
-    <div class="mycollapse">
-
-     
-        <div class="navbar-collapse collapse nav-toggle" id="collapseExample2">
 
 
-
-            <div class="mainmenu">
-                
-
-
-   
+<div class="mycollapse">     
+<div class="navbar-collapse collapse nav-toggle" id="collapseExample2" >
+<div class="mainmenu" >  <div class="hea"></div>
 <div class="headnavcust">
-	<div class="mnavbar mn-collapse">
+<div class="mnavbar mn-collapse">
+
+
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".hd-mainmenu" aria-expanded="false">
 			<span class="glyphicons show_lines">Menu</span>
 		</button>
@@ -141,13 +147,12 @@ document.getElementById("funnel").style.display =  "block";
 
    
 <div class="headnavcust">
-	<div class="mnavbar mn-collapse">
+	<div class="mnavbar mn-collapse"><div class="hea2"></div>
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".hd-topnav" aria-expanded="false">
 			<span class="glyphicons show_lines">Menu</span>
 		</button>
 		<div class="nav-toggle collapse navbar-collapse iosScrollToggle hd-topnav">
 			<div class="hdmenu">
-
 			</div>
 		</div>
 	</div>

@@ -1,454 +1,35 @@
-<html lang="zh-Hant"><head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
-<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
-<META HTTP-EQUIV="expires" CONTENT="0">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-<script>
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function scrollToBottom() {
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-}
-
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英文單字測驗</title>
 
 <script>
-    function speakText(text) {
-      //const text = "Connect to the internet";
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
-      speechSynthesis.speak(utterance);
-    }
-    
-    function speakText2(text) {
-      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
-      const audio = new Audio(ww);
-      audio.play();
-    }
-
-let isVisible = false;
-
-
-
-function close2() {
-  const boxes = document.querySelectorAll('.te');
-  boxes.forEach(box => {
-    box.style.transform = "translateX(-50%) scale(0)";
-  });
-}
-
-function showTextBox(img) {
-  const boxes = document.querySelectorAll('.te');
-  boxes.forEach(box => {
-    box.style.transform = "translateX(-50%) scale(0)";
-  });
-
-
- const box = img.nextElementSibling;
-  const isVisible = box.style.transform.includes("scale(1)");
-  box.style.transform = isVisible
-    ? "translateX(-50%) scale(0)"
-    : "translateX(-50%) scale(1)";
-}
-
-</script>
-
-<script>
-function gen(ur) {
-
-function getRandomString(length) {
-  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  let result = '';
-  for (let i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
-}
-
-window.open(ur+'?i='+getRandomString(10),'_self');
-
-  }
-</script>
-
-<style>
-.sol {
-  display: inline-block;
-  width: 26px;
-  height: 26px;
-color:#F0F;
-  border: 1px solid black;
-  border-radius: 50%;         /* 讓外框成圓形 */
-  text-align: center;
-  line-height: 26px;          /* 讓文字垂直置中 */
-  font-size: 20px;
-  font-weight: bold;
-}
-
-body {
-  background-color: #D2FF78;
-}
-
-.bk-box {
-position: fixed;
-z-index: 3000; /* 確保在其他元素之上 */
-    width:100%;
-    //position: absolute;
-    align-items: center;   
-    height: 60px;background-color: #854D92;
-    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
-    background-size: cover; /* 圖片填滿區塊 */
-    background-position: center; /* 圖片置中 */
-    background-repeat: no-repeat; /* 不重複顯示圖片 */
-    border: 0px solid #ccc; /* 可加上邊框 */
-    margin: 0px auto; /* 置中顯示 */
-    top:0px;
-    left:-1px;
-    border-radius: 0px; /* 調整圓角大小 */
-  }
-
-  .background-box {
-    width:100%;
-    align-items: center;   
-    background-color: #D2FF78;
-    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
-    background-size: cover; /* 圖片填滿區塊 */
-    background-position: center; /* 圖片置中 */
-    background-repeat: no-repeat; /* 不重複顯示圖片 */
-    border: 1px solid #ccc; /* 可加上邊框 */
-    margin: 20px 1px auto; /* 置中顯示 */
-    border-radius: 20px; /* 調整圓角大小 */
-  }
-</style>
-
-
-<style>
-.cir {
-  display: inline-block;
-  width: 35px;
-  height: 25px;
-  line-height: 25px;
-  text-align: center;
-  font-size: 1.2em;
-  font-weight: bold;
-  border: 1px solid #333;
-  border-radius: 30%;
-  color: #333;
- padding: 0 0.2em; /* 左右各加空白 */
-}
-
-.tooltip4 {
-  position: relative;
-  display: inline-block;
- color: #F00;
-font-size: 0.8em;
-}
-.tooltip4 .tooltip-text {
-  position: fixed;
-  bottom: 0;                  /* 靠螢幕最底部 */
-  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
-  width: 100%;                /* 寬度全螢幕 */
-  background-color: #FFFF00;
-  border: 1px solid black;
-  color: #000;
-  font-size: 0.9em;
-  text-align: center;
-  padding: 2px 0;
-  word-break: break-word;
-  white-space: normal;
-  z-index: 2000;
-  visibility: hidden;
-  opacity: 0;
-  text-align: left;      
-font-size: 0.9em;
-  transition: opacity 0.3s ease;
-}
-.tooltip4:hover .tooltip-text {
-  visibility: visible;
-  opacity: 1;
-}
-
-  .tooltip3 {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-      font-size: 1.0em;
-      color: green; 
-    }
- 
-  
-    .tooltip3 .tooltip-text {
-      visibility: hidden;
-      background-color: #FFFF00;
-      color: #FF00FF;
-      text-align: left;
-      padding: 3px 8px;
-      border-radius: 2px;
-      position: absolute;
-      bottom: 100%; /* 👈 顯示在上方 */
-      left:0%;
-      
-      transform: translateX(-50%);
-      z-index: 1;
-      white-space: nowrap;
-      opacity: 0;
-      font-size: 0.8em;
-      transition: opacity 0.2s;
-    }
-
-
-    .tooltip3:hover .tooltip-text {
-      visibility: visible;
-      opacity: 1;
-   }
- 
-    /* 加一個小箭頭 */
-    .tooltip3 .tooltip-text::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 5px;
-      border-style: solid;
-      border-color: #333 transparent transparent transparent;
-    }  
-
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
-     .tooltip2 {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-      font-size: 1.0em;
-      color: blue; 
-    }
- 
-  
-    .tooltip2 .tooltip-text {
-      visibility: hidden;
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 5px 8px;
-      border-radius: 6px;
-      position: absolute;
-      bottom: 100%; /* 👈 顯示在上方 */
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1;
-      white-space: nowrap;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-
-    .tooltip2:hover .tooltip-text {
-      visibility: visible;
-      opacity: 1;
-   }
- 
-    /* 加一個小箭頭 */
-    .tooltip2 .tooltip-text::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 5px;
-      border-style: solid;
-      border-color: #333 transparent transparent transparent;
-    }  
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-     .tooltip {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-      font-size: 1.0em;
-      color: red; 
-    }
- 
-  
-    .tooltip .tooltip-text {
-      visibility: hidden;
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 2px 8px;
-      border-radius: 6px;
-      position: absolute;
-      bottom: 100%; /* 👈 顯示在上方 */
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1;
-      white-space: nowrap;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-
-    .tooltip:hover .tooltip-text {
-      visibility: visible;
-      opacity: 1;
-   }
- 
-    /* 加一個小箭頭 */
-    .tooltip .tooltip-text::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 5px;
-      border-style: solid;
-      border-color: #333 transparent transparent transparent;
-    }   
-  </style>
-</head>
-<div class="bk-box">
-<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
-<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
-</div>
-
-<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
-<BR>
-<div class="background-box" style="font-size: 1.2em;">
-
-
-
-<div class="scroll-buttons">
-  <div class="b2"><a href="index2.htm"><img src="home.png"></a></div>
-  <button onclick="scrollToTop()">↑</button>
-  <button onclick="scrollToBottom()">↓</button>
-</div>
-
-<style>
-.scroll-buttons {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1500;
-}
-
-.scroll-buttons b2 {
-  background-color: #007bff;   
-   width: 50px;
-  height: 50px;
- 
-}
-
-.scroll-buttons button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-.scroll-buttons button:hover {
-  background-color: #0056b3;
-}
-
-.co2 {
-  position: relative;
-}
-
-.clickable-image {
-  width: 30px;
-  cursor: pointer;
-}
-
-.te {
-  position: fixed; 
-  bottom:0px;       
-  width:99%;
-  left: 50%;
-  font-family: Times New Roman, sans-serif;
-  transform: translateX(-50%) scale(0);
-  background-color: rgba(120,210,255, 0.8);
-  color: #000;
-  padding: 5px;
-  font-size: 30px; /* 這裡設定文字大小為 30px */
-  border-radius: 10px;
-  z-index: 1999;
-  transition: transform 0.3s ease;
-
-
-}
-.te2 {
-  border: 1px solid #f00;       /* 方框邊框 */
-  padding: 1px;                /* 內距讓文字不貼邊 */
-  font-size: 30px;              /* 文字大小 */
-  font-family: Arial, sans-serif; /* 字型 */
-  background-color: #FF50A7;    /* 背景色，可選 */
-  border-radius: 8px;           /* 圓角，可選 */
-  width: fit-content;           /* 自動調整寬度 */
- // margin: 20px auto;            /* 置中顯示 */
-  line-height: 50px;  
-
-}
-
-.pp{
-  color:#460069;
-  text-decoration: underline;
-}
-</style>
-
-<center>10性暴力單字測驗</center>
-
-<div style="text-align: center;">
-  <h2 id="english" class="q1">單字</h2>
-  <div id="options" class="q2"></div>
-</div>
-
-<div id="scoreboard"  style="text-align: center;">
-  正確：<span id="correct-count">0</span>　
-  錯誤：<span id="wrong-count">0</span>
-</div>
-
-
-<style>
-#options button {
-  background-color: #fff8dc; /* 淺黃色，可以改為 #ffffcc 或 #fef7c0 根據喜好 */
-  font-size: 18px;
-  padding: 10px 20px;
-  margin: 8px;
-  border: 1px solid #aaa;
-  cursor: pointer;
-  border-radius: 8px; /* 圓角讓視覺更柔和 */
-}
-
-.q1
-{
-font-size:3em;
-}
-</style>
-
-
-<script>
-const wordPairs = [
+const wordDatabase = [
+{ en: "acted", zh: "做事"},
 { en: "assault", zh: "攻擊"},
+{ en: "assaults", zh: "攻擊"},
 { en: "assume", zh: "認為"},
+{ en: "attacked", zh: "攻擊"},
+{ en: "attacks", zh: "進攻"},
 { en: "attitude", zh: "態度"},
+{ en: "blame", zh: "責備"},
+{ en: "blaming", zh: "責備"},
+{ en: "culture", zh: "文化"},
+{ en: "damaging", zh: "有害的"},
 { en: "descriptions", zh: "描述"},
+{ en: "dialogue", zh: "對話"},
 { en: "dispel", zh: "打破"},
 { en: "displaying", zh: "顯示"},
+{ en: "eliminate", zh: "消除"},
+{ en: "empower", zh: "授權"},
 { en: "exhibition", zh: "展覽"},
 { en: "experienced", zh: "經驗豐富的"},
 { en: "expose", zh: "暴露"},
 { en: "fact", zh: "事實"},
+{ en: "fear", zh: "擔心"},
+{ en: "figure", zh: "數位"},
 { en: "hardly", zh: "幾乎沒有"},
 { en: "ignorance", zh: "無知"},
 { en: "ignore", zh: "忽略"},
@@ -457,16 +38,26 @@ const wordPairs = [
 { en: "matters", zh: "事宜"},
 { en: "myth", zh: "迷思、神話"},
 { en: "normalization", zh: "常態化"},
+{ en: "notion", zh: "想法"},
+{ en: "obvious", zh: "明顯的"},
+{ en: "occurred", zh: "發生"},
+{ en: "overlooked", zh: "被忽視"},
 { en: "prevailing", zh: "盛行"},
 { en: "provided", zh: "假如"},
 { en: "question", zh: "問題"},
 { en: "raised", zh: "提出"},
 { en: "rape", zh: "強姦"},
-{ en: "rape", zh: "強姦"},
+{ en: "recognize", zh: "認出"},
+{ en: "recovery", zh: "恢復  "},
+{ en: "removing ", zh: "移除"},
+{ en: "report", zh: "報告"},
 { en: "reveals", zh: "表明"},
 { en: "sexual", zh: "性"},
+{ en: "shame", zh: "恥辱"},
 { en: "skin", zh: "皮膚"},
 { en: "social", zh: "社會的"},
+{ en: "society", zh: "社會"},
+{ en: "suffer", zh: "遭受"},
 { en: "survivors", zh: "倖存者"},
 { en: "tracksuit", zh: "運動服"},
 { en: "victim", zh: "受害者"},
@@ -475,53 +66,290 @@ const wordPairs = [
 { en: "wearing", zh: "穿著"},
 { en: "wore", zh: "穿著"}
 ];
-
-let score = 0;
-let correctCount = 0;
-let wrongCount = 0;
-
-function updateScoreboard() {
-  document.getElementById("correct-count").textContent = correctCount;
-  document.getElementById("wrong-count").textContent = wrongCount;
-}
-
-function nextRound() {
-  const question = wordPairs[Math.floor(Math.random() * wordPairs.length)];
-  const options = [question.zh];
-
-  while (options.length < 5) {
-    const rand = wordPairs[Math.floor(Math.random() * wordPairs.length)].zh;
-    if (!options.includes(rand)) options.push(rand);
-  }
-
-  options.sort(() => Math.random() - 0.5);
-  document.getElementById("english").textContent = question.en;
-  const optionButtons = document.getElementById("options");
-  optionButtons.innerHTML = "";
-
-  options.forEach(text => {
-    const btn = document.createElement("button");
-    btn.textContent = text;
-    btn.onclick = () => {
-      if (text === question.zh) {
-        score++;
-        correctCount++;
-        //alert("✅ 正確！目前得分：" + score);
-      updateScoreboard();
-      nextRound();
-      } else {
-        wrongCount++;
-        alert("❌ 錯誤，再接再厲！");
-      }
-      
-    };
-    optionButtons.appendChild(btn);
-  });
-}
-
-nextRound(); // 啟動遊戲
-
-
-
-
 </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fffaf0;
+        }
+        .container {
+            background-color: #ffF;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #8b4513;
+            text-align: center;
+        }
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fffacd;
+            border-radius: 5px;
+            border: 1px solid #e6d8ac;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .option {
+            padding: 15px;
+            background-color:  #FFF878 ;
+            border: 1px solid #e6d8ac;
+	    color:#000;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 24px;
+            transition: all 0.3s;
+        }
+        .option:hover {
+            background-color: #f5e6b3;
+            transform: translateY(-2px);
+        }
+        .score {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #8b4513;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #FF5084; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #b8860b;
+        }
+        .result {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            min-height: 27px;
+            padding: 10px;
+            background-color: #fffacd;
+            border-radius: 5px;
+        }
+        .correct {
+            background-color: #8fbc8f !important;
+            color: white;
+        }
+        .incorrect {
+            background-color: #cd5c5c !important;
+            color: white;
+        }
+        .progress-container {
+            width: 100%;
+            background-color: #f5e6b3;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #d2b48c;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><a href="#" onclick="history.back()"><img src="home2.png"></a>英文單字測驗</h1>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+        <div class="score" id="score">分數: 0 / 0</div>
+        <div class="question" id="question">準備開始測驗...</div>
+        <div class="options" id="options">
+            <!-- 選項將由JavaScript動態生成 -->
+        </div>
+        <div class="result" id="result"></div>
+        <div class="controls">
+            <button id="startBtn">開始測驗</button>
+            <button id="nextBtn" style="display:none;" disabled >下一題</button>
+        </div>
+    </div>
+
+
+
+<script>
+
+
+        // 獲取DOM元素
+        const startBtn = document.getElementById('startBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const questionEl = document.getElementById('question');
+        const optionsEl = document.getElementById('options');
+        const resultEl = document.getElementById('result');
+        const scoreEl = document.getElementById('score');
+        const progressBar = document.getElementById('progress');
+
+        // 測驗變數
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let questions = [];
+        let quizActive = false;
+
+        // 開始測驗
+        startBtn.addEventListener('click', startQuiz);
+
+        // 下一題
+        nextBtn.addEventListener('click', () => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                showQuestion();
+            } else {
+                endQuiz();
+            }
+        });
+
+        // 開始測驗函數 (改為10題)
+        function startQuiz() {
+            // 重置測驗狀態
+            score = 0;
+
+const btn = document.getElementById('startBtn');
+btn.style.display =  'none' ;
+
+
+const nBtn = document.getElementById('nextBtn');
+nBtn.style.display ='block' ;
+
+            currentQuestionIndex = 0;
+            quizActive = true;
+            
+            // 打亂單字庫並選擇前10個作為測驗題目
+            questions = [...wordDatabase].sort(() => 0.5 - Math.random()).slice(0, 10);
+            
+            // 更新UI
+            startBtn.disabled = true;
+            nextBtn.disabled = false;
+            resultEl.textContent = '';
+            scoreEl.textContent = `分數: ${score} / ${questions.length}`;
+            progressBar.style.width = '0%';
+            
+            // 顯示第一題
+            showQuestion();
+        }
+
+        // 顯示問題函數
+        function showQuestion() {
+            if (!quizActive) return;
+            
+            const question = questions[currentQuestionIndex];
+            const options = getRandomOptions(question.en);
+            
+            // 顯示問題
+            questionEl.textContent = `"${question.en}" 的中文意思是什麼？`;
+            
+            // 顯示選項 (4個選項)
+            optionsEl.innerHTML = '';
+            options.forEach(option => {
+                const button = document.createElement('button');
+                button.classList.add('option');
+                button.textContent = option.zh;
+                button.addEventListener('click', () => selectAnswer(option, button));
+                optionsEl.appendChild(button);
+            });
+            
+            // 更新進度條
+            progressBar.style.width = `${(currentQuestionIndex / questions.length) * 100}%`;
+        }
+
+        // 獲取隨機選項 (包含正確答案共4個)
+        function getRandomOptions(correctWord) {
+            // 找到正確答案
+            const correctAnswer = wordDatabase.find(item => item.en === correctWord);
+            
+            // 獲取其他隨機單字作為錯誤選項
+            let otherWords = wordDatabase.filter(item => item.en !== correctWord);
+            otherWords = [...otherWords].sort(() => 0.5 - Math.random()).slice(0, 3); // 取3個錯誤選項
+            
+            // 組合選項 (共4個)
+            const options = [
+                { en: correctWord, zh: correctAnswer.zh, isCorrect: true },
+                ...otherWords.map(word => ({ en: word.en, zh: word.zh, isCorrect: false }))
+            ];
+            
+            // 打亂選項順序
+            return options.sort(() => 0.5 - Math.random());
+        }
+
+        // 選擇答案函數 (簡化結果顯示)
+        function selectAnswer(selectedOption, selectedButton) {
+            if (!quizActive) return;
+            
+            // 禁用所有選項按鈕
+            const allButtons = optionsEl.querySelectorAll('.option');
+            allButtons.forEach(button => {
+                button.disabled = true;
+                // 顯示正確答案
+                const isCorrect = button.textContent === questions[currentQuestionIndex].zh;
+                if (isCorrect) {
+                    button.classList.add('correct');
+                }
+            });
+            
+            // 檢查答案
+            if (selectedOption.isCorrect) {
+                score++;
+                resultEl.textContent = `正確！`;
+                selectedButton.classList.add('correct');
+            } else {
+                resultEl.textContent = `錯誤！正確答案是: ${questions[currentQuestionIndex].zh}`;
+                selectedButton.classList.add('incorrect');
+            }
+            
+            // 更新分數
+            scoreEl.textContent = `分數: ${score} / ${questions.length}`;
+            
+            // 如果是最後一題，更改按鈕文字
+            if (currentQuestionIndex === questions.length - 1) {
+                nextBtn.textContent = '查看結果';
+            }
+            
+            // 啟用下一題按鈕
+            nextBtn.disabled = false;
+        }
+
+        // 結束測驗函數
+        function endQuiz() {
+            quizActive = false;
+            questionEl.textContent = `測驗完成！你的最終分數是 ${score} / ${questions.length}`;
+            optionsEl.innerHTML = '';
+            resultEl.textContent = '';
+            nextBtn.disabled = true;
+            nextBtn.textContent = '下一題';
+
+const nBtn = document.getElementById('nextBtn');
+nBtn.style.display ='none' ;
+
+
+const btn = document.getElementById('startBtn');
+btn.style.display =  'block';
+
+            startBtn.disabled = false;
+            progressBar.style.width = '100%';
+        }
+</script>
+    
+</body>
+</html>

@@ -5,66 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>英文單字測驗</title>
 
-<script>
-const wordDatabase = [
-{ en: "appeared", zh: "出現了"},
-{ en: "approached", zh: "接近"},
-{ en: "approaching", zh: "接近"},
-{ en: "camelback", zh: "騎在駱駝背"},
-{ en: "camels", zh: "駱駝"},
-{ en: "campfire", zh: "營火"},
-{ en: "civilization", zh: "文明"},
-{ en: "compass", zh: "羅盤"},
-{ en: "creates", zh: "創建"},
-{ en: "deep", zh: "深的"},
-{ en: "describe", zh: "描述"},
-{ en: "desert", zh: "沙漠"},
-{ en: "desolate", zh: "荒涼"},
-{ en: "different", zh: "不同的"},
-{ en: "direction", zh: "方向"},
-{ en: "drumming", zh: "擊鼓"},
-{ en: "dunes", zh: "沙丘"},
-{ en: "encounters", zh: "遭遇"},
-{ en: "evening", zh: "晚上"},
-{ en: "experience", zh: "經驗"},
-{ en: "explains", zh: "解釋"},
-{ en: "first sight", zh: "第一視野"},
-{ en: "harder", zh: "更難"},
-{ en: "hooves", zh: "蹄子"},
-{ en: "huge skies", zh: "無垠的天空"},
-{ en: "imposing", zh: "氣勢宏偉"},
-{ en: "india's thar", zh: "印度的塔爾"},
-{ en: "journey", zh: "旅行"},
-{ en: "landscape", zh: "景觀"},
-{ en: "landscapes", zh: "風景"},
-{ en: "milky way", zh: "銀河系"},
-{ en: "mongolia's gobi", zh: "蒙古戈壁"},
-{ en: "necklace", zh: "項鍊"},
-{ en: "nomad", zh: "游牧者"},
-{ en: "nomads", zh: "游牧民族"},
-{ en: "ocean", zh: "海洋"},
-{ en: "particular", zh: "特別的"},
-{ en: "portraying", zh: "描繪"},
-{ en: "proudly", zh: "自豪地"},
-{ en: "ran through", zh: "跑過"},
-{ en: "setting sun", zh: "夕陽"},
-{ en: "shades", zh: "色調"},
-{ en: "shadows", zh: "影子"},
-{ en: "shaped", zh: "形狀"},
-{ en: "silver", zh: "銀"},
-{ en: "situated", zh: "位於"},
-{ en: "sunglasses", zh: "太陽眼鏡"},
-{ en: "sunrise", zh: "日出"},
-{ en: "supper", zh: "晚餐"},
-{ en: "transport", zh: "運輸"},
-{ en: "understand", zh: "理解"},
-{ en: "vast", zh: "廣闊的"},
-{ en: "village", zh: "村莊"},
-{ en: "walk through", zh: "走過"},
-{ en: "whip", zh: "拿出"},
-{ en: "yet still", zh: "然而"}
-];
-</script>
 
     <style>
         body {
@@ -170,7 +110,9 @@ const wordDatabase = [
 </head>
 <body>
     <div class="container">
-        <h1><a href="#" onclick="history.back()"><img src="home2.png"></a>英文單字測驗</h1>
+       <h1><a href="#" onclick="history.back()"><img src="home2.png"></a>英文單字測驗</h1>
+
+
         <div class="progress-container">
             <div class="progress-bar" id="progress"></div>
         </div>
@@ -189,7 +131,42 @@ const wordDatabase = [
 
 
 <script>
-
+const wordDatabase = [
+{ en: "another", zh: "其他"},
+{ en: "around", zh: "圍繞"},
+{ en: "attract", zh: "吸引"},
+{ en: "broken out over", zh: "爆發"},
+{ en: "busiest", zh: "最忙的"},
+{ en: "cheaper", zh: "便宜"},
+{ en: "crowds", zh: "列"},
+{ en: "cutting in line", zh: "插隊"},
+{ en: "deals", zh: "優惠"},
+{ en: "demand", zh: "要求"},
+{ en: "disappointed", zh: "失望"},
+{ en: "discounts", zh: "折扣"},
+{ en: "eager", zh: "渴望的"},
+{ en: "expect", zh: "預計"},
+{ en: "fights", zh: "打架"},
+{ en: "gifts", zh: "禮物"},
+{ en: "great time", zh: "美好時光"},
+{ en: "holiday", zh: "假日"},
+{ en: "laptop", zh: "筆記型電腦"},
+{ en: "lose money", zh: "賠錢"},
+{ en: "offer", zh: "提供"},
+{ en: "parking spots", zh: "停車位"},
+{ en: "philadelphia", zh: "費城"},
+{ en: "problem", zh: "問題"},
+{ en: "season", zh: "季節"},
+{ en: "shoppers", zh: "購物者"},
+{ en: "shot", zh: "射擊"},
+{ en: "shoving", zh: "推擠"},
+{ en: "situation", zh: "情況"},
+{ en: "tense", zh: "緊張"},
+{ en: "thanksgiving", zh: "感恩節"},
+{ en: "trampled", zh: "被踐踏"},
+{ en: "violent", zh: "暴力"},
+{ en: "wee hours", zh: "凌晨"}
+        ];
 
         // 獲取DOM元素
         const startBtn = document.getElementById('startBtn');

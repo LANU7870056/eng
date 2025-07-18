@@ -65,7 +65,7 @@
         }
         button {
             padding: 10px 20px;
-            background-color: #d2b48c;
+            background-color: #FF5084; 
             color: white;
             border: none;
             border-radius: 5px;
@@ -122,9 +122,11 @@
         <div class="result" id="result"></div>
         <div class="controls">
             <button id="startBtn">開始測驗</button>
-            <button id="nextBtn" disabled>下一題</button>
+            <button id="nextBtn" style="display:none;" disabled >下一題</button>
         </div>
     </div>
+
+
 
 <script>
 const wordDatabase = [
@@ -194,6 +196,14 @@ const wordDatabase = [
         function startQuiz() {
             // 重置測驗狀態
             score = 0;
+
+const btn = document.getElementById('startBtn');
+btn.style.display =  'none' ;
+
+
+const nBtn = document.getElementById('nextBtn');
+nBtn.style.display ='block' ;
+
             currentQuestionIndex = 0;
             quizActive = true;
             
@@ -299,6 +309,14 @@ const wordDatabase = [
             resultEl.textContent = '';
             nextBtn.disabled = true;
             nextBtn.textContent = '下一題';
+
+const nBtn = document.getElementById('nextBtn');
+nBtn.style.display ='none' ;
+
+
+const btn = document.getElementById('startBtn');
+btn.style.display =  'block';
+
             startBtn.disabled = false;
             progressBar.style.width = '100%';
         }

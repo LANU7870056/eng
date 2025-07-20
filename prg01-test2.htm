@@ -8,7 +8,7 @@
 
 <script>
 const wordDatabase = [
-  { en: "accommodate", zh: "容納"},
+{ en: "accommodate", zh: "容納"},
 { en: "advocated", zh: "提議"},
 { en: "against", zh: "反對、不利"},
 { en: "apartment", zh: "公寓"},
@@ -86,12 +86,20 @@ const wordDatabase = [
             border-radius: 5px;
             border: 1px solid #e6d8ac;
         }
-        .options {
+       .options {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 10px;
             margin-bottom: 20px;
+	   grid-template-columns: repeat(4, 1fr);
         }
+
+
+	@media (max-width: 600px) {
+	.options{
+	grid-template-columns: repeat(2, 1fr);
+	}}
+     
         .option {
             padding: 15px;
             background-color:  #FFF878 ;

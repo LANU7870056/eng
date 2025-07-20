@@ -1,0 +1,530 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
+<span><a href="word04w-key.htm"><img src="exam3.png"></a>
+<a href="word04w-test.htm"><img src="exam.png"></a>
+<a href="word04w-test2.htm"><img src="exam2.png"></a></span>
+<center>04阿貝尼找工作【克漏字戰場】</center>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>阿貝尼正在尋找工作</span></span>
+<PP><span class='pp'>Abeni</span></span> is looking <div class='cir'>16 </div> a job.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：look for尋找</span></span>
+16.(A)at 　(B)on 　(C) for 　(D)by <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>她曾在自己的祖國擔任秘書，但後來搬到了新的國家</span></span>
+She <span class='tooltip'>used to<span class='tooltip-text'  onclick="speakText('used to')"><IMG SRC='speak.png'>習慣、曾經</span></span> work as a <span class='tooltip'>secretary<span class='tooltip-text'  onclick="speakText('secretary')"><IMG SRC='speak.png'>秘書</span></span> in her <span class='tooltip'>homeland<span class='tooltip-text'  onclick="speakText('homeland')"><IMG SRC='speak.png'>家園、家鄉</span></span>,  but has moved to a new country.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>她能流利地說這種語言，但她的口音非常濃且明顯</span></span>
+She can speak the <span class='tooltip'>language<span class='tooltip-text'  onclick="speakText('language')"><IMG SRC='speak.png'>語言</span></span> <span class='tooltip'>fluently<span class='tooltip-text'  onclick="speakText('fluently')"><IMG SRC='speak.png'>流利地</span></span>,  but her <span class='tooltip'>accent<span class='tooltip-text'  onclick="speakText('accent')"><IMG SRC='speak.png'>口音</span></span> is very strong and <span class='tooltip'>obvious<span class='tooltip-text'  onclick="speakText('obvious')"><IMG SRC='speak.png'>明顯的</span></span>.
+<BR><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>阿貝尼擔心雇主可能因為她的口音而不僱用她</span></span>
+<PP><span class='pp'>Abeni</span> is <span class='tooltip'>afraid<span class='tooltip-text'  onclick="speakText('afraid')"><IMG SRC='speak.png'>害怕的</span></span> that <span class='tooltip'>employers<span class='tooltip-text'  onclick="speakText('employers')"><IMG SRC='speak.png'>雇主</span></span> may not <span class='tooltip'>hire<span class='tooltip-text'  onclick="speakText('hire')"><IMG SRC='speak.png'>雇用</span></span> her <div class='cir'>17 </div> her <span class='tooltip'>accent<span class='tooltip-text'  onclick="speakText('accent')"><IMG SRC='speak.png'>口音</span></span>.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：because of+N</span></span>
+17.(A)since 　(B)from 　(C)because 　(D)because of <br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>She makes every effort to find a job</span></span>
+She <div class='cir'>18 </div> every <span class='tooltip'>effort<span class='tooltip-text'  onclick="speakText('effort')"><IMG SRC='speak.png'>努力</span></span> to find a job.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：makes every effort to V→盡全力做某事</span></span>
+18.(A)docs 　(B)takes 　(C)makes 　(D)pushes <br>
+
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>她閱讀了所有的招聘廣告，送出了很多履歷</span></span>
+She reads all the <span class='tooltip'>advertisements<span class='tooltip-text'  onclick="speakText('advertisements')"><IMG SRC='speak.png'>廣告</span></span> and sends many <span class='tooltip'>resumes<span class='tooltip-text'  onclick="speakText('resumes')"><IMG SRC='speak.png'>履歷</span></span>. <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>她準時參加面試並回答所有問題</span></span>
+She comes to the <span class='tooltip'>interviews<span class='tooltip-text'  onclick="speakText('interviews')"><IMG SRC='speak.png'>訪談</span></span> <span class='tooltip'>on time<span class='tooltip-text'  onclick="speakText('on time')"><IMG SRC='speak.png'>準時</span></span> and answers all the <span class='tooltip'>questions<span class='tooltip-text'  onclick="speakText('questions')"><IMG SRC='speak.png'>問題</span></span>. <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>她的舉止非常優雅。她的工作效率最高</span></span>
+Her <span class='tooltip'>manners<span class='tooltip-text'  onclick="speakText('manners')"><IMG SRC='speak.png'>禮儀、舉止</span></span> are <span class='tooltip'>excellent<span class='tooltip-text'  onclick="speakText('excellent')"><IMG SRC='speak.png'>出色的、優雅</span></span>. Her working <span class='tooltip'>efficiency<span class='tooltip-text'  onclick="speakText('efficiency')"><IMG SRC='speak.png'>效率</span></span> is the best.
+<BR><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>她表現得非常專業，但每次還是被別人拿下這份工作</span></span>
+She <span class='tooltip'>behaves<span class='tooltip-text'  onclick="speakText('behaves')"><IMG SRC='speak.png'>表現</span></span> very <span class='tooltip'>professional<span class='tooltip-text'  onclick="speakText('professional')"><IMG SRC='speak.png'>專業的</span></span>,  but still,  every time,  someone else gets the job.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>有一天，阿貝尼去一家她非常喜歡的公司面試</span></span>
+One day,  <span class='pp'>Abeni</span> has an <span class='tooltip'>interview<span class='tooltip-text'  onclick="speakText('interview')"><IMG SRC='speak.png'>面試</span></span> at a <span class='tooltip'>company<span class='tooltip-text'  onclick="speakText('company')"><IMG SRC='speak.png'>公司</span></span> that she really likes.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這是一家經營汽車租賃的大公司。</span></span>
+It is a big <span class='tooltip'>firm<span class='tooltip-text'  onclick="speakText('firm')"><IMG SRC='speak.png'>公司</span></span> that <span class='tooltip'>deals<span class='tooltip-text'  onclick="speakText('deals')"><IMG SRC='speak.png'>優惠、發給</span></span> <div class='cir'>19</div> car <span class='tooltip'>rentals<span class='tooltip-text'  onclick="speakText('rentals')"><IMG SRC='speak.png'>租金</span></span>.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：deals with→處理 </span></span>
+19.(A)of 　(B)by 　(C)at 　(D)with 
+<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>那裡的每個人都很友善。工作環境也很舒適</span></span>
+All the people there seem very nice. And the <span class='tooltip'>working environment<span class='tooltip-text'  onclick="speakText('working environment')"><IMG SRC='speak.png'>工作環境</span></span> is <span class='tooltip'>comfortable<span class='tooltip-text'  onclick="speakText('comfortable')"><IMG SRC='speak.png'>舒服的</span></span>.
+<BR><hr>
+
+<div class='co2'><img src='len.png' class='clickable-image' onclick='showTextBox(this)'><div id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>
+But the minute <span class='te2'>she opens her mouth</span> <span class='te2'>she feels like the manager does not want her</span>.
+</div>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>但她一開口就感覺經理不要她</span></span>
+But the <span class='tooltip'>minute<span class='tooltip-text'  onclick="speakText('minute')"><IMG SRC='speak.png'>分鐘、片刻</span></span> she opens her mouth she feels like the manager does not want her.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>面試結束時，經理說：「好的，謝謝</span></span>
+At the end of the <span class='tooltip'>interview<span class='tooltip-text'  onclick="speakText('interview')"><IMG SRC='speak.png'>面試</span></span> the <span class='tooltip'>manager<span class='tooltip-text'  onclick="speakText('manager')"><IMG SRC='speak.png'>主管</span></span> says,  "Okay,  thank you."<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>阿貝尼感覺他不會打電話</span></span>
+"<span class='pp'>Abeni</span> feels like he is not going to call.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>「這不公平！」她想，「我可以成為他最好的員工」！ 當她意識到必須告訴經理她的想法時，她開始走開</span></span>
+"This is not <span class='tooltip'>fair<span class='tooltip-text'  onclick="speakText('fair')"><IMG SRC='speak.png'>公平的</span></span>!" she thinks,  "I can be his best <span class='tooltip'>worker<span class='tooltip-text'  onclick="speakText('worker')"><IMG SRC='speak.png'>工人</span></span>"！ She starts walking away when she <span class='tooltip'>realizes<span class='tooltip-text'  onclick="speakText('realizes')"><IMG SRC='speak.png'>意識到</span></span> she must tell the <span class='tooltip'>manager<span class='tooltip-text'  onclick="speakText('manager')"><IMG SRC='speak.png'>主管</span></span> what she thinks.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>她停下來，轉過身，張開嘴說話，直到把一切都說清楚了才閉上</span></span>
+She stops,  turns around,  opens her mouth to speak,  and does not close it until everything is said <span class='tooltip'>clearly<span class='tooltip-text'  onclick="speakText('clearly')"><IMG SRC='speak.png'>清楚地</span></span>.
+<BR><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>經理很驚訝。但阿貝尼更驚訝</span></span>
+The <span class='tooltip'>manager<span class='tooltip-text'  onclick="speakText('manager')"><IMG SRC='speak.png'>主管</span></span> is very <span class='tooltip'>surprised<span class='tooltip-text'  onclick="speakText('surprised')"><IMG SRC='speak.png'>驚訝</span></span>. But <span class='pp'>Abeni</span> is even more surprised.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>她怎麼這麼沒禮貌？她怎麼會做出這種事？這下完蛋了</span></span>
+What about her <span class='tooltip'>manners<span class='tooltip-text'  onclick="speakText('manners')"><IMG SRC='speak.png'>禮儀</span></span> ? How did she do such a thing ? This will be the end.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>但經理突然伸手拉住她，請她坐下</span></span>
+But then the <span class='tooltip'>manager<span class='tooltip-text'  onclick="speakText('manager')"><IMG SRC='speak.png'>主管</span></span> <span class='tooltip'>suddenly<span class='tooltip-text'  onclick="speakText('suddenly')"><IMG SRC='speak.png'>突然</span></span> <span class='tooltip'>reaches<span class='tooltip-text'  onclick="speakText('reaches')"><IMG SRC='speak.png'>達到</span></span> for her and <span class='tooltip'>asks<span class='tooltip-text'  onclick="speakText('asks')"><IMG SRC='speak.png'>要求</span></span> her to sit down.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>"我跟你說實話"他說，我非常驚訝。</span></span>
+"I am going to be honest with you, " he says.I am very <span class='tooltip'>surprised<span class='tooltip-text'  onclick="speakText('surprised')"><IMG SRC='speak.png'>驚訝</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>以前沒人跟我說過這件事。但說實話，我感到很羞愧</span></span>
+No one ever told this to me before. But the truth is that I feel <span class='tooltip'>ashamed<span class='tooltip-text'  onclick="speakText('ashamed')"><IMG SRC='speak.png'>羞愧</span></span>. <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>我看得出你是一位出色的工人</span></span>
+I could see you are a great worker.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>我不應該根據你的口音來評斷你</span></span>
+I should not <span class='tooltip'>judge<span class='tooltip-text'  onclick="speakText('judge')"><IMG SRC='speak.png'>判斷</span></span> you <div class='cir'>20 </div> your accent.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：judge by +N 或 judge from +N→用什麼來判斷</span></span>
+20.(A)by 　(B)of 　(C)as 　(D)with 
+<BR><HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>本公司不會有此類歧視</span></span>
+There will be no such <span class='tooltip'>discrimination<span class='tooltip-text'  onclick="speakText('discrimination')"><IMG SRC='speak.png'>歧視</span></span> in this firm.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>阿貝尼，請接受這個職位並為我們工作</span></span>
+<span class='pp'>Abeni</span>,  please accept this <span class='tooltip'>position<span class='tooltip-text'  onclick="speakText('position')"><IMG SRC='speak.png'>位置</span></span> and work for us."<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>阿貝妮簡直不敢相信自己的耳朵。她感到非常興奮</span></span>
+<span class='pp'>Abeni</span> cannot <span class='tooltip'>believe<span class='tooltip-text'  onclick="speakText('believe')"><IMG SRC='speak.png'>相信</span></span> her ears. She feels very <span class='tooltip'>excited<span class='tooltip-text'  onclick="speakText('excited')"><IMG SRC='speak.png'>興奮的</span></span>. <BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>她很高興他提供她這份工作</span></span>
+She is very happy he <span class='tooltip'>offers<span class='tooltip-text'  onclick="speakText('offers')"><IMG SRC='speak.png'>提供</span></span> her the job.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>但更讓她開心的是，她終於說出了自己的想法！</span></span>
+But she is even happier that she <span class='tooltip'>finally<span class='tooltip-text'  onclick="speakText('finally')"><IMG SRC='speak.png'>最後</span></span> <span class='tooltip'>spoke her mind<span class='tooltip-text'  onclick="speakText('spoke her mind')"><IMG SRC='speak.png'>說出自已想法</span></span>!<br><hr>

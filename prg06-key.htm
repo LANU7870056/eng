@@ -8,55 +8,69 @@
 <script>
   // 英漢詞庫
         const wordPairs = [
-{ english: "accommodate", chinese: "容納"},
-{ english: "advocated", chinese: "提議"},
-{ english: "against", chinese: "反對、不利"},
-{ english: "apartmenglisht", chinese: "公寓"},
-{ english: "applicable", chinese: "適用的"},
-{ english: "assemblies", chinese: "組件"},
-{ english: "atmosphere", chinese: "氣氛"},
-{ english: "blamed", chinese: "指責"},
-{ english: "claims", chinese: "聲稱"},
-{ english: "completed", chinese: "完全的"},
-{ english: "complicated", chinese: "複雜的"},
-{ english: "contemplated", chinese: "考慮過的"},
-{ english: "contenglisht", chinese: "內容"},
-{ english: "critical", chinese: "批判的、謹嚴的"},
-{ english: "dashed into", chinese: "衝進"},
-{ english: "deal", chinese: "交易"},
-{ english: "decision", chinese: "決定"},
-{ english: "decorations", chinese: "裝飾"},
-{ english: "denglishy", chinese: "否定"},
-{ english: "detailed", chinese: "詳細的"},
-{ english: "digital", chinese: "數位的"},
-{ english: "discussion", chinese: "討論"},
-{ english: "englishchanted", chinese: "陶醉、著迷的"},
-{ english: "englishhanced", chinese: "增加、增強"},
-{ english: "evidenglishce", chinese: "證據"},
-{ english: "expanding", chinese: "擴大"},
-{ english: "fabricated", chinese: "捏造的"},
-{ english: "factories", chinese: "工廠"},
-{ english: "final", chinese: "最後"},
-{ english: "fly", chinese: "蒼蠅"},
-{ english: "formal", chinese: "正式"},
-{ english: "ideal", chinese: "理想的"},
-{ english: "interruption", chinese: "中斷"},
-{ english: "joyful", chinese: "歡樂"},
-{ english: "lecture", chinese: "講課"},
-{ english: "libraries", chinese: "圖書館"},
-{ english: "murderer", chinese: "兇手"},
-{ english: "museums", chinese: "博物館"},
-{ english: "penglishalties", chinese: "處罰"},
-{ english: "potenglishtial", chinese: "潛在的"},
-{ english: "premises", chinese: "廠區、前提"},
-{ english: "purpose", chinese: "目的"},
-{ english: "research", chinese: "研究"},
-{ english: "succinct", chinese: "簡潔"},
-{ english: "sufficienglisht", chinese: "足夠的"},
-{ english: "supplemenglisht", chinese: "補充物"},
-{ english: "voucher", chinese: "兌換券"},
-{ english: "wandered", chinese: "遊盪、徘徊"},
-{ english: "worthwhile", chinese: "值得的"}
+{ en: "accidentally", zh: "偶然"},
+{ en: "agriculture", zh: "農業"},
+{ en: "alike", zh: "相似"},
+{ en: "allowance", zh: "津貼"},
+{ en: "announcement", zh: "宣布"},
+{ en: "anxiety", zh: "焦慮"},
+{ en: "appearances", zh: "出場"},
+{ en: "automatic", zh: "自動的"},
+{ en: "bought", zh: "買"},
+{ en: "broadly", zh: "廣泛"},
+{ en: "celebration", zh: "慶祝"},
+{ en: "commitment", zh: "承諾"},
+{ en: "components", zh: "成分、零件"},
+{ en: "contribution", zh: "貢獻"},
+{ en: "corner", zh: "角落、轉角"},
+{ en: "daily", zh: "日常"},
+{ en: "delicate", zh: "精緻的"},
+{ en: "depression", zh: "憂鬱"},
+{ en: "differences", zh: "相異處"},
+{ en: "dinner", zh: "晚餐"},
+{ en: "dispenser", zh: "自動販賣機"},
+{ en: "ditch", zh: "水溝"},
+{ en: "electronics", zh: "電子產品"},
+{ en: "entrance", zh: "入口"},
+{ en: "extension", zh: "擴大"},
+{ en: "faces", zh: "臉孔"},
+{ en: "fell in", zh: "掉落"},
+{ en: "finally", zh: "最後"},
+{ en: "funeral", zh: "葬禮"},
+{ en: "garbage", zh: "垃圾"},
+{ en: "gets up", zh: "起床"},
+{ en: "give up", zh: "放棄"},
+{ en: "harsh", zh: "殘酷的"},
+{ en: "imagine", zh: "想像"},
+{ en: "impression", zh: "印象"},
+{ en: "increase", zh: "增加"},
+{ en: "initiate", zh: "初始"},
+{ en: "institution", zh: "機構"},
+{ en: "involve", zh: "參與"},
+{ en: "manual", zh: "手冊"},
+{ en: "mourned", zh: "哀悼"},
+{ en: "movie", zh: "電影"},
+{ en: "operation", zh: "操作、手術"},
+{ en: "oppression", zh: "壓迫"},
+{ en: "prepared", zh: "準備好"},
+{ en: "race", zh: "比賽"},
+{ en: "save", zh: "儲存;拯救"},
+{ en: "seduce", zh: "維持、勾引"},
+{ en: "similarities", zh: "相似處"},
+{ en: "soldiers", zh: "士兵"},
+{ en: "supermarket", zh: "超市場"},
+{ en: "survive", zh: "存活"},
+{ en: "sustain", zh: "維持"},
+{ en: "tasted", zh: "品嚐"},
+{ en: "tested", zh: "測試"},
+{ en: "toasted", zh: "烤"},
+{ en: "train", zh: "火車"},
+{ en: "treated", zh: "對待"},
+{ en: "varieties", zh: "變化"},
+{ en: "volunteered", zh: "自願"},
+{ en: "vomited", zh: "嘔吐"},
+{ en: "voted", zh: "投票"},
+{ en: "welcomed", zh: "歡迎"}
 ];        
 </script>
 
@@ -363,9 +377,9 @@ font-weight:  bold;
             cards = selectedWords.map(word => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.textContent = word.english;
-                card.dataset.english = word.english;
-                card.dataset.chinese = word.chinese;
+                card.textContent = word.en;
+                card.dataset.en = word.en;
+                card.dataset.zh = word.zh;
                 
                 card.addEventListener('click', flipCard);
                 
@@ -389,10 +403,10 @@ font-weight:  bold;
             
             // 翻轉卡片
             this.classList.add('flipped');
-            this.textContent = this.dataset.chinese;
+            this.textContent = this.dataset.zh;
             
             // 顯示結果
-            resultDiv.textContent = `${this.dataset.english} 的中文意思是 ${this.dataset.chinese}`;
+            resultDiv.textContent = `${this.dataset.en} 的中文意思是 ${this.dataset.zh}`;
             
             // 播放答對音效
             if (soundEnabled) {
@@ -404,7 +418,7 @@ font-weight:  bold;
             if (flippedCard) {
                 setTimeout(() => {
                     flippedCard.classList.remove('flipped');
-                    flippedCard.textContent = flippedCard.dataset.english;
+                    flippedCard.textContent = flippedCard.dataset.en;
                     flippedCard = null;
                 }, 3000); // 3秒後翻回
             }
@@ -416,7 +430,7 @@ font-weight:  bold;
             setTimeout(() => {
                 if (this.classList.contains('flipped')) {
                     this.classList.remove('flipped');
-                    this.textContent = this.dataset.english;
+                    this.textContent = this.dataset.en;
                     if (flippedCard === this) {
                         flippedCard = null;
                     }

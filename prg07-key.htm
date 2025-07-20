@@ -2,61 +2,77 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view
+port" content="width=device-width, initial-scale=1.0">
     <title>單字複習遊戲</title>
 
 <script>
   // 英漢詞庫
         const wordPairs = [
-{ english: "accommodate", chinese: "容納"},
-{ english: "advocated", chinese: "提議"},
-{ english: "against", chinese: "反對、不利"},
-{ english: "apartmenglisht", chinese: "公寓"},
-{ english: "applicable", chinese: "適用的"},
-{ english: "assemblies", chinese: "組件"},
-{ english: "atmosphere", chinese: "氣氛"},
-{ english: "blamed", chinese: "指責"},
-{ english: "claims", chinese: "聲稱"},
-{ english: "completed", chinese: "完全的"},
-{ english: "complicated", chinese: "複雜的"},
-{ english: "contemplated", chinese: "考慮過的"},
-{ english: "contenglisht", chinese: "內容"},
-{ english: "critical", chinese: "批判的、謹嚴的"},
-{ english: "dashed into", chinese: "衝進"},
-{ english: "deal", chinese: "交易"},
-{ english: "decision", chinese: "決定"},
-{ english: "decorations", chinese: "裝飾"},
-{ english: "denglishy", chinese: "否定"},
-{ english: "detailed", chinese: "詳細的"},
-{ english: "digital", chinese: "數位的"},
-{ english: "discussion", chinese: "討論"},
-{ english: "englishchanted", chinese: "陶醉、著迷的"},
-{ english: "englishhanced", chinese: "增加、增強"},
-{ english: "evidenglishce", chinese: "證據"},
-{ english: "expanding", chinese: "擴大"},
-{ english: "fabricated", chinese: "捏造的"},
-{ english: "factories", chinese: "工廠"},
-{ english: "final", chinese: "最後"},
-{ english: "fly", chinese: "蒼蠅"},
-{ english: "formal", chinese: "正式"},
-{ english: "ideal", chinese: "理想的"},
-{ english: "interruption", chinese: "中斷"},
-{ english: "joyful", chinese: "歡樂"},
-{ english: "lecture", chinese: "講課"},
-{ english: "libraries", chinese: "圖書館"},
-{ english: "murderer", chinese: "兇手"},
-{ english: "museums", chinese: "博物館"},
-{ english: "penglishalties", chinese: "處罰"},
-{ english: "potenglishtial", chinese: "潛在的"},
-{ english: "premises", chinese: "廠區、前提"},
-{ english: "purpose", chinese: "目的"},
-{ english: "research", chinese: "研究"},
-{ english: "succinct", chinese: "簡潔"},
-{ english: "sufficienglisht", chinese: "足夠的"},
-{ english: "supplemenglisht", chinese: "補充物"},
-{ english: "voucher", chinese: "兌換券"},
-{ english: "wandered", chinese: "遊盪、徘徊"},
-{ english: "worthwhile", chinese: "值得的"}
+{ en: "accumulated", zh: "累積"},
+{ en: "admired", zh: "欣賞"},
+{ en: "admit", zh: "承認"},
+{ en: "adopt", zh: "採取、收養"},
+{ en: "adorable", zh: "可愛的"},
+{ en: "afford", zh: "負擔"},
+{ en: "alphabetical", zh: "字母"},
+{ en: "anticipate", zh: "預期"},
+{ en: "apartments", zh: "公寓"},
+{ en: "appealed", zh: "上訴"},
+{ en: "appeared", zh: "出現"},
+{ en: "arranged", zh: "安排"},
+{ en: "as soon as", zh: "立刻"},
+{ en: "at least", zh: "至少"},
+{ en: "attempt", zh: "企圖"},
+{ en: "attended", zh: "照顧"},
+{ en: "attracted", zh: "吸引"},
+{ en: "avoided", zh: "避免"},
+{ en: "background", zh: "背景"},
+{ en: "balance", zh: "平衡"},
+{ en: "bankrupt", zh: "破產"},
+{ en: "benefit", zh: "利益"},
+{ en: "blanket", zh: "毯子"},
+{ en: "bloom", zh: "綜放"},
+{ en: "budget", zh: "預算"},
+{ en: "burden", zh: "負擔"},
+{ en: "camping", zh: "露營"},
+{ en: "cavities", zh: "空洞、蛀牙"},
+{ en: "circulate", zh: "流通"},
+{ en: "cockroach", zh: "蟑螂"},
+{ en: "collapse", zh: "倒塌"},
+{ en: "collect", zh: "收集"},
+{ en: "compact", zh: "壓縮"},
+{ en: "crisis", zh: "危機"},
+{ en: "deceive", zh: "欺騙"},
+{ en: "exactly", zh: "確切地、真地"},
+{ en: "financial", zh: "金融"},
+{ en: "higher court", zh: "高等法院"},
+{ en: "important", zh: "重要的"},
+{ en: "increasing", zh: "上漲"},
+{ en: "low season", zh: "淡季"},
+{ en: "meaningless", zh: "無意義的"},
+{ en: "order", zh: "排序"},
+{ en: "orders", zh: "訂單"},
+{ en: "participate", zh: "參與"},
+{ en: "particular", zh: "特別的"},
+{ en: "patient", zh: "病人"},
+{ en: "perceive", zh: "看待、感知"},
+{ en: "persuade", zh: "說服"},
+{ en: "ponder", zh: "思考"},
+{ en: "praised", zh: "讚揚"},
+{ en: "present", zh: "禮物"},
+{ en: "receiving", zh: "接收"},
+{ en: "refused", zh: "拒絕"},
+{ en: "results", zh: "結果"},
+{ en: "roofs", zh: "屋頂"},
+{ en: "satisfied", zh: "滿意"},
+{ en: "screamed", zh: "尖叫"},
+{ en: "secret", zh: "秘密"},
+{ en: "supposed", zh: "假設"},
+{ en: "triangular shape", zh: "三角形狀"},
+{ en: "work-life", zh: "工作生活"},
+{ en: "worse", zh: "更糟"},
+{ en: "wrap", zh: "包裝、包裹"}
 ];        
 </script>
 
@@ -363,9 +379,9 @@ font-weight:  bold;
             cards = selectedWords.map(word => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.textContent = word.english;
-                card.dataset.english = word.english;
-                card.dataset.chinese = word.chinese;
+                card.textContent = word.en;
+                card.dataset.en = word.en;
+                card.dataset.zh = word.zh;
                 
                 card.addEventListener('click', flipCard);
                 
@@ -389,10 +405,10 @@ font-weight:  bold;
             
             // 翻轉卡片
             this.classList.add('flipped');
-            this.textContent = this.dataset.chinese;
+            this.textContent = this.dataset.zh;
             
             // 顯示結果
-            resultDiv.textContent = `${this.dataset.english} 的中文意思是 ${this.dataset.chinese}`;
+            resultDiv.textContent = `${this.dataset.en} 的中文意思是 ${this.dataset.zh}`;
             
             // 播放答對音效
             if (soundEnabled) {
@@ -404,7 +420,7 @@ font-weight:  bold;
             if (flippedCard) {
                 setTimeout(() => {
                     flippedCard.classList.remove('flipped');
-                    flippedCard.textContent = flippedCard.dataset.english;
+                    flippedCard.textContent = flippedCard.dataset.en;
                     flippedCard = null;
                 }, 3000); // 3秒後翻回
             }
@@ -416,7 +432,7 @@ font-weight:  bold;
             setTimeout(() => {
                 if (this.classList.contains('flipped')) {
                     this.classList.remove('flipped');
-                    this.textContent = this.dataset.english;
+                    this.textContent = this.dataset.en;
                     if (flippedCard === this) {
                         flippedCard = null;
                     }

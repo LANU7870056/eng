@@ -8,55 +8,92 @@
 <script>
   // 英漢詞庫
         const wordPairs = [
-{ english: "accommodate", chinese: "容納"},
-{ english: "advocated", chinese: "提議"},
-{ english: "against", chinese: "反對、不利"},
-{ english: "apartmenglisht", chinese: "公寓"},
-{ english: "applicable", chinese: "適用的"},
-{ english: "assemblies", chinese: "組件"},
-{ english: "atmosphere", chinese: "氣氛"},
-{ english: "blamed", chinese: "指責"},
-{ english: "claims", chinese: "聲稱"},
-{ english: "completed", chinese: "完全的"},
-{ english: "complicated", chinese: "複雜的"},
-{ english: "contemplated", chinese: "考慮過的"},
-{ english: "contenglisht", chinese: "內容"},
-{ english: "critical", chinese: "批判的、謹嚴的"},
-{ english: "dashed into", chinese: "衝進"},
-{ english: "deal", chinese: "交易"},
-{ english: "decision", chinese: "決定"},
-{ english: "decorations", chinese: "裝飾"},
-{ english: "denglishy", chinese: "否定"},
-{ english: "detailed", chinese: "詳細的"},
-{ english: "digital", chinese: "數位的"},
-{ english: "discussion", chinese: "討論"},
-{ english: "englishchanted", chinese: "陶醉、著迷的"},
-{ english: "englishhanced", chinese: "增加、增強"},
-{ english: "evidenglishce", chinese: "證據"},
-{ english: "expanding", chinese: "擴大"},
-{ english: "fabricated", chinese: "捏造的"},
-{ english: "factories", chinese: "工廠"},
-{ english: "final", chinese: "最後"},
-{ english: "fly", chinese: "蒼蠅"},
-{ english: "formal", chinese: "正式"},
-{ english: "ideal", chinese: "理想的"},
-{ english: "interruption", chinese: "中斷"},
-{ english: "joyful", chinese: "歡樂"},
-{ english: "lecture", chinese: "講課"},
-{ english: "libraries", chinese: "圖書館"},
-{ english: "murderer", chinese: "兇手"},
-{ english: "museums", chinese: "博物館"},
-{ english: "penglishalties", chinese: "處罰"},
-{ english: "potenglishtial", chinese: "潛在的"},
-{ english: "premises", chinese: "廠區、前提"},
-{ english: "purpose", chinese: "目的"},
-{ english: "research", chinese: "研究"},
-{ english: "succinct", chinese: "簡潔"},
-{ english: "sufficienglisht", chinese: "足夠的"},
-{ english: "supplemenglisht", chinese: "補充物"},
-{ english: "voucher", chinese: "兌換券"},
-{ english: "wandered", chinese: "遊盪、徘徊"},
-{ english: "worthwhile", chinese: "值得的"}
+{ en: "accommodate", zh: "容納"},
+{ en: "achievement", zh: "成就"},
+{ en: "administration", zh: "行政"},
+{ en: "advantages", zh: "優點"},
+{ en: "ater", zh: "之後、稍後的"},
+{ en: "authentic", zh: "真正的"},
+{ en: "average", zh: "平均的"},
+{ en: "bountiful", zh: "豐富"},
+{ en: "brands", zh: "品牌"},
+{ en: "campaign", zh: "競選活動"},
+{ en: "chat", zh: "#"},
+{ en: "chatted", zh: "聊天"},
+{ en: "chatting", zh: "聊天"},
+{ en: "collections", zh: "收藏品"},
+{ en: "competitions", zh: "比賽"},
+{ en: "condition", zh: "狀態"},
+{ en: "contribution", zh: "貢獻"},
+{ en: "corporation", zh: "公司"},
+{ en: "damages", zh: "損害"},
+{ en: "decided to", zh: "決定"},
+{ en: "dedicated", zh: "投入的"},
+{ en: "delicious", zh: "可口的"},
+{ en: "diligence", zh: "勤勉"},
+{ en: "document", zh: "文件"},
+{ en: "downstairs", zh: "樓下"},
+{ en: "earlier", zh: "早些時候"},
+{ en: "encouraged", zh: "鼓勵"},
+{ en: "engaged", zh: "參與"},
+{ en: "envelope", zh: "信封"},
+{ en: "environment", zh: "環境"},
+{ en: "experiment", zh: "實驗"},
+{ en: "experts", zh: "專家"},
+{ en: "fashion", zh: "時尚"},
+{ en: "final", zh: "最終的"},
+{ en: "forward", zh: "向前"},
+{ en: "guard", zh: "警衛"},
+{ en: "hard", zh: "難的"},
+{ en: "identification", zh: "鑑別"},
+{ en: "identity", zh: "身分"},
+{ en: "including", zh: "包括"},
+{ en: "industry", zh: "產業"},
+{ en: "judgement", zh: "判斷"},
+{ en: "labor", zh: "勞工的"},
+{ en: "lack", zh: "缺少、缺乏"},
+{ en: "litter", zh: "垃圾"},
+{ en: "living abroad", zh: "住在國外"},
+{ en: "located", zh: "位於"},
+{ en: "married", zh: "結婚"},
+{ en: "middle of the night", zh: "半夜"},
+{ en: "need a break", zh: "休息"},
+{ en: "parents", zh: "父母"},
+{ en: "payment", zh: "支付"},
+{ en: "permitted", zh: "允許"},
+{ en: "poor grades", zh: "成績差"},
+{ en: "praised", zh: "受到讚揚"},
+{ en: "prescribed", zh: "處方、開藥"},
+{ en: "pretended", zh: "假裝"},
+{ en: "promoted", zh: "晉升、提升"},
+{ en: "punish", zh: "懲罰"},
+{ en: "punished", zh: "懲罰"},
+{ en: "punishing", zh: "懲罰"},
+{ en: "raise", zh: "增加"},
+{ en: "registration", zh: "登記、註冊"},
+{ en: "regulation", zh: "規定"},
+{ en: "release", zh: "發布"},
+{ en: "restaurant", zh: "餐廳"},
+{ en: "revenge", zh: "復仇"},
+{ en: "reward", zh: "獎勵、報酬"},
+{ en: "rushed", zh: "匆忙"},
+{ en: "sauna", zh: "三溫暖"},
+{ en: "serve", zh: "服務、提供"},
+{ en: "service", zh: "服務"},
+{ en: "settle", zh: "定居、解決"},
+{ en: "staff", zh: "職員"},
+{ en: "strike", zh: "罷工"},
+{ en: "sun moon lake", zh: "日月潭"},
+{ en: "survive", zh: "生存"},
+{ en: "suspicious", zh: "可疑的"},
+{ en: "swimming", zh: "游泳"},
+{ en: "taught", zh: "教過的"},
+{ en: "tend", zh: "趨向"},
+{ en: "thief", zh: "賊"},
+{ en: "union", zh: "聯盟"},
+{ en: "usages", zh: "用途、用法"},
+{ en: "vanished", zh: "消失"},
+{ en: "whenever", zh: "每當"}
 ];        
 </script>
 
@@ -363,9 +400,9 @@ font-weight:  bold;
             cards = selectedWords.map(word => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.textContent = word.english;
-                card.dataset.english = word.english;
-                card.dataset.chinese = word.chinese;
+                card.textContent = word.en;
+                card.dataset.en = word.en;
+                card.dataset.zh = word.zh;
                 
                 card.addEventListener('click', flipCard);
                 
@@ -389,10 +426,10 @@ font-weight:  bold;
             
             // 翻轉卡片
             this.classList.add('flipped');
-            this.textContent = this.dataset.chinese;
+            this.textContent = this.dataset.zh;
             
             // 顯示結果
-            resultDiv.textContent = `${this.dataset.english} 的中文意思是 ${this.dataset.chinese}`;
+            resultDiv.textContent = `${this.dataset.en} 的中文意思是 ${this.dataset.zh}`;
             
             // 播放答對音效
             if (soundEnabled) {
@@ -404,7 +441,7 @@ font-weight:  bold;
             if (flippedCard) {
                 setTimeout(() => {
                     flippedCard.classList.remove('flipped');
-                    flippedCard.textContent = flippedCard.dataset.english;
+                    flippedCard.textContent = flippedCard.dataset.en;
                     flippedCard = null;
                 }, 3000); // 3秒後翻回
             }
@@ -416,7 +453,7 @@ font-weight:  bold;
             setTimeout(() => {
                 if (this.classList.contains('flipped')) {
                     this.classList.remove('flipped');
-                    this.textContent = this.dataset.english;
+                    this.textContent = this.dataset.en;
                     if (flippedCard === this) {
                         flippedCard = null;
                     }

@@ -8,55 +8,77 @@
 <script>
   // 英漢詞庫
         const wordPairs = [
-{ english: "accommodate", chinese: "容納"},
-{ english: "advocated", chinese: "提議"},
-{ english: "against", chinese: "反對、不利"},
-{ english: "apartmenglisht", chinese: "公寓"},
-{ english: "applicable", chinese: "適用的"},
-{ english: "assemblies", chinese: "組件"},
-{ english: "atmosphere", chinese: "氣氛"},
-{ english: "blamed", chinese: "指責"},
-{ english: "claims", chinese: "聲稱"},
-{ english: "completed", chinese: "完全的"},
-{ english: "complicated", chinese: "複雜的"},
-{ english: "contemplated", chinese: "考慮過的"},
-{ english: "contenglisht", chinese: "內容"},
-{ english: "critical", chinese: "批判的、謹嚴的"},
-{ english: "dashed into", chinese: "衝進"},
-{ english: "deal", chinese: "交易"},
-{ english: "decision", chinese: "決定"},
-{ english: "decorations", chinese: "裝飾"},
-{ english: "denglishy", chinese: "否定"},
-{ english: "detailed", chinese: "詳細的"},
-{ english: "digital", chinese: "數位的"},
-{ english: "discussion", chinese: "討論"},
-{ english: "englishchanted", chinese: "陶醉、著迷的"},
-{ english: "englishhanced", chinese: "增加、增強"},
-{ english: "evidenglishce", chinese: "證據"},
-{ english: "expanding", chinese: "擴大"},
-{ english: "fabricated", chinese: "捏造的"},
-{ english: "factories", chinese: "工廠"},
-{ english: "final", chinese: "最後"},
-{ english: "fly", chinese: "蒼蠅"},
-{ english: "formal", chinese: "正式"},
-{ english: "ideal", chinese: "理想的"},
-{ english: "interruption", chinese: "中斷"},
-{ english: "joyful", chinese: "歡樂"},
-{ english: "lecture", chinese: "講課"},
-{ english: "libraries", chinese: "圖書館"},
-{ english: "murderer", chinese: "兇手"},
-{ english: "museums", chinese: "博物館"},
-{ english: "penglishalties", chinese: "處罰"},
-{ english: "potenglishtial", chinese: "潛在的"},
-{ english: "premises", chinese: "廠區、前提"},
-{ english: "purpose", chinese: "目的"},
-{ english: "research", chinese: "研究"},
-{ english: "succinct", chinese: "簡潔"},
-{ english: "sufficienglisht", chinese: "足夠的"},
-{ english: "supplemenglisht", chinese: "補充物"},
-{ english: "voucher", chinese: "兌換券"},
-{ english: "wandered", chinese: "遊盪、徘徊"},
-{ english: "worthwhile", chinese: "值得的"}
+{ en: "acquire", zh: "獲得"},
+{ en: "additional", zh: "額外的"},
+{ en: "alter", zh: "改變"},
+{ en: "animal", zh: "動物"},
+{ en: "announce", zh: "宣告"},
+{ en: "attitude", zh: "態度"},
+{ en: "carry", zh: "攜帶"},
+{ en: "carrying", zh: "攜帶"},
+{ en: "changes", zh: "變化"},
+{ en: "consult", zh: "諮詢"},
+{ en: "creational", zh: "創造的"},
+{ en: "crucial", zh: "至關重要的"},
+{ en: "denial", zh: "拒絕"},
+{ en: "detrimental", zh: "有害的"},
+{ en: "different", zh: "不同的"},
+{ en: "discharging", zh: "放電"},
+{ en: "environmental", zh: "環境的"},
+{ en: "executive", zh: "管理人員"},
+{ en: "experienced", zh: "有經驗的"},
+{ en: "famous", zh: "著名的"},
+{ en: "farmer", zh: "農民"},
+{ en: "fined", zh: "被罰款"},
+{ en: "former", zh: "以前的"},
+{ en: "fragile", zh: "脆弱的"},
+{ en: "front", zh: "正面"},
+{ en: "got into a tie", zh: "打成平手"},
+{ en: "government", zh: "政府"},
+{ en: "label", zh: "標籤"},
+{ en: "laptop", zh: "筆記型電腦"},
+{ en: "lawyers", zh: "律師"},
+{ en: "memorial", zh: "紀念館"},
+{ en: "nominated", zh: "提名"},
+{ en: "notorious", zh: "臭名昭著"},
+{ en: "numerous", zh: "很多的"},
+{ en: "nutrition", zh: "營養"},
+{ en: "officials", zh: "官員"},
+{ en: "operation", zh: "手術"},
+{ en: "opinions", zh: "意見"},
+{ en: "organizing", zh: "組織"},
+{ en: "permanent", zh: "永恆的"},
+{ en: "persistence", zh: "持久性"},
+{ en: "political", zh: "政治的"},
+{ en: "positive", zh: "積極的"},
+{ en: "precious", zh: "寶貴的"},
+{ en: "precise", zh: "精確的"},
+{ en: "presentations", zh: "簡報"},
+{ en: "president", zh: "總統"},
+{ en: "probable", zh: "可能"},
+{ en: "probably", zh: "大概"},
+{ en: "problem", zh: "問題"},
+{ en: "pronounce", zh: "發音"},
+{ en: "protect", zh: "保護"},
+{ en: "protection", zh: "保護"},
+{ en: "publication", zh: "出版品"},
+{ en: "questions", zh: "問題"},
+{ en: "racial", zh: "種族"},
+{ en: "remarkable", zh: "卓越"},
+{ en: "replying", zh: "回覆"},
+{ en: "representation", zh: "表示"},
+{ en: "reputation", zh: "名聲"},
+{ en: "response", zh: "回覆"},
+{ en: "ridiculous", zh: "荒謬的"},
+{ en: "seldom", zh: "很少"},
+{ en: "spotlight", zh: "聚光燈"},
+{ en: "stomach", zh: "胃"},
+{ en: "success", zh: "成功"},
+{ en: "successful", zh: "成功的"},
+{ en: "suitable", zh: "合適的"},
+{ en: "tenant", zh: "租戶"},
+{ en: "traffic jam", zh: "交通堵塞"},
+{ en: "wastewater", zh: "廢水"}
 ];        
 </script>
 
@@ -363,9 +385,9 @@ font-weight:  bold;
             cards = selectedWords.map(word => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.textContent = word.english;
-                card.dataset.english = word.english;
-                card.dataset.chinese = word.chinese;
+                card.textContent = word.en;
+                card.dataset.en = word.en;
+                card.dataset.zh = word.zh;
                 
                 card.addEventListener('click', flipCard);
                 
@@ -389,10 +411,10 @@ font-weight:  bold;
             
             // 翻轉卡片
             this.classList.add('flipped');
-            this.textContent = this.dataset.chinese;
+            this.textContent = this.dataset.zh;
             
             // 顯示結果
-            resultDiv.textContent = `${this.dataset.english} 的中文意思是 ${this.dataset.chinese}`;
+            resultDiv.textContent = `${this.dataset.en} 的中文意思是 ${this.dataset.zh}`;
             
             // 播放答對音效
             if (soundEnabled) {
@@ -404,7 +426,7 @@ font-weight:  bold;
             if (flippedCard) {
                 setTimeout(() => {
                     flippedCard.classList.remove('flipped');
-                    flippedCard.textContent = flippedCard.dataset.english;
+                    flippedCard.textContent = flippedCard.dataset.en;
                     flippedCard = null;
                 }, 3000); // 3秒後翻回
             }
@@ -416,7 +438,7 @@ font-weight:  bold;
             setTimeout(() => {
                 if (this.classList.contains('flipped')) {
                     this.classList.remove('flipped');
-                    this.textContent = this.dataset.english;
+                    this.textContent = this.dataset.en;
                     if (flippedCard === this) {
                         flippedCard = null;
                     }

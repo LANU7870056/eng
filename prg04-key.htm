@@ -8,55 +8,74 @@
 <script>
   // 英漢詞庫
         const wordPairs = [
-{ english: "accommodate", chinese: "容納"},
-{ english: "advocated", chinese: "提議"},
-{ english: "against", chinese: "反對、不利"},
-{ english: "apartmenglisht", chinese: "公寓"},
-{ english: "applicable", chinese: "適用的"},
-{ english: "assemblies", chinese: "組件"},
-{ english: "atmosphere", chinese: "氣氛"},
-{ english: "blamed", chinese: "指責"},
-{ english: "claims", chinese: "聲稱"},
-{ english: "completed", chinese: "完全的"},
-{ english: "complicated", chinese: "複雜的"},
-{ english: "contemplated", chinese: "考慮過的"},
-{ english: "contenglisht", chinese: "內容"},
-{ english: "critical", chinese: "批判的、謹嚴的"},
-{ english: "dashed into", chinese: "衝進"},
-{ english: "deal", chinese: "交易"},
-{ english: "decision", chinese: "決定"},
-{ english: "decorations", chinese: "裝飾"},
-{ english: "denglishy", chinese: "否定"},
-{ english: "detailed", chinese: "詳細的"},
-{ english: "digital", chinese: "數位的"},
-{ english: "discussion", chinese: "討論"},
-{ english: "englishchanted", chinese: "陶醉、著迷的"},
-{ english: "englishhanced", chinese: "增加、增強"},
-{ english: "evidenglishce", chinese: "證據"},
-{ english: "expanding", chinese: "擴大"},
-{ english: "fabricated", chinese: "捏造的"},
-{ english: "factories", chinese: "工廠"},
-{ english: "final", chinese: "最後"},
-{ english: "fly", chinese: "蒼蠅"},
-{ english: "formal", chinese: "正式"},
-{ english: "ideal", chinese: "理想的"},
-{ english: "interruption", chinese: "中斷"},
-{ english: "joyful", chinese: "歡樂"},
-{ english: "lecture", chinese: "講課"},
-{ english: "libraries", chinese: "圖書館"},
-{ english: "murderer", chinese: "兇手"},
-{ english: "museums", chinese: "博物館"},
-{ english: "penglishalties", chinese: "處罰"},
-{ english: "potenglishtial", chinese: "潛在的"},
-{ english: "premises", chinese: "廠區、前提"},
-{ english: "purpose", chinese: "目的"},
-{ english: "research", chinese: "研究"},
-{ english: "succinct", chinese: "簡潔"},
-{ english: "sufficienglisht", chinese: "足夠的"},
-{ english: "supplemenglisht", chinese: "補充物"},
-{ english: "voucher", chinese: "兌換券"},
-{ english: "wandered", chinese: "遊盪、徘徊"},
-{ english: "worthwhile", chinese: "值得的"}
+{ en: "aggressive", zh: "挑釁的"},
+{ en: "applied", zh: "應用"},
+{ en: "appreciate", zh: "欣賞"},
+{ en: "argument", zh: "爭論"},
+{ en: "assistance", zh: "協助"},
+{ en: "assistant", zh: "助理"},
+{ en: "available", zh: "可用的"},
+{ en: "average", zh: "平均的"},
+{ en: "bluetooth", zh: "藍牙"},
+{ en: "bought", zh: "買"},
+{ en: "campaign", zh: "活動"},
+{ en: "cancelled", zh: "取消"},
+{ en: "candidate", zh: "候選人"},
+{ en: "capable", zh: "有能力的"},
+{ en: "completed", zh: "完全的"},
+{ en: "condition", zh: "狀況"},
+{ en: "connection", zh: "聯繫"},
+{ en: "contents", zh: "內容"},
+{ en: "convenient", zh: "方便的"},
+{ en: "difficulties", zh: "困難"},
+{ en: "duties", zh: "責任"},
+{ en: "elementary", zh: "初級"},
+{ en: "exploitation", zh: "開發"},
+{ en: "explosion", zh: "霹靂"},
+{ en: "facilities", zh: "設施"},
+{ en: "famous", zh: "著名的"},
+{ en: "fantasies", zh: "幻想"},
+{ en: "favors", zh: "恩惠"},
+{ en: "features", zh: "特徵"},
+{ en: "future", zh: "未來"},
+{ en: "garden", zh: "花園"},
+{ en: "goal", zh: "目標"},
+{ en: "hazel", zh: "淡褐色"},
+{ en: "high school education", zh: "高中教育"},
+{ en: "information", zh: "資訊"},
+{ en: "instant", zh: "立即的"},
+{ en: "junior", zh: "初級"},
+{ en: "knowledge", zh: "知識"},
+{ en: "latest", zh: "最新的"},
+{ en: "mass rapid transit", zh: "捷運"},
+{ en: "memorize", zh: "記住"},
+{ en: "obsessed", zh: "迷戀"},
+{ en: "on time", zh: "準時"},
+{ en: "over", zh: "結束"},
+{ en: "parents", zh: "父母"},
+{ en: "pay", zh: "薪資"},
+{ en: "pink", zh: "粉紅色的"},
+{ en: "pointed", zh: "尖挺"},
+{ en: "pollution", zh: "污染"},
+{ en: "presidential", zh: "總統"},
+{ en: "pressure", zh: "壓力"},
+{ en: "project", zh: "專案"},
+{ en: "promised", zh: "承諾"},
+{ en: "raise", zh: "增加"},
+{ en: "rather", zh: "相當"},
+{ en: "reach", zh: "達到"},
+{ en: "receive", zh: "收到"},
+{ en: "reputation", zh: "名譽"},
+{ en: "resistance", zh: "反抗"},
+{ en: "resolution", zh: "解決"},
+{ en: "riverbank", zh: "河岸"},
+{ en: "search", zh: "搜尋"},
+{ en: "sincerely", zh: "真摯地"},
+{ en: "textbooks", zh: "教科書"},
+{ en: "tie", zh: "領帶"},
+{ en: "tradition", zh: "傳統"},
+{ en: "transcripti on", zh: "成績單"},
+{ en: "transportati on", zh: "攜帶"}
 ];        
 </script>
 
@@ -363,9 +382,9 @@ font-weight:  bold;
             cards = selectedWords.map(word => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.textContent = word.english;
-                card.dataset.english = word.english;
-                card.dataset.chinese = word.chinese;
+                card.textContent = word.en;
+                card.dataset.en = word.en;
+                card.dataset.zh = word.zh;
                 
                 card.addEventListener('click', flipCard);
                 
@@ -389,10 +408,10 @@ font-weight:  bold;
             
             // 翻轉卡片
             this.classList.add('flipped');
-            this.textContent = this.dataset.chinese;
+            this.textContent = this.dataset.zh;
             
             // 顯示結果
-            resultDiv.textContent = `${this.dataset.english} 的中文意思是 ${this.dataset.chinese}`;
+            resultDiv.textContent = `${this.dataset.en} 的中文意思是 ${this.dataset.zh}`;
             
             // 播放答對音效
             if (soundEnabled) {
@@ -404,7 +423,7 @@ font-weight:  bold;
             if (flippedCard) {
                 setTimeout(() => {
                     flippedCard.classList.remove('flipped');
-                    flippedCard.textContent = flippedCard.dataset.english;
+                    flippedCard.textContent = flippedCard.dataset.en;
                     flippedCard = null;
                 }, 3000); // 3秒後翻回
             }
@@ -416,7 +435,7 @@ font-weight:  bold;
             setTimeout(() => {
                 if (this.classList.contains('flipped')) {
                     this.classList.remove('flipped');
-                    this.textContent = this.dataset.english;
+                    this.textContent = this.dataset.en;
                     if (flippedCard === this) {
                         flippedCard = null;
                     }

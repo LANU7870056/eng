@@ -1,0 +1,483 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+
+<span><a href="word06w-key.htm"><img src="exam3.png"></a>
+<a href="word06w-test.htm"><img src="exam.png"></a>
+<a href="word06w-test2.htm"><img src="exam2.png"></a></span>
+<center>06瘧疾</center>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>一項新研究表明，一些自製的湯—由雞肉、牛肉或蔬菜製成—可能有助於對抗瘧疾</span></span>
+A new study <div class='cir'>16</div> that some <span class='tooltip'>homemade<span class='tooltip-text'  onclick="speakText('homemade')"><IMG SRC='speak.png'>自製</span></span> <span class='tooltip'>soups<span class='tooltip-text'  onclick="speakText('soups')"><IMG SRC='speak.png'>湯</span></span> - made of <span class='tooltip'>chicken<span class='tooltip-text'  onclick="speakText('chicken')"><IMG SRC='speak.png'>雞</span></span> ,  beef or <span class='tooltip'>vegetables<span class='tooltip-text'  onclick="speakText('vegetables')"><IMG SRC='speak.png'>蔬菜</span></span> - might help fight <span class='tooltip'>malaria<span class='tooltip-text'  onclick="speakText('malaria')"><IMG SRC='speak.png'>瘧疾</span></span> .<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：suggests常用來某研究或報告的意見。study suggests→研究報告</span></span>
+16.(A)talks 　(B)speaks 　(C)opinions 　(D)suggests <BR> <HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>倫敦帝國學院的傑克鮑目領導了這項研究</span></span>
+<span class='pp'>Jake Baum</span></span> of the <span class='pp'>Imperial College London</span></span> <span class='tooltip'>led<span class='tooltip-text'  onclick="speakText('led')"><IMG SRC='speak.png'>領導</span></span> the <span class='tooltip'>research<span class='tooltip-text'  onclick="speakText('research')"><IMG SRC='speak.png'>研究</span></span> .<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他要求倫敦一所學校的孩子們帶他們家人自製的清湯來治療發燒</span></span>
+He asked <span class='tooltip'>children<span class='tooltip-text'  onclick="speakText('children')"><IMG SRC='speak.png'>孩子們</span></span> at a London school <div class='cir'>17</div> in <span class='tooltip'>homemade<span class='tooltip-text'  onclick="speakText('homemade')"><IMG SRC='speak.png'>自製</span></span> clear <span class='tooltip'>soups<span class='tooltip-text'  onclick="speakText('soups')"><IMG SRC='speak.png'>湯</span></span> that their families would make to <span class='tooltip'>treat<span class='tooltip-text'  onclick="speakText('treat')"><IMG SRC='speak.png'>治療</span></span> a <span class='tooltip'>fever<span class='tooltip-text'  onclick="speakText('fever')"><IMG SRC='speak.png'>發燒</span></span>.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：ask 人 to V→要求某人做某做</span></span>
+17.(A)bring 　(B)to bring 　(C)bringing 　(D)to bringing <BR> <HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>隨後，這些湯接觸導致非洲99.7%瘧疾病例的寄生蟲</span></span>
+The soups were then <span class='tooltip'>exposed to<span class='tooltip-text'  onclick="speakText('exposed to')"><IMG SRC='speak.png'>接觸</span></span> the <span class='tooltip'>parasite<span class='tooltip-text'  onclick="speakText('parasite')"><IMG SRC='speak.png'>寄生蟲</span></span> that <span class='tooltip'>creates<span class='tooltip-text'  onclick="speakText('creates')"><IMG SRC='speak.png'>創建</span></span> 99.7 percent of <span class='tooltip'>malaria<span class='tooltip-text'  onclick="speakText('malaria')"><IMG SRC='speak.png'>瘧疾</span></span> <span class='tooltip'>cases<span class='tooltip-text'  onclick="speakText('cases')"><IMG SRC='speak.png'>案例</span></span> in Africa.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>在測試的56種湯中，有5種對抑制寄生蟲成長有效性達到50%以上</span></span>
+Of the 56 <span class='tooltip'>soups<span class='tooltip-text'  onclick="speakText('soups')"><IMG SRC='speak.png'>湯</span></span> tested ,  five were more than 50 percent <span class='tooltip'>effective<span class='tooltip-text'  onclick="speakText('effective')"><IMG SRC='speak.png'>有效的</span></span> in <span class='tooltip'>containing<span class='tooltip-text'  onclick="speakText('containing')"><IMG SRC='speak.png'>包含</span></span> the <span class='tooltip'>growth<span class='tooltip-text'  onclick="speakText('growth')"><IMG SRC='speak.png'>成長</span></span> of the <span class='tooltip'>parasite<span class='tooltip-text'  onclick="speakText('parasite')"><IMG SRC='speak.png'>寄生蟲</span></span>.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>其中兩種藥物的效果與目前用於治療瘧疾的藥物一樣</span></span>
+Two were as <div class='cir'>18</div> as one drug now used to <span class='tooltip'>treat<span class='tooltip-text'  onclick="speakText('treat')"><IMG SRC='speak.png'>治療</span></span> <span class='tooltip'>malaria<span class='tooltip-text'  onclick="speakText('malaria')"><IMG SRC='speak.png'>瘧疾</span></span> .<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：were effective形容詞→有效的</span></span>
+18.(A)effect 　(B)effected 　(C)effecting 　(D)effective <BR> <HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>四種湯品在防止寄生蟲老化至能感染傳播疾病的蚊子方面，效果達 50% 以上</span></span>
+And four soups were more than 50 percent <span class='tooltip'>effective<span class='tooltip-text'  onclick="speakText('effective')"><IMG SRC='speak.png'>有效的</span></span> at <span class='tooltip'>preventing<span class='tooltip-text'  onclick="speakText('preventing')"><IMG SRC='speak.png'>預防</span></span> <span class='tooltip'>parasites<span class='tooltip-text'  onclick="speakText('parasites')"><IMG SRC='speak.png'>寄生蟲</span></span> from aging to the point that they could infect <span class='tooltip'>mosquitoes<span class='tooltip-text'  onclick="speakText('mosquitoes')"><IMG SRC='speak.png'>蚊子</span></span> that <span class='tooltip'>spread<span class='tooltip-text'  onclick="speakText('spread')"><IMG SRC='speak.png'>傳播</span></span> the <span class='tooltip'>disease<span class='tooltip-text'  onclick="speakText('disease')"><IMG SRC='speak.png'>疾病</span></span> .<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>鮑目和他的團隊最近在《兒童疾病檔案》雜誌上發表了他們的研究成果</span></span>
+<span class='pp'>Baum</span></span> and his team <span class='tooltip'>reported<span class='tooltip-text'  onclick="speakText('reported')"><IMG SRC='speak.png'>已報道</span></span> their <span class='tooltip'>results<span class='tooltip-text'  onclick="speakText('results')"><IMG SRC='speak.png'>結果</span></span> <span class='tooltip'>recently<span class='tooltip-text'  onclick="speakText('recently')"><IMG SRC='speak.png'>最近</span></span> in the <span class='tooltip'>publication<span class='tooltip-text'  onclick="speakText('publication')"><IMG SRC='speak.png'>出版品</span></span> Archives of Disease in Childhood.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>鮑目也指出，目前還不清楚哪些食物能讓湯有效對抗瘧疾。</span></span>
+<span class='pp'>Baum</span></span> also noted <div class='cir'>19</div> it was <span class='tooltip'>unclear<span class='tooltip-text'  onclick="speakText('unclear')"><IMG SRC='speak.png'>不清楚</span></span> which <span class='tooltip'>foods<span class='tooltip-text'  onclick="speakText('foods')"><IMG SRC='speak.png'>食物</span></span> made the soups <span class='tooltip'>effective<span class='tooltip-text'  onclick="speakText('effective')"><IMG SRC='speak.png'>有效的</span></span> <span class='tooltip'>against<span class='tooltip-text'  onclick="speakText('against')"><IMG SRC='speak.png'>反對</span></span> <span class='tooltip'>malaria<span class='tooltip-text'  onclick="speakText('malaria')"><IMG SRC='speak.png'>瘧疾</span></span> .<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：關係代名詞，使that</span></span>
+19 .(A)to 　(B)for 　(C)as 　(D)that <BR> <HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這些湯來自不同民族歷史的家庭，包括歐洲、北非和中東</span></span>
+The <span class='tooltip'>soups<span class='tooltip-text'  onclick="speakText('soups')"><IMG SRC='speak.png'>湯</span></span> came from families from <span class='tooltip'>different<span class='tooltip-text'  onclick="speakText('different')"><IMG SRC='speak.png'>不同的</span></span> <span class='tooltip'>ethnic<span class='tooltip-text'  onclick="speakText('ethnic')"><IMG SRC='speak.png'>種族的</span></span> <span class='tooltip'>histories<span class='tooltip-text'  onclick="speakText('histories')"><IMG SRC='speak.png'>歷史</span></span> ,  including Europe ,  North Africa and the Middle East.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>鮑目說，他的目的之一是向孩子們展示科學研究可以將草藥變成人造藥物</span></span>
+<span class='pp'>Baum</span></span> said his <span class='tooltip'>aim<span class='tooltip-text'  onclick="speakText('aim')"><IMG SRC='speak.png'>目的</span></span> was in part to show children that <span class='tooltip'>scientific<span class='tooltip-text'  onclick="speakText('scientific')"><IMG SRC='speak.png'>科學</span></span> <span class='tooltip'>research<span class='tooltip-text'  onclick="speakText('research')"><IMG SRC='speak.png'>研究</span></span> can turn an <span class='tooltip'>herbal<span class='tooltip-text'  onclick="speakText('herbal')"><IMG SRC='speak.png'>草藥</span></span> <span class='tooltip'>cure<span class='tooltip-text'  onclick="speakText('cure')"><IMG SRC='speak.png'>治癒</span></span> into a man-made <span class='tooltip'>medicine<span class='tooltip-text'  onclick="speakText('medicine')"><IMG SRC='speak.png'>藥物</span></span> .<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他注意到中國 屠呦呦博士的研究</span></span>
+He noted the research of Dr.<span class='pp'>Tu Youyou</span></span> of China.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>1970年代，她發現藜麥是一種有效的抗瘧藥。</span></span>
+In the 1970s ,  she found that the <span class='tooltip'>herb<span class='tooltip-text'  onclick="speakText('herb')"><IMG SRC='speak.png'>草藥</span></span> <span class='tooltip'>quinhao<span class='tooltip-text'  onclick="speakText('quinhao')"><IMG SRC='speak.png'>藜麥</span></span> was an <span class='tooltip'>effective<span class='tooltip-text'  onclick="speakText('effective')"><IMG SRC='speak.png'>有效的</span></span> <span class='tooltip'>antimalarial<span class='tooltip-text'  onclick="speakText('antimalarial')"><IMG SRC='speak.png'>抗瘧藥</span></span> <span class='tooltip'>treatment<span class='tooltip-text'  onclick="speakText('treatment')"><IMG SRC='speak.png'>治療</span></span> .<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這種草藥在東方醫學中已經使用了兩千年</span></span>
+The <span class='tooltip'>herb<span class='tooltip-text'  onclick="speakText('herb')"><IMG SRC='speak.png'>草藥</span></span> has been used in Eastern medicine <div class='cir'>20</div>  two thousand years.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：for 持續一段時間。草藥已在東方持續2000多年</span></span>
+20 .(A)by 　(B)for 　(C)since 　(D)before <BR> <HR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>屠呦呦的研究成果就是人工合成的青蒿素，這種藥物目前被廣泛用於治療瘧疾</span></span>
+Tu's <span class='tooltip'>research<span class='tooltip-text'  onclick="speakText('research')"><IMG SRC='speak.png'>研究</span></span> led to the <span class='tooltip'>manmade<span class='tooltip-text'  onclick="speakText('manmade')"><IMG SRC='speak.png'>人造</span></span> <span class='tooltip'>drug<span class='tooltip-text'  onclick="speakText('drug')"><IMG SRC='speak.png'>藥物</span></span> <span class='tooltip'>artemisinin<span class='tooltip-text'  onclick="speakText('artemisinin')"><IMG SRC='speak.png'>青蒿素</span></span> ,  a drug now widely used to <span class='tooltip'>treat<span class='tooltip-text'  onclick="speakText('treat')"><IMG SRC='speak.png'>對待</span></span> <span class='tooltip'>malaria<span class='tooltip-text'  onclick="speakText('malaria')"><IMG SRC='speak.png'>瘧疾</span></span> .<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>她於2015年獲得了諾貝爾獎</span></span>
+And she won the Nobel Prize in 2015.<BR>
+
+</DIV><br><br><br><br><br><br>

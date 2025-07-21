@@ -1,0 +1,497 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+
+
+
+<span><a href="word10w-key.htm"><img src="exam3.png"></a>
+<a href="word10w-test.htm"><img src="exam.png"></a>
+<a href="word10w-test2.htm"><img src="exam2.png"></a></span>
+
+<center>10番茄</center>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>番茄原產於南美洲。當番茄傳到歐洲時，人們並不吃它</span></span>
+The tomato is from South America.
+When the <span class='tooltip'>tomato<span class='tooltip-text'  onclick="speakText('tomato')"><IMG SRC='speak.png'>番茄</span></span> came to Europe ,  people did not eat it.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>醫生說這會讓他們生病</span></span>
+Doctors said it would make them <div class='cir'>16</div>.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：make N + A→把人變成如何</span></span>
+16.(A)sick 　(B)to sick 　(C)to he sick 　(D)to get sick 
+<br><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>所以人們種植番茄只是因為它們看起來很漂亮</span></span>
+So people just grew tomatoes because they looked nice.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>現在世界各地的人們都吃番茄。</span></span>
+Now people from all over the world eat tomatoes.
+<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>番茄可用於製作醬汁、湯、果汁、莎莎醬和番茄醬</span></span>
+Tomatoes are used in <span class='tooltip'>sauce<span class='tooltip-text'  onclick="speakText('sauce')"><IMG SRC='speak.png'>醬</span></span> ,  <span class='tooltip'>soup<span class='tooltip-text'  onclick="speakText('soup')"><IMG SRC='speak.png'>湯</span></span> ,  <span class='tooltip'>juice<span class='tooltip-text'  onclick="speakText('juice')"><IMG SRC='speak.png'>汁</span></span> ,  <span class='tooltip'>salsa<span class='tooltip-text'  onclick="speakText('salsa')"><IMG SRC='speak.png'>莎莎醬</span></span> ,  and <span class='tooltip'>ketchup<span class='tooltip-text'  onclick="speakText('ketchup')"><IMG SRC='speak.png'>番茄醬</span></span> .<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>番茄對你的健康非常有益</span></span>
+The tomato is very good <div class='cir'>17</div> your health.<BR>
+
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：be good for N→對 [人事物] 有益</span></span>
+17.(A)at 　(B)to 　(C)for 　(D)with <br>
+<hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>只有番茄的葉子或莖會讓你生病。人們用番茄做奇怪的事</span></span>
+Only a tomato <span class='tooltip'>leaf<span class='tooltip-text'  onclick="speakText('leaf')"><IMG SRC='speak.png'>葉子</span></span> or stem will make you sick.
+People do <span class='tooltip'>odd<span class='tooltip-text'  onclick="speakText('odd')"><IMG SRC='speak.png'>奇怪的</span></span> things with tomatoes.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>人們在太空種植番茄。西班牙也掀起了一場盛大的番茄大戰</span></span>
+People grow tomatoes in <span class='tooltip'>space<span class='tooltip-text'  onclick="speakText('space')"><IMG SRC='speak.png'>太空</span></span>.
+There is a big tomato <span class='tooltip'>fight<span class='tooltip-text'  onclick="speakText('fight')"><IMG SRC='speak.png'>鬥爭</span></span> <div class='cir'>18</div> in Spain.<br>
+
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：every year每一年</span></span>
+18.(A)one year 　(B)every year 　(C)one years 　(D)every years 
+<BR><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>很久以前，當人們看到不喜歡的節目時，他們會丟掉一顆壞番茄。</span></span>
+A long time ago ,  people would <span class='tooltip'>toss<span class='tooltip-text'  onclick="speakText('toss')"><IMG SRC='speak.png'>丟掉、扔</span></span> a bad tomato when they saw a show they did not like.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>在加拿大，許多番茄都是在大農場種植的</span></span>
+In <span class='pp'>Canada</span></span> ,  many tomatoes are <div class='cir'>19</div> on big farms.<br>
+
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：被人種植are+PP </span></span>
+19.(A)grow 　(B)to grow 　(C)be grow 　(D)grown 
+<br><hr>
+
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這些農場從遠方引進貧困人口來幫助種植番茄</span></span>
+The farms bring in poor people from far away to help grow tomatoes.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>沒有這些工人，農場就無法運作。但工人賺的錢不多</span></span>
+Without these workers ,  the farms could not run. But the workers do not get much money.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>加拿大政府不允許這些工人留在這裡。很多人認為這不公平</span></span>
+And <span class='pp'>Canadian</span></span> government does not let the workers stay here.
+Many people think this is <span class='tooltip'>unfair<span class='tooltip-text'  onclick="speakText('unfair')"><IMG SRC='speak.png'>不公平</span></span> .<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>大多數農場在番茄成熟前就採摘</span></span>
+Most farms pick tomatoes before they are <span class='tooltip'>ripe<span class='tooltip-text'  onclick="speakText('ripe')"><IMG SRC='speak.png'>成熟</span></span> .<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這樣番茄可以保存更長時間，但味道就沒那麼好了</span></span>
+They last <div class='cir'>20</div> this way. But these tomatoes do not taste as good.<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這就是為什麼很多人自己種植番茄的原因</span></span>
+That is why lots of people grow their own tomatoes.<BR>
+
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：形容詞比較級，last longer</span></span>
+20.(A)as long 　(B)longer 　(C)to longer 　(D)more long <br>
+</div>
+<br><br><br><br><br><br><br>

@@ -1,0 +1,585 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<span><a href="word12w-key.htm"><img src="exam3.png"></a>
+<a href="word12w-test.htm"><img src="exam.png"></a>
+<a href="word12w-test2.htm"><img src="exam2.png"></a></span>
+
+
+<center>12護照遺失</center>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>馬丁昨天過得很糟。</span></span>
+<span class='pp'>Martin</span></span> had a <span class='tooltip'>terrible<span class='tooltip-text'  onclick="speakText('terrible')"><IMG SRC='speak.png'>糟糕的</span></span> day yesterday.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>那是他去西班牙度假的日子，但卻是一場惡夢</span></span>
+It was the day of his <span class='tooltip'>vacation<span class='tooltip-text'  onclick="speakText('vacation')"><IMG SRC='speak.png'>假期</span></span> to Spain but it was a <span class='tooltip'>nightmare<span class='tooltip-text'  onclick="speakText('nightmare')"><IMG SRC='speak.png'>惡夢</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他早上十點離開家，搭計程車去機場</span></span>
+He left the house at 10 o'clock in the morning and <span class='tooltip'>caught<span class='tooltip-text'  onclick="speakText('caught')"><IMG SRC='speak.png'>捕捉</span></span> a taxi to the <span class='tooltip'>airport<span class='tooltip-text'  onclick="speakText('airport')"><IMG SRC='speak.png'>機場</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>馬丁帶著行李去辦理登機手續</span></span>
+<span class='pp'>Martin</span></span> went to the check-in with his <span class='tooltip'>luggage<span class='tooltip-text'  onclick="speakText('luggage')"><IMG SRC='speak.png'>行李</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>當航空公司工作人員要求出示護照時，馬丁變得非常沮喪</span></span>
+When the man <div class='cir'>16</div> worked for the <span class='tooltip'>airline<span class='tooltip-text'  onclick="speakText('airline')"><IMG SRC='speak.png'>航空</span></span> asked for his <span class='tooltip'>passport<span class='tooltip-text'  onclick="speakText('passport')"><IMG SRC='speak.png'>護照</span></span>,   <span class='pp'>Martin</span></span> became very <span class='tooltip'>upset<span class='tooltip-text'  onclick="speakText('upset')"><IMG SRC='speak.png'>沮喪的</span></span>.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：關係代名詞。who代表前面的man</span></span>
+16.(A)who　(B)which　(C)what　(D)where <br><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他的護照呢？馬丁意識到他沒帶護照。</span></span>
+Where was his <span class='tooltip'>passport<span class='tooltip-text'  onclick="speakText('passport')"><IMG SRC='speak.png'>護照</span></span>? <span class='pp'>Martin</span></span></span></span> <span class='tooltip'>realized<span class='tooltip-text'  onclick="speakText('realized')"><IMG SRC='speak.png'>意識到</span></span> he didn't have his passport with him.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>真是一場災難！他跳回計程車，請司機送他回家</span></span>
+What a <span class='tooltip'>disaster<span class='tooltip-text'  onclick="speakText('disaster')"><IMG SRC='speak.png'>災難</span></span> ! He jumped back into the taxi and told the driver to take him home.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>司機開得很快，二十分鐘後馬丁就回家了</span></span>
+The driver drove <div class='cir'>17</div> and <span class='pp'>Martin</span></span></span></span> arrived back at his house in twenty minutes.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：drove(V) quickly(副)，quickly修飾前面的動詞</span></span>
+17.(A)quick　(B)very quick　(C)quickly　(D)much quickly <br><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他跑進屋子，走進自己的臥室</span></span>
+He ran into the house and went into his <span class='tooltip'>bedroom<span class='tooltip-text'  onclick="speakText('bedroom')"><IMG SRC='speak.png'>臥室</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他在床頭櫃上找到了護照，然後又離開了家。</span></span>
+He <div class='cir'>18</div> his passport on the <span class='tooltip'>bedside<span class='tooltip-text'  onclick="speakText('bedside')"><IMG SRC='speak.png'>床頭</span></span> table and left the house again.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：</span></span>
+18.(A)find　(B)finds　(C)found　(D)have found <br><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>可是出租車不在那裡！出租車在哪裡？馬丁氣得跳上跳下</span></span>
+But the taxi wasn't there! Where was the taxi! <span class='pp'>Martin</span></span> <span class='tooltip'>jumped<span class='tooltip-text'  onclick="speakText('jumped')"><IMG SRC='speak.png'>跳</span></span> up and down <div class='cir'>19</div>.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：jumped(動) angrily(副)，angrily修飾前面的動詞</span></span>
+19.(A)anger　(B)angry　(C)angrily　(D)in angry <br><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>「我不相信！計程車開走了！」他大喊。他跑到街上尋找另一輛計程車</span></span>
+"I don't believe it. The taxi left!" he shouted. He ran down the street and looked for another taxi.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>幾分鐘後，馬丁找到另一輛計程車並告訴司機盡快送他去機場</span></span>
+After a few minutes,   <span class='pp'>Martin</span></span> found another taxi and told the driver to take him to the <span class='tooltip'>airport<span class='tooltip-text'  onclick="speakText('airport')"><IMG SRC='speak.png'>飛機場</span></span> <div class='cir'>20</div> quickly <div class='cir'>20</div> possible.<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：as…as possible→盡可能地</span></span>
+20.(A)as..as..　(B)so..to..　(C)so..that..　(D)too..to <br><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>路上的交通非常糟糕，不幸的是，馬丁搭乘的計程車遲到了</span></span>
+The traffic on the roads was very bad and,  <span class='tooltip'>unfortunately<span class='tooltip-text'  onclick="speakText('unfortunately')"><IMG SRC='speak.png'>很遺憾</span></span>,   <span class='pp'>Martin</span></span>'s taxi arrived at the airport late.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>馬丁的飛機於 11:30 起飛前往西班牙，但他錯過了</span></span>
+His plane left for Spain at 11:30 and <span class='pp'>Martin</span></span> <span class='tooltip'>missed<span class='tooltip-text'  onclick="speakText('missed')"><IMG SRC='speak.png'>錯過</span></span> it.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他非常難過並去找航空公司交涉</span></span>
+He was very sad and went to speak to the airline.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他們答應給他安排一個晚上的航班，馬丁就搭另一輛計程車回家等待</span></span>
+They <span class='tooltip'>promised<span class='tooltip-text'  onclick="speakText('promised')"><IMG SRC='speak.png'>承諾</span></span> to get him a seat on an <span class='tooltip'>evening<span class='tooltip-text'  onclick="speakText('evening')"><IMG SRC='speak.png'>晚上</span></span> <span class='tooltip'>flight<span class='tooltip-text'  onclick="speakText('flight')"><IMG SRC='speak.png'>航班</span></span> and <span class='pp'>Martin</span></span> went home on another taxi to wait.
+<br><hr>
+</div>
+
+ <br> <br> <br> <br> <br> <br> <br>

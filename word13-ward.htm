@@ -1,0 +1,590 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<span><a href="word13w-key.htm"><img src="exam3.png"></a>
+<a href="word13w-test.htm"><img src="exam.png"></a>
+<a href="word13w-test2.htm"><img src="exam2.png"></a></span>
+
+
+ <center>13全球兒童就學問題</center>
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>聯合國難民署稱，全球370萬難民兒童中超過一半沒有上學</span></span>
+The United Nations <span class='tooltip'>refugee<span class='tooltip-text'  onclick="speakText('refugee')"><IMG SRC='speak.png'>難民</span></span> <span class='tooltip'>agency<span class='tooltip-text'  onclick="speakText('agency')"><IMG SRC='speak.png'>機構</span></span> says that more than half of the world's 3.7 million <span class='tooltip'>refugee<span class='tooltip-text'  onclick="speakText('refugee')"><IMG SRC='speak.png'>難民</span></span> children do not go to school.<br>
+
+註：United Nations High Commissioner for Refugees,  UNHCR<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這意味著這些孩子將無法獲得創造美好未來所需的技能。</span></span>
+That means these children will not <span class='tooltip'>gain<span class='tooltip-text'  onclick="speakText('gain')"><IMG SRC='speak.png'>獲得</span></span> the skills they need to build a <span class='tooltip'>valuable<span class='tooltip-text'  onclick="speakText('valuable')"><IMG SRC='speak.png'>有價值的</span></span> <span class='tooltip'>future<span class='tooltip-text'  onclick="speakText('future')"><IMG SRC='speak.png'>未來</span></span> .<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>聯合國難民署發現，隨著難民兒童年齡的增長，上學的兒童越來越少</span></span>
+The <span class='pp'>UNHCR</span></span> found that as <span class='tooltip'>refugee<span class='tooltip-text'  onclick="speakText('refugee')"><IMG SRC='speak.png'>難民</span></span> children get older,  <div class='cir'>16</div> go to school.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：
+本題測驗less跟few的用法差異。less和fewer皆為「較少」的意思;<BR>
+less是little的比較級，而fewer是few的比較級;<BR>
+less+不可數名詞。fewer+可數名詞。<BR>
+本題children為可數名詞，故應用(D)fewer來修飾。<BR>
+</span></span>
+16.(A)less　(B)lesser　(C)few　(D)fewer <BR><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>報告稱，63%的難民兒童上小學</span></span>
+The report said that 63 percent of <span class='tooltip'>refugee<span class='tooltip-text'  onclick="speakText('refugee')"><IMG SRC='speak.png'>難民</span></span> children go to <span class='tooltip'>primary school<span class='tooltip-text'  onclick="speakText('primary school')"><IMG SRC='speak.png'>小學</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>相較之下，全球兒童的比例為 91%。</span></span>
+That is <span class='tooltip'>compared<span class='tooltip-text'  onclick="speakText('compared')"><IMG SRC='speak.png'>比較</span></span> to 91 percent for children around the world.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>然而，只有四分之一的難民青少年接受中學教育，而全世界這一比例為 84%。</span></span>
+However,  only one in four <span class='tooltip'>refugee<span class='tooltip-text'  onclick="speakText('refugee')"><IMG SRC='speak.png'>難民</span></span> <span class='tooltip'>teenagers<span class='tooltip-text'  onclick="speakText('teenagers')"><IMG SRC='speak.png'>青少年</span></span> gets a <span class='tooltip'>secondary education<span class='tooltip-text'  onclick="speakText('secondary education')"><IMG SRC='speak.png'>中學教育</span></span>,  <span class='tooltip'>compared<span class='tooltip-text'  onclick="speakText('compared')"><IMG SRC='speak.png'>比較的</span></span> to 84 percent of teenagers <span class='tooltip'>worldwide<span class='tooltip-text'  onclick="speakText('worldwide')"><IMG SRC='speak.png'>全世界</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>聯合國難民署表示，資金短缺導致難民兒童失學</span></span>
+The U.N. <span class='tooltip'>refugee<span class='tooltip-text'  onclick="speakText('refugee')"><IMG SRC='speak.png'>難民</span></span> <span class='tooltip'>agency<span class='tooltip-text'  onclick="speakText('agency')"><IMG SRC='speak.png'>機構</span></span> said a <div class='cir'>17</div> of money is keeping the <span class='tooltip'>refugee<span class='tooltip-text'  onclick="speakText('refugee')"><IMG SRC='speak.png'>難民</span></span> children out of school.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：lack of N→缺少某物</span></span>
+17.(A)bag　(B)lack　(C)save　(D)cost <BR><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>聯合國難民署支持一項旨在迅速啟動難民中學教育的新計畫</span></span>
+The <span class='pp'>UNHCR</span></span> <span class='tooltip'>supports<span class='tooltip-text'  onclick="speakText('supports')"><IMG SRC='speak.png'>支援</span></span> a new program <span class='tooltip'>aimed<span class='tooltip-text'  onclick="speakText('aimed')"><IMG SRC='speak.png'>目標</span></span> <div class='cir'>18</div> quickly starting up <span class='tooltip'>secondary education<span class='tooltip-text'  onclick="speakText('secondary education')"><IMG SRC='speak.png'>中等教育</span></span> efforts for <span class='tooltip'>refugees<span class='tooltip-text'  onclick="speakText('refugees')"><IMG SRC='speak.png'>難民</span></span> .<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：be aimed at + N(Ving)→以OO為目標 </span></span>
+18.(A)in　(B)on　(C)by　(D)at <BR><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>該計劃將致力於建造和修繕學校、培訓教師並提供經濟支持，幫助難民家庭支付子女上學的費用。</span></span>
+The <span class='tooltip'>program<span class='tooltip-text'  onclick="speakText('program')"><IMG SRC='speak.png'>計畫、程式</span></span> will <span class='tooltip'>seek<span class='tooltip-text'  onclick="speakText('seek')"><IMG SRC='speak.png'>尋找</span></span> to build and repair schools,  train teachers and <span class='tooltip'>provide<span class='tooltip-text'  onclick="speakText('provide')"><IMG SRC='speak.png'>提供</span></span> <span class='tooltip'>financial<span class='tooltip-text'  onclick="speakText('financial')"><IMG SRC='speak.png'>金融的</span></span> <span class='tooltip'>support<span class='tooltip-text'  onclick="speakText('support')"><IMG SRC='speak.png'>支援</span></span> to help <span class='tooltip'>refugees<span class='tooltip-text'  onclick="speakText('refugees')"><IMG SRC='speak.png'>難民</span></span> families <div class='cir'>19</div> for the <span class='tooltip'>expenses<span class='tooltip-text'  onclick="speakText('expenses')"><IMG SRC='speak.png'>費用、開支</span></span> of sending their children to school.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：help V(原型)→幫助付</span></span>
+19.(A)pay　(B)to pay　(C)paying　(D)to paying <BR><hr>
+
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>馬杜·迪安·巴爾德是聯合國難民署復原力和解決方案部副主任</span></span>
+<span class='pp'>Mamadou Dian Balde</span></span> is <span class='pp'>UNHCR</span></span> <span class='tooltip'>deputy<span class='tooltip-text'  onclick="speakText('deputy')"><IMG SRC='speak.png'>副主任</span></span> <span class='tooltip'>director<span class='tooltip-text'  onclick="speakText('director')"><IMG SRC='speak.png'>經理、主任、導演</span></span> of the Department of <span class='tooltip'>Resilience<span class='tooltip-text'  onclick="speakText('Resilience')"><IMG SRC='speak.png'>彈性、復原</span></span> and <span class='tooltip'>Solutions<span class='tooltip-text'  onclick="speakText('Solutions')"><IMG SRC='speak.png'>解決</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他說，在全面啟動計畫之前，將先啟動一些針對難民青少年的小型中學教育計畫</span></span>
+He said that some small,  <span class='tooltip'>secondary education<span class='tooltip-text'  onclick="speakText('secondary education')"><IMG SRC='speak.png'>中等教育</span></span> <span class='tooltip'>projects<span class='tooltip-text'  onclick="speakText('projects')"><IMG SRC='speak.png'>專案</span></span> for <span class='tooltip'>refugee<span class='tooltip-text'  onclick="speakText('refugee')"><IMG SRC='speak.png'>難民</span></span> teens will begin before the full <span class='tooltip'>programs<span class='tooltip-text'  onclick="speakText('programs')"><IMG SRC='speak.png'>計畫、程式</span></span> get started.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他說，我們將以「堅決」的方式在非洲之角東部和亞洲的一些國家開展努力。</span></span>
+He said <span class='tooltip'>efforts<span class='tooltip-text'  onclick="speakText('efforts')"><IMG SRC='speak.png'>努力</span></span> will start in a "<span class='tooltip'>resolute<span class='tooltip-text'  onclick="speakText('resolute')"><IMG SRC='speak.png'>堅決</span></span>" way,  in a number of <span class='tooltip'>countries<span class='tooltip-text'  onclick="speakText('countries')"><IMG SRC='speak.png'>國家</span></span> in the <span class='tooltip'>eastern<span class='tooltip-text'  onclick="speakText('eastern')"><IMG SRC='speak.png'>東方</span></span> Horn of Africa and in Asia.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>該計劃隨後將擴展至更多國家</span></span>
+Then the <span class='tooltip'>program<span class='tooltip-text'  onclick="speakText('program')"><IMG SRC='speak.png'>計畫、程式</span></span> will <span class='tooltip'>extend<span class='tooltip-text'  onclick="speakText('extend')"><IMG SRC='speak.png'>擴展</span></span> to more <span class='tooltip'>countries<span class='tooltip-text'  onclick="speakText('countries')"><IMG SRC='speak.png'>國家</span></span> .<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他說，官員將考慮到此類項目可用的資源有限</span></span>
+He said <span class='tooltip'>officials<span class='tooltip-text'  onclick="speakText('officials')"><IMG SRC='speak.png'>官員</span></span> will take into <span class='tooltip'>consideration<span class='tooltip-text'  onclick="speakText('consideration')"><IMG SRC='speak.png'>考慮</span></span> the <span class='tooltip'>limited<span class='tooltip-text'  onclick="speakText('limited')"><IMG SRC='speak.png'>有限的</span></span> amount of <span class='tooltip'>resources<span class='tooltip-text'  onclick="speakText('resources')"><IMG SRC='speak.png'>資源</span></span> that are <span class='tooltip'>available<span class='tooltip-text'  onclick="speakText('available')"><IMG SRC='speak.png'>可用的</span></span> for such a <span class='tooltip'>program<span class='tooltip-text'  onclick="speakText('program')"><IMG SRC='speak.png'>計畫、程式</span></span>. 
+<br><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>聯合國難民署表示，實現這項計畫需要大量資金</span></span>
+The <span class='pp'>UNHCR</span></span> said <div class='cir'>20</div> this <span class='tooltip'>program<span class='tooltip-text'  onclick="speakText('program')"><IMG SRC='speak.png'>計畫、程式</span></span> a <span class='tooltip'>reality<span class='tooltip-text'  onclick="speakText('reality')"><IMG SRC='speak.png'>現實</span></span> will take a large <span class='tooltip'>amount<span class='tooltip-text'  onclick="speakText('amount')"><IMG SRC='speak.png'>數量</span></span> of money.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：make→making轉為動名詞當主詞，making this program</span></span>
+20.(A)make　(B)made　(C)making　(D)to made <BR><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>不過，該機構表示將投入 2.5 億美元來增加接受中學教育的難民人數</span></span>
+However,  the <span class='tooltip'>agency<span class='tooltip-text'  onclick="speakText('agency')"><IMG SRC='speak.png'>機構</span></span> said it will start with $250 million to <span class='tooltip'>increase<span class='tooltip-text'  onclick="speakText('increase')"><IMG SRC='speak.png'>增加</span></span> the number of <span class='tooltip'>refugees<span class='tooltip-text'  onclick="speakText('refugees')"><IMG SRC='speak.png'>難民</span></span> in <span class='tooltip'>secondary education<span class='tooltip-text'  onclick="speakText('secondary education')"><IMG SRC='speak.png'>中等教育</span></span>.<br>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+

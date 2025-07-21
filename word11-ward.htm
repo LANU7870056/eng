@@ -1,0 +1,485 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+<script>
+    function speakText(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<span><a href="word11w-key.htm"><img src="exam3.png"></a>
+<a href="word11w-test.htm"><img src="exam.png"></a>
+<a href="word11w-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+
+<center>11人工智慧安全系統</center>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>美國警察部門越來越多地使用人臉辨識電腦程式作為打擊犯罪的一部分。</span></span>
+American police <span class='tooltip'>departments<span class='tooltip-text'  onclick="speakText('departments')"><IMG SRC='speak.png'>部門</span></span> are <div class='cir'>16 </div> using <span class='tooltip'>face<span class='tooltip-text'  onclick="speakText('face')"><IMG SRC='speak.png'>臉</span></span> <span class='tooltip'>recognition<span class='tooltip-text'  onclick="speakText('recognition')"><IMG SRC='speak.png'>認出</span></span> computer programs as part of their fight <span class='tooltip'>against<span class='tooltip-text'  onclick="speakText('against')"><IMG SRC='speak.png'>反對</span></span> <span class='tooltip'>crime<span class='tooltip-text'  onclick="speakText('crime')"><IMG SRC='speak.png'>犯罪</span></span>  .<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：increasingly副詞，修飾use動作 </span></span>
+
+16.(A)<span class='tooltip'>increase<span class='tooltip-text'  onclick="speakText('increase')"><IMG SRC='speak.png'>增加</span></span> 　(B)increased 　(C)increasing 　(D)increasingly 
+<br><hr>
+
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>但一些立法者—甚至一些大型科技公司—都表現出抵制</span></span>
+But some <span class='tooltip'>lawmakers<span class='tooltip-text'  onclick="speakText('lawmakers')"><IMG SRC='speak.png'>立法者</span></span> — and even some <span class='tooltip'>major<span class='tooltip-text'  onclick="speakText('major')"><IMG SRC='speak.png'>主要的</span></span>  <span class='tooltip'>technology<span class='tooltip-text'  onclick="speakText('technology')"><IMG SRC='speak.png'>科技</span></span> <span class='tooltip'>companies<span class='tooltip-text'  onclick="speakText('companies')"><IMG SRC='speak.png'>公司</span></span> — are showing <span class='tooltip'>resistance<span class='tooltip-text'  onclick="speakText('resistance')"><IMG SRC='speak.png'>反抗</span></span>  .<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>人們對無所不知的人工智慧安全系統的恐懼可以理解嗎？</span></span>
+<span class='tooltip'>Are fears of an all-seeing<span class='tooltip-text'  onclick="speakText('Are fears of an all-seeing')"><IMG SRC='speak.png'>害怕無所不知</span></span> ,  <span class='tooltip'>artificially intelligent<span class='tooltip-text'  onclick="speakText('artificially intelligent')"><IMG SRC='speak.png'>AI人工智慧</span></span> <span class='tooltip'>security<span class='tooltip-text'  onclick="speakText('security')"><IMG SRC='speak.png'>安全</span></span> system <span class='tooltip'>understandable<span class='tooltip-text'  onclick="speakText('understandable')"><IMG SRC='speak.png'>可以理解</span></span> ?<BR>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>或許在中國，巨大的街頭攝影機網路幫助官員追蹤少數族裔成員的顛覆行為的跡象</span></span>
+Maybe in China ,  where huge networks of street <span class='tooltip'>cameras<span class='tooltip-text'  onclick="speakText('cameras')"><IMG SRC='speak.png'>相機</span></span> have helped <span class='tooltip'>officials<span class='tooltip-text'  onclick="speakText('officials')"><IMG SRC='speak.png'>官員</span></span> track members of <span class='tooltip'>ethnic<span class='tooltip-text'  onclick="speakText('ethnic')"><IMG SRC='speak.png'>種族的</span></span> <span class='tooltip'>minority<span class='tooltip-text'  onclick="speakText('minority')"><IMG SRC='speak.png'>少數民族</span></span> groups for signs of <span class='tooltip'>subversive<span class='tooltip-text'  onclick="speakText('subversive')"><IMG SRC='speak.png'>顛覆性的</span></span> <span class='tooltip'>behavior<span class='tooltip-text'  onclick="speakText('behavior')"><IMG SRC='speak.png'>行為</span></span>.<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>美國警察官員及其視訊監控產業合作夥伴表示，這種事情在美國不會發生</span></span>
+American police officials and their video <span class='tooltip'>surveillance<span class='tooltip-text'  onclick="speakText('surveillance')"><IMG SRC='speak.png'>監視</span></span> <span class='tooltip'>industry<span class='tooltip-text'  onclick="speakText('industry')"><IMG SRC='speak.png'>產業</span></span> <span class='tooltip'>partners<span class='tooltip-text'  onclick="speakText('partners')"><IMG SRC='speak.png'>合作夥伴</span></span> say that will not <div class='cir'>17 </div> in the United States.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：happen發生，發生是主動，並不是被動，故選A</span></span>
+17.(A)happen 　(B)to happen 　(C)he happen 　(D)be happened 
+<br><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>他們正在抵制各城市、州和聯邦立法者禁止或限制使用該技術的運動</span></span>
+They are <span class='tooltip'>pushing<span class='tooltip-text'  onclick="speakText('pushing')"><IMG SRC='speak.png'>推動</span></span> back <span class='tooltip'>against<span class='tooltip-text'  onclick="speakText('against')"><IMG SRC='speak.png'>對抗</span></span> a <span class='tooltip'>movement<span class='tooltip-text'  onclick="speakText('movement')"><IMG SRC='speak.png'>動態、移動</span></span> by cities ,  states and federal <span class='tooltip'>legislators<span class='tooltip-text'  onclick="speakText('legislators')"><IMG SRC='speak.png'>立法者</span></span> to ban or <span class='tooltip'>limit<span class='tooltip-text'  onclick="speakText('limit')"><IMG SRC='speak.png'>限制</span></span> use of the <span class='tooltip'>technology<span class='tooltip-text'  onclick="speakText('technology')"><IMG SRC='speak.png'>科技</span></span>  .<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>就在今年，加州政治自由的城市舊金山、奧克蘭和柏克萊頒布了對該技術的禁令</span></span>
+Just this year ,  the <span class='tooltip'>politically<span class='tooltip-text'  onclick="speakText('politically')"><IMG SRC='speak.png'>政治上</span></span> <span class='tooltip'>liberal<span class='tooltip-text'  onclick="speakText('liberal')"><IMG SRC='speak.png'>自由派</span></span> California cities of San Francisco ,  Oakland and Berkeley <span class='tooltip'>enacted<span class='tooltip-text'  onclick="speakText('enacted')"><IMG SRC='speak.png'>制定</span></span> <span class='tooltip'>bans<span class='tooltip-text'  onclick="speakText('bans')"><IMG SRC='speak.png'>禁令</span></span> on the <span class='tooltip'>technology<span class='tooltip-text'  onclick="speakText('technology')"><IMG SRC='speak.png'>科技</span></span>  .<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>馬薩諸塞州的薩默維爾和布魯克萊恩鎮也是如此</span></span>
+<div class='cir'>18 </div> did the towns of Somerville and Brookline in the <span class='tooltip'>state<span class='tooltip-text'  onclick="speakText('state')"><IMG SRC='speak.png'>狀態</span></span> of Massachusetts.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：SO為連接詞，所以…</span></span>
+18.(A)And 　(B)Too 　(C)So 　(D)As 
+<br><hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>但傳統上較保守的地區，如麻薩諸塞州西部城市斯普林菲爾德，也正在考慮可能的限制</span></span>
+But <span class='tooltip'>traditionally<span class='tooltip-text'  onclick="speakText('traditionally')"><IMG SRC='speak.png'>傳統上</span></span> more <span class='tooltip'>conservative<span class='tooltip-text'  onclick="speakText('conservative')"><IMG SRC='speak.png'>保守的</span></span> areas ,  like the <span class='tooltip'>western<span class='tooltip-text'  onclick="speakText('western')"><IMG SRC='speak.png'>西</span></span> Massachusetts city of Springfield ,  are also looking at possible <span class='tooltip'>restrictions<span class='tooltip-text'  onclick="speakText('restrictions')"><IMG SRC='speak.png'>限制</span></span>  .<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>這個小城市已經花費了數百萬美元，對涉嫌暴力和其他不法行為的警察採取法律行動</span></span>
+The small city has <div class='cir'>19</div> millions of dollars to <span class='tooltip'>deal with<span class='tooltip-text'  onclick="speakText('deal with')"><IMG SRC='speak.png'>處理</span></span> <span class='tooltip'>legal<span class='tooltip-text'  onclick="speakText('legal')"><IMG SRC='speak.png'>合法的</span></span> actions <span class='tooltip'>against<span class='tooltip-text'  onclick="speakText('against')"><IMG SRC='speak.png'>反對</span></span> police <span class='tooltip'>accused<span class='tooltip-text'  onclick="speakText('accused')"><IMG SRC='speak.png'>被告</span></span> of <span class='tooltip'>violence<span class='tooltip-text'  onclick="speakText('violence')"><IMG SRC='speak.png'>暴力</span></span> and other <span class='tooltip'>wrongdoing<span class='tooltip-text'  onclick="speakText('wrongdoing')"><IMG SRC='speak.png'>不法行為</span></span>  .<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：Spend的主詞是人，花費時間、金錢。<BR>Cost主詞為物，只能表示花金錢。本題主詞為小城市，表是為人，故用spend</span></span>
+19.(A)cost 　(B)to cost 　(C)spend 　(D)spent <br>
+<hr>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>斯普林菲爾德警方表示，他們沒有計劃部署臉部辨識技術。</span></span>
+<span class='pp'>Springfield</span></span> police say they have no plans to deploy f <span class='tooltip'>acial<span class='tooltip-text'  onclick="speakText('acial')"><IMG SRC='speak.png'>臉部</span></span> <span class='tooltip'>recognition<span class='tooltip-text'  onclick="speakText('recognition')"><IMG SRC='speak.png'>認出</span></span> <span class='tooltip'>technology<span class='tooltip-text'  onclick="speakText('technology')"><IMG SRC='speak.png'>科技</span></span>  .<br>
+
+<span class='tooltip4'><img src='sol.png'><span class='tooltip-text'>但一些地方官員仍在採取行動，阻止政府未來將其用於任何用途</span></span>
+But some local <span class='tooltip'>officials<span class='tooltip-text'  onclick="speakText('officials')"><IMG SRC='speak.png'>官員</span></span> still are taking <div class='cir'>20 </div> to <span class='tooltip'>block<span class='tooltip-text'  onclick="speakText('block')"><IMG SRC='speak.png'>堵塞</span></span> any future government use.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：take action採取行動。<BR>take part in N→參與某事。<BR>take the role of N→扮演…的角色。<BR>take N serious嚴肅看某事</span></span>
+20.(A)part 　(B)role 　(C)action 　(D)serious
+<br><hr>
+
+</div>
+<br><br><br><br><br><br><br><br>
+
+
+
+
+
+

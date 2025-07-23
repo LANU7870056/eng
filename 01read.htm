@@ -1,0 +1,642 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index4.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index4.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+}
+</style>
+
+<span><a href="cao##-key.htm"><img src="exam3.png"></a>
+<a href="cao##w-test.htm"><img src="exam.png"></a>
+<a href="cao##w-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+
+<center>01信念<center>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>我的家庭 我來自南投。我曾經有一個幸福的家庭。
+我的祖父一生都在南投生活，我的父親也是 </span></span></th><th>
+My Family I am from <span class='pp'>Nantou</span>. I used to have a happy family. 
+My <span class='tooltip'>grandfather<span class='tooltip-text'  onclick="speakText('grandfather')"><IMG SRC='speak.png'>祖父</span></span> spent his whole life in <span class='pp'>Nantou</span>. So did my father. <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'> 我的祖父從未受過任何正規教育。他非常貧窮。
+他沒有土地，卻要養活許多人。</span></span></th><th>
+My grandfather never had any <span class='tooltip'>formal<span class='tooltip-text'  onclick="speakText('formal')"><IMG SRC='speak.png'>正式的</span></span> education. He was very poor.
+He had no land,  but he had many <span class='tooltip'>mouths<span class='tooltip-text'  onclick="speakText('mouths')"><IMG SRC='speak.png'>嘴巴</span></span> to feed. <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>他的夢想是擁有自己的農場，所以他努力工作，最後存夠了錢買下了從地主那裡租來的土地 </span></span></th><th>
+His dream was to have his own farm,  so he worked very hard and finally saved enough money to buy the land that he rented from his <span class='tooltip'>landlord<span class='tooltip-text'  onclick="speakText('landlord')"><IMG SRC='speak.png'>地主</span></span> . <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>由於他的努力，他的夢想實現了 </span></span></th><th>
+His dream came true because of his hard work. <br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>我的父親很幸運，因為他是唯一的兒子，所以他可以繼承我祖父的土地</span></span></th><th>
+My father was <span class='tooltip'>lucky<span class='tooltip-text'  onclick="speakText('lucky')"><IMG SRC='speak.png'>幸運的</span></span> in the <span class='tooltip'>sense<span class='tooltip-text'  onclick="speakText('sense')"><IMG SRC='speak.png'>感覺</span></span> that he could <span class='tooltip'>inherit<span class='tooltip-text'  onclick="speakText('inherit')"><IMG SRC='speak.png'>繼承</span></span> my grandfather's land as he was the only son. <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'> 但他並不富裕。他有一個農場，但收入很低。他受教育程度不高，只是個小學畢業生</span></span></th><th>
+But he was not rich. He had a farm,  but his income was low.
+He <span class='tooltip'>received<span class='tooltip-text'  onclick="speakText('received')"><IMG SRC='speak.png'>已收到</span></span> little education,  he was just a <span class='tooltip'>primary school<span class='tooltip-text'  onclick="speakText('primary school')"><IMG SRC='speak.png'>小學</span></span> graduate. <br>
+</th></tr></table>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>然而，就像我的祖父一樣，他也有一個夢想。他的夢想是讓我上大學，成為一個有知識的人 </span></span></th><th>
+However,  he had a <span class='tooltip'>dream<span class='tooltip-text'  onclick="speakText('dream')"><IMG SRC='speak.png'>夢</span></span>,  too,  just like my grandfather. 
+His dream was for me to go to college in order to become an educated person. <br>
+</th></tr></table>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>他經常對我說：“當農民過不上好日子。我希望你能過得比我好。</span></span></th><th>
+He often told me,  " Being a <span class='tooltip'>farmer<span class='tooltip-text'  onclick="speakText('farmer')"><IMG SRC='speak.png'>農民</span></span> does not make a <span class='tooltip'>decent<span class='tooltip-text'  onclick="speakText('decent')"><IMG SRC='speak.png'>體面的</span></span> living.
+I want you to live a better life than I. <br>
+</th></tr></table>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'> 教育是實現更美好生活和更美好未來的關鍵</span></span></th><th>
+Education is the key to a better life and a great <span class='tooltip'>future<span class='tooltip-text'  onclick="speakText('future')"><IMG SRC='speak.png'>未來</span></span>". <br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>我的母親是一位傳統女性，也是我父親在農場上最好的幫手，她也和父親有著同樣的夢想，她除了照顧我之外，總是鼓勵我努力學習</span></span></th><th>
+My mother,  a traditional woman who was the best helper to my father on the farm,  shared my father's dream as well.
+Besides taking good care of me,  she always <span class='tooltip'>encouraged<span class='tooltip-text'  onclick="speakText('encouraged')"><IMG SRC='speak.png'>鼓勵</span></span> me to study hard. <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>不幸的是，921大地震奪走了許多人的生命，讓很多人無家可歸，也奪走了我幸福的家庭</span></span></th><th>
+Unfortunately,  the 921 <span class='tooltip'>earthquake<span class='tooltip-text'  onclick="speakText('earthquake')"><IMG SRC='speak.png'>地震</span></span>,  which took away many lives and left many people <span class='tooltip'>homeless<span class='tooltip-text'  onclick="speakText('homeless')"><IMG SRC='speak.png'>無家可歸</span></span>,  also <span class='tooltip'>deprived<span class='tooltip-text'  onclick="speakText('deprived')"><IMG SRC='speak.png'>被剝奪</span></span> me of my happy family. <br>
+</th></tr></table>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>在那個可怕的夜晚，我是家裡唯一的倖存者。現在我完全孤單一人，但我永遠不會感到沮喪或失落</span></span></th><th>
+I was the only <span class='tooltip'>survivor<span class='tooltip-text'  onclick="speakText('survivor')"><IMG SRC='speak.png'>倖存者</span></span> in my family on that <span class='tooltip'>terrifying<span class='tooltip-text'  onclick="speakText('terrifying')"><IMG SRC='speak.png'>可怕的</span></span> night. <br>
+I am now <span class='tooltip'>entirely<span class='tooltip-text'  onclick="speakText('entirely')"><IMG SRC='speak.png'>完全</span></span> on my own,  but I will never feel <span class='tooltip'>discouraged<span class='tooltip-text'  onclick="speakText('discouraged')"><IMG SRC='speak.png'>灰心</span></span> or <span class='tooltip'>frustrated<span class='tooltip-text'  onclick="speakText('frustrated')"><IMG SRC='speak.png'>沮喪的</span></span> . <br>
+</th></tr></table>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>我將勇敢面對未來可能遇到的任何困難。我一定會努力完成大學，因為父親的信念總是提醒著我：知識創造財富 </span></span></th><th>
+I will <span class='tooltip'>bravely<span class='tooltip-text'  onclick="speakText('bravely')"><IMG SRC='speak.png'>勇敢地</span></span> face <span class='tooltip'>whatever<span class='tooltip-text'  onclick="speakText('whatever')"><IMG SRC='speak.png'>任何</span></span> <span class='tooltip'>difficulties<span class='tooltip-text'  onclick="speakText('difficulties')"><IMG SRC='speak.png'>困難</span></span> that may lie ahead. I will <span class='tooltip'>definitely<span class='tooltip-text'  onclick="speakText('definitely')"><IMG SRC='speak.png'>確實</span></span> work my way through college because I am always <span class='tooltip'>reminded<span class='tooltip-text'  onclick="speakText('reminded')"><IMG SRC='speak.png'>提醒</span></span> by my father's <span class='tooltip'>conviction<span class='tooltip-text'  onclick="speakText('conviction')"><IMG SRC='speak.png'>信念</span></span> that knowledge builds wealth. <br>
+</th></tr></table>
+
+<center>閱讀測驗</center>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>文章稱，作者祖父的夢想是 </span></span></th><th>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：</span></span>
+1.According to the <span class='tooltip'>article<span class='tooltip-text'  onclick="speakText('article')"><IMG SRC='speak.png'>文章</span></span>,  the dream of the writer's grandfather was to <br>
+(A)get rich　(B)become educated　(C)own a farm　(D)be a landlord <br>
+</th></tr></table>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'> 以下關於作者父親的說法正確的是</span></span></th><th>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：(A)他因為當農夫而賺大錢 (B)他總是鼓勵他的兒子努力讀書 (C)他的夢想是去上大學 (D)他喜歡當農夫。</span></span>
+2.Which of the following is true about the writer's father ? <br>
+(A)He made much money by working as a farmer.　(B)He always encouraged his son to study hard.　(C)His dream was to go to college.　(D)He enjoyed being a farmer. <br>
+</th></tr></table>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'> 下列哪一項關於作者母親的敘述可能不正確？</span></span></th><th>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：(A)她以前把她的兒子照顧得很好 (B)她從未在農田裡工作 (C)她要她的兒子上大學 (D)她死於地震。</span></span>
+3. Which of the following is probably NOT true about the writer's mother ? <br>
+(A)She used to take good care of her son.　(B)She never worked on the farm.　(C)She wanted her son to go to college.　 (D)She died in the earthquake. <br>
+</th></tr></table>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>「信念」這個字最有可能的意思是 </span></span></th><th>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：(A)堅定的信仰 (B)低收入 (C)大學教育 (D)真實的故事</span></span>
+4.The word "conviction" most likely means <br>
+(A)firm belief　(B)low income　(C)college education　(D)true story <br>
+</th></tr></table>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>根據故事情節，下列哪一項是不正確的？ </span></span></th><th>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：(A)地震帶走許多生命 (B)地震使許多家庭無家可歸 (C)作者似乎堅強得足以面對新生 (D)作者永遠不會忘記父親的財富</span></span>
+5.Which of the following is NOT true according to the story ? <br>
+(A)The earthquake took away many lives.　(B)The earthquake made many families homeless.　(C)The writer seems to be strong enough to face new life.　(D)The writer will never forget his father's wealth. <br>
+</th></tr></table>
+</div>
+<BR><BR><BR><BR><BR><BR>

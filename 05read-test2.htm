@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+<script>
+const wordDatabase = [
+{ en: "dieting", zh: "節食"},
+{ en: "exercise", zh: "練習"},
+{ en: "programs", zh: "計劃、程式"},
+{ en: "extra", zh: "額外的"},
+{ en: "pounds", zh: "磅"},
+{ en: "emphasis", zh: "強調"},
+{ en: "perfect", zh: "完美的"},
+{ en: "slightly", zh: "輕微地"},
+{ en: "overweight", zh: "超重"},
+{ en: "ugly", zh: "醜陋的"},
+{ en: "self-image", zh: "自我形象"},
+{ en: "actually", zh: "實際上"},
+{ en: "harmful", zh: "有害"},
+{ en: "weight-loss", zh: "減肥"},
+{ en: "tricks", zh: "技巧"},
+{ en: "needlessly", zh: "不必要的"},
+{ en: "secret", zh: "秘密"},
+{ en: "rarely", zh: "很少地"},
+{ en: "unhealthy", zh: "不良"},
+{ en: "concern", zh: "憂慮"},
+{ en: "matter", zh: "事情"},
+{ en: "fashion", zh: "時尚"},
+{ en: "fatness", zh: "肥胖"},
+{ en: "serious", zh: "嚴肅的"},
+{ en: "problems", zh: "問題"},
+{ en: "among", zh: "當中"},
+{ en: "disease", zh: "疾病"},
+{ en: "regularly", zh: "經常"},
+{ en: "extremely", zh: "極為"},
+{ en: "proper", zh: "適當的"},
+{ en: "concentrations", zh: "濃度"},
+{ en: "hamburgers", zh: "漢堡"},
+{ en: "avoided", zh: "避免"},
+{ en: "vegetables", zh: "蔬菜"},
+{ en: "fruit", zh: "水果"},
+{ en: "statements", zh: "語句"},
+{ en: "overemphasize", zh: "過度強調"},
+{ en: "trick", zh: "騙局、詭計"},
+{ en: "according", zh: "根據"},
+{ en: "passage", zh: "頻道"},
+{ en: "properly", zh: "適當地"}
+];
+</script>
+
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fffaf0;
+        }
+        .container {
+            background-color: #F1FF78;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #8b4513;
+            text-align: center;
+        }
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fffacd;
+            border-radius: 5px;
+            border: 1px solid #e6d8ac;
+        }
+       .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+	   grid-template-columns: repeat(4, 1fr);
+        }
+
+
+	@media (max-width: 600px) {
+	.options{
+	grid-template-columns: repeat(2, 1fr);
+	}}
+     
+        .option {
+            padding: 15px;
+            background-color:  #FFF878 ;
+            border: 1px solid #e6d8ac;
+	    color:#000;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+        .option:hover {
+            background-color: #f5e6b3;
+            transform: translateY(-2px);
+        }
+        .score {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #8b4513;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #FF5084; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #b8860b;
+        }
+        .result {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            min-height: 27px;
+            padding: 10px;
+            background-color: #fffacd;
+            border-radius: 5px;
+        }
+        .correct {
+            background-color: #8fbc8f !important;
+            color: white;
+        }
+        .incorrect {
+            background-color: #cd5c5c !important;
+            color: white;
+        }
+        .progress-container {
+            width: 100%;
+            background-color: #f5e6b3;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #d2b48c;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+	<h1><a href="#" onclick="history.back()"><img src="home2.png"></a>中文選英文測驗</h1>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+        <div class="score" id="score">分數: 0 / 0</div>
+        <div class="question" id="question">準備開始測驗...</div>
+        <div class="options" id="options">
+            <!-- 選項將由JavaScript動態生成 -->
+        </div>
+        <div class="result" id="result"></div>
+        <div class="controls">
+            <button id="startBtn">開始測驗</button>
+            <button id="nextBtn" style="display:none;" disabled >下一題</button>
+        </div>
+    </div>
+
+<script>
+
+// 獲取DOM元素
+const startBtn = document.getElementById('startBtn');
+const nextBtn = document.getElementById('nextBtn');
+const questionEl = document.getElementById('question');
+const optionsEl = document.getElementById('options');
+const resultEl = document.getElementById('result');
+const scoreEl = document.getElementById('score');
+const progressBar = document.getElementById('progress');
+
+// 測驗變數
+let currentQuestionIndex = 0;
+let score = 0;
+let questions = [];
+let quizActive = false;
+
+// 開始測驗
+startBtn.addEventListener('click', startQuiz);
+
+// 下一題
+nextBtn.addEventListener('click', () => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        showQuestion();
+    } else {
+        endQuiz();
+    }
+});
+
+// 開始測驗函數 (改為10題)
+function startQuiz() {
+    // 重置測驗狀態
+    score = 0;
+
+    const btn = document.getElementById('startBtn');
+    btn.style.display = 'none';
+
+    const nBtn = document.getElementById('nextBtn');
+    nBtn.style.display = 'block';
+
+    currentQuestionIndex = 0;
+    quizActive = true;
+    
+    // 打亂單字庫並選擇前10個作為測驗題目
+    questions = [...wordDatabase].sort(() => 0.5 - Math.random()).slice(0, 10);
+    
+    // 更新UI
+    startBtn.disabled = true;
+    nextBtn.disabled = false;
+    resultEl.textContent = '';
+    scoreEl.textContent = `分數: ${score} / ${questions.length}`;
+    progressBar.style.width = '0%';
+    
+    // 顯示第一題
+    showQuestion();
+}
+
+// 顯示問題函數 (改為顯示中文問題，英文選項)
+function showQuestion() {
+    if (!quizActive) return;
+    
+    const question = questions[currentQuestionIndex];
+    const options = getRandomOptions(question.zh); // 改為根據中文找英文選項
+    
+    // 顯示問題 (中文)
+    questionEl.textContent = `"${question.zh}" 的英文是什麼？`;
+    
+    // 顯示選項 (6個英文選項)
+    optionsEl.innerHTML = '';
+    options.forEach(option => {
+        const button = document.createElement('button');
+        button.classList.add('option');
+        button.textContent = option.en; // 顯示英文選項
+        button.addEventListener('click', () => selectAnswer(option, button));
+        optionsEl.appendChild(button);
+    });
+    
+    // 更新進度條
+    progressBar.style.width = `${(currentQuestionIndex / questions.length) * 100}%`;
+}
+
+// 獲取隨機選項 (包含正確答案共6個)
+function getRandomOptions(correctZh) {
+    // 找到正確答案
+    const correctAnswer = wordDatabase.find(item => item.zh === correctZh);
+    
+    // 獲取其他隨機單字作為錯誤選項
+    let otherWords = wordDatabase.filter(item => item.zh !== correctZh);
+    otherWords = [...otherWords].sort(() => 0.5 - Math.random()).slice(0, 5); // 取5個錯誤選項
+    
+    // 組合選項 (共6個)
+    const options = [
+        { en: correctAnswer.en, zh: correctZh, isCorrect: true },
+        ...otherWords.map(word => ({ en: word.en, zh: word.zh, isCorrect: false }))
+    ];
+    
+    // 打亂選項順序
+    return options.sort(() => 0.5 - Math.random());
+}
+
+// 選擇答案函數 (簡化結果顯示)
+function selectAnswer(selectedOption, selectedButton) {
+    if (!quizActive) return;
+    
+    // 禁用所有選項按鈕
+    const allButtons = optionsEl.querySelectorAll('.option');
+    allButtons.forEach(button => {
+        button.disabled = true;
+        // 顯示正確答案
+        const isCorrect = button.textContent === questions[currentQuestionIndex].en;
+        if (isCorrect) {
+            button.classList.add('correct');
+        }
+    });
+    
+    // 檢查答案
+    if (selectedOption.isCorrect) {
+        score++;
+        resultEl.textContent = `正確！`;
+        selectedButton.classList.add('correct');
+    } else {
+        resultEl.textContent = `錯誤！正確答案是: ${questions[currentQuestionIndex].en}`;
+        selectedButton.classList.add('incorrect');
+    }
+    
+    // 更新分數
+    scoreEl.textContent = `分數: ${score} / ${questions.length}`;
+    
+    // 如果是最後一題，更改按鈕文字
+    if (currentQuestionIndex === questions.length - 1) {
+        nextBtn.textContent = '查看結果';
+    }
+    
+    // 啟用下一題按鈕
+    nextBtn.disabled = false;
+}
+
+// 結束測驗函數
+function endQuiz() {
+    quizActive = false;
+    questionEl.textContent = `測驗完成！你的最終分數是 ${score} / ${questions.length}`;
+    optionsEl.innerHTML = '';
+    resultEl.textContent = '';
+    nextBtn.disabled = true;
+    nextBtn.textContent = '下一題';
+
+    const nBtn = document.getElementById('nextBtn');
+    nBtn.style.display = 'none';
+
+    const btn = document.getElementById('startBtn');
+    btn.style.display = 'block';
+
+    startBtn.disabled = false;
+    progressBar.style.width = '100%';
+}
+</script>

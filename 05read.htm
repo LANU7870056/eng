@@ -1,0 +1,617 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+}
+</style>
+
+<span><a href="05read-key.htm"><img src="exam3.png"></a>
+<a href="05read-test.htm"><img src="exam.png"></a>
+<a href="05read-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+
+<center>05運動減肥</center>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>美國人以節食聞名</span></span></th><th>
+Americans are famous for <span class='tooltip'>dieting<span class='tooltip-text'  onclick="speakText('dieting')"><IMG SRC='speak.png'>節食</span></span>. <BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>他們在食物上花費很多錢，但在幫助他們減掉多餘體重的運動和飲食計劃上花費更多。</span></span></th><th>
+They spend a lot of money on food,  but then spend much more on <span class='tooltip'>exercise<span class='tooltip-text'  onclick="speakText('exercise')"><IMG SRC='speak.png'>練習</span></span> and diet <span class='tooltip'>programs<span class='tooltip-text'  onclick="speakText('programs')"><IMG SRC='speak.png'>計劃、程式</span></span> that help them remove their <span class='tooltip'>extra<span class='tooltip-text'  onclick="speakText('extra')"><IMG SRC='speak.png'>額外的</span></span> <span class='tooltip'>pounds<span class='tooltip-text'  onclick="speakText('pounds')"><IMG SRC='speak.png'>磅</span></span>. <BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>確實，美國人過於強調完美的身材，因此很多稍微超重的人都覺得自己又胖又醜</span></span></th><th>
+It is true that Americans put too much <span class='tooltip'>emphasis<span class='tooltip-text'  onclick="speakText('emphasis')"><IMG SRC='speak.png'>強調</span></span> on the <span class='tooltip'>perfect<span class='tooltip-text'  onclick="speakText('perfect')"><IMG SRC='speak.png'>完美的</span></span> body,  so that many people who are only <span class='tooltip'>slightly<span class='tooltip-text'  onclick="speakText('slightly')"><IMG SRC='speak.png'>輕微地</span></span> <span class='tooltip'>overweight<span class='tooltip-text'  onclick="speakText('overweight')"><IMG SRC='speak.png'>超重</span></span> feel that they are fat and <span class='tooltip'>ugly<span class='tooltip-text'  onclick="speakText('ugly')"><IMG SRC='speak.png'>醜陋的</span></span>. <BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>醫生們一致認為，這種糟糕的自我形像其實比體重增加對健康的傷害更大</span></span></th><th>
+Doctors agree that such a bad <span class='tooltip'>self-image<span class='tooltip-text'  onclick="speakText('self-image')"><IMG SRC='speak.png'>自我形象</span></span> is <span class='tooltip'>actually<span class='tooltip-text'  onclick="speakText('actually')"><IMG SRC='speak.png'>實際上</span></span> more <span class='tooltip'>harmful<span class='tooltip-text'  onclick="speakText('harmful')"><IMG SRC='speak.png'>有害</span></span> to the health than a little <span class='tooltip'>extra<span class='tooltip-text'  onclick="speakText('extra')"><IMG SRC='speak.png'>額外的</span></span> weight. <BR>
+</th></tr></table><hr>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>許多減肥計劃確實只是一些花招；人們不必要地花錢購買快速減肥的秘密方法，但這樣的計劃很少有效，而且往往不健康。</span></span></th><th>
+It is also true that many of the <span class='tooltip'>weight-loss<span class='tooltip-text'  onclick="speakText('weight-loss')"><IMG SRC='speak.png'>減肥</span></span> programs are only <span class='tooltip'>tricks<span class='tooltip-text'  onclick="speakText('tricks')"><IMG SRC='speak.png'>技巧</span></span>;
+people spend their money <span class='tooltip'>needlessly<span class='tooltip-text'  onclick="speakText('needlessly')"><IMG SRC='speak.png'>不必要的</span></span> on <span class='tooltip'>secret<span class='tooltip-text'  onclick="speakText('secret')"><IMG SRC='speak.png'>秘密</span></span> methods for losing weight quickly,  but such programs <span class='tooltip'>rarely<span class='tooltip-text'  onclick="speakText('rarely')"><IMG SRC='speak.png'>很少地</span></span> work and often are <span class='tooltip'>unhealthy<span class='tooltip-text'  onclick="speakText('unhealthy')"><IMG SRC='speak.png'>不良</span></span>. <BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>然而 ,  美國人對於體重超重的擔憂並不僅僅是一個時尚問題 </span></span></th><th>
+However,  the American <span class='tooltip'>concern<span class='tooltip-text'  onclick="speakText('concern')"><IMG SRC='speak.png'>憂慮</span></span> about being <span class='tooltip'>overweight<span class='tooltip-text'  onclick="speakText('overweight')"><IMG SRC='speak.png'>超重</span></span> is not just a <span class='tooltip'>matter<span class='tooltip-text'  onclick="speakText('matter')"><IMG SRC='speak.png'>事情</span></span> of <span class='tooltip'>fashion<span class='tooltip-text'  onclick="speakText('fashion')"><IMG SRC='speak.png'>時尚</span></span>. <BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>肥胖會導致嚴重的健康問題，其中包括美國人的頭號殺手：心臟病</span></span></th><th>
+<span class='tooltip'>Fatness<span class='tooltip-text'  onclick="speakText('Fatness')"><IMG SRC='speak.png'>肥胖</span></span> can cause <span class='tooltip'>serious<span class='tooltip-text'  onclick="speakText('serious')"><IMG SRC='speak.png'>嚴肅的</span></span> health <span class='tooltip'>problems<span class='tooltip-text'  onclick="speakText('problems')"><IMG SRC='speak.png'>問題</span></span>,  and <span class='tooltip'>among<span class='tooltip-text'  onclick="speakText('among')"><IMG SRC='speak.png'>當中</span></span> them is the number one killer of Americans: heart <span class='tooltip'>disease<span class='tooltip-text'  onclick="speakText('disease')"><IMG SRC='speak.png'>疾病</span></span>. <BR>
+</th></tr></table><hr>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>減肥其實只有一種方法：經常運動並且少吃</span></span></th><th>
+There is really only one way to lose weight: exercise <span class='tooltip'>regularly<span class='tooltip-text'  onclick="speakText('regularly')"><IMG SRC='speak.png'>經常</span></span> and eat less. <BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>當然，當少吃的時候，選擇合適的食物就變得極為重要</span></span></th><th>
+Of course,  when eating less,  it becomes <span class='tooltip'>extremely<span class='tooltip-text'  onclick="speakText('extremely')"><IMG SRC='speak.png'>極為</span></span> important to choose <span class='tooltip'>proper<span class='tooltip-text'  onclick="speakText('proper')"><IMG SRC='speak.png'>適當的</span></span> foods. <BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>應避免食用諸如漢堡包之類的油炸和高脂肪食物，必需多吃常被規避的蔬菜和水果</span></span></th><th>
+Foods that are fried and have high <span class='tooltip'>concentrations<span class='tooltip-text'  onclick="speakText('concentrations')"><IMG SRC='speak.png'>濃度</span></span> of fat,  such as <span class='tooltip'>hamburgers<span class='tooltip-text'  onclick="speakText('hamburgers')"><IMG SRC='speak.png'>漢堡</span></span>,  must be <span class='tooltip'>avoided<span class='tooltip-text'  onclick="speakText('avoided')"><IMG SRC='speak.png'>避免</span></span> in favor of <span class='tooltip'>vegetables<span class='tooltip-text'  onclick="speakText('vegetables')"><IMG SRC='speak.png'>蔬菜</span></span> and <span class='tooltip'>fruit<span class='tooltip-text'  onclick="speakText('fruit')"><IMG SRC='speak.png'>水果</span></span>. <BR>
+</th></tr></table><hr>
+
+<center>閱讀測驗 </center>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>D下列那項食物人們應該設法不要去吃？(A)柳橙　(B)香蕉 　(C)胡蘿蔔　(D)炸雞</span></span></th><th>
+1.Which of the foods below should people try not to eat ? <BR>
+(A)Oranges.　 (B)Bananas 　(C)Carrots.　(D)Fried Chicken. <BR>
+</th></tr></table><hr>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>C下列何者為非?(A)美國人因節食出名。　(B)美國人過分強調完美身材。　(C)一個不好的自我形象不會像肥胖一樣傷害我們的健康。　(D)心臟病是美國人的頭號殺手。</span></span></th><th>
+2.Which of the follwing <span class='tooltip'>statements<span class='tooltip-text'  onclick="speakText('statements')"><IMG SRC='speak.png'>語句</span></span> is NOT true ? <BR>
+(A)Americans are well-known for dieting. <BR>
+(B)Americans <span class='tooltip'>overemphasize<span class='tooltip-text'  onclick="speakText('overemphasize')"><IMG SRC='speak.png'>過度強調</span></span> the perfect body. <BR>
+(C)A bad self-image won't hurt health as much as <span class='tooltip'>fatness<span class='tooltip-text'  onclick="speakText('fatness')"><IMG SRC='speak.png'>肥胖</span></span> does. <BR>
+(D)Heart <span class='tooltip'>disease<span class='tooltip-text'  onclick="speakText('disease')"><IMG SRC='speak.png'>疾病</span></span> is the number one killer of Americans. <BR>
+</th></tr></table><hr>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>D下列何者聽起來像是騙局？(A)一本關於如何烹煮健康晚餐的書　(B)一個幫助人們做更多運動的節食計畫　(C)一本關於如何多吃水果和青菜的書　(D)一個宣稱在三週內可以減去五十磅的節食計畫</span></span></th><th>
+3.Which of the following things sounds like a <span class='tooltip'>trick<span class='tooltip-text'  onclick="speakText('trick')"><IMG SRC='speak.png'>騙局、詭計</span></span> ? <BR>
+(A)A book about how to cook healthy dinners. <BR>
+(B)A diet program that helps people to <span class='tooltip'>exercise<span class='tooltip-text'  onclick="speakText('exercise')"><IMG SRC='speak.png'>鍛鍊</span></span> more. <BR>
+(C)A book about how to eat more fruit and <span class='tooltip'>vegetables<span class='tooltip-text'  onclick="speakText('vegetables')"><IMG SRC='speak.png'>蔬菜</span></span>. <BR>
+(D)A diet program that tells people they can lose fifty pounds in three weeks. <BR>
+</th></tr></table><hr>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>C人們為何應該設法不要變胖？(A)體重過重是一個騙局　(B)體重過重是流行　(C)體重過重會使健康產生問題　(D)體重過重的人給他們的醫生不好的自我形象。</span></span></th><th>
+4.Why should people try not to become <span class='tooltip'>overweight<span class='tooltip-text'  onclick="speakText('overweight')"><IMG SRC='speak.png'>超重</span></span>?<br>
+(A)Being overweight is a trick. <BR>
+(B)Being <span class='tooltip'>overweight<span class='tooltip-text'  onclick="speakText('overweight')"><IMG SRC='speak.png'>超重</span></span> is a <span class='tooltip'>fashion<span class='tooltip-text'  onclick="speakText('fashion')"><IMG SRC='speak.png'>時尚</span></span>. <BR>
+(C)Being <span class='tooltip'>overweight<span class='tooltip-text'  onclick="speakText('overweight')"><IMG SRC='speak.png'>超重</span></span> can cause health problems. <BR>
+(D)<span class='tooltip'>Overweight<span class='tooltip-text'  onclick="speakText('Overweight')"><IMG SRC='speak.png'>超重</span></span> people give their doctors had self-images. <BR>
+</th></tr></table><hr>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>D根據本文，最佳的減肥方法是什麼？(A)吃更多　(B)少喝　(C)適當地工作　(D)定期運動。</span></span></th><th>
+5.<span class='tooltip'>According<span class='tooltip-text'  onclick="speakText('According')"><IMG SRC='speak.png'>根據</span></span> to the <span class='tooltip'>passage<span class='tooltip-text'  onclick="speakText('passage')"><IMG SRC='speak.png'>頻道</span></span>,  what might be best way to lose weight ? <BR>
+(A)Eat more.　(B)Drink less.　(C)Work <span class='tooltip'>properly<span class='tooltip-text'  onclick="speakText('properly')"><IMG SRC='speak.png'>適當地</span></span> 　(D)<span class='tooltip'>Exercise<span class='tooltip-text'  onclick="speakText('Exercise')"><IMG SRC='speak.png'>鍛鍊</span></span> <span class='tooltip'>regularly<span class='tooltip-text'  onclick="speakText('regularly')"><IMG SRC='speak.png'>常</span></span>. <BR>
+</div>
+
+<BR><BR><BR><BR><BR><BR><BR>

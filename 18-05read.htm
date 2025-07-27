@@ -1,0 +1,703 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index4.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index4.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #fff8dc; 
+}
+
+spanr {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #FF91A7; 
+}
+
+spanb {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #78D2FF; 
+}
+
+spany {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color:#FFDD78; 
+}
+
+
+</style>
+
+<span><a href="18-05read-key.htm"><img src="exam3.png"></a>
+<a href="18-05read-test.htm"><img src="exam.png"></a>
+<a href="18-05read-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+
+
+<center>05博物館</center>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>近年來，博物館向公眾展示展品的方式發生了許多變化</span></span></th><th>
+In recent years,  there have been many changes in the way <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span> <span class='tooltip'>present<span class='tooltip-text'  onclick="speakText('present')"><IMG SRC='speak.png'>展示</span></span> their <span class='tooltip'>exhibits<span class='tooltip-text'  onclick="speakText('exhibits')"><IMG SRC='speak.png'>展品</span></span> to the public.<br>
+</th></tr></table>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>佈滿灰塵的大房間內擺滿了玻璃櫃，玻璃櫃上貼著「請勿觸摸」的標誌，這樣的時代早已一去不復返了，而且博物館還可以免費入場</span></span></th><th>
+The days of large,  <span class='tooltip'>dusty<span class='tooltip-text'  onclick="speakText('dusty')"><IMG SRC='speak.png'>塵土飛揚</span></span> rooms full of glass cases with "DO NOT TOUCH" signs on them are long gone,  together with free <span class='tooltip'>admission<span class='tooltip-text'  onclick="speakText('admission')"><IMG SRC='speak.png'>入場</span></span> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>直到最近，英國的大多數博物館開始收取門票</span></span></th><th>
+Until <span class='tooltip'>recently<span class='tooltip-text'  onclick="speakText('recently')"><IMG SRC='speak.png'>最近</span></span>,  most <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span> in Britain did not charge <span class='tooltip'>admission<span class='tooltip-text'  onclick="speakText('admission')"><IMG SRC='speak.png'>入場</span></span> fees.<br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>他們獲得了政府的資助，用於支付博物館的營運費用</span></span></th><th>
+They <span class='tooltip'>received<span class='tooltip-text'  onclick="speakText('received')"><IMG SRC='speak.png'>已收到</span></span> a <span class='tooltip'>grant<span class='tooltip-text'  onclick="speakText('grant')"><IMG SRC='speak.png'>給予、授予</span></span> from the <span class='tooltip'>government<span class='tooltip-text'  onclick="speakText('government')"><IMG SRC='speak.png'>政府</span></span> which <span class='tooltip'>covered<span class='tooltip-text'  onclick="speakText('covered')"><IMG SRC='speak.png'>覆蓋</span></span> the cost of running the <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span>.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>這些補助已被取消或減少。</span></span></th><th>
+These <span class='tooltip'>grants<span class='tooltip-text'  onclick="speakText('grants')"><IMG SRC='speak.png'>補助金</span></span> have been <span class='tooltip'>abolished<span class='tooltip-text'  onclick="speakText('abolished')"><IMG SRC='speak.png'>廢除</span></span> or <span class='tooltip'>reduced<span class='tooltip-text'  onclick="speakText('reduced')"><IMG SRC='speak.png'>減少</span></span> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>因此，許多博物館現在都收取門票費用，並需要吸引大量遊客，以產生收入來維護建築物、支付員工工資、資助研究和修復服務以及購買新的展品。</span></span></th><th>
+<span class='tooltip'>Consequently<span class='tooltip-text'  onclick="speakText('Consequently')"><IMG SRC='speak.png'>最後</span></span>,  many <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span> now charge for <span class='tooltip'>admission<span class='tooltip-text'  onclick="speakText('admission')"><IMG SRC='speak.png'>入場</span></span> and need to <span class='tooltip'>attract<span class='tooltip-text'  onclick="speakText('attract')"><IMG SRC='speak.png'>吸引</span></span> large numbers of visitors in order to generate the income to <span class='tooltip'>maintain<span class='tooltip-text'  onclick="speakText('maintain')"><IMG SRC='speak.png'>維持</span></span> the building,  pay the staff,  <span class='tooltip'>finance research<span class='tooltip-text'  onclick="speakText('finance research')"><IMG SRC='speak.png'>財政研究</span></span> and <span class='tooltip'>restoration<span class='tooltip-text'  onclick="speakText('restoration')"><IMG SRC='speak.png'>恢復</span></span> <span class='tooltip'>services<span class='tooltip-text'  onclick="speakText('services')"><IMG SRC='speak.png'>服務</span></span>,  and buy new <span class='tooltip'>exhibits<span class='tooltip-text'  onclick="speakText('exhibits')"><IMG SRC='speak.png'>展品</span></span> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>為了讓人們相信購買昂貴的門票是值得的，博物館試圖讓他們的展覽更加明亮、更有吸引力</span></span></th><th>
+In order to persuade people that it is worth paying for a <span class='tooltip'>quite<span class='tooltip-text'  onclick="speakText('quite')"><IMG SRC='speak.png'>相當</span></span> <span class='tooltip'>expensive<span class='tooltip-text'  onclick="speakText('expensive')"><IMG SRC='speak.png'>昂貴的</span></span> admission ticket,  <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span> have <span class='tooltip'>tried<span class='tooltip-text'  onclick="speakText('tried')"><IMG SRC='speak.png'>嘗試過</span></span> to make their <span class='tooltip'>exhibitions<span class='tooltip-text'  onclick="speakText('exhibitions')"><IMG SRC='speak.png'>展覽</span></span> brighter and more appealing.<br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>許多博物館，特別是那些致力於科學和技術的博物館，現在都有「互動式展覽」，這意味著你實際上可以觸摸展品</span></span></th><th>
+Many <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span>,  <span class='tooltip'>especially<span class='tooltip-text'  onclick="speakText('especially')"><IMG SRC='speak.png'>特別</span></span> those <span class='tooltip'>devoted<span class='tooltip-text'  onclick="speakText('devoted')"><IMG SRC='speak.png'>發展</span></span> to science and technology,  now have <span class='tooltip'>interactive exhibits<span class='tooltip-text'  onclick="speakText('interactive exhibits')"><IMG SRC='speak.png'>互動式展覽</span></span> ,  which means that you can,  in fact,  touch the <span class='tooltip'>exhibits<span class='tooltip-text'  onclick="speakText('exhibits')"><IMG SRC='speak.png'>展品</span></span> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>這樣的展覽對孩子們很有吸引力。</span></span></th><th>
+Such <span class='tooltip'>exhibits<span class='tooltip-text'  onclick="speakText('exhibits')"><IMG SRC='speak.png'>展品</span></span> <span class='tooltip'>appeal<span class='tooltip-text'  onclick="speakText('appeal')"><IMG SRC='speak.png'>吸引力</span></span> <span class='tooltip'>strongly<span class='tooltip-text'  onclick="speakText('strongly')"><IMG SRC='speak.png'>強烈</span></span> to children.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>近年來發生的最大變化之一是大量教師受僱於博物館</span></span></th><th>
+One of the biggest changes to take place in recent years is that large numbers of teachers are now employed by <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span>.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>他們的任務是準備讓博物館對兒童和年輕人感興趣的材料，並向館長提供如何與學校和學院建立緊密聯繫的建議</span></span></th><th>
+<span2>Their task is to <span class='tooltip'>prepare<span class='tooltip-text'  onclick="speakText('prepare')"><IMG SRC='speak.png'>準備</span></span> <span class='tooltip'>material<span class='tooltip-text'  onclick="speakText('material')"><IMG SRC='speak.png'>材料</span></span> that makes the <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span> <span class='tooltip'>interesting<span class='tooltip-text'  onclick="speakText('interesting')"><IMG SRC='speak.png'>有趣的</span></span> 
+to children and young people</span2> and to <span class='tooltip'>advise<span class='tooltip-text'  onclick="speakText('advise')"><IMG SRC='speak.png'>建議</span></span> the <span class='tooltip'>curator<span class='tooltip-text'  onclick="speakText('curator')"><IMG SRC='speak.png'>館長</span></span> on <span2>how to create strong links with schools and colleges</span2>.<br>
+</th></tr></table>
+<br><br>
+<center>閱讀測驗</center>
+
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>最近，英國的博物館做出了一些改變以吸引更多的遊客，因為_____</span></span></th><th>
+16.<span class='tooltip'>Recently<span class='tooltip-text'  onclick="speakText('Recently')"><IMG SRC='speak.png'>最近</span></span> <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span> in Britain have made changes to <span class='tooltip'>attract<span class='tooltip-text'  onclick="speakText('attract')"><IMG SRC='speak.png'>吸引</span></span> more visitors because _____ <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：(A)他們需要對外樹立新形象 (B)他們需要靠自己支付所有博物館運作的費用 (C)
+他們想要和學校以及大學院校建立強大的連結 (D)他們已經移除「禁止觸碰」的標語
+</span></span></th><th>
+(A)they need to establish a new image with the outside world<br>
+(B)they need to cover the cost of running the <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span> by themselves<br>
+(C)they want to create strong links with schools and colleges<br>
+(D)they have removed the "DO NOT TOUCH" sign 
+</th></tr></table>
+
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>孩子們喜歡參觀科技博物館，因為___</span></span></th><th>
+17.Children enjoy visiting the science and <span class='tooltip'>technology<span class='tooltip-text'  onclick="speakText('technology')"><IMG SRC='speak.png'>科技</span></span> <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span> ma because ___ <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：(A)門票免費 (B)管理人員已經為孩子們製作了工作單 
+(C)他們喜歡互動式的展覽
+(D)他們喜歡修復工作
+</span></span></th><th>
+(A)the admissions are free<br>
+(B)curators have created <span class='tooltip'>worksheets<span class='tooltip-text'  onclick="speakText('worksheets')"><IMG SRC='speak.png'>工作表</span></span> for the children　 <br>
+(C)they like the <span class='tooltip'>interactive exhibits<span class='tooltip-text'  onclick="speakText('interactive exhibits')"><IMG SRC='speak.png'>互動式的展覽</span></span> <br>
+(D)they like the <span class='tooltip'>restoration services<span class='tooltip-text'  onclick="speakText('restoration services')"><IMG SRC='speak.png'>修復[恢復]服務</span></span> <br>
+</th></tr></table>
+
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>許多學校教師受僱於博物館來____</span></span></th><th>
+18.Many school teachers are <span class='tooltip'>employed<span class='tooltip-text'  onclick="speakText('employed')"><IMG SRC='speak.png'>受僱</span></span> by the <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span> to ____ <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：(A)做些經濟上的研究以及圖片修復 (B)為玻璃箱除塵 
+(C)賣門票 (D)協助建立與
+學校和大學院校之間的連結
+</span></span></th><th>
+(A)<span class='tooltip'>conduct<span class='tooltip-text'  onclick="speakText('conduct')"><IMG SRC='speak.png'>執行</span></span> <span class='tooltip'>financial research and to restore pictures<br>
+(B)dust off glass cases 
+(C)sell admission tickets<br>
+(D)help create links with schools and college
+</th></tr></table>
+
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'  onclick="speakText('financial research and to restore pictures<br>
+(B)dust off glass cases 
+(C)sell admission tickets<br>
+(D)help create links with schools and college
+</th></tr></table>
+
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'>')"><IMG SRC='speak.png'>過去，英國的大多數博物館都接受___來支付營運費用</span></span></th><th>
+19.In the past,  most <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span> in Britain received ___ to cover the of running.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：(A)政府方面的經濟資助 (B)社會大眾的捐款 (C)來自學生們的門票費用(D)靠修
+復工作所得的錢
+</span></span></th><th>
+(A)financial support from the government<br>
+(B)donations from the public<br>
+(C)admission fees from students<br>
+(D)money generated by restoration services.<br>
+</th></tr></table>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>根據文章，下列哪一個敘述是不正確的？</span></span></th><th>
+20.<span class='tooltip'>According<span class='tooltip-text'  onclick="speakText('According')"><IMG SRC='speak.png'>根據</span></span> to the <span class='tooltip'>passage<span class='tooltip-text'  onclick="speakText('passage')"><IMG SRC='speak.png'>頻道</span></span>,  which of the following <span class='tooltip'>statements<span class='tooltip-text'  onclick="speakText('statements')"><IMG SRC='speak.png'>語句</span></span> is not true ? <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：(A)在過去，大多數博物館都不收取門票費用。(B)人們埋怨入場門票很貴。(C)大
+量教師受雇於博物館。(D)在互動式展覽中，遊客是可以觸摸展覽品的。
+</span></span></th><th>
+(A)In the past,  most <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span> did not charge admissions.<br>
+(B)People are complaining about the expensive admission tickets.<br>
+(C)A large number of teachers are employed by <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span>.<br>
+(D)In interactive exhibits,  visitors are allowed to touch the exhibits.<br>
+</th></tr></table>
+
+</div>
+<br> <br><br><br>

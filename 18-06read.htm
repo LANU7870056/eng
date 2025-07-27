@@ -1,0 +1,622 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index4.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index4.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #fff8dc; 
+}
+
+spanr {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #FF91A7; 
+}
+
+spanb {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #78D2FF; 
+}
+
+spany {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color:#FFDD78; 
+}
+
+
+</style>
+
+<span><a href="18-06read-key.htm"><img src="exam3.png"></a>
+<a href="18-06read-test.htm"><img src="exam.png"></a>
+<a href="18-06read-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+
+<center>06 </center>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>美國公共和私人機構每年花費數百萬美元試圖勸說公民只「適量」飲酒或根本不飲酒，特別是在駕駛機動車輛時</span></span></th><th>
+American public and <span class='tooltip'>private<span class='tooltip-text'  onclick="speakText('private')"><IMG SRC='speak.png'>私人的</span></span> <span class='tooltip'>agencies<span class='tooltip-text'  onclick="speakText('agencies')"><IMG SRC='speak.png'>機構</span></span> spend <span class='tooltip'>millions<span class='tooltip-text'  onclick="speakText('millions')"><IMG SRC='speak.png'>百萬</span></span> of dollars <span class='tooltip'>annually<span class='tooltip-text'  onclick="speakText('annually')"><IMG SRC='speak.png'>每年</span></span> <span class='tooltip'>attempting<span class='tooltip-text'  onclick="speakText('attempting')"><IMG SRC='speak.png'>嘗試</span></span> to <span class='tooltip'>persuade<span class='tooltip-text'  onclick="speakText('persuade')"><IMG SRC='speak.png'>說服</span></span> <span class='tooltip'>citizens<span class='tooltip-text'  onclick="speakText('citizens')"><IMG SRC='speak.png'>國民</span></span> to drink alcohol only in "<span class='tooltip'>moderate<span class='tooltip-text'  onclick="speakText('moderate')"><IMG SRC='speak.png'>緩和</span></span> " <span class='tooltip'>amounts<span class='tooltip-text'  onclick="speakText('amounts')"><IMG SRC='speak.png'>金額</span></span> or not at all,  <span class='tooltip'>particularly<span class='tooltip-text'  onclick="speakText('particularly')"><IMG SRC='speak.png'>特別</span></span> when <span class='tooltip'>operating<span class='tooltip-text'  onclick="speakText('operating')"><IMG SRC='speak.png'>操作</span></span> a motor <span class='tooltip'>vehicle<span class='tooltip-text'  onclick="speakText('vehicle')"><IMG SRC='speak.png'>車輛</span></span> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>研究表明，這種宣傳和廣告方式幾乎完全無效</span></span></th><th>
+Studies <span class='tooltip'>indicate<span class='tooltip-text'  onclick="speakText('indicate')"><IMG SRC='speak.png'>表明</span></span> that this <span class='tooltip'>propaganda<span class='tooltip-text'  onclick="speakText('propaganda')"><IMG SRC='speak.png'>宣傳</span></span> and <span class='tooltip'>advertising<span class='tooltip-text'  onclick="speakText('advertising')"><IMG SRC='speak.png'>廣告</span></span> <span class='tooltip'>approach<span class='tooltip-text'  onclick="speakText('approach')"><IMG SRC='speak.png'>方法</span></span> is almost totally <span class='tooltip'>ineffective<span class='tooltip-text'  onclick="speakText('ineffective')"><IMG SRC='speak.png'>無效</span></span> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>全國的酒精消費量持續上升，與酒精有關的交通死亡人數（尤其是青少年駕駛者的死亡人數）也有所增加。</span></span></th><th>
+<span class='tooltip'>Alcohol<span class='tooltip-text'  onclick="speakText('Alcohol')"><IMG SRC='speak.png'>酒精</span></span> <span class='tooltip'>consumption<span class='tooltip-text'  onclick="speakText('consumption')"><IMG SRC='speak.png'>消耗</span></span> <span class='tooltip'>continues<span class='tooltip-text'  onclick="speakText('continues')"><IMG SRC='speak.png'>繼續</span></span> to rise <span class='tooltip'>nationally<span class='tooltip-text'  onclick="speakText('nationally')"><IMG SRC='speak.png'>全國範圍內</span></span>,  and alcohol-related <span class='tooltip'>traffic<span class='tooltip-text'  onclick="speakText('traffic')"><IMG SRC='speak.png'>交通</span></span> <span class='tooltip'>deaths<span class='tooltip-text'  onclick="speakText('deaths')"><IMG SRC='speak.png'>死亡人數</span></span>,  <span class='tooltip'>especially<span class='tooltip-text'  onclick="speakText('especially')"><IMG SRC='speak.png'>尤其</span></span> for teenage drivers,  have <span class='tooltip'>increased<span class='tooltip-text'  onclick="speakText('increased')"><IMG SRC='speak.png'>增加</span></span> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>與美國的做法相反，挪威對酒後駕駛的處罰嚴厲但有意義。</span></span></th><th>
+In <span class='tooltip'>contrast<span class='tooltip-text'  onclick="speakText('contrast')"><IMG SRC='speak.png'>對比</span></span> to the American <span class='tooltip'>approach<span class='tooltip-text'  onclick="speakText('approach')"><IMG SRC='speak.png'>方法</span></span>,  Norway has severe,  but <span class='tooltip'>meaningful<span class='tooltip-text'  onclick="speakText('meaningful')"><IMG SRC='speak.png'>有意義的</span></span>,  <span class='tooltip'>penalties<span class='tooltip-text'  onclick="speakText('penalties')"><IMG SRC='speak.png'>處罰</span></span> for driving while drunk.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>這些措施包括強制公共工作（在高速公路沿線撿垃圾）、不影響工作的強制監禁（挪威王室成員如果有罪也將受到同樣的懲罰）</span></span></th><th>
+These include <span class='tooltip'>periods<span class='tooltip-text'  onclick="speakText('periods')"><IMG SRC='speak.png'>期間</span></span> of <span class='tooltip'>compulsory<span class='tooltip-text'  onclick="speakText('compulsory')"><IMG SRC='speak.png'>強制性的</span></span> public work(picking up trash along
+highways),  <span class='tooltip'>mandatory<span class='tooltip-text'  onclick="speakText('mandatory')"><IMG SRC='speak.png'>強制的</span></span> jail <span class='tooltip'>sentences<span class='tooltip-text'  onclick="speakText('sentences')"><IMG SRC='speak.png'>句子</span></span> that do not interfere with one's work (a
+member of the Norwegian <span class='tooltip'>royal<span class='tooltip-text'  onclick="speakText('royal')"><IMG SRC='speak.png'>皇家</span></span> family will be <span class='tooltip'>equally<span class='tooltip-text'  onclick="speakText('equally')"><IMG SRC='speak.png'>同樣</span></span> <span class='tooltip'>punished<span class='tooltip-text'  onclick="speakText('punished')"><IMG SRC='speak.png'>受到懲罰</span></span> if <span class='tooltip'>guilty<span class='tooltip-text'  onclick="speakText('guilty')"><IMG SRC='speak.png'>有罪的</span></span> ).<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>因此，許多挪威人在城裡過夜時會搭乘計程車或司機不喝酒。</span></span></th><th>
+As a result,  many Norwegians use taxis or the drivers not drinking when <span class='tooltip'>spending<span class='tooltip-text'  onclick="speakText('spending')"><IMG SRC='speak.png'>開支</span></span> a night on the town.<br>
+</th></tr></table><HR>
+<center>閱讀測驗</center>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'></span></span></th><th>
+17.The example of the Norwegian royal family is used to <span class='tooltip'>illustrate<span class='tooltip-text'  onclick="speakText('illustrate')"><IMG SRC='speak.png'>闡明</span></span> ____.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：</span></span>(A)that no one is exempt from the penalty for drunk driving　(B)that some people are exempt from drunk driving penalties　(C)that a member of the Norwegian royal family is currently charged with drunk driving　(D)that the members of the Norwegian royal family have a problem with drunk driving <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'></span></span></th><th>
+18.The <span class='tooltip'>organizational<span class='tooltip-text'  onclick="speakText('organizational')"><IMG SRC='speak.png'>組織</span></span> <span class='tooltip'>pattern<span class='tooltip-text'  onclick="speakText('pattern')"><IMG SRC='speak.png'>圖案</span></span> of this <span class='tooltip'>passage<span class='tooltip-text'  onclick="speakText('passage')"><IMG SRC='speak.png'>頻道</span></span> can be <span class='tooltip'>described<span class='tooltip-text'  onclick="speakText('described')"><IMG SRC='speak.png'>描述</span></span> as ____.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：</span></span>(A)cause and effect　(B)process　(C)comparison and contrast　(D)generalization and examples <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'></span></span></th><th>
+19 .The example of <span class='tooltip'>Norwegians<span class='tooltip-text'  onclick="speakText('Norwegians')"><IMG SRC='speak.png'>挪威人</span></span> using taxis or the drivers not drinking is used to <span class='tooltip'>illustrate<span class='tooltip-text'  onclick="speakText('illustrate')"><IMG SRC='speak.png'>闡明</span></span> the fact that ____.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：</span></span>(A)<span class='tooltip'>underage<span class='tooltip-text'  onclick="speakText('underage')"><IMG SRC='speak.png'>未成年人</span></span> drinking in Norway is controlled　(B)underage drinking in Norway is excessive　(C)Norway's penalties deter drunk driving　(D)Norway's penalties do not cut down on drinking <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'></span></span></th><th>
+20 .The <span class='tooltip'>missile<span class='tooltip-text'  onclick="speakText('missile')"><IMG SRC='speak.png'>飛彈</span></span> <span class='tooltip'>missed<span class='tooltip-text'  onclick="speakText('missed')"><IMG SRC='speak.png'>錯過</span></span> its ___ by two <span class='tooltip'>miles<span class='tooltip-text'  onclick="speakText('miles')"><IMG SRC='speak.png'>英哩</span></span> .<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：</span></span>(A)fight　(B)head　(C)measurement　(D)target <br>

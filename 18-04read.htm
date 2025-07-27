@@ -1,0 +1,674 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index4.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index4.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #fff8dc; 
+}
+
+spanr {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #FF91A7; 
+}
+
+spanb {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #78D2FF; 
+}
+
+spany {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color:#FFDD78; 
+}
+
+
+</style>
+
+<span><a href="18-04read-key.htm"><img src="exam3.png"></a>
+<a href="18-04read-test.htm"><img src="exam.png"></a>
+<a href="18-04read-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+
+<center>04盲人摸象</center>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>大約在七年級的時候，許多美國學生就聽過《十個盲人摸象》的故事</span></span></th><th>
+Sometime <span class='tooltip'>around<span class='tooltip-text'  onclick="speakText('around')"><IMG SRC='speak.png'>大約</span></span> the <span class='tooltip'>seventh<span class='tooltip-text'  onclick="speakText('seventh')"><IMG SRC='speak.png'>第七</span></span> grade,  many American students are <span class='tooltip'>introduced<span class='tooltip-text'  onclick="speakText('introduced')"><IMG SRC='speak.png'>介紹</span></span> to <spanb>the <span class='tooltip'>tale<span class='tooltip-text'  onclick="speakText('tale')"><IMG SRC='speak.png'>故事</span></span> of 10 <span class='tooltip'>blind<span class='tooltip-text'  onclick="speakText('blind')"><IMG SRC='speak.png'>瞎子</span></span> men <span class='tooltip'>inspecting<span class='tooltip-text'  onclick="speakText('inspecting')"><IMG SRC='speak.png'>檢查</span></span> an <span class='tooltip'>elephant<span class='tooltip-text'  onclick="speakText('elephant')"><IMG SRC='speak.png'>大象</span></span></span2>.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>當每個盲人對這個生物得出不同的結論時，學生被邀請思考真理是否是絕對的，還是取決於旁觀者的眼光</span></span></th><th>
+When each blind man <span class='tooltip'>reaches<span class='tooltip-text'  onclick="speakText('reaches')"><IMG SRC='speak.png'>達到</span></span> different <span class='tooltip'>conclusions<span class='tooltip-text'  onclick="speakText('conclusions')"><IMG SRC='speak.png'>結論</span></span> about the <span class='tooltip'>creature<span class='tooltip-text'  onclick="speakText('creature')"><IMG SRC='speak.png'>生物</span></span>,  the students are <span class='tooltip'>invited<span class='tooltip-text'  onclick="speakText('invited')"><IMG SRC='speak.png'>邀請</span></span> to <span class='tooltip'>consider<span class='tooltip-text'  onclick="speakText('consider')"><IMG SRC='speak.png'>考慮</span></span> whether truth is <span class='tooltip'>absolute<span class='tooltip-text'  onclick="speakText('absolute')"><IMG SRC='speak.png'>絕對</span></span> or lies in the eye of the <span class='tooltip'>beholder<span class='tooltip-text'  onclick="speakText('beholder')"><IMG SRC='speak.png'>旁觀者</span></span>.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>當大學教授和管理人員衡量美國高等教育時，他們也許應該記住這個寓言</span></span></th><th>
+College <span class='tooltip'>professors<span class='tooltip-text'  onclick="speakText('professors')"><IMG SRC='speak.png'>教授們</span></span> and <span class='tooltip'>administrators<span class='tooltip-text'  onclick="speakText('administrators')"><IMG SRC='speak.png'>管理員</span></span> might want to <span class='tooltip'>remember<span class='tooltip-text'  onclick="speakText('remember')"><IMG SRC='speak.png'>記住</span></span> that <span class='tooltip'>fable<span class='tooltip-text'  onclick="speakText('fable')"><IMG SRC='speak.png'>寓言</span></span> when they take the <span class='tooltip'>measure<span class='tooltip-text'  onclick="speakText('measure')"><IMG SRC='speak.png'>測量、衡量</span></span> of American higher education.<br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>他們中的許多人往往只看到自己可能失去的東西，認為這頭野獸已經受傷，正遭受成本上升、資源減少和耗費生命的削減的衝擊</span></span></th><th>
+Many of them,  who tend to see only what they <span class='tooltip'>stand to<span class='tooltip-text'  onclick="speakText('stand to')"><IMG SRC='speak.png'>堅持</span></span> lose,  <span2><span class='tooltip'>perceive<span class='tooltip-text'  onclick="speakText('perceive')"><IMG SRC='speak.png'>感知</span></span> the <span class='tooltip'>beast<span class='tooltip-text'  onclick="speakText('beast')"><IMG SRC='speak.png'>野獸</span></span></span2> as <span class='tooltip'>wounded<span class='tooltip-text'  onclick="speakText('wounded')"><IMG SRC='speak.png'>受傷</span></span>, 
+<span class='tooltip'>suffering<span class='tooltip-text'  onclick="speakText('suffering')"><IMG SRC='speak.png'>痛苦</span></span> from the <span class='tooltip'>shocks<span class='tooltip-text'  onclick="speakText('shocks')"><IMG SRC='speak.png'>衝擊</span></span> of rising costs,  <span class='tooltip'>dwindling<span class='tooltip-text'  onclick="speakText('dwindling')"><IMG SRC='speak.png'>逐漸減少</span></span> <span class='tooltip'>resources<span class='tooltip-text'  onclick="speakText('resources')"><IMG SRC='speak.png'>資源</span></span> and <span class='tooltip'>life-draining<span class='tooltip-text'  onclick="speakText('life-draining')"><IMG SRC='speak.png'>消耗生命</span></span> <span class='tooltip'>cutbacks<span class='tooltip-text'  onclick="speakText('cutbacks')"><IMG SRC='speak.png'>削減</span></span>.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>但外國人在將美國大學與自己的大學比較時，往往會得出截然不同的結論</span></span></th><th>
+But <span class='tooltip'>foreigners<span class='tooltip-text'  onclick="speakText('foreigners')"><IMG SRC='speak.png'>外國人</span></span>,  who <span class='tooltip'>compare<span class='tooltip-text'  onclick="speakText('compare')"><IMG SRC='speak.png'>比較</span></span> America's <span class='tooltip'>universities<span class='tooltip-text'  onclick="speakText('universities')"><IMG SRC='speak.png'>大學</span></span> 
+with their own,  often reach very different <span class='tooltip'>conclusions<span class='tooltip-text'  onclick="speakText('conclusions')"><IMG SRC='speak.png'>結論</span></span> 
+about the <span2><span class='tooltip'>nature of the beast<span class='tooltip-text'  onclick="speakText('beast')"><IMG SRC='speak.png'>事情的本質</span></span></span2>.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>如果純粹的數字能夠提供證據的話，美國的大學和學院是全世界羨慕的對象</span></span></th><th>
+If <span class='tooltip'>sheer<span class='tooltip-text'  onclick="speakText('sheer')"><IMG SRC='speak.png'>純粹的</span></span> numbers <span class='tooltip'>provide<span class='tooltip-text'  onclick="speakText('provide')"><IMG SRC='speak.png'>提供</span></span> any <span class='tooltip'>proof<span class='tooltip-text'  onclick="speakText('proof')"><IMG SRC='speak.png'>證明</span></span>,  America's <span class='tooltip'>universities<span class='tooltip-text'  onclick="speakText('universities')"><IMG SRC='speak.png'>大學</span></span> and colleges are the <span class='tooltip'>envy<span class='tooltip-text'  onclick="speakText('envy')"><IMG SRC='speak.png'>嫉妒</span></span> of the world.<br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>儘管有種種問題，但去年美國3, 500所大學仍吸引了來自193個不同國家的407, 530名學生</span></span></th><th>
+For all their <span class='tooltip'>abiding<span class='tooltip-text'  onclick="speakText('abiding')"><IMG SRC='speak.png'>不變的</span></span> <span class='tooltip'>troubles<span class='tooltip-text'  onclick="speakText('troubles')"><IMG SRC='speak.png'>麻煩</span></span>,  the United States 3, 500 <span class='tooltip'>institutions<span class='tooltip-text'  onclick="speakText('institutions')"><IMG SRC='speak.png'>機構</span></span> were <span class='tooltip'>flooded<span class='tooltip-text'  onclick="speakText('flooded')"><IMG SRC='speak.png'>被淹沒</span></span> with 407, 530 students from 193 different <span class='tooltip'>countries<span class='tooltip-text'  onclick="speakText('countries')"><IMG SRC='speak.png'>國家</span></span> last year.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>亞洲學生人數最多，中國有39, 600 名學生，日本有 36, 610 名學生，其次是印度和加拿大。</span></span></th><th>
+Asia led the way with 39, 600 students from China and 36, 610 from Japan, 
+followed by India and Canada.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>許多外國人進入研究生和本科課程學習，人數大致相等</span></span></th><th>
+Many of the <span class='tooltip'>foreigners<span class='tooltip-text'  onclick="speakText('foreigners')"><IMG SRC='speak.png'>外國人</span></span> <span class='tooltip'>entered<span class='tooltip-text'  onclick="speakText('entered')"><IMG SRC='speak.png'>輸入</span></span> <span class='tooltip'>graduate<span class='tooltip-text'  onclick="speakText('graduate')"><IMG SRC='speak.png'>畢業</span></span> and <span class='tooltip'>undergraduate<span class='tooltip-text'  onclick="speakText('graduate')"><IMG SRC='speak.png'>大學部</span></span> programs in <span class='tooltip'>roughly<span class='tooltip-text'  onclick="speakText('roughly')"><IMG SRC='speak.png'>大致</span></span> equal numbers.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>大多數歐洲和亞洲的大學都為少數特權客戶提供精英服務。</span></span></th><th>
+Most European and Asian universities <span class='tooltip'>provide<span class='tooltip-text'  onclick="speakText('provide')"><IMG SRC='speak.png'>提供</span></span> an <span class='tooltip'>elite<span class='tooltip-text'  onclick="speakText('elite')"><IMG SRC='speak.png'>菁英</span></span> service to a small and <span class='tooltip'>privileged<span class='tooltip-text'  onclick="speakText('privileged')"><IMG SRC='speak.png'>特權</span></span> <span class='tooltip'>clientele<span class='tooltip-text'  onclick="speakText('clientele')"><IMG SRC='speak.png'>客戶</span></span>.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>儘管美國60%的高中畢業生會在人生的某個階段進入大學，但這部份在德國佔人口的比例僅為30%</span></span></th><th>
+
+While fully 60% of all U.S. high school <span class='tooltip'>graduates<span class='tooltip-text'  onclick="speakText('graduates')"><IMG SRC='speak.png'>畢業生</span></span> attend <span class='tooltip'>college<span class='tooltip-text'  onclick="speakText('college')"><IMG SRC='speak.png'>大學</span></span> at some point in their life,  just 30% of the <span class='tooltip'>comparable<span class='tooltip-text'  onclick="speakText('comparable')"><IMG SRC='speak.png'>可比</span></span> German <span class='tooltip'>population<span class='tooltip-text'  onclick="speakText('population')"><IMG SRC='speak.png'>人口</span></span>.<br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>28% 的法國人、20% 的英國人和 37% 的日本人完成了高中教育。</span></span></th><th>
+28% of the French,  20% of the British and 37% of the Japanese proceed <span class='tooltip'>beyond<span class='tooltip-text'  onclick="speakText('beyond')"><IMG SRC='speak.png'>超過</span></span> high school.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>德國學生通過高中畢業考試、通過高中畢業考試的英國學生可能仍然沒有資格進入他們國家的頂尖大學，但他們發現美國大學對學生更友善。</span></span></th><th>
+German students who <span class='tooltip'>survive<span class='tooltip-text'  onclick="speakText('survive')"><IMG SRC='speak.png'>存活</span></span> the Abitur or Britons who pass their A levels may still not <span class='tooltip'>qualify<span class='tooltip-text'  onclick="speakText('qualify')"><IMG SRC='speak.png'>資格</span></span> for a top university at home,  but find American <span class='tooltip'>universities<span class='tooltip-text'  onclick="speakText('universities')"><IMG SRC='speak.png'>大學</span></span> far more <span class='tooltip'>welcoming<span class='tooltip-text'  onclick="speakText('welcoming')"><IMG SRC='speak.png'>歡迎</span></span>.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>一些美國學校承認歐洲中學教育的嚴格性，並願意為通過高中考試的外國人可砥免一年的學分。</span></span></th><th>
+Some U.S. schools <span class='tooltip'>acknowledge<span class='tooltip-text'  onclick="speakText('acknowledge')"><IMG SRC='speak.png'>承認</span></span> the <span class='tooltip'>rigor<span class='tooltip-text'  onclick="speakText('rigor')"><IMG SRC='speak.png'>嚴格</span></span> of European <span class='tooltip'>secondary training<span class='tooltip-text'  onclick="speakText('secondary training')"><IMG SRC='speak.png'>中學教育</span></span> and will <span class='tooltip'>give up<span class='tooltip-text'  onclick="speakText('give up')"><IMG SRC='speak.png'>捨棄</span></span> to a year's <span class='tooltip'>credit<span class='tooltip-text'  onclick="speakText('credit')"><IMG SRC='speak.png'>學分</span></span> to <span class='tooltip'>foreigners<span class='tooltip-text'  onclick="speakText('foreigners')"><IMG SRC='speak.png'>外國人</span></span> who have passed their high school <span class='tooltip'>exams<span class='tooltip-text'  onclick="speakText('exams')"><IMG SRC='speak.png'>考試</span></span>.<br>
+</th></tr></table><hr>
+
+
+
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：</span></span>
+16.What do American college <span class='tooltip'>professors<span class='tooltip-text'  onclick="speakText('professors')"><IMG SRC='speak.png'>教授們</span></span> and <span class='tooltip'>administrators<span class='tooltip-text'  onclick="speakText('administrators')"><IMG SRC='speak.png'>管理員</span></span> believe about American universities ?
+(A)American universities are better than foreign universities.<br>
+(B)There is a financial crisis in American universities.<br>
+(C)American universities are well-equipped.<br>
+(D)The students in American universities are not as good as those in foreign universities.<br><hr>
+
+ <span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：</span></span>
+17.Asia led the way with 39, 600 students from China and 36, 610 from Japan,  followed by India and Canada." This statement means __.<br>
+
+(A)Asian students arrived first　(B)Chinese students were in front of Japanese students　(C)more students came from Asia than from anywhere else　(D)Indian students followed Japanese students <hr>
+
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：</span></span>
+18.The phrase "at some point in their life" in the third <span class='tooltip'>paragraph<span class='tooltip-text'  onclick="speakText('paragraph')"><IMG SRC='speak.png'>段落</span></span> means that most U.S.high school <span class='tooltip'>graduates<span class='tooltip-text'  onclick="speakText('graduates')"><IMG SRC='speak.png'>畢業生</span></span>__.<br>
+
+(A)enter college at the same age　(B)enter college before they get married　(C)enter college at different times　(D)seldom enter college <hr>
+
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：</span></span>
+19.<span class='tooltip'>According<span class='tooltip-text'  onclick="speakText('According')"><IMG SRC='speak.png'>根據</span></span> to this passage,  which of the following <span class='tooltip'>statements<span class='tooltip-text'  onclick="speakText('statements')"><IMG SRC='speak.png'>語句</span></span> is true ?
+(A)More U.S.high school graduates go to college than their European counterparts.<br>
+(B)More foreign students enter undergraduate schools than graduate schools.<br>
+(C)Most foreign students in American universities come from Canada.<br>
+(D)Secondary training in the U.S.is more difficult than that in Europe.<br><hr>
+
+ <span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：</span></span>
+20.Why does the <span class='tooltip'>author<span class='tooltip-text'  onclick="speakText('author')"><IMG SRC='speak.png'>作者</span></span> begin the <span class='tooltip'>passage<span class='tooltip-text'  onclick="speakText('passage')"><IMG SRC='speak.png'>頻道</span></span> with the fable of the <span class='tooltip'>elephant<span class='tooltip-text'  onclick="speakText('elephant')"><IMG SRC='speak.png'>大象</span></span> ?
+(A)The author thinks it is meaningless to define an elephant.<br>
+(B)The author wants to emphasize that a blind man can never know what an elephant is like.<br>
+(C)The author is <span class='tooltip'>especially<span class='tooltip-text'  onclick="speakText('especially')"><IMG SRC='speak.png'>尤其</span></span> interested in <span class='tooltip'>elephants<span class='tooltip-text'  onclick="speakText('elephants')"><IMG SRC='speak.png'>大象</span></span>.<br>
+(D)The author wants to demonstrate that it is not easy to see the whole truth.<br><hr>
+ 
+
+</div>
+<br><br><br><br><br><br>

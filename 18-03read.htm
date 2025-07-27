@@ -1,0 +1,600 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index4.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index4.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+}
+</style>
+
+<span><a href="18-03read-key.htm"><img src="exam3.png"></a>
+<a href="18-03read-test.htm"><img src="exam.png"></a>
+<a href="18-03read-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+
+<center>03沙巴旅遊</center>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>沙巴是馬來西亞婆羅洲島上的一個州，是一個迷人、真實的地方，可以見證我們世界的自然美景</span></span></th><th>
+Sabah ,  a state on <span class='pp'>Malaysia's</span> island <span class='pp'>Borneo</span>,  is a <span class='tooltip'>charming<span class='tooltip-text'  onclick="speakText('charming')"><IMG SRC='speak.png'>迷人</span></span> ,  <span class='tooltip'>authentic<span class='tooltip-text'  onclick="speakText('authentic')"><IMG SRC='speak.png'>真正的</span></span> place to
+<span class='tooltip'>witness<span class='tooltip-text'  onclick="speakText('witness')"><IMG SRC='speak.png'>見證、證人</span></span> the <span class='tooltip'>natural<span class='tooltip-text'  onclick="speakText('natural')"><IMG SRC='speak.png'>自然的</span></span> beauty of our world.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>寧靜的環境是舉辦會議和獎勵會議的理想場所</span></span></th><th>
+The <span class='tooltip'>tranquil<span class='tooltip-text'  onclick="speakText('tranquil')"><IMG SRC='speak.png'>寧靜</span></span> <span class='tooltip'>environment<span class='tooltip-text'  onclick="speakText('environment')"><IMG SRC='speak.png'>環境</span></span> is a <span class='tooltip'>perfect<span class='tooltip-text'  onclick="speakText('perfect')"><IMG SRC='speak.png'>完美的</span></span> <span class='tooltip'>venue<span class='tooltip-text'  onclick="speakText('venue')"><IMG SRC='speak.png'>場地</span></span> to <span class='tooltip'>hold<span class='tooltip-text'  onclick="speakText('hold')"><IMG SRC='speak.png'>抓住、舉辦</span></span> <span class='tooltip'>conferences<span class='tooltip-text'  onclick="speakText('conferences')"><IMG SRC='speak.png'>會議</span></span> and <span class='tooltip'>incentive<span class='tooltip-text'  onclick="speakText('incentive')"><IMG SRC='speak.png'>激勵</span></span> <span class='tooltip'>meetings<span class='tooltip-text'  onclick="speakText('meetings')"><IMG SRC='speak.png'>會議</span></span> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>通過吉隆坡, 汶萊, 台北, 高雄, 香港, 東京和首爾的直飛航班, 可以輕鬆抵達這個理想的目的地</span></span></th><th>
+With direct <span class='tooltip'>flights<span class='tooltip-text'  onclick="speakText('flights')"><IMG SRC='speak.png'>航班</span></span> via Kuala Lumpur ,  Brunei ,  Taipei ,  Kaohsiung ,  Hong Kong ,  Tokyo and Seoul ,  this <span class='tooltip'>desirable<span class='tooltip-text'  onclick="speakText('desirable')"><IMG SRC='speak.png'>理想的</span></span> <span class='tooltip'>destination<span class='tooltip-text'  onclick="speakText('destination')"><IMG SRC='speak.png'>目的地</span></span> becomes <span class='tooltip'>accessible<span class='tooltip-text'  onclick="speakText('accessible')"><IMG SRC='speak.png'>無障礙</span></span> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>沙巴旅遊局提供的統計數據顯示，2004年來自台灣的遊客數量排名第二，達78, 675人次，僅次於印尼的290, 147人次，比2003年增長了58.9％</span></span></th><th>
+<span class='tooltip'>Statistics<span class='tooltip-text'  onclick="speakText('Statistics')"><IMG SRC='speak.png'>統計數據</span></span> <span class='tooltip'>provided<span class='tooltip-text'  onclick="speakText('provided')"><IMG SRC='speak.png'>提供</span></span> by the Sabah <span class='tooltip'>tourism<span class='tooltip-text'  onclick="speakText('tourism')"><IMG SRC='speak.png'>旅遊業</span></span>
+<span class='tooltip-text'>旅遊</span></span> office <span class='tooltip'>indicate<span class='tooltip-text'  onclick="speakText('indicate')"><IMG SRC='speak.png'>表明</span></span> that <span class='tooltip'>arrivals<span class='tooltip-text'  onclick="speakText('arrivals')"><IMG SRC='speak.png'>到達</span></span> from 
+Taiwan <span class='tooltip'>rank<span class='tooltip-text'  onclick="speakText('rank')"><IMG SRC='speak.png'>排名</span></span> <span class='tooltip'>second<span class='tooltip-text'  onclick="speakText('second')"><IMG SRC='speak.png'>第二</span></span> overall at 78, 675 behind Indonesia's 290, 147 in 2004 ,  a 58.9 percent growth from 2003.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>沙巴旅遊局局長保羅·溫表示：「價格、住宿和航班頻率是旅遊經濟成功的首要因素」</span></span></th><th>
+"Prices,  <span class='tooltip'>accommodation<span class='tooltip-text'  onclick="speakText('accommodation')"><IMG SRC='speak.png'>住宿</span></span>,  and flight <span class='tooltip'>frequency<span class='tooltip-text'  onclick="speakText('frequency')"><IMG SRC='speak.png'>頻率</span></span> are the <span class='tooltip'>paramount<span class='tooltip-text'  onclick="speakText('paramount')"><IMG SRC='speak.png'>最重要的</span></span> <span class='tooltip'>factors<span class='tooltip-text'  onclick="speakText('factors')"><IMG SRC='speak.png'>因素</span></span> 
+for any <span class='tooltip'>successful<span class='tooltip-text'  onclick="speakText('successful')"><IMG SRC='speak.png'>成功的</span></span> tourist <span class='tooltip'>economy<span class='tooltip-text'  onclick="speakText('economy')"><IMG SRC='speak.png'>經濟</span></span> , " 
+said <span class='pp'>Paul Voon</span> ,  the director of the Sabah <span class='tooltip'>tourism board<span class='tooltip-text'  onclick="speakText('tourism board')"><IMG SRC='speak.png'>觀光局</span></span>.<br>
+</th></tr></table><hr>
+<center>閱讀測驗</center>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>這篇文章是意旨____</span></span></th><th>
+16.This <span class='tooltip'>article<span class='tooltip-text'  onclick="speakText('article')"><IMG SRC='speak.png'>文章</span></span> <span class='tooltip'>aims<span class='tooltip-text'  onclick="speakText('aims')"><IMG SRC='speak.png'>目標</span></span> to ___ <br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：(A)提供沙巴的地理詳情<br> (B)促進沙巴的旅遊業<br> (C)更新沙巴目前的情況<br> (D)和印尼競爭亞洲的旅行者</span></span>
+(A)offer <span class='tooltip'>geographical<span class='tooltip-text'  onclick="speakText('geographical')"><IMG SRC='speak.png'>地理</span></span> details of Sabah　(B)<span class='tooltip'>promote<span class='tooltip-text'  onclick="speakText('promote')"><IMG SRC='speak.png'>促進</span></span> <span class='tooltip'>tourism<span class='tooltip-text'  onclick="speakText('tourism')"><IMG SRC='speak.png'>旅遊業</span></span> in Sabah　(C)update the current <span class='tooltip'>condition<span class='tooltip-text'  onclick="speakText('condition')"><IMG SRC='speak.png'>狀態</span></span> in Sabah　
+(D)<span class='tooltip'>compete<span class='tooltip-text'  onclick="speakText('compete')"><IMG SRC='speak.png'>競爭</span></span> with <span class='pp'>Indonesia</span> for Asian travelers <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>沙巴的環境適合_____</span></span></th><th>
+17.The <span class='tooltip'>environment<span class='tooltip-text'  onclick="speakText('environment')"><IMG SRC='speak.png'>環境</span></span> of Sabah is <span class='tooltip'>suitable<span class='tooltip-text'  onclick="speakText('suitable')"><IMG SRC='speak.png'>合適的</span></span> for _____ </div> <br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：(A)旅行和商業(B)醫學治療 (C)教育 (D)農業</span></span>
+(A)travel and business　(B)medical <span class='tooltip'>treatment<span class='tooltip-text'  onclick="speakText('treatment')"><IMG SRC='speak.png'>治療</span></span>　(C)education　(D)<span class='tooltip'>agriculture<span class='tooltip-text'  onclick="speakText('agriculture')"><IMG SRC='speak.png'>農業</span></span> <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>下列哪一個理由不是沙巴受歡迎的原因?</span></span></th><th>
+18.Which is NOT the reason for the <span class='tooltip'>popularity<span class='tooltip-text'  onclick="speakText('popularity')"><IMG SRC='speak.png'>受歡迎程度</span></span> of Sabah ? <br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：(A)低價(B)舒適的住宿 (C)刺激的戶外活動 (D)頻繁的飛機直航班次</span></span>
+(A)Low prices　(B)<span class='tooltip'>Comfortable<span class='tooltip-text'  onclick="speakText('Comfortable')"><IMG SRC='speak.png'>舒適的</span></span> <span class='tooltip'>accommodation<span class='tooltip-text'  onclick="speakText('accommodation')"><IMG SRC='speak.png'>住宿</span></span>　(C)Exciting outdoor activities　(D)<span class='tooltip'>Frequent<span class='tooltip-text'  onclick="speakText('Frequent')"><IMG SRC='speak.png'>經常</span></span> direct flights <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>誰是沙巴最大的旅遊團？</span></span></th><th>
+19.Who makes the largest group of <span class='tooltip'>tourists<span class='tooltip-text'  onclick="speakText('tourists')"><IMG SRC='speak.png'>遊客</span></span> in Sabah ? <br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：(A)印尼人(B)日本人 (C)台灣人 (D)韓國人</span></span>
+(A)Indonesians　(B)Japanese　(C)Taiwanese　(D)Koreans <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>數據指出台灣到沙巴的觀光人數</span></span></th><th>
+20.<span class='tooltip'>Statistics<span class='tooltip-text'  onclick="speakText('Statistics')"><IMG SRC='speak.png'>統計數據</span></span> <span class='tooltip'>indicate<span class='tooltip-text'  onclick="speakText('indicate')"><IMG SRC='speak.png'>表明</span></span> that the number of Taiwanese <span class='tooltip'>tourists<span class='tooltip-text'  onclick="speakText('tourists')"><IMG SRC='speak.png'>遊客</span></span> to Sabah is _______ <br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：(A)緩慢增加 (B)急劇下降 (C)顯著上升 (D)逐漸下降</span></span>
+(A)slowly <span class='tooltip'>increasing<span class='tooltip-text'  onclick="speakText('increasing')"><IMG SRC='speak.png'>增加</span></span>　(B)<span class='tooltip'>dramatically<span class='tooltip-text'  onclick="speakText('dramatically')"><IMG SRC='speak.png'>戲劇性地</span></span> <span class='tooltip'>dropping<span class='tooltip-text'  onclick="speakText('dropping')"><IMG SRC='speak.png'>掉落</span></span>　(C)<span class='tooltip'>noticeably<span class='tooltip-text'  onclick="speakText('noticeably')"><IMG SRC='speak.png'>明顯地</span></span> rising　(D)<span class='tooltip'>gradually<span class='tooltip-text'  onclick="speakText('gradually')"><IMG SRC='speak.png'>逐步地</span></span> <span class='tooltip'>declining<span class='tooltip-text'  onclick="speakText('declining')"><IMG SRC='speak.png'>下降</span></span> <br>
+</th></tr></table>

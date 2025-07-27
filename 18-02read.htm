@@ -1,0 +1,633 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index4.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index4.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+}
+</style>
+
+<span><a href="18-02read-key.htm"><img src="exam3.png"></a>
+<a href="18-02read-test.htm"><img src="exam.png"></a>
+<a href="18-02read-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+
+<center>02網路聊天交友</center>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>有一種演化理論認為，人類的後代將會擁有更大的臀部和更嚴重的近視</span></span></th><th>
+There is a <span class='tooltip'>theory<span class='tooltip-text'  onclick="speakText('theory')"><IMG SRC='speak.png'>理論</span></span> of <span class='tooltip'>evolution<span class='tooltip-text'  onclick="speakText('evolution')"><IMG SRC='speak.png'>演化</span></span> that <span class='tooltip'>suggests<span class='tooltip-text'  onclick="speakText('suggests')"><IMG SRC='speak.png'>促成、建議</span></span> future <span class='tooltip'>generations<span class='tooltip-text'  onclick="speakText('generations')"><IMG SRC='speak.png'>世代</span></span> of human beings will have larger <span class='tooltip'>rear ends<span class='tooltip-text'  onclick="speakText('rear ends')"><IMG SRC='speak.png'>屁股</span></span> and <span class='tooltip'>increased<span class='tooltip-text'  onclick="speakText('increased')"><IMG SRC='speak.png'>增加</span></span> <span class='tooltip'>nearsightedness<span class='tooltip-text'  onclick="speakText('nearsightedness')"><IMG SRC='speak.png'>近視</span></span> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>它基於這樣的觀點：當今這一代人，即資訊時代的孩子，花了大量的時間坐在電腦螢幕前，以至於相應的基因可能會被改變並遺傳給後代</span></span></th><th>
+It is based on the <span class='tooltip'>idea<span class='tooltip-text'  onclick="speakText('idea')"><IMG SRC='speak.png'>概念</span></span> that the <span class='tooltip'>current<span class='tooltip-text'  onclick="speakText('current')"><IMG SRC='speak.png'>目前的</span></span> <span class='tooltip'>generation<span class='tooltip-text'  onclick="speakText('generation')"><IMG SRC='speak.png'>世代</span></span>,  children of the Information Age,  spends so much time sitting in front of a computer screen that <span class='tooltip'>corresponding<span class='tooltip-text'  onclick="speakText('corresponding')"><IMG SRC='speak.png'>相應的</span></span> genes likely will be <span class='tooltip'>altered<span class='tooltip-text'  onclick="speakText('altered')"><IMG SRC='speak.png'>改變的</span></span> and <span class='tooltip'>passed on<span class='tooltip-text'  onclick="speakText('passed on')"><IMG SRC='speak.png'>傳遞</span></span> to <span class='tooltip'>offspring<span class='tooltip-text'  onclick="speakText('offspring')"><IMG SRC='speak.png'>後代</span></span> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>這是一個資訊取得和使用更便捷的時代，但最重要的是，我們可以隨時隨地進行即時通訊</span></span></th><th>
+This is an <span class='tooltip'>era<span class='tooltip-text'  onclick="speakText('era')"><IMG SRC='speak.png'>時代</span></span> of <span class='tooltip'>greater<span class='tooltip-text'  onclick="speakText('greater')"><IMG SRC='speak.png'>廣泛、更大</span></span> access and <span class='tooltip'>availability<span class='tooltip-text'  onclick="speakText('availability')"><IMG SRC='speak.png'>可用性</span></span>,  but most <span class='tooltip'>importantly<span class='tooltip-text'  onclick="speakText('importantly')"><IMG SRC='speak.png'>重要的是</span></span>,  of
+instant <span class='tooltip'>communication<span class='tooltip-text'  onclick="speakText('communication')"><IMG SRC='speak.png'>溝通</span></span>,  anytime,  anywhere.<br>
+</th></tr></table><hr>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>最新技術催生了一個新的社會和新的次文化，它們不再區分種族和階級</span></span></th><th>
+The latest <span class='tooltip'>technology<span class='tooltip-text'  onclick="speakText('technology')"><IMG SRC='speak.png'>科技</span></span> has <span class='tooltip'>spawned<span class='tooltip-text'  onclick="speakText('spawned')"><IMG SRC='speak.png'>衍生</span></span> a new <span class='tooltip'>society<span class='tooltip-text'  onclick="speakText('society')"><IMG SRC='speak.png'>社會</span></span> and a new <span class='tooltip'>sub-culture<span class='tooltip-text'  onclick="speakText('sub-culture')"><IMG SRC='speak.png'>次文化</span></span>,  one that <span class='tooltip'>disregards<span class='tooltip-text'  onclick="speakText('disregards')"><IMG SRC='speak.png'>忽略</span></span> the <span class='tooltip'>boundaries<span class='tooltip-text'  onclick="speakText('boundaries')"><IMG SRC='speak.png'>邊界</span></span> of <span class='tooltip'>race<span class='tooltip-text'  onclick="speakText('race')"><IMG SRC='speak.png'>種族</span></span> and <span class='tooltip'>class<span class='tooltip-text'  onclick="speakText('class')"><IMG SRC='speak.png'>階級</span></span>.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>這些人就是從事網路聊天的人</span></span></th><th>
+These are the people who <span class='tooltip'>engage<span class='tooltip-text'  onclick="speakText('engage')"><IMG SRC='speak.png'>從事</span></span> in online <span class='tooltip'>chatting<span class='tooltip-text'  onclick="speakText('chatting')"><IMG SRC='speak.png'>聊天</span></span> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>聊天者們對網路的奇蹟永遠感到驚嘆不已。</span></span></th><th>
+Chatters never <span class='tooltip'>cease<span class='tooltip-text'  onclick="speakText('cease')"><IMG SRC='speak.png'>停止</span></span> to be <span class='tooltip'>amazed<span class='tooltip-text'  onclick="speakText('amazed')"><IMG SRC='speak.png'>驚訝</span></span> by the <span class='tooltip'>wonders<span class='tooltip-text'  onclick="speakText('wonders')"><IMG SRC='speak.png'>奇蹟</span></span> of the Internet.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>網路不僅允許用戶在家工作、在家購物，還允許用戶足不出戶進行社交</span></span></th><th>
+<span2>Not only</span2> has the Internet allowed users to work from home and to shop from home, <span2>but</span2> it<span2>also</span2> has <span class='tooltip'>allowed<span class='tooltip-text'  onclick="speakText('allowed')"><IMG SRC='speak.png'>允許</span></span> users to <span class='tooltip'>socialize<span class='tooltip-text'  onclick="speakText('socialize')"><IMG SRC='speak.png'>社交</span></span> without ever leaving the house.<br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>網路上社交的一大優點就是它的便利性</span></span></th><th>
+One of the <span class='tooltip'>beauties<span class='tooltip-text'  onclick="speakText('beauties')"><IMG SRC='speak.png'>優勢</span></span> of online <span class='tooltip'>socializing<span class='tooltip-text'  onclick="speakText('socializing')"><IMG SRC='speak.png'>社群</span></span> is its <span class='tooltip'>convenience<span class='tooltip-text'  onclick="speakText('convenience')"><IMG SRC='speak.png'>方便</span></span> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>只需在計算機上進行搜索，人們就可以列出數百個可聊天的人的名單，而且所有的人都具備所要求的素質。</span></span></th><th>
+<span class='tooltip'>Simply<span class='tooltip-text'  onclick="speakText('Simply')"><IMG SRC='speak.png'>簡單地</span></span> by running a <span class='tooltip'>search<span class='tooltip-text'  onclick="speakText('search')"><IMG SRC='speak.png'>搜尋</span></span> on the computer,  a person 
+can <span class='tooltip'>produce<span class='tooltip-text'  onclick="speakText('produce')"><IMG SRC='speak.png'>產生</span></span> a list of hundreds of people with whom to chat,  all with the <span class='tooltip'>qualities<span class='tooltip-text'  onclick="speakText('qualities')"><IMG SRC='speak.png'>品質</span></span> <span class='tooltip'>requested<span class='tooltip-text'  onclick="speakText('requested')"><IMG SRC='speak.png'>要求</span></span> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>在古代，如果一個人想認識另一個人，他必須採取尷尬的步驟，走近陌生人並介紹自己</span></span></th><th>
+In olden times,  if one person wanted to meet another,  he would have to take the <span class='tooltip'>awkward<span class='tooltip-text'  onclick="speakText('awkward')"><IMG SRC='speak.png'>尷尬的</span></span> step of <span class='tooltip'>approaching<span class='tooltip-text'  onclick="speakText('approaching')"><IMG SRC='speak.png'>接近</span></span> the <span class='tooltip'>stranger<span class='tooltip-text'  onclick="speakText('stranger')"><IMG SRC='speak.png'>陌生人</span></span> and <span class='tooltip'>introducing<span class='tooltip-text'  onclick="speakText('introducing')"><IMG SRC='speak.png'>介紹</span></span> himself.<br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>即便如此，也可能需要幾分鐘的對話才能確定兩人是否有共同點</span></span></th><th>
+Even then,  it could take several minutes of <span class='tooltip'>conversation<span class='tooltip-text'  onclick="speakText('conversation')"><IMG SRC='speak.png'>對話</span></span> to <span class='tooltip'>determine<span class='tooltip-text'  onclick="speakText('determine')"><IMG SRC='speak.png'>決定</span></span> whether the two had anything <span class='tooltip'>in common<span class='tooltip-text'  onclick="speakText('in common')"><IMG SRC='speak.png'>共同點</span></span>.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>聊天者不喜歡這樣做；工作量太大了</span></span></th><th>
+ <span class='tooltip'>Chatters<span class='tooltip-text'  onclick="speakText('Chatters')"><IMG SRC='speak.png'>聊天者</span></span> don't like to do this; it's too much work.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>喋喋不休的人天生就是拖延者，並且厭惡工作。</span></span></th><th>
+ <span class='tooltip'>Chatters<span class='tooltip-text'  onclick="speakText('Chatters')"><IMG SRC='speak.png'>聊天者</span></span> by nature are <span class='tooltip'>procrastinators<span class='tooltip-text'  onclick="speakText('procrastinators')"><IMG SRC='speak.png'>拖延者</span></span> and have an <span class='tooltip'>aversion<span class='tooltip-text'  onclick="speakText('aversion')"><IMG SRC='speak.png'>厭惡</span></span> to work.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>對他們來說，在俱樂部或咖啡館進行社交毫無意義，因為網路上有成千上萬的人，他們只需敲擊鍵盤就能開始對話</span></span></th><th>
+To them,  it makes no sense to <span class='tooltip'>socialize<span class='tooltip-text'  onclick="speakText('socialize')"><IMG SRC='speak.png'>社群</span></span> in a club or cafe when there are thousands more people available online,  and they can start a <span class='tooltip'>conversation<span class='tooltip-text'  onclick="speakText('conversation')"><IMG SRC='speak.png'>對話</span></span> in a <span class='tooltip'>matter<span class='tooltip-text'  onclick="speakText('matter')"><IMG SRC='speak.png'>事</span></span> of keystrokes.<br>
+</th></tr></table>
+<hr><br>
+<center>閱讀測驗</center>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>作者將當今這一代人稱為「資訊時代的孩子」，因為他們是孩子___</span></span></th><th>
+16.The author calls the current <span class='tooltip'>generation<span class='tooltip-text'  onclick="speakText('generation')"><IMG SRC='speak.png'>世代</span></span> "children of the <span class='tooltip'>Information<span class='tooltip-text'  onclick="speakText('Information')"><IMG SRC='speak.png'>資訊</span></span> Age, " because they are children ___.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：(A)喜歡看新聞的孩子<br>(B)在資訊系統中註冊的孩子 <br>(C)在電腦科技時代出生長大的孩子<br>(D)被電腦科技改變基因的孩子</span></span>
+(A)who love to watch the news 　(B)who are registered in an information system 　(C)who were born and grew up in the era of computer technology 　(D)who were genetically altered by the computer technology 
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>在第2段中，當作者說「最新技術催生了一個新的社會和一個新的次文化」時，他是在暗示 ______</span></span></th><th>
+17.In paragraph 2,  when the author says that "The latest technology has spawned a new society and a new sub-culture, " he is suggesting that ______.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：(A)只有生活在次文化裡的人才藉由網路交際。<br>(B)「線上聊天」非常受歡迎, 已經成為現代社會的文化景觀之一。<br>(C)在電腦時代中, 許多人上網聊天, 他們認為這是低下的一種文化類型。<br>(D)雖然現在「線上聊天」非常受歡迎, 還是不能打破種族與階級的隔閡。</span></span>
+(A)only people who live in the suburbs socialize through the Internet 　(B)"online chatting" is so popular that it has become one of the cultural aspects of modern society 　(C)in the computer age many people chat online and they see it as an inferior type of culture 　(D)"online chatting, " though extremely popular these days,  cannot break the boundaries of race and class 
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>根據第 4 段，下列哪一個敘述是正確的（這些陳述都是關於電腦時代之前的社交的？</span></span></th><th>
+18.According to paragraph 4，which statement below is true(the statements are all about socializing before the computer age?<BR>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：(A)在兩個人之間踏出一步開始第一次接觸很簡單<br>
+(B)在社交場合兩個陌生人要開始對話是很方便的。<br>
+(C)開始第一次接觸通常不太舒服, 主動的人會覺得尷尬。<br>
+(D)開始第一次接觸通常不太舒服, 但是主動的人可以將它變成笑話。</span></span>
+(A)It is easy to step forward and initiate the first contact between two people.<br>
+(B)It is convenient for two strangers to strike up a conversation in a social meeting.<br>
+(C)Initiating the first contact between two people is often uncomfortable,  and the person who does it feels embarrassed.<br>
+(D)Initiating the first contact between two people is often uncomfortable,  but the person who does it can turn it into a joke.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>當作者說「喋喋不休的人天生就是拖延者」時，他指的是____的人</span></span></th><th>
+19.When the author states that "Chatters by nature are 3procrastinators, " he is referring to people ____.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：(A)本質上就喜歡拖延行動到比較晚的人(B)用電腦寫作的職業作家(C)對電腦科技無所不知的人(D)不會享受待在自然環境裡的人</span></span>
+(A)who are naturally inclined to postpone actions to a later time 　(B)who are professional writers working with a computer 　(C)who know everything about computer technology 　(D)who do not enjoy spending time in natural environments 
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>20最後一段第二句的「aversion」這個字意思最接近何者?__</span></span></th><th>
+20.The word "aversion" in the second sentence of the last paragraph is closest in meaning to ____.<br>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：(A)熱情(B)利益 (C)吸引力 (D)厭惡;反感</span></span>
+(A)passion 　(B)interest 　(C)attraction 　(D)repugnance 
+</th></tr></table>
+

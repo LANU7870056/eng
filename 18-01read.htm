@@ -1,0 +1,613 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+}
+</style>
+
+<span><a href="18-01read-key.htm"><img src="exam3.png"></a>
+<a href="18-01read-test.htm"><img src="exam.png"></a>
+<a href="18-01read-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+
+<center>01減肥</center>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>梅奧診所的研究人員報告稱，瘦人和超重人之間的活動水平存在顯著差異</span></span></th><th>
+The <span class='pp'>Mayo</span> <span class='tooltip'>researchers<span class='tooltip-text'  onclick="speakText('researchers')"><IMG SRC='speak.png'>研究者</span></span> reported a <span class='tooltip'>striking<span class='tooltip-text'  onclick="speakText('striking')"><IMG SRC='speak.png'>引人注目</span></span> difference in <span class='tooltip'>activity<span class='tooltip-text'  onclick="speakText('activity')"><IMG SRC='speak.png'>活動</span></span> levels between <span class='tooltip'>lean persons<span class='tooltip-text'  onclick="speakText('lean persons')"><IMG SRC='speak.png'>瘦人</span></span> and <span class='tooltip'>overweight<span class='tooltip-text'  onclick="speakText('overweight')"><IMG SRC='speak.png'>超重</span></span> ones.<BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>他們的研究並不涉及刻意運動；而是利用感測器測量人們自然自發性的運動量。</span></span></th><th>
+Their study did not involve <span class='tooltip'>deliberate<span class='tooltip-text'  onclick="speakText('deliberate')"><IMG SRC='speak.png'>故意的</span></span> <span class='tooltip'>exercise<span class='tooltip-text'  onclick="speakText('exercise')"><IMG SRC='speak.png'>運動</span></span>; it <span class='tooltip'>measured<span class='tooltip-text'  onclick="speakText('measured')"><IMG SRC='speak.png'>測量</span></span>—with the <span class='tooltip'>sensors<span class='tooltip-text'  onclick="speakText('sensors')"><IMG SRC='speak.png'>感測器</span></span>—how much people moved about <span class='tooltip'>naturally<span class='tooltip-text'  onclick="speakText('naturally')"><IMG SRC='speak.png'>自然地</span></span> and <span class='tooltip'>spontaneously<span class='tooltip-text'  onclick="speakText('spontaneously')"><IMG SRC='speak.png'>自發性地</span></span> .<BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>體重較重的人往往坐著，而瘦的人則較不安，每天站立或行走的時間多出兩小時。</span></span></th><th>
+The <span class='tooltip'>heavier<span class='tooltip-text'  onclick="speakText('heavier')"><IMG SRC='speak.png'>較重者</span></span> ones <span class='tooltip'>tended<span class='tooltip-text'  onclick="speakText('tended')"><IMG SRC='speak.png'>趨向</span></span> to sit,  while the lean ones were more <span class='tooltip'>restless<span class='tooltip-text'  onclick="speakText('restless')"><IMG SRC='speak.png'>不安</span></span> and spent two more hours a day on their <span class='tooltip'>feet<span class='tooltip-text'  onclick="speakText('feet')"><IMG SRC='speak.png'>腳</span></span>—standing or walking.<BR>
+<hr>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>這個差額相當於每天攝取 350 卡路里，如果體重超重的人堅持運動的話，一年可以減掉 14 到 18 公斤</span></span></th><th>
+The difference <span class='tooltip'>translated<span class='tooltip-text'  onclick="speakText('translated')"><IMG SRC='speak.png'>翻譯、轉換</span></span> into 350 <span class='tooltip'>calories<span class='tooltip-text'  onclick="speakText('calories')"><IMG SRC='speak.png'>卡路里</span></span> a day,  enough for the <span class='tooltip'>heavy<span class='tooltip-text'  onclick="speakText('heavy')"><IMG SRC='speak.png'>重的</span></span> people to <span class='tooltip'>take off<span class='tooltip-text'  onclick="speakText('take off')"><IMG SRC='speak.png'>脱下(突然成功)、起飛</span></span> about 14 to 18 kilograms a year,  if they would get moving.<BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>研究人員認為，靜坐或走動的傾向是生物性的，由基因決定的大腦化學物質水平控制</span></span></th><th>
+The <span class='tooltip'>researchers<span class='tooltip-text'  onclick="speakText('researchers')"><IMG SRC='speak.png'>研究者</span></span> believe the <span class='tooltip'>tendency<span class='tooltip-text'  onclick="speakText('tendency')"><IMG SRC='speak.png'>傾向</span></span> to sit still or move around is <span class='tooltip'>biological<span class='tooltip-text'  onclick="speakText('biological')"><IMG SRC='speak.png'>生物</span></span>,  <span class='tooltip'>governed<span class='tooltip-text'  onclick="speakText('governed')"><IMG SRC='speak.png'>治理</span></span> by <span class='tooltip'>genetically<span class='tooltip-text'  onclick="speakText('genetically')"><IMG SRC='speak.png'>基因上</span></span> <span class='tooltip'>determined<span class='tooltip-text'  onclick="speakText('determined')"><IMG SRC='speak.png'>決定</span></span> levels of brain <span class='tooltip'>chemicals<span class='tooltip-text'  onclick="speakText('chemicals')"><IMG SRC='speak.png'>化學品</span></span> .<BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>他們說，這種傾向會影響體重，而不是相反。</span></span></th><th>
+And that <span class='tooltip'>tendency<span class='tooltip-text'  onclick="speakText('tendency')"><IMG SRC='speak.png'>趨勢</span></span> <span class='tooltip'>influences<span class='tooltip-text'  onclick="speakText('influences')"><IMG SRC='speak.png'>影響</span></span> weight—not the other way around,  they say.<BR>
+</th></tr></table><hr>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>許多專家一直建議人們尋找一些小的、相對無痛的方法來燃燒多餘的卡路里，例如走樓梯而不是搭電梯，把車停在停車場的最遠端讓自己走一會兒。</span></span></th><th>
+Plenty of <span class='tooltip'>experts<span class='tooltip-text'  onclick="speakText('experts')"><IMG SRC='speak.png'>專家</span></span> have been <span class='tooltip'>advising<span class='tooltip-text'  onclick="speakText('advising')"><IMG SRC='speak.png'>建議</span></span> people to find small,  <span class='tooltip'>relatively<span class='tooltip-text'  onclick="speakText('relatively')"><IMG SRC='speak.png'>相對地</span></span> painless ways to <span class='tooltip'>burn<span class='tooltip-text'  onclick="speakText('burn')"><IMG SRC='speak.png'>燒傷</span></span> <span class='tooltip'>extra<span class='tooltip-text'  onclick="speakText('extra')"><IMG SRC='speak.png'>額外的</span></span> <span class='tooltip'>calories<span class='tooltip-text'  onclick="speakText('calories')"><IMG SRC='speak.png'>卡路里</span></span>,  like taking the stairs <span class='tooltip'>instead of<span class='tooltip-text'  onclick="speakText('instead of')"><IMG SRC='speak.png'>替代</span></span> the <span class='tooltip'>elevators<span class='tooltip-text'  onclick="speakText('elevators')"><IMG SRC='speak.png'>電梯</span></span> and parking at the far end of the lot to make themselves walk a bit.<BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>至於通常的減肥方法為何屢屢失敗，萊文博士說，這是因為人們很難堅持運動計畫和節食</span></span></th><th>
+As to why the usual weight loss <span class='tooltip'>remedies<span class='tooltip-text'  onclick="speakText('remedies')"><IMG SRC='speak.png'>補救</span></span> <span class='tooltip'>frequently<span class='tooltip-text'  onclick="speakText('frequently')"><IMG SRC='speak.png'>頻繁地</span></span> fail,  <span class='pp'>Dr.Levine</span> said,  it is because people have a hard time sticking with <span class='tooltip'>exercise<span class='tooltip-text'  onclick="speakText('exercise')"><IMG SRC='speak.png'>鍛鍊</span></span> <span class='tooltip'>programs<span class='tooltip-text'  onclick="speakText('programs')"><IMG SRC='speak.png'>計畫、程序</span></span> and <span class='tooltip'>diets<span class='tooltip-text'  onclick="speakText('diets')"><IMG SRC='speak.png'>飲食</span></span> .<BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>他認為，大量的飲食書籍和減肥計劃證明它們都沒有效果</span></span></th><th>
+ He <span class='tooltip'>argues<span class='tooltip-text'  onclick="speakText('argues')"><IMG SRC='speak.png'>表明、爭論</span></span> that the very number of diet books and <span class='tooltip'>weight-loss<span class='tooltip-text'  onclick="speakText('weight-loss')"><IMG SRC='speak.png'>減肥</span></span> plans is <span class='tooltip'>proof<span class='tooltip-text'  onclick="speakText('proof')"><IMG SRC='speak.png'>證明</span></span> that none of them work.<BR>
+</th></tr></table><BR><BR>
+<center>閱讀測驗</center>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>根據文章，瘦人傾向__</span></span></th><th>
+16.According to the <span class='tooltip'>passage<span class='tooltip-text'  onclick="speakText('passage')"><IMG SRC='speak.png'>頻道</span></span>,  lean people tend to __.<BR>
+(A)sit still 　(B)sit up late 　(C)move around 　(D)sleep all day long <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>胖子每天要消耗多少卡路里才能保持苗條？</span></span></th><th>
+17.How many calories should a fat person shake off per day in order to stay slim ?<br>
+(A)350 grams 　(B)350 kilograms 　(C)14 kilograms 　(D)350 calories <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>根據文章，燃燒卡路里最有效的方法是什麼？</span></span></th><th>
+18.According to the passage,  what is the most effective way to burn calories?<br>
+(A)Following the guidelines in the diet book.　(B)Sticking to your diet plan.　(C)Taking the elevators when possible.　(D)Walking as often as you can.<BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>根據文章，下列哪一個敘述是不正確的？</span></span></th><th>
+19.According to the passage,  which of the following statements is NOT true ?<br>
+(A)If a person is overweight,  he must have a habit of going mountain climbing.<BR>
+(B)If a person is slim,  he must be fond of moving around.<BR>
+(C)The tendency to be active or inactive is genetic,  which in turn affects a person's weight.<BR>
+(D)We fail in weight-loss programs because we do not stick to exercises.<BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>從文章可以推斷出什麼？</span></span></th><th> 
+20.What can be inferred from the passage ?<br>
+(A)Weight-loss programs are still quite popular.<BR>
+(B)Few people find difficulty sticking to exercise programs.<BR>
+(C)Most people find it easy to follow the diet programs.<BR>
+(D)The usual weight loss remedies are always effective.<BR>
+
+ 
+</div>
+<br><br>
+<br><br>

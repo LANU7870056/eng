@@ -1,0 +1,612 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+}
+</style>
+
+<span><a href="18-01cal-key.htm"><img src="exam3.png"></a>
+<a href="18-01cal-test.htm"><img src="exam.png"></a>
+<a href="18-01cal-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+<center>01二、克漏字測驗</center>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>戰爭結束後不久，我和哥哥被邀請去和一位剛從國外回來的叔叔住幾天</span></span></th><th>
+Shortly after the war,  my brother and I were invited to spend a few days with an uncle who had just <span class='tooltip'>returned<span class='tooltip-text'  onclick="speakText('returned')"><IMG SRC='speak.png'>返回</span></span> from <span class='tooltip'>abroad<span class='tooltip-text'  onclick="speakText('abroad')"><IMG SRC='speak.png'>國外</span></span> .<BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>他在鄉下租了一間小屋，但他很少在那裡待很久</span></span></th><th>
+He had rented a <span class='tooltip'>cottage<span class='tooltip-text'  onclick="speakText('cottage')"><IMG SRC='speak.png'>小屋</span></span> in the <span class='tooltip'>country<span class='tooltip-text'  onclick="speakText('country')"><IMG SRC='speak.png'>鄉下</span></span>,  although he <span class='tooltip'>rarely<span class='tooltip-text'  onclick="speakText('rarely')"><IMG SRC='speak.png'>很少</span></span> spent much time there.<BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>我們到達後才明白原因：小屋裡沒有舒適的家具，許多窗戶都壞了，屋頂漏水，導致整個房子潮濕</span></span></th><th>
+We <span class='tooltip'>understood<span class='tooltip-text'  onclick="speakText('understood')"><IMG SRC='speak.png'>理解</span></span> the <span class='tooltip'>reason<span class='tooltip-text'  onclick="speakText('reason')"><IMG SRC='speak.png'>原因</span></span> for this after our arrival: the <span class='tooltip'>cottage<span class='tooltip-text'  onclick="speakText('cottage')"><IMG SRC='speak.png'>小屋</span></span> had no <span class='tooltip'>comfortable<span class='tooltip-text'  onclick="speakText('comfortable')"><IMG SRC='speak.png'>舒服的</span></span> <span class='tooltip'>furniture<span class='tooltip-text'  onclick="speakText('furniture')"><IMG SRC='speak.png'>家具</span></span> in it,  many of the windows were <span class='tooltip'>broken<span class='tooltip-text'  onclick="speakText('broken')"><IMG SRC='speak.png'>破碎的</span></span> and the <span class='tooltip'>roof<span class='tooltip-text'  onclick="speakText('roof')"><IMG SRC='speak.png'>屋頂</span></span> <div class='cir'>11</div>,  making the whole house <span class='tooltip'>damp<span class='tooltip-text'  onclick="speakText('damp')"><IMG SRC='speak.png'>潮濕</span></span> .<BR>
+</th></tr></table>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：11.(A)漏水 (B)嘎嘎響聲 (C)浸 (D)彎曲</span></span>
+11 .(A)<span class='tooltip'>leaked<span class='tooltip-text'  onclick="speakText('leaked')"><IMG SRC='speak.png'>漏水</span></span> 　(B)<span class='tooltip'>creaked<span class='tooltip-text'  onclick="speakText('creaked')"><IMG SRC='speak.png'>嘎嘎響聲</span></span> 　(C)<span class='tooltip'>soaked<span class='tooltip-text'  onclick="speakText('soaked')"><IMG SRC='speak.png'>浸水</span></span> 　(D)<span class='tooltip'>bent<span class='tooltip-text'  onclick="speakText('bent')"><IMG SRC='speak.png'>彎曲</span></span><br><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>第一天晚上，晚餐後我們圍坐在火爐旁，聽著叔叔講述他在遙遠國度的冒險經歷</span></span></th><th>
+On our first evening,  we sat around the fire after <span class='tooltip'>supper<span class='tooltip-text'  onclick="speakText('supper')"><IMG SRC='speak.png'>晚餐</span></span>,  <div class='cir'>12</div> to the <span class='tooltip'>stories<span class='tooltip-text'  onclick="speakText('stories')"><IMG SRC='speak.png'>故事</span></span> which our uncle had to tell of his many <span class='tooltip'>adventures<span class='tooltip-text'  onclick="speakText('adventures')"><IMG SRC='speak.png'>冒險</span></span> in <span class='tooltip'>distant<span class='tooltip-text'  onclick="speakText('distant')"><IMG SRC='speak.png'>遙遠</span></span> <span class='tooltip'>countries<span class='tooltip-text'  onclick="speakText('countries')"><IMG SRC='speak.png'>國家</span></span> .<BR>
+</th></tr></table>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：and we listened to→listening to 使用動名詞</span></span>
+12.(A)listen 　(B)listening 　(C)listened 　(D)being listened<br><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>經過長途火車旅行後，我非常疲憊，我寧願上床睡覺；但我又不能錯過叔叔講的任何一個激動人心的故事</span></span></th><th>
+I was so <span class='tooltip'>tired<span class='tooltip-text'  onclick="speakText('tired')"><IMG SRC='speak.png'>疲勞的</span></span> after the long <span class='tooltip'>train<span class='tooltip-text'  onclick="speakText('train')"><IMG SRC='speak.png'>火車</span></span> <span class='tooltip'>journey<span class='tooltip-text'  onclick="speakText('journey')"><IMG SRC='speak.png'>旅行</span></span> that I would have <span class='tooltip'>preferred<span class='tooltip-text'  onclick="speakText('preferred')"><IMG SRC='speak.png'>寧可、比較喜歡</span></span> to go to bed; but I could not <span class='tooltip'>bear to<span class='tooltip-text'  onclick="speakText('bear to')"><IMG SRC='speak.png'>承擔</span></span> miss any of my uncle's <span class='tooltip'>exciting<span class='tooltip-text'  onclick="speakText('exciting')"><IMG SRC='speak.png'>令人興奮的</span></span> <span class='tooltip'>tales<span class='tooltip-text'  onclick="speakText('tales')"><IMG SRC='speak.png'>故事</span></span> .<BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>他正要講述一次相當可怕的經歷：他的小帆船在暴風雨中被沖到海上</span></span></th><th>
+He was just in the <span class='tooltip'>middle<span class='tooltip-text'  onclick="speakText('middle')"><IMG SRC='speak.png'>中間</span></span> of <span class='tooltip'>describing<span class='tooltip-text'  onclick="speakText('describing')"><IMG SRC='speak.png'>描述</span></span> a rather <div class='cir'>13</div> <span class='tooltip'>experience<span class='tooltip-text'  onclick="speakText('experience')"><IMG SRC='speak.png'>經驗</span></span> he had once had when his small <span class='tooltip'>sailing<span class='tooltip-text'  onclick="speakText('sailing')"><IMG SRC='speak.png'>帆船</span></span> boat was carried out to sea in a <span class='tooltip'>storm<span class='tooltip-text'  onclick="speakText('storm')"><IMG SRC='speak.png'>風暴</span></span>, 
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>就在我和弟弟準備睡覺的時候，樓上的臥室傳來一聲巨響</span></span></th><th>
+when there was a <span class='tooltip'>loud<span class='tooltip-text'  onclick="speakText('loud')"><IMG SRC='speak.png'>大聲</span></span> crash from the <span class='tooltip'>bedroom<span class='tooltip-text'  onclick="speakText('bedroom')"><IMG SRC='speak.png'>臥室</span></span> above,  the one where my brother and I were going to sleep.<BR>
+</th></tr></table>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：13.(A)有趣的 (B)愉快 (C)驚嚇的(D)刺激的</span></span>
+13.(A)<span class='tooltip'>entertaining<span class='tooltip-text'  onclick="speakText('entertaining')"><IMG SRC='speak.png'>有趣的</span></span>　(B)<span class='tooltip'>pleasurable<span class='tooltip-text'  onclick="speakText('pleasurable')"><IMG SRC='speak.png'>愉快</span></span>　(C)<span class='tooltip'>terrifying<span class='tooltip-text'  onclick="speakText('terrifying')"><IMG SRC='speak.png'>驚嚇的</span></span>　(D)<span class='tooltip'>stimulating<span class='tooltip-text'  onclick="speakText('stimulating')"><IMG SRC='speak.png'>刺激的</span></span><br><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>「聽起來好像屋頂塌了一樣！」叔叔大笑著說</span></span></th><th>
+"It sounds as if the <span class='tooltip'>roof<span class='tooltip-text'  onclick="speakText('roof')"><IMG SRC='speak.png'>屋頂</span></span> has <span class='tooltip'>fallen<span class='tooltip-text'  onclick="speakText('fallen')"><IMG SRC='speak.png'>墮落</span></span> in!" <span class='tooltip'>exclaimed<span class='tooltip-text'  onclick="speakText('exclaimed')"><IMG SRC='speak.png'>驚呼</span></span> my uncle,  with a <span class='tooltip'>loud<span class='tooltip-text'  onclick="speakText('loud')"><IMG SRC='speak.png'>大聲</span></span> <span class='tooltip'>laugh<span class='tooltip-text'  onclick="speakText('laugh')"><IMG SRC='speak.png'>笑</span></span> .<BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>當我們走到樓梯頂端並打開臥室門時，由於雲層太厚，我們一開始什麼也看不見</span></span></th><th>
+When we got to the top of the <span class='tooltip'>stairs<span class='tooltip-text'  onclick="speakText('stairs')"><IMG SRC='speak.png'>樓梯</span></span> and opened the bedroom door,  we could see nothing at first because of the thick <div class='cir'>14</div>.<BR>
+</th></tr></table>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：14.(A)層(B)滿手 (C)雲朵 (D)霧</span></span>
+14.(A)<span class='tooltip'>layers<span class='tooltip-text'  onclick="speakText('layers')"><IMG SRC='speak.png'>層</span></span>　(B)<span class='tooltip'>handful<span class='tooltip-text'  onclick="speakText('handful')"><IMG SRC='speak.png'>滿手</span></span>　(C)<span class='tooltip'>clouds<span class='tooltip-text'  onclick="speakText('clouds')"><IMG SRC='speak.png'>雲朵</span></span>　(D)<span class='tooltip'>mists<span class='tooltip-text'  onclick="speakText('mists')"><IMG SRC='speak.png'>霧</span></span><br><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>房間裡充滿了灰塵。
+當灰塵開始散去時，我們看到了奇怪的景象</span></span></th><th>
+of dust which filled the room. When the dust began to clear,  a <span class='tooltip'>strange<span class='tooltip-text'  onclick="speakText('strange')"><IMG SRC='speak.png'>奇怪的</span></span> sight met our eyes.<BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>天花板的很大一部分塌了，剛好掉在我的枕頭上</span></span></th><th>
+ A large part of the <span class='tooltip'>ceiling<span class='tooltip-text'  onclick="speakText('ceiling')"><IMG SRC='speak.png'>天花板</span></span> had <span class='tooltip'>collapsed<span class='tooltip-text'  onclick="speakText('collapsed')"><IMG SRC='speak.png'>崩潰</span></span>,  falling right on to the <span class='tooltip'>pillow<span class='tooltip-text'  onclick="speakText('pillow')"><IMG SRC='speak.png'>枕頭</span></span> of my bed.<BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>我很慶幸自己熬夜聽叔叔講故事</span></span></th><th>
+I was glad that I had <span class='tooltip'>stayed<span class='tooltip-text'  onclick="speakText('stayed')"><IMG SRC='speak.png'>留下來</span></span> up late to listen to my uncle's stories;<BR>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>否則，我肯定會受重傷，甚至可能喪命</span></span></th><th>
+<div class='cir'>15</div>. I should <span class='tooltip'>certainly<span class='tooltip-text'  onclick="speakText('certainly')"><IMG SRC='speak.png'>當然</span></span> have been <span class='tooltip'>seriously<span class='tooltip-text'  onclick="speakText('seriously')"><IMG SRC='speak.png'>嚴重地</span></span> injured,  <span class='tooltip'>perhaps<span class='tooltip-text'  onclick="speakText('perhaps')"><IMG SRC='speak.png'>也許</span></span> killed.<BR>
+</th></tr></table>
+<span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：15.(A)除非 (B)因為 (C)否然(D)但願</span></span>
+15.(A)unless 　(B)because 　(C)otherwise 　(D)if only<br>
+<hr>
+
+ 
+</div>
+<br><br>
+<br><br>

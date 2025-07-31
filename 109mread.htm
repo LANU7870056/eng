@@ -1,0 +1,662 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index2.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  background-color: #fff8dc; 
+}
+
+spanr {
+  color: blue;
+  border: 1px dashed red;   /* 藍色矩形框 */
+
+  padding: 0px 0px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #FFFF78; 
+}
+
+spanb {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #78D2FF; 
+}
+
+spany {
+  color: blue;
+  border: 1px dashed red;   /* 藍色矩形框 */
+  padding: 0px 0px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color:#FFDD78; 
+}
+
+
+.pp{
+  position: relative;
+  display: inline-block;
+  cursor: grab;
+color: #772B1A;
+}
+
+.pp .tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: #00FFFF;
+  color: #000;
+font-size: 0.7em;
+  text-align: center;
+  border-radius: 0px;
+  padding: 0px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%; /* 顯示在上方 */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.pp:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+</style>
+
+<span><a href="109mread-key.htm"><img src="exam3.png"></a>
+<a href="109mread-test.htm"><img src="exam.png"></a>
+<a href="109mread-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+
+ <center>109儲備物資以因應危機</center>
+ <table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>儲備物資以因應危機</span></span></th><th>
+<span class='tooltip'>Stocking up<span class='tooltip-text'  onclick="speakText('Stocking up')"><IMG SRC='speak.png'>儲備</span></span> to <span class='tooltip'>prepare<span class='tooltip-text'  onclick="speakText('prepare')"><IMG SRC='speak.png'>準備</span></span> for a <span class='tooltip'>crisis<span class='tooltip-text'  onclick="speakText('crisis')"><IMG SRC='speak.png'>危機</span></span> 
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>當危機發生時，人們往往會清空超市貨架，尋找他們認為可能需要的東西</span></span></th><th>
+When there is a <span class='tooltip'>crisis<span class='tooltip-text'  onclick="speakText('crisis')"><IMG SRC='speak.png'>危機</span></span>,  people <span class='tooltip'>tend<span class='tooltip-text'  onclick="speakText('tend')"><IMG SRC='speak.png'>趨向</span></span> to clear <span class='tooltip'>supermarket<span class='tooltip-text'  onclick="speakText('supermarket')"><IMG SRC='speak.png'>超市場</span></span> <span class='tooltip'>shelves<span class='tooltip-text'  onclick="speakText('shelves')"><IMG SRC='speak.png'>貨架</span></span> for the things they feel they might need. <br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>這種行為被稱為「恐慌性購買」。囤積食物和其他物資可以幫助人們感覺他們對事件有一定程度的控制</span></span></th><th>
+This <span class='tooltip'>behavior<span class='tooltip-text'  onclick="speakText('behavior')"><IMG SRC='speak.png'>行為</span></span> is called "<span class='tooltip'>panic<span class='tooltip-text'  onclick="speakText('panic')"><IMG SRC='speak.png'>恐慌</span></span> buying". <span class='tooltip'>Stocking up<span class='tooltip-text'  onclick="speakText('Stocking up')"><IMG SRC='speak.png'>儲備</span></span> on food and other <span class='tooltip'>supplies<span class='tooltip-text'  onclick="speakText('supplies')"><IMG SRC='speak.png'>補給品</span></span> helps people feel they have some level of control over <span class='tooltip'>events<span class='tooltip-text'  onclick="speakText('events')"><IMG SRC='speak.png'>事件</span></span>. 
+<br><hr>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>與大多數動物不同，人類可以感知一些未來的威脅並做好準備。感知到的威脅越大，反應就越強烈</span></span></th><th>
+Unlike most animals,  <span class='tooltip'>humans<span class='tooltip-text'  onclick="speakText('humans')"><IMG SRC='speak.png'>人類</span></span> can <span class='tooltip'>perceive<span class='tooltip-text'  onclick="speakText('perceive')"><IMG SRC='speak.png'>感知</span></span> some future <span class='tooltip'>threats<span class='tooltip-text'  onclick="speakText('threats')"><IMG SRC='speak.png'>威脅</span></span> and <span class='tooltip'>prepare<span class='tooltip-text'  onclick="speakText('prepare')"><IMG SRC='speak.png'>準備</span></span> for them. The <span class='tooltip'>greater<span class='tooltip-text'  onclick="speakText('greater')"><IMG SRC='speak.png'>更大</span></span> the <span class='tooltip'>perceived<span class='tooltip-text'  onclick="speakText('perceived')"><IMG SRC='speak.png'>感知</span></span> <span class='tooltip'>threat<span class='tooltip-text'  onclick="speakText('threat')"><IMG SRC='speak.png'>威脅</span></span>,  the <span class='tooltip'>stronger<span class='tooltip-text'  onclick="speakText('stronger')"><IMG SRC='speak.png'>更強烈</span></span> the <span class='tooltip'>reaction<span class='tooltip-text'  onclick="speakText('reaction')"><IMG SRC='speak.png'>反應</span></span> will be. <br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>大量搶購庫存會導致超市貨架空空如也，這看起來似乎是一種非理性的情緒反應。</span></span></th><th>
+Buying up large stores of <span class='tooltip'>supplies<span class='tooltip-text'  onclick="speakText('supplies')"><IMG SRC='speak.png'>補給品</span></span> which can <span class='tooltip'>lead to<span class='tooltip-text'  onclick="speakText('lead to')"><IMG SRC='speak.png'>導致</span></span> <span class='tooltip'>empty<span class='tooltip-text'  onclick="speakText('empty')"><IMG SRC='speak.png'>空白</span></span> <span class='tooltip'>supermarket<span class='tooltip-text'  onclick="speakText('supermarket')"><IMG SRC='speak.png'>超市場</span></span> <span class='tooltip'>shelves<span class='tooltip-text'  onclick="speakText('shelves')"><IMG SRC='speak.png'>貨架</span></span> - may seem like an <span class='tooltip'>irrational<span class='tooltip-text'  onclick="speakText('irrational')"><IMG SRC='speak.png'>非理性</span></span> <span class='tooltip'>emotion<span class='tooltip-text'  onclick="speakText('emotion')"><IMG SRC='speak.png'>情緒</span></span> <span class='tooltip'>response<span class='tooltip-text'  onclick="speakText('response')"><IMG SRC='speak.png'>反應</span></span>. <br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>但情緒並不是不理性的，它幫助我們決定如何集中註意力。那麼，恐慌性購買畢竟不是那麼糟</span></span></th><th>
+But <span class='tooltip'>emotions<span class='tooltip-text'  onclick="speakText('emotions')"><IMG SRC='speak.png'>情緒</span></span> are not <span class='tooltip'>irrational<span class='tooltip-text'  onclick="speakText('irrational')"><IMG SRC='speak.png'>非理性</span></span>,  they help us decide how to focus our <span class='tooltip'>attention<span class='tooltip-text'  onclick="speakText('attention')"><IMG SRC='speak.png'>注意力</span></span>. Then,  <span class='tooltip'>panic<span class='tooltip-text'  onclick="speakText('panic')"><IMG SRC='speak.png'>恐慌</span></span> buying is not so bad after all. <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>文章的主旨是什麼?</span></span></th><th>
+48.hat is the main idea of the passage ?<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】(A)恐慌性購買可能是一件正面的事<br>
+(B)每個人都應該儲備食物和其他日用品<br>
+(C)有危機的時候，就會有威脅<br>
+(D)情緒起伏會導致非理性的行為<br>
+</span></span></th><th>
+(A)Panic buying might be a positive thing. <br>
+(B)Everyone should stock up on food and other supplies. <br>
+(C)When there is crisis,  there is threat. <br>
+(D)Emotions lead to irrational behavior. <br></th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>文章作者對「恐慌性搶購(panic buying)」有何看法?</span></span></th><th>
+49.What does the author of the passage think about 'panic buying' ?<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】(A)它是不理性的
+(B)它對超市是件好事
+(C)這是一種緩解情緒壓力的方法
+(D)它就像動物般
+</span></span></th><th>
+(A)It is irrational. <br>
+(B)It is good for the supermarkets. <br>
+(C)It is a way to relieve emotional stress. <br>
+(D)It is animal-like. <br></th></tr></table><hr>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>下列哪個字可以代替「察覺、感知到(perceive)」?</span></span></th><th>
+50.Which word can replace 'perceive' ?
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】(A)準備
+(B)預見、預知
+(C)獲得
+(D)接受
+</span></span></th><th>
+(A)prepare　(B)foresee　(C)receive　(D)accept</th></tr></table><hr>
+
+

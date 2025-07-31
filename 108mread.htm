@@ -1,0 +1,697 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index2.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index2.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  background-color: #fff8dc; 
+}
+
+spanr {
+  color: blue;
+  border: 1px dashed red;   /* 藍色矩形框 */
+
+  padding: 0px 0px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #FFFF78; 
+}
+
+spanb {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #78D2FF; 
+}
+
+spany {
+  color: blue;
+  border: 1px dashed red;   /* 藍色矩形框 */
+  padding: 0px 0px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color:#FFDD78; 
+}
+
+
+.pp{
+  position: relative;
+  display: inline-block;
+  cursor: grab;
+color: #772B1A;
+}
+
+.pp .tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: #00FFFF;
+  color: #000;
+font-size: 0.7em;
+  text-align: center;
+  border-radius: 0px;
+  padding: 0px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%; /* 顯示在上方 */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.pp:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+</style>
+
+<span><a href="108mread-key.htm"><img src="exam3.png"></a>
+<a href="108mread-test.htm"><img src="exam.png"></a>
+<a href="108mread-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+
+<center>108-1日本最有名的狗</center>
+Japan's most famous dog
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>在東京澀谷火車站前，有一座真人大小的銅狗雕像。
+這是秋田犬八公的雕像。</span></span></th><th>
+In front of the <span class='pp'>Shibuya<span class='tooltiptext'>澀谷</span></span> Train Station in <span class='pp'>Tokyo<span class='tooltiptext'>日本</span></span>,  there is a life-size <span class='tooltip'>bronze<span class='tooltip-text'  onclick="speakText('bronze')"><IMG SRC='speak.png'>青銅</span></span> statue of a dog. <br> It is the <span class='tooltip'>statue<span class='tooltip-text'  onclick="speakText('statue')"><IMG SRC='speak.png'>雕像</span></span> of <span class='pp'>Hachiko<span class='tooltiptext'>八公</span></span>,  an <span class='tooltip'>Akita dog<span class='tooltip-text'  onclick="speakText('Akita dog')"><IMG SRC='speak.png'>秋田狗</span></span>. <br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>八公出生於1923年，1924年被帶到東京</span></span></th><th>
+<span class='pp'>Hachiko<span class='tooltiptext'>八公</span></span> was born in 1923 and <span class='tooltip'>brought<span class='tooltip-text'  onclick="speakText('brought')"><IMG SRC='speak.png'>帶來</span></span> to Tokyo in 1924 . 
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>這隻狗和它的主人—帝國大學的上野英三郎教授從一開始就是形影不離的朋友。</span></span></th><th>
+The dog and its <span class='tooltip'>owner<span class='tooltip-text'  onclick="speakText('owner')"><IMG SRC='speak.png'>主人</span></span>,  <span class='tooltip'>Professor<span class='tooltip-text'  onclick="speakText('Professor')"><IMG SRC='speak.png'>教授</span></span> <span class='pp'>Eisaburo<span class='tooltiptext'>英三郎</span></span> <span class='pp'>Uyeno<span class='tooltiptext'>上野</span></span> from <span class='tooltip'>Imperial<span class='tooltip-text'  onclick="speakText('Imperial')"><IMG SRC='speak.png'>帝國</span></span> University,  were <span class='tooltip'>inseparable<span class='tooltip-text'  onclick="speakText('inseparable')"><IMG SRC='speak.png'>形影不離</span></span> friends right from the start. <br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>每天，八公都會陪同上野教授去上班，前往澀谷火車站</span></span></th><th>
+Each day <span class='pp'>Hachiko<span class='tooltiptext'>八公</span></span> would <span class='tooltip'>accompany<span class='tooltip-text'  onclick="speakText('accompany')"><IMG SRC='speak.png'>陪伴</span></span> <span class='tooltip'>Professor<span class='tooltip-text'  onclick="speakText('Professor')"><IMG SRC='speak.png'>教授</span></span> <span class='pp'>Uyeno<span class='tooltiptext'>上野</span></span> to <span class='pp'>Shibuya<span class='tooltiptext'>澀谷</span></span> Train Station when he left for work. <br>
+<hr></th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>當他回來時，他總是會發現那隻狗在耐心地等待他。</span></span></th><th>
+When he came back,  he would always find the dog <span class='tooltip'>patiently<span class='tooltip-text'  onclick="speakText('patiently')"><IMG SRC='speak.png'>耐心地</span></span> waiting for him. <br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>不幸的是，這位教授於 1925 年在工作中突然去世，還未回家</span></span></th><th>
+<span class='tooltip'>Sadly<span class='tooltip-text'  onclick="speakText('Sadly')"><IMG SRC='speak.png'>不幸地</span></span>,  the professor died <span class='tooltip'>suddenly<span class='tooltip-text'  onclick="speakText('suddenly')"><IMG SRC='speak.png'>突然</span></span> at work in 1925 before he could <span class='tooltip'>return<span class='tooltip-text'  onclick="speakText('return')"><IMG SRC='speak.png'>返回</span></span> home. <br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>八公雖然還只是一隻小狗，但它與主人的感情卻非常深厚。</span></span></th><th>
+Although <span class='pp'>Hachiko<span class='tooltiptext'>八公</span></span> was still a young dog,  the bond with his <span class='tooltip'>owner<span class='tooltip-text'  onclick="speakText('owner')"><IMG SRC='speak.png'>主人</span></span> was very strong. <br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>這隻狗每天都會在車站等候上野教授。</span></span></th><th>
+The dog <span class='tooltip'>continued<span class='tooltip-text'  onclick="speakText('continued')"><IMG SRC='speak.png'>持續</span></span> to wait at the <span class='tooltip'>station<span class='tooltip-text'  onclick="speakText('station')"><IMG SRC='speak.png'>車站</span></span> every day for <span class='tooltip'>Professor<span class='tooltip-text'  onclick="speakText('Professor')"><IMG SRC='speak.png'>教授</span></span> <span class='pp'>Uyeno<span class='tooltiptext'>上野</span></span>. <br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>隨著時間的推移，這隻狗成為了通勤者熟悉的景象。1934年，車站外豎立了一座這隻狗的雕像</span></span></th><th>
+The dog became a familiar sight to commuters over time . In 1934,  a <span class='tooltip'>statue<span class='tooltip-text'  onclick="speakText('statue')"><IMG SRC='speak.png'>雕像</span></span> of the dog was put outside the station. <br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>1935年，八公在他最後一次見到主人的地方去世。</span></span></th><th>
+In 1935,  <span class='pp'>Hachiko<span class='tooltiptext'>八公</span></span> died at the place he last saw his <span class='tooltip'>owner<span class='tooltip-text'  onclick="speakText('owner')"><IMG SRC='speak.png'>主人</span></span>. <br>
+</th></tr></table><hr>
+<center>閱讀測驗</center>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'></span></span></th><th>
+46.When was <span class='pp'>Hachiko<span class='tooltiptext'>八公</span></span> born?<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】說明：</span></span></th><th>
+(A)1923 (B)1924 (C)1925 (D)1935<BR>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'></span></span></th><th>
+47.Where did the <span class='tooltip'>owner<span class='tooltip-text'  onclick="speakText('owner')"><IMG SRC='speak.png'>主人</span></span> work ? <BR>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：</span></span></th><th>
+(A)at a company　(B)at home. <br>
+(C)as a university　(D)at <span class='pp'>Shibuya<span class='tooltiptext'>澀谷</span></span> Train Station<BR>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'></span></span></th><th>
+48.What is the passage about?<BR>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】說明：</span></span></th><th>
+(A)The description of <span class='pp'>Shibuya<span class='tooltiptext'>澀谷</span></span> Train Station　(B)The close connection between a dog and its <span class='tooltip'>owner<span class='tooltip-text'  onclick="speakText('owner')"><IMG SRC='speak.png'>主人</span></span>　(C)The stories of the commuters　(D)The life of a great professor
+</th></tr></table><hr>
+
+<BR><hr>
+ <center>108-2愚人節</center>
+ <table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'></span></span></th><th>
+April Fool's Day <br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>愚人節起源於十六世紀的歐洲。如今，人們在四月一日這天跟別人開玩笑</span></span></th><th>
+April Fool's Day <span class='tooltip'>started<span class='tooltip-text'  onclick="speakText('started')"><IMG SRC='speak.png'>開始</span></span> in the sixteenth <span class='tooltip'>century<span class='tooltip-text'  onclick="speakText('century')"><IMG SRC='speak.png'>世紀</span></span> in Europe . Nowadays we play jokes on people on April 1st. <br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>例如，某人可能會更改另一個人的鬧鐘的時間，以便該人在不知不覺中比計劃的時間早或晚醒來</span></span></th><th>
+For example,  someone might change the time on <span class='tooltip'>another<span class='tooltip-text'  onclick="speakText('another')"><IMG SRC='speak.png'>其他</span></span> person's alarm clock so that person would <span class='tooltip'>unknowingly<span class='tooltip-text'  onclick="speakText('unknowingly')"><IMG SRC='speak.png'>不知不覺中</span></span> wake up <span class='tooltip'>earlier<span class='tooltip-text'  onclick="speakText('earlier')"><IMG SRC='speak.png'>早些時候</span></span> or later than planned. <br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>或者一個人會說謊來讓別人震驚。我們玩完這個惡作劇後，就說「愚人節快樂」。</span></span></th><th>
+Or maybe a person would tell a lie to make someone else <span class='tooltip'>shocked<span class='tooltip-text'  onclick="speakText('shocked')"><IMG SRC='speak.png'>震驚</span></span> . After we play the trick,  we say "April Fool". <br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>然後這個可憐的人意識到他被騙了。這通常只是為了好玩，不會對任何人造成真正的傷害</span></span></th><th>
+Then the poor person realizes he was fooled . It is generally done for fun and doesn't cause any real harm to anyone. <br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>下次在愚人節跟別人開玩笑時，當對方開始顯得有點困惑時，不要忘記說「愚人節」</span></span></th><th>
+Next time you play <span class='tooltip'>jokes<span class='tooltip-text'  onclick="speakText('jokes')"><IMG SRC='speak.png'>笑話</span></span> on anyone on April Fool's Day,  don't <span class='tooltip'>forget<span class='tooltip-text'  onclick="speakText('forget')"><IMG SRC='speak.png'>忘記</span></span> to say "April Fool" when the other person begins looking a little <span class='tooltip'>confused<span class='tooltip-text'  onclick="speakText('confused')"><IMG SRC='speak.png'>使困惑</span></span> . <br>
+</th></tr></table><hr>
+<center>閱讀測驗</center>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>在四月一號這天跟人開玩笑，到底是想表達什麼意思呢？</span></span></th><th>
+49.What is the intention of playing jokes on people on April 1st ? <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】說明：(A)造成傷害 (B)交朋友 (C)只是為了好玩 (D)早點起床</span></span>
+</th><th>
+(A)to cause harm<br>
+(B)to make friends<br>
+(C)just for fun<br>
+(D)to wake up earlier<br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>下列哪一項從文章中看是不正確的？</span></span></th><th>
+50.Which of the following is NOT true from the passage ? <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】說明：(A)愚人節始於16世紀。
+(B)愚人節在跟別人開玩笑後，必須說「April Fool」（愚人節）。
+(C)愚人節起源於歐洲。
+(D)人們在愚人節那天互相傷害。</span></span>
+</th><th>
+(A)April Fool's day started in 16th Century. <br>
+(B)You have to say "April Fool" after you play a joke on someone on April Fool's Day. <br>
+(C)April Fool's Day started in Europe. <br>
+(D)People harm each other on April Fool's Day. <br>
+</th></tr></table>
+

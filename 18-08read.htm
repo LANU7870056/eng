@@ -1,0 +1,655 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  background-color: #fff8dc; 
+}
+
+spanr {
+  color: blue;
+  border: 1px dashed red;   /* 藍色矩形框 */
+
+  padding: 0px 0px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #FFFF78; 
+}
+
+spanb {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #78D2FF; 
+}
+
+spany {
+  color: blue;
+  border: 1px dashed red;   /* 藍色矩形框 */
+  padding: 0px 0px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color:#FFDD78; 
+}
+
+
+</style>
+
+<span><a href="18-08read-key.htm"><img src="exam3.png"></a>
+<a href="18-08read-test.htm"><img src="exam.png"></a>
+<a href="18-08read-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+
+<center>08觀光業的負面衝擊<center>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>經濟和基礎設施脆弱的國家可能會將旅遊業視為經濟和社會發展的絕佳機會</span></span></th><th>
+<span class='tooltip'>Countries<span class='tooltip-text'  onclick="speakText('Countries')"><IMG SRC='speak.png'>國家</span></span> with <span class='tooltip'>fragile<span class='tooltip-text'  onclick="speakText('fragile')"><IMG SRC='speak.png'>脆弱的</span></span> <span class='tooltip'>economies<span class='tooltip-text'  onclick="speakText('economies')"><IMG SRC='speak.png'>經濟</span></span> and <span class='tooltip'>infrastructure<span class='tooltip-text'  onclick="speakText('infrastructure')"><IMG SRC='speak.png'>基礎設施</span></span> may see <span class='tooltip'>tourism<span class='tooltip-text'  onclick="speakText('tourism')"><IMG SRC='speak.png'>旅遊</span></span> as a great <span class='tooltip'>opportunity<span class='tooltip-text'  onclick="speakText('opportunity')"><IMG SRC='speak.png'>機會</span></span> for <span class='tooltip'>economic<span class='tooltip-text'  onclick="speakText('economic')"><IMG SRC='speak.png'>經濟的</span></span> and social <span class='tooltip'>development<span class='tooltip-text'  onclick="speakText('development')"><IMG SRC='speak.png'>發展</span></span> .<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>然而，旅遊業的發展並不總是能夠解決一個國家的經濟困境，有時甚至弊大於利。</span></span></th><th>
+However,  <span class='tooltip'>tourism<span class='tooltip-text'  onclick="speakText('tourism')"><IMG SRC='speak.png'>旅遊</span></span> <span class='tooltip'>developments<span class='tooltip-text'  onclick="speakText('developments')"><IMG SRC='speak.png'>發展</span></span> may not always be the answer to a country's <span class='tooltip'>economic<span class='tooltip-text'  onclick="speakText('economic')"><IMG SRC='speak.png'>經濟的</span></span> <span class='tooltip'>woes<span class='tooltip-text'  onclick="speakText('woes')"><IMG SRC='speak.png'>困境</span></span> and they can sometimes do more <span class='tooltip'>harm than good<span class='tooltip-text'  onclick="speakText('harm than good')"><IMG SRC='speak.png'>弊大於利</span></span>.<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>每年約有1.4億人從工業化國家前往開發中國家</span></span></th><th>
+Every year,  around 140 million people <span class='tooltip'>travel<span class='tooltip-text'  onclick="speakText('travel')"><IMG SRC='speak.png'>旅行</span></span> from an <span class='tooltip'>industrialized<span class='tooltip-text'  onclick="speakText('industrialized')"><IMG SRC='speak.png'>工業化</span></span> country to a <span class='tooltip'>developing<span class='tooltip-text'  onclick="speakText('developing')"><IMG SRC='speak.png'>發展</span></span> one.<br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>許多人花費數千美元去度假</span></span></th><th>
+Many will be on a holiday that will have cost thousands of dollars.<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>度假者的消費是目的地國家居民的重要收入來源</span></span></th><th>
+The money spent by <span class='tooltip'>holidaymakers<span class='tooltip-text'  onclick="speakText('holidaymakers')"><IMG SRC='speak.png'>度假者</span></span> is <spanr>an important source of income</spanr> to <spanr>the people living in the <span class='tooltip'>destination<span class='tooltip-text'  onclick="speakText('destination')"><IMG SRC='speak.png'>目的地</span></span> <span class='tooltip'>countries<span class='tooltip-text'  onclick="speakText('countries')"><IMG SRC='speak.png'>國家</span></span></spanr>.<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>然而，通常只有不到一半的旅行收入真正留在了該國——有時「收入流失」可能高達 80%</span></span></th><th>
+However,  often <span class='tooltip'>less than half<span class='tooltip-text'  onclick="speakText('less than half')"><IMG SRC='speak.png'>少於一半</span></span> the <span class='tooltip'>revenue<span class='tooltip-text'  onclick="speakText('revenue')"><IMG SRC='speak.png'>收入</span></span> from the trip <span class='tooltip'>actually<span class='tooltip-text'  onclick="speakText('actually')"><IMG SRC='speak.png'>實際上</span></span> stays in that country—sometimes the “<span class='tooltip'>revenue leakage<span class='tooltip-text'  onclick="speakText('revenue leakage')"><IMG SRC='speak.png'>收入流失</span></span>" can be as much as 80 percent.<br>
+
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>此外，適度或大眾旅遊可能對發展中國家的社會及其道路、水、電和污水處理等基礎設施帶來巨大壓力</span></span></th><th>
+In addition,  <span class='tooltip'>moderate<span class='tooltip-text'  onclick="speakText('moderate')"><IMG SRC='speak.png'>緩和</span></span> or <span class='tooltip'>mass<span class='tooltip-text'  onclick="speakText('mass')"><IMG SRC='speak.png'>大量的</span></span> <span class='tooltip'>tourism<span class='tooltip-text'  onclick="speakText('tourism')"><IMG SRC='speak.png'>旅遊</span></span> <spany>can put a huge <span class='tooltip'>strain<span class='tooltip-text'  onclick="speakText('strain')"><IMG SRC='speak.png'>拉緊</span></span> on the <span class='tooltip'>developing<span class='tooltip-text'  onclick="speakText('developing')"><IMG SRC='speak.png'>發展</span></span> country's <span class='tooltip'>society<span class='tooltip-text'  onclick="speakText('society')"><IMG SRC='speak.png'>社會</span></span> and its <span class='tooltip'>infrastructure<span class='tooltip-text'  onclick="speakText('infrastructure')"><IMG SRC='speak.png'>基礎設施</span></span></spany> <spanr>such as roads,  water,  <span class='tooltip'>electricity<span class='tooltip-text'  onclick="speakText('electricity')"><IMG SRC='speak.png'>電</span></span> and <span class='tooltip'>sewage treatment<span class='tooltip-text'  onclick="speakText('sewage treatment')"><IMG SRC='speak.png'>污水處理</span></span></spanr> .<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>更不用說對環境的影響了。以牙買加為例。</span></span></th><th>
+That's not to <span class='tooltip'>mention<span class='tooltip-text'  onclick="speakText('mention')"><IMG SRC='speak.png'>提到</span></span> the <span class='tooltip'>environmental<span class='tooltip-text'  onclick="speakText('environmental')"><IMG SRC='speak.png'>環境的</span></span> <span class='tooltip'>impact<span class='tooltip-text'  onclick="speakText('impact')"><IMG SRC='speak.png'>影響</span></span>. Take Jamaica for example.<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>這個加勒比海島天堂多年來一直是大眾旅遊目的地，其經濟部分依賴旅遊業</span></span></th><th>
+This <span class='pp'>Caribbean</span></span> island <span class='tooltip'>paradise<span class='tooltip-text'  onclick="speakText('paradise')"><IMG SRC='speak.png'>天堂</span></span> has been a <span class='tooltip'>mass tourist<span class='tooltip-text'  onclick="speakText('mass tourist')"><IMG SRC='speak.png'>大眾旅遊</span></span> <span class='tooltip'>destination<span class='tooltip-text'  onclick="speakText('destination')"><IMG SRC='speak.png'>目的地</span></span> for many years and its economy is <span class='tooltip'>partly<span class='tooltip-text'  onclick="speakText('partly')"><IMG SRC='speak.png'>部分地</span></span> <span2>dependent on</span2> <span class='tooltip'>tourism<span class='tooltip-text'  onclick="speakText('tourism')"><IMG SRC='speak.png'>旅遊</span></span>.<br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>然而，旅遊業給該國的自然資源帶來了巨大的壓力，並在一定程度上造成了污染、動植物物種的滅絕、珊瑚礁的破壞以及海灘的侵蝕。</span></span></th><th>
+Yet <span class='tooltip'>tourism<span class='tooltip-text'  onclick="speakText('tourism')"><IMG SRC='speak.png'>旅遊</span></span> has put a <span class='tooltip'>huge<span class='tooltip-text'  onclick="speakText('huge')"><IMG SRC='speak.png'>巨大的</span></span> <span class='tooltip'>strain<span class='tooltip-text'  onclick="speakText('strain')"><IMG SRC='speak.png'>拉傷</span></span> on the natural <span class='tooltip'>resources<span class='tooltip-text'  onclick="speakText('resources')"><IMG SRC='speak.png'>資源</span></span> of the country and is,  in part,  <span class='tooltip'>responsible<span class='tooltip-text'  onclick="speakText('responsible')"><IMG SRC='speak.png'>負責任的</span></span> for <span class='tooltip'>pollution<span class='tooltip-text'  onclick="speakText('pollution')"><IMG SRC='speak.png'>污染</span></span>,  loss of <spanr><span class='tooltip'>animal<span class='tooltip-text'  onclick="speakText('animal')"><IMG SRC='speak.png'>動物滅種</span></span> and plant <span class='tooltip'>species<span class='tooltip-text'  onclick="speakText('species')"><IMG SRC='speak.png'>種</span></span></spanr>,  <span class='tooltip'>coral reef<span class='tooltip-text'  onclick="speakText('coral reef')"><IMG SRC='speak.png'>珊瑚礁</span></span> <span class='tooltip'>destruction<span class='tooltip-text'  onclick="speakText('destruction')"><IMG SRC='speak.png'>破壞</span></span>,  and <span class='tooltip'>erosion<span class='tooltip-text'  onclick="speakText('erosion')"><IMG SRC='speak.png'>侵蝕</span></span> of <span class='tooltip'>beaches<span class='tooltip-text'  onclick="speakText('beaches')"><IMG SRC='speak.png'>海灘</span></span>.<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>當地社區遭受天然公共海灘的喪失和水資源短缺的困擾，飯店使用的大量食物都是進口的，而不是從當地農場購買</span></span></th><th>
+The local <span class='tooltip'>community<span class='tooltip-text'  onclick="speakText('community')"><IMG SRC='speak.png'>社群</span></span> <span class='tooltip'>suffers<span class='tooltip-text'  onclick="speakText('suffers')"><IMG SRC='speak.png'>遭受</span></span> from loss of natural public beaches,  water <span class='tooltip'>shortages<span class='tooltip-text'  onclick="speakText('shortages')"><IMG SRC='speak.png'>短缺</span></span>,  and a <span class='tooltip'>significant<span class='tooltip-text'  onclick="speakText('significant')"><IMG SRC='speak.png'>重要的</span></span> <span class='tooltip'>amount<span class='tooltip-text'  onclick="speakText('amount')"><IMG SRC='speak.png'>數量</span></span> of the food used by the <span class='tooltip'>hotels<span class='tooltip-text'  onclick="speakText('hotels')"><IMG SRC='speak.png'>飯店</span></span> is <span class='tooltip'>imported<span class='tooltip-text'  onclick="speakText('imported')"><IMG SRC='speak.png'>進口</span></span> <span class='tooltip'>rather being<span class='tooltip-text'  onclick="speakText('rather being')"><IMG SRC='speak.png'>而不是</span></span> <span class='tooltip'>purchased<span class='tooltip-text'  onclick="speakText('purchased')"><IMG SRC='speak.png'>購買</span></span> from local farms.<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>由於犯罪率高，許多酒店都與社區其他地方隔絕，但從某種程度上來說，這進一步將遊客與當地居民隔離開來——除了度假村的工作人員</span></span></th><th>
+A lot of the hotels are <span class='tooltip'>gated<span class='tooltip-text'  onclick="speakText('gated')"><IMG SRC='speak.png'>隔絕、閘道</span></span> from the rest of the <span class='tooltip'>community<span class='tooltip-text'  onclick="speakText('community')"><IMG SRC='speak.png'>社群</span></span> because of high 
+<span class='tooltip'>crime<span class='tooltip-text'  onclick="speakText('crime')"><IMG SRC='speak.png'>犯罪</span></span> rates,  but in some ways this further <spanr><span class='tooltip'>isolates<span class='tooltip-text'  onclick="speakText('isolates')"><IMG SRC='speak.png'>分離</span></span></spanr> the <span class='tooltip'>tourists<span class='tooltip-text'  onclick="speakText('tourists')"><IMG SRC='speak.png'>遊客</span></span> <spanr>from</spanr> the local <span class='tooltip'>population<span class='tooltip-text'  onclick="speakText('population')"><IMG SRC='speak.png'>人口</span></span>—other than those <span class='tooltip'>employed<span class='tooltip-text'  onclick="speakText('employed')"><IMG SRC='speak.png'>受僱的</span></span> 
+as <span class='tooltip'>staff<span class='tooltip-text'  onclick="speakText('staff')"><IMG SRC='speak.png'>職員</span></span> at the <span class='tooltip'>resorts<span class='tooltip-text'  onclick="speakText('resorts')"><IMG SRC='speak.png'>度假村</span></span>.
+
+<br><br>
+
+<center>閱讀測驗</center>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>這篇文章的最佳標題是什麼</span></span></th><th>
+17.What will be the best title for this passage ? <br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'> <span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】(A)如何經營觀光客商店　(B)收入流失　(C)觀光業的負面衝擊　(D)牙買加海灘
+</span></span></th><th>
+(A)How to Run a Tourist Shop　(B)Revenue Leakage<br>(C)The Negative Impact of Tourism　(D)Beaches in Jamaica </so2>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>下列哪一項敘述是不正確的</span></span></th><th>
+18.Which of the following statements is NOT true ?
+</th></tr></table> <table><tr><th style='vertical-align:top;width:5px;'> <span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】(A)觀光業至少一半的收入沒有流向目的地國家的人民手中。
+　(B)當地社群的民眾鮮少受到蓬勃發展觀光業的利益。　(C)每年都有大量開發中國
+家的人民到工業化國家觀光。　(D)觀光業必須為珊瑚礁損害與森林砍伐負上重大
+責任。</span></span></th><th>
+(A)At least half of the revenue of tourist business does not go to the people of the destination country.<br>
+(B)The local people in the community have barely benefited from the booming tourism.<br>
+(C)Every year,  people in the developing countries flooded to the industrialized countries for sightseeing.<br>
+(D)Tourism to a great extent is responsible for the coral reef destruction and deforestation.<br>
+</so2>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>這篇文章的主旨是什麼</span></span></th><th>
+19.What is the main idea of this passage ?
+</th></tr></table> <table><tr><th style='vertical-align:top;width:5px;'> <span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】(A)觀光業對目的地國家總是有益的。　(B)觀光業發展可能對目的地國家造成傷害多於利益　
+(C)度假者將所有的錢花在保護森林上　(D)自然環境未被侵入的觀光客傷害
+</span></span></th><th>
+(A)Tourism is always beneficiary to the destination country.<br>
+(B)Tourism developments can cause more harm than good to the destination country.<br>
+(C)The holidaymakers spent all their money on the protection of the forest.<br>
+(D)The natural environment is not harmed by the intrusive tourists.<br>
+</so2>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>“put a huge stress” 是什麼意思？</span></span></th><th>
+20.What does "put a huge strain" mean ?
+</th></tr></table> <table><tr><th style='vertical-align:top;width:5px;'> <span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】　(A)投資大量金錢　(B)給予大量壓力　(C)造成不幸　(D)引起高度興趣</span></span></th><th>
+(A)To invest lots of money　(B)To give great pressure<br>(C)To cause misfortune　(D)To arouse great interests 
+</so2>

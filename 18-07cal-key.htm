@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>單字複習遊戲</title>
+
+<script>
+  // 英漢詞庫
+  const wordPairs = [
+{ en: "shopping", zh: "購物"},
+{ en: "produced", zh: "產生.製作"},
+{ en: "revolution", zh: "革命"},
+{ en: "habits", zh: "習慣"},
+{ en: "society", zh: "社會"},
+{ en: "spread out", zh: "散開"},
+{ en: "blocks", zh: "區塊"},
+{ en: "householders", zh: "家庭成員"}
+
+  ];        
+</script>
+
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  h1 {
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .game-container {
+    width: 90%;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 600px) {
+    .cards-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .card {
+    background-color: #87000D;
+    font-weight: bold;
+    color: white;
+    height: 100px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card.flipped {
+    background-color: #ff9a3c;
+  }
+  
+  .result {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: center;
+    min-height: 50px;
+  }
+  
+  .btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #45a049;
+  }
+
+  .range-btn {
+    background-color:#FF5061;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+
+  .range-btn:hover {
+    background-color: #5a6268;
+  }
+
+  .range-btn.active {
+    background-color: #007bff;
+  }
+  
+  .range-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+
+  .range-buttons > * {
+    width: calc(16.66% - 10px);
+    min-width: 100px;
+    box-sizing: border-box;
+  }
+
+  /* 喇叭按鈕 */
+  .speaker-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .speaker-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+  }
+
+  /* 音效控制按鈕 */
+  .sound-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+</style>
+</head>
+<body>
+    <h1><a href="#" onclick="history.back()"><img src="home2.png"></a>單字複習卡</h1>
+    
+    <div class="game-container">
+        <div class="range-buttons" id="rangeButtons"></div>
+        <div class="cards-container" id="cardsContainer"></div>
+        <div class="result" id="result"></div>
+        <button class="btn" id="newGameBtn">新一輪遊戲</button>
+    </div>
+
+    <!-- 音效控制按鈕 -->
+    <div class="sound-control" id="soundControl">🔊</div>
+
+    <!-- 音效 -->
+    <audio id="flipSound" src="02.mp3"></audio>
+    <audio id="correctSound" src="01.mp3"></audio>
+    <audio id="newGameSound" src="03.mp3"></audio>
+
+    <script>
+      // 語音合成函數
+      function speakText(text) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+        speechSynthesis.speak(utterance);
+      }
+
+      let selectedWords = [];
+      let cards = [];
+      let flippedCard = null;
+      let soundEnabled = true;
+      let currentRange = null;
+      
+      const cardsContainer = document.getElementById('cardsContainer');
+      const resultDiv = document.getElementById('result');
+      const newGameBtn = document.getElementById('newGameBtn');
+      const soundControl = document.getElementById('soundControl');
+      const rangeButtons = document.getElementById('rangeButtons');
+      const flipSound = document.getElementById('flipSound');
+      const correctSound = document.getElementById('correctSound');
+      const newGameSound = document.getElementById('newGameSound');
+      
+      // 初始化範圍選擇按鈕
+      function initRangeButtons() {
+        rangeButtons.innerHTML = '';
+        
+        // 計算需要多少個範圍按鈕（每10個一組）
+        const rangeCount = Math.ceil(wordPairs.length / 10);
+        
+        for (let i = 0; i < rangeCount; i++) {
+          const start = i * 10 + 1;
+          const end = Math.min((i + 1) * 10, wordPairs.length);
+          
+          const btn = document.createElement('button');
+          btn.className = 'range-btn';
+          btn.textContent = `${start}-${end}`;
+          btn.dataset.start = i * 10;
+          btn.dataset.end = end;
+          
+          btn.addEventListener('click', () => {
+            // 移除所有按鈕的active類
+            document.querySelectorAll('.range-btn').forEach(b => {
+              b.classList.remove('active');
+            });
+            // 為當前按鈕添加active類
+            btn.classList.add('active');
+            
+            // 設置當前範圍
+            currentRange = {
+              start: parseInt(btn.dataset.start),
+              end: parseInt(btn.dataset.end)
+            };
+            
+            // 初始化遊戲
+            initGame();
+          });
+          
+          rangeButtons.appendChild(btn);
+        }
+        
+        // 默認選擇第一個範圍
+        if (rangeButtons.firstChild) {
+          rangeButtons.firstChild.click();
+        }
+      }
+      
+      // 初始化遊戲
+      function initGame() {
+        // 如果沒有選擇範圍，使用全部單詞
+        let wordsToUse = wordPairs;
+        
+        if (currentRange) {
+          wordsToUse = wordPairs.slice(currentRange.start, currentRange.end);
+        }
+        
+        // 播放新遊戲音效
+        if (soundEnabled) {
+          newGameSound.currentTime = 0;
+          newGameSound.play();
+        }
+        
+        // 清空容器
+        cardsContainer.innerHTML = '';
+        resultDiv.textContent = '';
+        
+        // 隨機選擇6個單詞（如果範圍內有足夠的單詞）
+        const numWordsToSelect = Math.min(8, wordsToUse.length);
+        selectedWords = [...wordsToUse]
+          .sort(() => 0.5 - Math.random())
+          .slice(0, numWordsToSelect);
+        
+        // 創建卡片
+        cards = selectedWords.map(word => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.textContent = word.en;
+          card.dataset.en = word.en;
+          card.dataset.zh = word.zh;
+          
+          // 添加喇叭按鈕
+          const speakerBtn = document.createElement('div');
+          speakerBtn.className = 'speaker-btn';
+          speakerBtn.innerHTML = '🔊';
+          speakerBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // 防止觸發卡片翻轉
+            speakText(word.en); // 使用您提供的speakText函數
+          });
+          
+          card.appendChild(speakerBtn);
+          card.addEventListener('click', flipCard);
+          
+          cardsContainer.appendChild(card);
+          return card;
+        });
+      }
+
+
+
+// 翻轉卡片
+function flipCard() {
+    // 如果已經翻轉或是同一張卡片，則不做任何事
+    if (this === flippedCard || this.classList.contains('flipped')) {
+        return;
+    }
+    
+    // 播放翻牌音效
+    if (soundEnabled) {
+        flipSound.currentTime = 0;
+        flipSound.play();
+    }
+    
+    // 翻轉卡片
+    this.classList.add('flipped');
+    
+    // 保存原始內容（英文和喇叭按鈕）
+    const originalContent = this.innerHTML;
+    this.dataset.originalContent = originalContent;
+    
+    // 設置中文內容，但保留喇叭按鈕
+    const speakerBtn = this.querySelector('.speaker-btn') ? this.querySelector('.speaker-btn').outerHTML : '';
+    this.innerHTML = this.dataset.zh + speakerBtn;
+    
+    // 重新綁定喇叭按鈕的事件
+    const newSpeakerBtn = this.querySelector('.speaker-btn');
+    if (newSpeakerBtn) {
+        newSpeakerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            speakText(this.dataset.en);
+        });
+    }
+    
+    // 顯示結果
+    resultDiv.textContent = `${this.dataset.en} 的中文意思是 ${this.dataset.zh}`;
+    
+    // 播放答對音效
+    if (soundEnabled) {
+        correctSound.currentTime = 0;
+        correctSound.play();
+    }
+    
+    // 如果之前有翻轉的卡片，翻回去
+    if (flippedCard) {
+        setTimeout(() => {
+            flippedCard.classList.remove('flipped');
+            flippedCard.innerHTML = flippedCard.dataset.originalContent;
+            // 重新綁定喇叭按鈕的事件
+            const originalSpeakerBtn = flippedCard.querySelector('.speaker-btn');
+            if (originalSpeakerBtn) {
+                originalSpeakerBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    speakText(flippedCard.dataset.en);
+                });
+            }
+            flippedCard = null;
+        }, 3000); // 3秒後翻回
+    }
+    
+    // 保存當前翻轉的卡片
+    flippedCard = this;
+    
+    // 3秒後自動翻回
+    setTimeout(() => {
+        if (this.classList.contains('flipped')) {
+            this.classList.remove('flipped');
+            this.innerHTML = this.dataset.originalContent;
+            // 重新綁定喇叭按鈕的事件
+            const originalSpeakerBtn = this.querySelector('.speaker-btn');
+            if (originalSpeakerBtn) {
+                originalSpeakerBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    speakText(this.dataset.en);
+                });
+            }
+            if (flippedCard === this) {
+                flippedCard = null;
+            }
+        }
+    }, 3000);
+}
+
+      
+      // 新遊戲按鈕
+      newGameBtn.addEventListener('click', initGame);
+      
+      // 音效控制
+      soundControl.addEventListener('click', () => {
+        soundEnabled = !soundEnabled;
+        soundControl.textContent = soundEnabled ? '🔊' : '🔇';
+      });
+      
+      // 初始化範圍按鈕和遊戲
+      initRangeButtons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,645 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+.pp{
+  color:#460069;
+  text-decoration: underline;
+}
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  background-color: #fff8dc; 
+}
+
+spanr {
+  color: blue;
+  border: 1px dashed red;   /* 藍色矩形框 */
+
+  padding: 0px 0px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #FFFF78; 
+}
+
+spanb {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #78D2FF; 
+}
+
+spany {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color:#FFDD78; 
+}
+
+
+</style>
+
+<span><a href="18-08cal-key.htm"><img src="exam3.png"></a>
+<a href="18-08cal-test.htm"><img src="exam.png"></a>
+<a href="18-08cal-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+
+<center>08日本水上城</center>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>1970年代初，日本開始建造世界上第一座半潛式浮動城市－「水上城」</span></span></th><th>
+In the early 1970s,  the Japanese began the <span class='tooltip'>construction<span class='tooltip-text'  onclick="speakText('construction')"><IMG SRC='speak.png'>建設</span></span> of <span class='tooltip'>Aquapolis<span class='tooltip-text'  onclick="speakText('Aquapolis')"><IMG SRC='speak.png'>水上城</span></span>,  the world's first <span class='tooltip'>semisubmersible<span class='tooltip-text'  onclick="speakText('semisubmersible')"><IMG SRC='speak.png'>半潛式</span></span> <span class='tooltip'>floating<span class='tooltip-text'  onclick="speakText('floating')"><IMG SRC='speak.png'>漂浮的</span></span> city.<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>他們在日本主島本州建造了它，然後將其拖往南部的沖繩</span></span></th><th>
+They built it on the main Japanese <span class='tooltip'>island<span class='tooltip-text'  onclick="speakText('island')"><IMG SRC='speak.png'>島</span></span> of <span class='tooltip'>Honshu<span class='tooltip-text'  onclick="speakText('Honshu')"><IMG SRC='speak.png'>本州</span></span> and <span class='tooltip'>towed<span class='tooltip-text'  onclick="speakText('towed')"><IMG SRC='speak.png'>拖曳</span></span> it south to Okinawa.<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>他們在 1975 年的一次博覽會上展示了它</span></span></th><th>
+There they <div class='cir'>12</div> it at a 1975 <span class='tooltip'>exposition<span class='tooltip-text'  onclick="speakText('exposition')"><IMG SRC='speak.png'>博覽會</span></span>.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'> <span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【A】使用過去式</span></span></th><th>
+12.(A)displayed　(B)had displayed　(C)have displayed　(D)display <br><hr>
+</th></tr></table>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>「水上城」可以在水中升起或降低，以抵禦猛烈的風暴</span></span></th><th>
+<span class='tooltip'>Aquapolis<span class='tooltip-text'  onclick="speakText('Aquapolis')"><IMG SRC='speak.png'>水上城</span></span> can be <span class='tooltip'>raised<span class='tooltip-text'  onclick="speakText('raised')"><IMG SRC='speak.png'>升起</span></span> or <span class='tooltip'>lowered<span class='tooltip-text'  onclick="speakText('lowered')"><IMG SRC='speak.png'>降低</span></span> in the water as a <span class='tooltip'>protection<span class='tooltip-text'  onclick="speakText('protection')"><IMG SRC='speak.png'>保護</span></span> <span class='tooltip'>against<span class='tooltip-text'  onclick="speakText('against')"><IMG SRC='speak.png'>反對</span></span> <span class='tooltip'>violent<span class='tooltip-text'  onclick="speakText('violent')"><IMG SRC='speak.png'>暴力</span></span> <span class='tooltip'>storms<span class='tooltip-text'  onclick="speakText('storms')"><IMG SRC='speak.png'>風暴</span></span> .<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>當其被放下時，大部分結構都處於表面之下</span></span></th><th>
+When <span class='tooltip'>lowered<span class='tooltip-text'  onclick="speakText('lowered')"><IMG SRC='speak.png'>降低</span></span>,  most of the <span class='tooltip'>structure<span class='tooltip-text'  onclick="speakText('structure')"><IMG SRC='speak.png'>結構</span></span> rests <span class='tooltip'>beneath<span class='tooltip-text'  onclick="speakText('beneath')"><IMG SRC='speak.png'>下面</span></span> the <span class='tooltip'>surface<span class='tooltip-text'  onclick="speakText('surface')"><IMG SRC='speak.png'>表面</span></span> .<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>這可以防止其因強風和地面擾動而發生搖晃</span></span></th><th>
+This <span class='tooltip'>protects<span class='tooltip-text'  onclick="speakText('protects')"><IMG SRC='speak.png'>保護</span></span> it from <span class='tooltip'>rocking<span class='tooltip-text'  onclick="speakText('rocking')"><IMG SRC='speak.png'>搖擺</span></span> <div class='cir'>13</div> <spanr>by high winds and <span class='tooltip'>surface<span class='tooltip-text'  onclick="speakText('surface')"><IMG SRC='speak.png'>地面</span></span> <span class='tooltip'>disturbances<span class='tooltip-text'  onclick="speakText('disturbances')"><IMG SRC='speak.png'>干擾</span></span></spanr>.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'> <span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【D】</span></span></th><th>
+13.(A)to cause　(B)to have been caused　(C)having caused　(D)caused <br>
+</th></tr></table><hr>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>在正常的升起位置，此結構包含三個主要區域</span></span></th><th>
+In its normal raised <span class='tooltip'>position<span class='tooltip-text'  onclick="speakText('position')"><IMG SRC='speak.png'>位置</span></span>,  the <span class='tooltip'>structure<span class='tooltip-text'  onclick="speakText('structure')"><IMG SRC='speak.png'>結構</span></span> <span class='tooltip'>contains<span class='tooltip-text'  onclick="speakText('contains')"><IMG SRC='speak.png'>包含</span></span> three main <span class='tooltip'>areas<span class='tooltip-text'  onclick="speakText('areas')"><IMG SRC='speak.png'>區域</span></span> .<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>第一部分是建築的頂部，高於水面，包括住宅區、行政區和展覽區</span></span></th><th>
+The first is the top part of the <span class='tooltip'>structure<span class='tooltip-text'  onclick="speakText('structure')"><IMG SRC='speak.png'>結構</span></span>,  which is high <div class='cir'>14</div> the water level,  and <span class='tooltip'>includes<span class='tooltip-text'  onclick="speakText('includes')"><IMG SRC='speak.png'>包括</span></span> <span class='tooltip'>residential<span class='tooltip-text'  onclick="speakText('residential')"><IMG SRC='speak.png'>住宅</span></span>,  administrative,  and <span class='tooltip'>exhibition<span class='tooltip-text'  onclick="speakText('exhibition')"><IMG SRC='speak.png'>展覽</span></span> zones.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'> <span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】</span></span></th><th>
+14.(A)against　(B)above　(C)around　(D)about <br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>中層位於水面，設有交通設施，包括自己的港口</span></span></th><th>
+The <span class='tooltip'>middle<span class='tooltip-text'  onclick="speakText('middle')"><IMG SRC='speak.png'>中間</span></span> level is at the water line.It <span class='tooltip'>contains<span class='tooltip-text'  onclick="speakText('contains')"><IMG SRC='speak.png'>包含</span></span> <span class='tooltip'>transportation<span class='tooltip-text'  onclick="speakText('transportation')"><IMG SRC='speak.png'>運輸</span></span> <span class='tooltip'>facilities<span class='tooltip-text'  onclick="speakText('facilities')"><IMG SRC='speak.png'>設施</span></span>,  including its own <span class='tooltip'>harbor<span class='tooltip-text'  onclick="speakText('harbor')"><IMG SRC='speak.png'>港口</span></span> .<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>最後，水下是儲存區和機械區。</span></span></th><th>
+<div class='cir'>15</div> <span class='tooltip'>beneath<span class='tooltip-text'  onclick="speakText('beneath')"><IMG SRC='speak.png'>下面</span></span> the water are storage and <span class='tooltip'>machinery<span class='tooltip-text'  onclick="speakText('machinery')"><IMG SRC='speak.png'>機械</span></span> <span class='tooltip'>zones<span class='tooltip-text'  onclick="speakText('zones')"><IMG SRC='speak.png'>區域</span></span> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【C】</span></span></th><th>
+15.(A)Now　(B)However　(C)Finally　(D)Therefore <br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>「水上城」是未來漂浮城市的原型，旨在利用太陽能、風能和潮汐能運作</span></span></th><th>
+<span class='tooltip'>Aquapolis<span class='tooltip-text'  onclick="speakText('Aquapolis')"><IMG SRC='speak.png'>水上城</span></span> is a <span class='tooltip'>prototype<span class='tooltip-text'  onclick="speakText('prototype')"><IMG SRC='speak.png'>原型</span></span> of <span class='tooltip'>futuristic<span class='tooltip-text'  onclick="speakText('futuristic')"><IMG SRC='speak.png'>未來主義</span></span> floating cities <span class='tooltip'>designed<span class='tooltip-text'  onclick="speakText('designed')"><IMG SRC='speak.png'>設計</span></span> to <span class='tooltip'>run on<span class='tooltip-text'  onclick="speakText('run on')"><IMG SRC='speak.png'>運作</span></span> <span class='tooltip'>solar<span class='tooltip-text'  onclick="speakText('solar')"><IMG SRC='speak.png'>太陽的</span></span>,  wind,  and <span class='tooltip'>tidal<span class='tooltip-text'  onclick="speakText('tidal')"><IMG SRC='speak.png'>潮汐</span></span> <span class='tooltip'>energy<span class='tooltip-text'  onclick="speakText('energy')"><IMG SRC='speak.png'>活力</span></span> .<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>它採用生物廢水系統，透過一種綠藻而不是化學方法來處理污水</span></span></th><th>
+It uses a <span class='tooltip'>biological<span class='tooltip-text'  onclick="speakText('biological')"><IMG SRC='speak.png'>生物</span></span> <span class='tooltip'>waste-water<span class='tooltip-text'  onclick="speakText('waste-water')"><IMG SRC='speak.png'>廢水</span></span> system,  which <span class='tooltip'>disposes<span class='tooltip-text'  onclick="speakText('disposes')"><IMG SRC='speak.png'>處置</span></span> of <span class='tooltip'>sewage<span class='tooltip-text'  onclick="speakText('sewage')"><IMG SRC='speak.png'>污水</span></span> by means of a <span class='tooltip'>species<span class='tooltip-text'  onclick="speakText('species')"><IMG SRC='speak.png'>種</span></span> of <span class='tooltip'>green algae<span class='tooltip-text'  onclick="speakText('green algae')"><IMG SRC='speak.png'>緣藻</span></span>,  <spanr>rather than</spanr>  by <span class='tooltip'>chemical<span class='tooltip-text'  onclick="speakText('chemical')"><IMG SRC='speak.png'>化學</span></span> means.<br>
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>城市旁邊有一個大型海水養殖牧場，裡面養殖著數千種魚。</span></span></th><th>
+<span class='tooltip'>Adjacent<span class='tooltip-text'  onclick="speakText('Adjacent')"><IMG SRC='speak.png'>鄰近的</span></span> to the city is a large <span class='tooltip'>maricultural<span class='tooltip-text'  onclick="speakText('maricultural')"><IMG SRC='speak.png'>海水養殖</span></span> <span class='tooltip'>ocean<span class='tooltip-text'  onclick="speakText('ocean')"><IMG SRC='speak.png'>海洋</span></span> <span class='tooltip'>ranch<span class='tooltip-text'  onclick="speakText('ranch')"><IMG SRC='speak.png'>牧場</span></span> <div class='cir'>16</div> contains <span class='tooltip'>thousands<span class='tooltip-text'  onclick="speakText('thousands')"><IMG SRC='speak.png'>數千</span></span> of fish.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top;width:5px;'> <span class='tooltip4'><img src='ans2.png'><span class='tooltip-text'>【B】</span></span></th><th>
+16.(A)it　(B)that　(C)where　(D)there <br>
+</th></tr></table><hr>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>科學家利用船上實驗室的設備監測這些魚的活動和行為</span></span></th><th>
+Using <span class='tooltip'>equipment<span class='tooltip-text'  onclick="speakText('equipment')"><IMG SRC='speak.png'>裝置</span></span> located in <span class='tooltip'>onboard<span class='tooltip-text'  onclick="speakText('onboard')"><IMG SRC='speak.png'>船上</span></span> <span class='tooltip'>laboratories<span class='tooltip-text'  onclick="speakText('laboratories')"><IMG SRC='speak.png'>實驗室</span></span>,  <span class='tooltip'>scientists<span class='tooltip-text'  onclick="speakText('scientists')"><IMG SRC='speak.png'>科學家</span></span> <span class='tooltip'>monitor<span class='tooltip-text'  onclick="speakText('monitor')"><IMG SRC='speak.png'>v監測</span></span> the <span class='tooltip'>movements<span class='tooltip-text'  onclick="speakText('movements')"><IMG SRC='speak.png'>運動</span></span> and behavior of these fish.<br>
+</th></tr></table>
+
+</DIV>
+
+
+
+
+
+ <br> <br>

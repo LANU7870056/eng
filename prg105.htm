@@ -1,0 +1,757 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+
+
+ const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+  box.style.transform = isVisible
+    ? "translateX(-50%) scale(0)"
+    : "translateX(-50%) scale(1)";
+}
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index3.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index3.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  background-color: #fff8dc; 
+}
+
+spanr {
+  color: blue;
+  border: 1px dashed red;   /* 藍色矩形框 */
+
+  padding: 0px 0px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #FFFF78; 
+}
+
+spanb {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #78D2FF; 
+}
+
+spany {
+  color: blue;
+  border: 1px dashed red;   /* 藍色矩形框 */
+  padding: 0px 0px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color:#FFDD78; 
+}
+
+
+.pp{
+  position: relative;
+  display: inline-block;
+  cursor: grab;
+color: #772B1A;
+}
+
+.pp .tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: #00FFFF;
+  color: #000;
+font-size: 0.7em;
+  text-align: center;
+  border-radius: 0px;
+  padding: 0px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%; /* 顯示在上方 */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.pp:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.circle-number {
+  display: inline-block;
+  padding: 0px 2px;
+  border: 1px solid #000;
+  border-radius: 40%;
+  background-color: #ff0; /* 明亮黃色 */
+  color: #1E88E5;            /* 鮮藍色 */
+  font-size: 0.8em;   
+  text-align: center;
+}
+
+.circle-number2 {
+ font-size: 18pt; /* 設定字體大小為 10pt */
+  font-weight: bold;
+  color: #1E88E5;
+}
+
+.circle-number2::before {
+  content: "(";
+}
+
+.circle-number2::after {
+  content: ")";
+}
+
+
+</style>
+
+<span><a href="prg105-key.htm"><img src="exam3.png"></a>
+<a href="prg105-test.htm"><img src="exam.png"></a>
+<a href="prg105-test2.htm"><img src="exam2.png"></a></span>
+
+<center>105郵政考古題</center>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】在討論分配稅收時，通常有兩種常見的理念：獲得的利益和支付能力</span></span></th><th>
+<span class='circle-number'>26</span>.There are two <span class='tooltip'>common<span class='tooltip-text'  onclick="speakText('common')"><IMG SRC='speak.png'>常見的</span></span> <span class='tooltip'>philosophies<span class='tooltip-text'  onclick="speakText('philosophies')"><IMG SRC='speak.png'>哲學</span></span> <span class='tooltip'>typically<span class='tooltip-text'  onclick="speakText('typically')"><IMG SRC='speak.png'>通常</span></span> given in <span class='tooltip'>discussion<span class='tooltip-text'  onclick="speakText('discussion')"><IMG SRC='speak.png'>討論</span></span> about <span class='tooltip'>apportioning<span class='tooltip-text'  onclick="speakText('apportioning')"><IMG SRC='speak.png'>分配</span></span> tax ; <span class='tooltip'>benefit<span class='tooltip-text'  onclick="speakText('benefit')"><IMG SRC='speak.png'>益處</span></span> <span class='tooltip'>received<span class='tooltip-text'  onclick="speakText('received')"><IMG SRC='speak.png'>已收到</span></span> and _____ to pay.<br>
+(A)ability 　(B)facility 　(C)immunity 　(D)insanity
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【D】十億在美國數字系統中是1, 000, 000, 000。</span></span></th><th>
+<span class='circle-number'>27</span>.A _____ is 10=1, 000, 000, 000 in the American <span class='tooltip'>numbering<span class='tooltip-text'  onclick="speakText('numbering')"><IMG SRC='speak.png'>編號</span></span> system.<br>
+(A)zero 　(B)<span class='tooltip'>thousand<span class='tooltip-text'  onclick="speakText('thousand')"><IMG SRC='speak.png'>千</span></span> 　(C)<span class='tooltip'>million<span class='tooltip-text'  onclick="speakText('million')"><IMG SRC='speak.png'>百萬</span></span> 　(D)<span class='tooltip'>billion<span class='tooltip-text'  onclick="speakText('billion')"><IMG SRC='speak.png'>十億</span></span>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【B】建議每位新生在學期開始時到借閱處申請一張借書證</span></span></th><th>
+<span class='circle-number'>28</span>.Every new student is <span class='tooltip'>advised<span class='tooltip-text'  onclick="speakText('advised')"><IMG SRC='speak.png'>建議</span></span> to apply for a library card from a _____ desk at the beginning of the <span class='tooltip'>semester<span class='tooltip-text'  onclick="speakText('semester')"><IMG SRC='speak.png'>學期</span></span> .<br>
+(A)<span class='tooltip'>branch<span class='tooltip-text'  onclick="speakText('branch')"><IMG SRC='speak.png'>分支</span></span> 　(B)<span class='tooltip'>circulation<span class='tooltip-text'  onclick="speakText('circulation')"><IMG SRC='speak.png'>循環</span></span> 　(C)<span class='tooltip'>overflow<span class='tooltip-text'  onclick="speakText('overflow')"><IMG SRC='speak.png'>溢出</span></span> 　(D)<span class='tooltip'>waste<span class='tooltip-text'  onclick="speakText('waste')"><IMG SRC='speak.png'>浪費</span></span>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【C】植物細胞不能移動，因此每個細胞都必須能夠抵抗真菌和細菌等入侵病原體的攻擊</span></span></th><th>
+<span class='circle-number'>29</span>.Plant cells are not able to move ,  so every single cell must be able to _____ itself <span class='tooltip'>against<span class='tooltip-text'  onclick="speakText('against')"><IMG SRC='speak.png'>反對</span></span> <span class='tooltip'>attack<span class='tooltip-text'  onclick="speakText('attack')"><IMG SRC='speak.png'>攻擊</span></span> from <span class='tooltip'>invading<span class='tooltip-text'  onclick="speakText('invading')"><IMG SRC='speak.png'>入侵</span></span> <span class='tooltip'>pathogens<span class='tooltip-text'  onclick="speakText('pathogens')"><IMG SRC='speak.png'>病原體</span></span> like <span class='tooltip'>fungi<span class='tooltip-text'  onclick="speakText('fungi')"><IMG SRC='speak.png'>真菌</span></span> and <span class='tooltip'>bacteria<span class='tooltip-text'  onclick="speakText('bacteria')"><IMG SRC='speak.png'>細菌</span></span> .<br>
+(A)<span class='tooltip'>accept<span class='tooltip-text'  onclick="speakText('accept')"><IMG SRC='speak.png'>接受</span></span> 　(B)<span class='tooltip'>attack<span class='tooltip-text'  onclick="speakText('attack')"><IMG SRC='speak.png'>攻擊</span></span> 　(C)<span class='tooltip'>defend<span class='tooltip-text'  onclick="speakText('defend')"><IMG SRC='speak.png'>保衛</span></span> 　(D)<span class='tooltip'>quit<span class='tooltip-text'  onclick="speakText('quit')"><IMG SRC='speak.png'>辭職、離開</span></span>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】反饋控制是用於當代許多電子與電機系統中重要的技術。。</span></span></th><th>
+<span class='circle-number'>30</span>.<span class='tooltip'>Feedback<span class='tooltip-text'  onclick="speakText('Feedback')"><IMG SRC='speak.png'>回饋</span></span> control is an <span class='tooltip'>important<span class='tooltip-text'  onclick="speakText('important')"><IMG SRC='speak.png'>重要的</span></span> <span class='tooltip'>technique<span class='tooltip-text'  onclick="speakText('technique')"><IMG SRC='speak.png'>科技</span></span> that is used in many modern _____ and electromechanical systems.<br>
+(A)<span class='tooltip'>electronic<span class='tooltip-text'  onclick="speakText('electronic')"><IMG SRC='speak.png'>電子的</span></span> 　(B)<span class='tooltip'>industrial<span class='tooltip-text'  onclick="speakText('industrial')"><IMG SRC='speak.png'>工業的</span></span> 　(C)<span class='tooltip'>technical<span class='tooltip-text'  onclick="speakText('technical')"><IMG SRC='speak.png'>技術的</span></span> 　(D)<span class='tooltip'>traditional<span class='tooltip-text'  onclick="speakText('traditional')"><IMG SRC='speak.png'>傳統的</span></span>
+<hr>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【B】鎮上經常舉辦一年一度的節慶, 作為知名作家的生命暨作品禮讚。<br>(A)拙劣的(B)有名的 (C)貧窮的 (D)軟弱的</span></span></th><th>
+<span class='circle-number'>31</span>.There is usually an <span class='tooltip'>annual<span class='tooltip-text'  onclick="speakText('annual')"><IMG SRC='speak.png'>年度的</span></span> <span class='tooltip'>festival<span class='tooltip-text'  onclick="speakText('festival')"><IMG SRC='speak.png'>節慶</span></span> in the town <span class='tooltip'>celebrating<span class='tooltip-text'  onclick="speakText('celebrating')"><IMG SRC='speak.png'>慶祝</span></span> the life and <span class='tooltip'>writings<span class='tooltip-text'  onclick="speakText('writings')"><IMG SRC='speak.png'>著作</span></span> of the _____ writers.<br>
+(A)bad 　(B)famous 　(C)poor 　(D)weak
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【D】求偶是螢火蟲發光的原因之一。同種的雄性與雌性間會以來回閃耀信號作為溝通的方式。</span></span></th><th>
+<span class='circle-number'>32</span>.One reason that <span class='tooltip'>fireflies<span class='tooltip-text'  onclick="speakText('fireflies')"><IMG SRC='speak.png'>螢火蟲</span></span> _____ is to <span class='tooltip'>attract<span class='tooltip-text'  onclick="speakText('attract')"><IMG SRC='speak.png'>吸引</span></span> a <span class='tooltip'>mate<span class='tooltip-text'  onclick="speakText('mate')"><IMG SRC='speak.png'>配偶</span></span>. <span class='tooltip'>Males<span class='tooltip-text'  onclick="speakText('Males')"><IMG SRC='speak.png'>男性</span></span> and <span class='tooltip'>females<span class='tooltip-text'  onclick="speakText('females')"><IMG SRC='speak.png'>女性</span></span> of the same species will flash <span class='tooltip'>signals<span class='tooltip-text'  onclick="speakText('signals')"><IMG SRC='speak.png'>訊號</span></span> back and forth as a way of <span class='tooltip'>communicating<span class='tooltip-text'  onclick="speakText('communicating')"><IMG SRC='speak.png'>溝通</span></span> .<br>
+(A)<span class='tooltip'>blow<span class='tooltip-text'  onclick="speakText('blow')"><IMG SRC='speak.png'>吹</span></span> 　(B)<span class='tooltip'>darken<span class='tooltip-text'  onclick="speakText('darken')"><IMG SRC='speak.png'>變暗</span></span> 　(C)<span class='tooltip'>fasten<span class='tooltip-text'  onclick="speakText('fasten')"><IMG SRC='speak.png'>繫緊</span></span> 　(D)<span class='tooltip'>glow<span class='tooltip-text'  onclick="speakText('glow')"><IMG SRC='speak.png'>發光</span></span>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【C】身分的概念相當複雜, 是由個人特徵、家庭動力、歷史因素與社會政治脈絡所形成。</span></span></th><th>
+<span class='circle-number'>33</span>.The <span class='tooltip'>concept<span class='tooltip-text'  onclick="speakText('concept')"><IMG SRC='speak.png'>概念</span></span> of _____ is a <span class='tooltip'>complex<span class='tooltip-text'  onclick="speakText('complex')"><IMG SRC='speak.png'>複雜的</span></span> one ,  <span class='tooltip'>shaped<span class='tooltip-text'  onclick="speakText('shaped')"><IMG SRC='speak.png'>形狀</span></span> by <span class='tooltip'>individual<span class='tooltip-text'  onclick="speakText('individual')"><IMG SRC='speak.png'>個人</span></span> <span class='tooltip'>characteristics<span class='tooltip-text'  onclick="speakText('characteristics')"><IMG SRC='speak.png'>特徵</span></span> ,  family <span class='tooltip'>dynamics<span class='tooltip-text'  onclick="speakText('dynamics')"><IMG SRC='speak.png'>動力學</span></span> ,  <span class='tooltip'>historical<span class='tooltip-text'  onclick="speakText('historical')"><IMG SRC='speak.png'>歷史</span></span> factors ,  and social and <span class='tooltip'>political<span class='tooltip-text'  onclick="speakText('political')"><IMG SRC='speak.png'>政治的</span></span> <span class='tooltip'>contexts<span class='tooltip-text'  onclick="speakText('contexts')"><IMG SRC='speak.png'>情境</span></span> .<br>
+(A)<span class='tooltip'>ascendant<span class='tooltip-text'  onclick="speakText('ascendant')"><IMG SRC='speak.png'>祖先</span></span> 　(B)difference 　(C)<span class='tooltip'>identity<span class='tooltip-text'  onclick="speakText('identity')"><IMG SRC='speak.png'>身分</span></span> 　(D)<span class='tooltip'>opposition<span class='tooltip-text'  onclick="speakText('opposition')"><IMG SRC='speak.png'>反對</span></span>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【B】我們提供了一套知識編纂的藍圖, 可用來分析我們研究得出的大量成果。</span></span></th><th>
+<span class='tooltip-text'>34</span>.We provide a _____ <span class='tooltip'>compilation<span class='tooltip-text'  onclick="speakText('compilation')"><IMG SRC='speak.png'>彙編</span></span> map ,  which <span class='tooltip'>analyzes<span class='tooltip-text'  onclick="speakText('analyzes')"><IMG SRC='speak.png'>分析</span></span> a large number of <span class='tooltip'>results<span class='tooltip-text'  onclick="speakText('results')"><IMG SRC='speak.png'>結果</span></span> found from our <span class='tooltip'>research<span class='tooltip-text'  onclick="speakText('research')"><IMG SRC='speak.png'>研究</span></span> .<br>
+(A)<span class='tooltip'>belief<span class='tooltip-text'  onclick="speakText('belief')"><IMG SRC='speak.png'>信念</span></span> 　(B)knowledge 　(C)story 　(D)<span class='tooltip'>understanding<span class='tooltip-text'  onclick="speakText('understanding')"><IMG SRC='speak.png'>認識、理解力</span></span>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【C】此網頁原意並非提供相關法律意見或建立律師與委託人關係, 因為每樁法院案件不盡相同, 因此需要更多來自於事務所的諮詢意見。</span></span></th><th>
+<span class='circle-number'>35</span>.This <span class='tooltip'>website<span class='tooltip-text'  onclick="speakText('website')"><IMG SRC='speak.png'>網站</span></span> is not meant to give _____ <span class='tooltip'>advice<span class='tooltip-text'  onclick="speakText('advice')"><IMG SRC='speak.png'>建議</span></span> or create an <span class='tooltip'>attorney<span class='tooltip-text'  onclick="speakText('attorney')"><IMG SRC='speak.png'>律師</span></span> client relationship as every court case is <span class='tooltip'>different<span class='tooltip-text'  onclick="speakText('different')"><IMG SRC='speak.png'>不同的</span></span> that needs more <span class='tooltip'>advices<span class='tooltip-text'  onclick="speakText('advices')"><IMG SRC='speak.png'>建議</span></span> from the office.<br>
+(A)funny 　(B)interesting 　(C)legal 　(D)right
+<hr>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【B】隨著各項發明，人類的進展已向前躍進一大步，譬如緊接在收音機之後發明的電視機。</span></span></th><th>
+<span class='circle-number'>36</span>._____ has made <span class='tooltip'>great<span class='tooltip-text'  onclick="speakText('great')"><IMG SRC='speak.png'>偉大的</span></span> leaps <span class='tooltip'>toward<span class='tooltip-text'  onclick="speakText('toward')"><IMG SRC='speak.png'>朝向</span></span> progress with <span class='tooltip'>inventions<span class='tooltip-text'  onclick="speakText('inventions')"><IMG SRC='speak.png'>發明</span></span> ,  like the <span class='tooltip'>television<span class='tooltip-text'  onclick="speakText('television')"><IMG SRC='speak.png'>電視</span></span> following the radio.<br>
+(A)<span class='tooltip'>Animal<span class='tooltip-text'  onclick="speakText('Animal')"><IMG SRC='speak.png'>動物</span></span> 　(B)<span class='tooltip'>Mankind<span class='tooltip-text'  onclick="speakText('Mankind')"><IMG SRC='speak.png'>人類</span></span> 　(C)<span class='tooltip'>Organelle<span class='tooltip-text'  onclick="speakText('Organelle')"><IMG SRC='speak.png'>細胞器</span></span> 　(D)<span class='tooltip'>Vegetable<span class='tooltip-text'  onclick="speakText('Vegetable')"><IMG SRC='speak.png'>蔬菜</span></span> 
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【C】政府頒布了一項旅遊警告，要我們審慎考慮究竟是否前往處於風險或危險的國家。</span></span></th><th>
+<span class='circle-number'>37</span>.Our <span class='tooltip'>government<span class='tooltip-text'  onclick="speakText('government')"><IMG SRC='speak.png'>政府</span></span> <span class='tooltip'>issues<span class='tooltip-text'  onclick="speakText('issues')"><IMG SRC='speak.png'>發行</span></span> a travel _____ when they want us to consider very <span class='tooltip'>carefully<span class='tooltip-text'  onclick="speakText('carefully')"><IMG SRC='speak.png'>小心</span></span> whether we should go at all to a country where risk and <span class='tooltip'>danger<span class='tooltip-text'  onclick="speakText('danger')"><IMG SRC='speak.png'>危險</span></span> exist.<br>
+(A)ticket 　(B)<span class='tooltip'>voucher<span class='tooltip-text'  onclick="speakText('voucher')"><IMG SRC='speak.png'>票券</span></span> 　(C)warning 　(D)<span class='tooltip'>vent<span class='tooltip-text'  onclick="speakText('vent')"><IMG SRC='speak.png'>出口、出路</span></span>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】所有大專院校的學生都有機會在全國設計競賽中展露其設計天賦。</span></span></th><th>
+<span class='circle-number'>38</span>.All college students will have an <span class='tooltip'>opportunity<span class='tooltip-text'  onclick="speakText('opportunity')"><IMG SRC='speak.png'>機會</span></span> to <span class='tooltip'>showcase<span class='tooltip-text'  onclick="speakText('showcase')"><IMG SRC='speak.png'>展示</span></span> their design <span class='tooltip'>talents<span class='tooltip-text'  onclick="speakText('talents')"><IMG SRC='speak.png'>人才</span></span> in a _____ design <span class='tooltip'>competition<span class='tooltip-text'  onclick="speakText('competition')"><IMG SRC='speak.png'>競賽</span></span> .<br>
+(A)national 　(B)<span class='tooltip'>occupationa<span class='tooltip-text'  onclick="speakText('occupationa')"><IMG SRC='speak.png'>職業的</span></span> 　(C)<span class='tooltip'>probational<span class='tooltip-text'  onclick="speakText('probational')"><IMG SRC='speak.png'>見習的</span></span> 　(D)<span class='tooltip'>unintentional<span class='tooltip-text'  onclick="speakText('unintentional')"><IMG SRC='speak.png'>非有意的</span></span>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【D】台北捷運公司的職員生活與工作職缺資訊可以上http://www.metro.taipei 查詢。</span></span></th><th>
+<span class='circle-number'>39</span>.Information on <span class='tooltip'>staff<span class='tooltip-text'  onclick="speakText('staff')"><IMG SRC='speak.png'>職員</span></span> life and job _____ at Metro Taipei can be <span class='tooltip'>referred<span class='tooltip-text'  onclick="speakText('referred')"><IMG SRC='speak.png'>提及</span></span> at http://www.metro.taipei.<br>
+(A)<span class='tooltip'>cells<span class='tooltip-text'  onclick="speakText('cells')"><IMG SRC='speak.png'>牢房</span></span> 　(B)<span class='tooltip'>fields<span class='tooltip-text'  onclick="speakText('fields')"><IMG SRC='speak.png'>場域</span></span> 　(C)<span class='tooltip'>places<span class='tooltip-text'  onclick="speakText('places')"><IMG SRC='speak.png'>地方</span></span> 　(D)<span class='tooltip'>vacancies<span class='tooltip-text'  onclick="speakText('vacancies')"><IMG SRC='speak.png'>空缺</span></span>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【C】如有任何疑問, 請隨時賜示。</span></span></th><th>
+<span class='circle-number'>40</span>.If you have any _____ please feel free to ask us.<br>
+(A)<span class='tooltip'>confusions<span class='tooltip-text'  onclick="speakText('confusions')"><IMG SRC='speak.png'>困惑</span></span> 　(B)<span class='tooltip'>puzzles<span class='tooltip-text'  onclick="speakText('puzzles')"><IMG SRC='speak.png'>謎題</span></span> 　(C)questions 　(D)upset
+<hr>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【B】十六世紀中葉初期, 世界各地利用地方鐵路將媒、鐵礦從礦脈運至低窪的濱海地區。</span></span></th><th>
+<span class='circle-number'>41</span>.Beginning in the <span class='tooltip'>mid-sixteenth<span class='tooltip-text'  onclick="speakText('mid-sixteenth')"><IMG SRC='speak.png'>十六世紀中期</span></span> <span class='tooltip'>century<span class='tooltip-text'  onclick="speakText('century')"><IMG SRC='speak.png'>世紀</span></span> ,  local _____ around the world <span class='tooltip'>served<span class='tooltip-text'  onclick="speakText('served')"><IMG SRC='speak.png'>服務</span></span> as a means of <span class='tooltip'>conveying<span class='tooltip-text'  onclick="speakText('conveying')"><IMG SRC='speak.png'>輸送</span></span> <span class='tooltip'>coal<span class='tooltip-text'  onclick="speakText('coal')"><IMG SRC='speak.png'>煤炭</span></span> and <span class='tooltip'>iron<span class='tooltip-text'  onclick="speakText('iron')"><IMG SRC='speak.png'>鐵</span></span> ore from <span class='tooltip'>mines<span class='tooltip-text'  onclick="speakText('mines')"><IMG SRC='speak.png'>礦山</span></span> to <span class='tooltip'>low-lying<span class='tooltip-text'  onclick="speakText('low-lying')"><IMG SRC='speak.png'>低窪</span></span> <span class='tooltip'>coastal<span class='tooltip-text'  onclick="speakText('coastal')"><IMG SRC='speak.png'>海岸</span></span> areas.<br>
+(A)<span class='tooltip'>boats<span class='tooltip-text'  onclick="speakText('boats')"><IMG SRC='speak.png'>船隻</span></span> 　(B)<span class='tooltip'>railroad<span class='tooltip-text'  onclick="speakText('railroad')"><IMG SRC='speak.png'>鐵路</span></span> 　(C)<span class='tooltip'>trolley<span class='tooltip-text'  onclick="speakText('trolley')"><IMG SRC='speak.png'>推車</span></span> 　(D)<span class='tooltip'>wooden cart<span class='tooltip-text'  onclick="speakText('wooden cart')"><IMG SRC='speak.png'>木製手推車</span></span>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【D】美國最佳(旅行)推銷員是指能規劃出可能的最短路徑, 一次性拜訪名單上多數城市並回到起始城市的人。</span></span></th><th>
+<span class='circle-number'>42</span>.The best _____ in USA is the person who can <span class='tooltip'>conduct<span class='tooltip-text'  onclick="speakText('conduct')"><IMG SRC='speak.png'>執行</span></span> the <span class='tooltip'>shortest<span class='tooltip-text'  onclick="speakText('shortest')"><IMG SRC='speak.png'>最短</span></span> <span class='tooltip'>possible<span class='tooltip-text'  onclick="speakText('possible')"><IMG SRC='speak.png'>可能的</span></span> route <span class='tooltip'>travelling<span class='tooltip-text'  onclick="speakText('travelling')"><IMG SRC='speak.png'>旅行</span></span> to visit <span class='tooltip'>several<span class='tooltip-text'  onclick="speakText('several')"><IMG SRC='speak.png'>一些</span></span> cities in his list <span class='tooltip'>exactly<span class='tooltip-text'  onclick="speakText('exactly')"><IMG SRC='speak.png'>確切地</span></span> once and return to his city of origin.<br>
+(A) doctor 　(B)educator 　(C)<span class='tooltip'>master<span class='tooltip-text'  onclick="speakText('master')"><IMG SRC='speak.png'>大師</span></span> 　(D)salesman
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【C】針對你最近的頭疼, 醫生開了多少藥給你?</span></span></th><th>
+<span class='circle-number'>43</span>.How many _____ did your doctor <span class='tooltip'>prescribe<span class='tooltip-text'  onclick="speakText('prescribe')"><IMG SRC='speak.png'>規定</span></span> for your recent <span class='tooltip'>headache<span class='tooltip-text'  onclick="speakText('headache')"><IMG SRC='speak.png'>頭痛</span></span> ? <br>
+(A)books 　(B)<span class='tooltip'>sheets<span class='tooltip-text'  onclick="speakText('sheets')"><IMG SRC='speak.png'>床單</span></span> 　(C)<span class='tooltip'>tablets<span class='tooltip-text'  onclick="speakText('tablets')"><IMG SRC='speak.png'>藥片</span></span> 　(D)<span class='tooltip'>trophies<span class='tooltip-text'  onclick="speakText('trophies')"><IMG SRC='speak.png'>獎盃</span></span>
+<hr>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【B】根據國際媒體報導, 現代社會令人遺憾的一面在於各大主要市區的犯罪層出不窮。</span></span></th><th>
+<span class='circle-number'>44</span>.<spanr>One _____ <span class='tooltip'>aspect<span class='tooltip-text'  onclick="speakText('aspect')"><IMG SRC='speak.png'>方面</span></span> of <span class='tooltip'>modern<span class='tooltip-text'  onclick="speakText('modern')"><IMG SRC='speak.png'>現代的</span></span> life</spanr> is <spanr>the <span class='tooltip'>presence<span class='tooltip-text'  onclick="speakText('presence')"><IMG SRC='speak.png'>現場、現象</span></span> of crime in every major <span class='tooltip'>urban<span class='tooltip-text'  onclick="speakText('urban')"><IMG SRC='speak.png'>城市的</span></span> area</spanr> <span class='tooltip'>reported<span class='tooltip-text'  onclick="speakText('reported')"><IMG SRC='speak.png'>報告</span></span> by <span class='tooltip'>international<span class='tooltip-text'  onclick="speakText('international')"><IMG SRC='speak.png'>國際的</span></span> media.<br>
+(A)<span class='tooltip'>tolerate<span class='tooltip-text'  onclick="speakText('tolerate')"><IMG SRC='speak.png'>容忍、寬恕</span></span> 　(B)<span class='tooltip'>unfortunate<span class='tooltip-text'  onclick="speakText('unfortunate')"><IMG SRC='speak.png'>不幸的</span></span> 　(C)<span class='tooltip'>unilluminate<span class='tooltip-text'  onclick="speakText('unilluminate')"><IMG SRC='speak.png'>黯淡無光</span></span> 　(D)<span class='tooltip'>violate<span class='tooltip-text'  onclick="speakText('violate')"><IMG SRC='speak.png'>違反</span></span>
+<hr>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【B】任何第三方人士欲進入此場所, 需具備除了「㩦帶人員許可申請」還有包含「全體人員許可」。</span></span></th><th>
+<span class='circle-number'>45</span>.The <span class='tooltip'>application for permission<span class='tooltip-text'  onclick="speakText('application for permission')"><IMG SRC='speak.png'>許可申請</span></span> to carry persons _____ the <span class='tooltip'>crew<span class='tooltip-text'  onclick="speakText('crew')"><IMG SRC='speak.png'>全體人員</span></span> may be included <spanr>if any third party wants to get an <span class='tooltip'>access<span class='tooltip-text'  onclick="speakText('access')"><IMG SRC='speak.png'>使用權</span></span> to the site</spanr>.<br>
+(A)<span class='tooltip'>addition<span class='tooltip-text'  onclick="speakText('addition')"><IMG SRC='speak.png'>附加</span></span> 　(B)<span class='tooltip'>in addition to<span class='tooltip-text'  onclick="speakText('in addition to')"><IMG SRC='speak.png'>除了…還有</span></span> 　(C)<span class='tooltip'>furthermore<span class='tooltip-text'  onclick="speakText('furthermore')"><IMG SRC='speak.png'>另外</span></span> 　(D)<span class='tooltip'>in furthermore<span class='tooltip-text'  onclick="speakText('in furthermore')"><IMG SRC='speak.png'>而且</span></span>
+<hr>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】「我不在乎報章媒體是怎麼說我的, 只要他們把我的名字拼對」是1990年代中期的新聞業界一句廣為流傳的話。</span></span></th><th>
+<span class='circle-number'>46</span>."I don't care what the <span class='tooltip'>newspapers<span class='tooltip-text'  onclick="speakText('newspapers')"><IMG SRC='speak.png'>報紙</span></span> say about me _____ they <span class='tooltip'>spell my name right<span class='tooltip-text'  onclick="speakText('spell my name right')"><IMG SRC='speak.png'>名字拼正確</span></span>, " has been a <span class='tooltip'>quotation<span class='tooltip-text'  onclick="speakText('quotation')"><IMG SRC='speak.png'>引述</span></span> <span class='tooltip'>widely<span class='tooltip-text'  onclick="speakText('widely')"><IMG SRC='speak.png'>廣泛</span></span> <span class='tooltip'>cited<span class='tooltip-text'  onclick="speakText('cited')"><IMG SRC='speak.png'>引用</span></span> in <span class='tooltip'>journalism<span class='tooltip-text'  onclick="speakText('journalism')"><IMG SRC='speak.png'>新聞業</span></span> from the mid-1990s.<br>
+(A)<span class='tooltip'>as long as<span class='tooltip-text'  onclick="speakText('as long as')"><IMG SRC='speak.png'>只要</span></span> 　(B)<span class='tooltip'>as pity as<span class='tooltip-text'  onclick="speakText('as pity as')"><IMG SRC='speak.png'>與…一般可憐</span></span> 　(C)<span class='tooltip'>as soon as<span class='tooltip-text'  onclick="speakText('as soon as')"><IMG SRC='speak.png'>一…就…</span></span> 　(D)<span class='tooltip'>as well as<span class='tooltip-text'  onclick="speakText('as well as')"><IMG SRC='speak.png'>也</span></span>
+<hr>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【D】如果當時我答錯時你取笑我, 我就會非常生氣。</span></span></th><th>
+<span class='circle-number'>47</span>.I _____ very <span class='tooltip'>angry<span class='tooltip-text'  onclick="speakText('angry')"><IMG SRC='speak.png'>生氣的</span></span> <spanr>if you had <span class='tooltip'>laughed<span class='tooltip-text'  onclick="speakText('laughed')"><IMG SRC='speak.png'>笑了</span></span></spanr> when <spanr>I got the answer <span class='tooltip'>wrong<span class='tooltip-text'  onclick="speakText('wrong')"><IMG SRC='speak.png'>錯誤的</span></span></spanr> .<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>從條件子句使用過去完成式可得知本題為與過去事實相反之假設語氣, 題目的原
+意是指「你當時並沒有嘲笑我, 所以我當然也就沒有生氣, 」主要子句的句型是:
+would+ have + vpp.</span></span></th><th>
+(A)am 　(B)would be 　(C)would have 　(D)would have been
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【B】回應正確圖表要求的問題，輸入字母。舉例來說, 如果你認為第一個問題的唯一解答為圖示B, 就鍵入「B」。</span></span></th><th>
+<span class='circle-number'>48</span>.Type the letters <span class='tooltip'>corresponding<span class='tooltip-text'  onclick="speakText('corresponding')"><IMG SRC='speak.png'>回應</span></span> to the correct <span class='tooltip'>diagrams<span class='tooltip-text'  onclick="speakText('diagrams')"><IMG SRC='speak.png'>圖表</span></span> asked by the questions.<br>_____ ,  if you think that only <span class='tooltip'>diagrams<span class='tooltip-text'  onclick="speakText('diagrams')"><IMG SRC='speak.png'>圖表</span></span> B answers the Question 1 ,  type B for it.<br>
+(A)As well as 　(B)For instance 　(C)In addition 　(D)Together with
+<hr>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【D】「然而」、「儘管如此」、「此外」和「同時」等引導詞, 建立了句子與句子間的</span></span></th><th>
+<span class='circle-number'>49</span>.<span class='tooltip'>Introductory<span class='tooltip-text'  onclick="speakText('Introductory')"><IMG SRC='speak.png'>介紹</span></span> words like "however", "still", "<span class='tooltip'>furthermore<span class='tooltip-text'  onclick="speakText('furthermore')"><IMG SRC='speak.png'>另外</span></span> ,  and "____" create <span class='tooltip'>continuity<span class='tooltip-text'  onclick="speakText('continuity')"><IMG SRC='speak.png'>連續性</span></span> from one <span class='tooltip'>sentence<span class='tooltip-text'  onclick="speakText('sentence')"><IMG SRC='speak.png'>句子</span></span> to the next.<br>
+</th></tr></table>
+<table><tr><th style='vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>(A)穿越(B)在左邊 (C)在中間(D)同時</span></span></th><th>
+(A)across 　(B)at the left 　(C)in the center 　(D)meanwhile
+</th></tr></table><hr>
+
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【B】在紐約, 你不需要有車;相反地, 在洛杉磯如果沒有車, 你哪兒都不能去。</span></span></th><th>
+<span class='circle-number'>50</span>.In New York ,  you don't need a car ; in Los Angeles ,  _____ ,  you can't really get along without one.<br>
+(A)<span class='tooltip'>in addition<span class='tooltip-text'  onclick="speakText('in addition')"><IMG SRC='speak.png'>此外</span></span> 　(B)<span class='tooltip'>in contrast<span class='tooltip-text'  onclick="speakText('in contrast')"><IMG SRC='speak.png'>相反地</span></span> 　(C)<span class='tooltip'>in general<span class='tooltip-text'  onclick="speakText('in general')"><IMG SRC='speak.png'>一般來說</span></span> 　(D)<span class='tooltip'>in spite<span class='tooltip-text'  onclick="speakText('in spite')"><IMG SRC='speak.png'>儘管</span></span>
+</th></tr></table>
+
+
+</div>
+<BR><BR><BR><BR><BR>

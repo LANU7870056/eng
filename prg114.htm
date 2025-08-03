@@ -1,0 +1,756 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+
+  if (isVisible) {
+    // 如果自己是顯示狀態，則全部隱藏
+    boxes.forEach(b => {
+      b.style.transform = "translateX(-50%) scale(0)";
+    });
+  } else {
+    // 否則先全部隱藏，再只顯示自己
+    boxes.forEach(b => {
+      b.style.transform = "translateX(-50%) scale(0)";
+    });
+    box.style.transform = "translateX(-50%) scale(1)";
+  }
+}
+
+
+
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 0.9em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      font-size: 0.8em;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index3.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index3.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  background-color: #fff8dc; 
+}
+
+spanr {
+  color: blue;
+  border: 1px dashed red;   /* 藍色矩形框 */
+
+  padding: 0px 0px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #FFFF78; 
+}
+
+spanb {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #78D2FF; 
+}
+
+spany {
+  color: blue;
+  border: 1px dashed red;   /* 藍色矩形框 */
+  padding: 0px 0px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color:#FFDD78; 
+}
+
+
+.pp{
+  position: relative;
+  display: inline-block;
+  cursor: grab;
+color: #772B1A;
+}
+
+.pp .tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: #00FFFF;
+  color: #000;
+font-size: 0.7em;
+  text-align: center;
+  border-radius: 0px;
+  padding: 0px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%; /* 顯示在上方 */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.pp:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.circle-number2 {
+  display: inline-block;
+  padding: 0px 2px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  background-color: #ff0; /* 明亮黃色 */
+  color: #1E88E5;            /* 鮮藍色 */
+  font-size: 0.8em;   
+  text-align: center;
+}
+
+.circle-number {   
+  color: #1E88E5;
+  display: inline-block;
+  width:  25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  border: 2px solid #333;
+  border-radius: 50%;   /* 让它变成圆形 */
+  font-weight: bold;
+  background-color: #ffeb3b; /* 黃色背景 */
+  font-size: 0.8em;  
+
+}
+
+.circle-number2::before {
+  content: "(";
+}
+
+.circle-number2::after {
+  content: ")";
+}
+
+.question-options {
+  line-height: 1.0; /* 適當調整行高值 */
+
+}
+
+/* 特別處理選項中的全型空白 */
+.question-options span {
+  display: inline-block;
+  vertical-align: middle;
+  word-spacing: -0.3em; /* 微調全型空白的間距 */
+}
+.te {
+  transition: transform 0.3s ease;
+  transform: translateX(-50%) scale(0);
+}
+</style>
+
+<span><a href="prg114-key.htm"><img src="exam3.png"></a>
+<a href="prg114-test.htm"><img src="exam.png"></a>
+<a href="prg114-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+
+ <center>114郵政考古題</center>
+<span style="font-size:0.8em;color:blue;">一、單字測驗</span>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【C】榨汁機用了幾次後就壞了，所以瑪麗把它退回商店並要求退款</span></span></th><th>
+<span class='circle-number'>26</span>The juice <span class='tooltip'>blender<span class='tooltip-text'  onclick="speakText('blender')"><IMG SRC='speak.png'>混合器</span></span> broke down after just a few times of use,  so Mary returned it to the store and asked for a _____.<br>
+(A)<span class='tooltip'>loan<span class='tooltip-text'  onclick="speakText('loan')"><IMG SRC='speak.png'>貸款</span></span>　(B)<span class='tooltip'>proof<span class='tooltip-text'  onclick="speakText('proof')"><IMG SRC='speak.png'>證明</span></span>　(C)<span class='tooltip'>refund<span class='tooltip-text'  onclick="speakText('refund')"><IMG SRC='speak.png'>退款</span></span>　(D)<span class='tooltip'>display<span class='tooltip-text'  onclick="speakText('display')"><IMG SRC='speak.png'>展示</span></span> <br>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【D】作為一名出色的女演員，梅莉史翠普在其電影生涯中獲得了許多著名獎項</span></span></th><th>
+<span class='circle-number'>27</span>As a great <span class='tooltip'>actress<span class='tooltip-text'  onclick="speakText('actress')"><IMG SRC='speak.png'>女演員</span></span>,  Meryl Streep has received many <span class='tooltip'>famous<span class='tooltip-text'  onclick="speakText('famous')"><IMG SRC='speak.png'>著名的</span></span> _____ throughout her <span class='tooltip'>career<span class='tooltip-text'  onclick="speakText('career')"><IMG SRC='speak.png'>生涯</span></span> in the movie <span class='tooltip'>industry<span class='tooltip-text'  onclick="speakText('industry')"><IMG SRC='speak.png'>產業</span></span>.<br>
+(A)<span class='tooltip'>rivals<span class='tooltip-text'  onclick="speakText('rivals')"><IMG SRC='speak.png'>競爭對手</span></span>　(B)<span class='tooltip'>feasts<span class='tooltip-text'  onclick="speakText('feasts')"><IMG SRC='speak.png'>盛宴</span></span>　(C)<span class='tooltip'>targets<span class='tooltip-text'  onclick="speakText('targets')"><IMG SRC='speak.png'>目標</span></span>　(D)<span class='tooltip'>awards<span class='tooltip-text'  onclick="speakText('awards')"><IMG SRC='speak.png'>獎項</span></span> <br>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【C】我姐姐把鹽誤認為糖，她為我做的生日蛋糕結果成了一場災難</span></span></th><th>
+<span class='circle-number'>28</span>My sister _____ salt for <span class='tooltip'>sugar<span class='tooltip-text'  onclick="speakText('sugar')"><IMG SRC='speak.png'>糖</span></span>,  and the birthday cake she made for me <span class='tooltip'>turned out<span class='tooltip-text'  onclick="speakText('turned out')"><IMG SRC='speak.png'>結果</span></span> to be a <span class='tooltip'>disaster<span class='tooltip-text'  onclick="speakText('disaster')"><IMG SRC='speak.png'>災難</span></span>.<br>
+(A)<span class='tooltip'>defined<span class='tooltip-text'  onclick="speakText('defined')"><IMG SRC='speak.png'>定義</span></span>　(B)<span class='tooltip'>adopted<span class='tooltip-text'  onclick="speakText('adopted')"><IMG SRC='speak.png'>被收養</span></span>　(C)<span class='tooltip'>mistook<span class='tooltip-text'  onclick="speakText('mistook')"><IMG SRC='speak.png'>錯誤</span></span>　(D)<span class='tooltip'>reviewed<span class='tooltip-text'  onclick="speakText('reviewed')"><IMG SRC='speak.png'>已審核</span></span> <br>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【B】我們應該盡力回收紙張和塑料，以減少浪費並保護環境。</span></span></th><th>
+<span class='circle-number'>29</span>We should try our best to <span class='tooltip'>recycle<span class='tooltip-text'  onclick="speakText('recycle')"><IMG SRC='speak.png'>回收</span></span> paper and <span class='tooltip'>plastic<span class='tooltip-text'  onclick="speakText('plastic')"><IMG SRC='speak.png'>塑膠</span></span> in order to _____ waste and help the 
+<span class='tooltip'>environment<span class='tooltip-text'  onclick="speakText('environment')"><IMG SRC='speak.png'>環境</span></span>.<br>
+(A)<span class='tooltip'>afford<span class='tooltip-text'  onclick="speakText('afford')"><IMG SRC='speak.png'>買得起</span></span>　(B)<span class='tooltip'>reduce<span class='tooltip-text'  onclick="speakText('reduce')"><IMG SRC='speak.png'>減少</span></span>　(C)<span class='tooltip'>pollute<span class='tooltip-text'  onclick="speakText('pollute')"><IMG SRC='speak.png'>污染</span></span>　(D)<span class='tooltip'>capture<span class='tooltip-text'  onclick="speakText('capture')"><IMG SRC='speak.png'>捕獲</span></span> 
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【B】地震後，我們發現牆壁上出現了巨大的裂縫。房屋不太穩固，如果再次發生強震，可能會倒塌</span></span></th><th>
+<span class='circle-number'>30</span>After the <span class='tooltip'>earthquake<span class='tooltip-text'  onclick="speakText('earthquake')"><IMG SRC='speak.png'>地震</span></span>,  we find huge cracks along the walls.<br>
+The house is not _____ and may <span class='tooltip'>collapse<span class='tooltip-text'  onclick="speakText('collapse')"><IMG SRC='speak.png'>坍塌</span></span> if another strong <span class='tooltip'>quake<span class='tooltip-text'  onclick="speakText('quake')"><IMG SRC='speak.png'>地震</span></span> hits again.<br>
+(A)<span class='tooltip'>upset<span class='tooltip-text'  onclick="speakText('upset')"><IMG SRC='speak.png'>沮喪的</span></span>　(B)<span class='tooltip'>stable<span class='tooltip-text'  onclick="speakText('stable')"><IMG SRC='speak.png'>穩定的</span></span>　(C)<span class='tooltip'>active<span class='tooltip-text'  onclick="speakText('active')"><IMG SRC='speak.png'>積極的</span></span>　(D)<span class='tooltip'>empty<span class='tooltip-text'  onclick="speakText('empty')"><IMG SRC='speak.png'>空的</span></span> <br>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】英語是一門全球性語言。掌握英語可以讓你輕鬆環遊世界</span></span></th><th>
+<span class='circle-number'>31</span>English is a _____ language.<span class='tooltip'>Mastering<span class='tooltip-text'  onclick="speakText('Mastering')"><IMG SRC='speak.png'>掌握</span></span> English enables you to <span class='tooltip'>travel<span class='tooltip-text'  onclick="speakText('travel')"><IMG SRC='speak.png'>旅行</span></span> around the world with no <span class='tooltip'>sweat<span class='tooltip-text'  onclick="speakText('sweat')"><IMG SRC='speak.png'>汗</span></span>.<br>
+(A)global　(B)normal　(C)reliable　(D)peculiar <br>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【D】靠近地鐵站的公寓受到需要乘坐公共交通工具上下班的人們的歡迎</span></span></th><th>
+<span class='circle-number'>32</span><span class='tooltip'>Apartments<span class='tooltip-text'  onclick="speakText('Apartments')"><IMG SRC='speak.png'>公寓</span></span> near MRT stations are <span class='tooltip'>popular<span class='tooltip-text'  onclick="speakText('popular')"><IMG SRC='speak.png'>受歡迎的</span></span> with those who need to _____ to and from work by public <span class='tooltip'>transportation<span class='tooltip-text'  onclick="speakText('transportation')"><IMG SRC='speak.png'>運輸</span></span>.<br>
+(A)<span class='tooltip'>respond<span class='tooltip-text'  onclick="speakText('respond')"><IMG SRC='speak.png'>回應</span></span>　(B)<span class='tooltip'>schedule<span class='tooltip-text'  onclick="speakText('schedule')"><IMG SRC='speak.png'>行程</span></span>　(C)<span class='tooltip'>purchase<span class='tooltip-text'  onclick="speakText('purchase')"><IMG SRC='speak.png'>購買</span></span>　(D)<span class='tooltip'>commute<span class='tooltip-text'  onclick="speakText('commute')"><IMG SRC='speak.png'>通勤</span></span> <br>
+
+</th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】台灣棒球隊在2024年世界棒球超級聯賽12強賽中擊敗日本，奪得台灣棒球隊史上首面金牌</span></span></th><th>
+<span class='circle-number'>33</span>Taiwan's baseball team <span class='tooltip'>beat<span class='tooltip-text'  onclick="speakText('beat')"><IMG SRC='speak.png'>打敗</span></span> Japan and _____ its <span class='tooltip'>first-ever gold medal<span class='tooltip-text'  onclick="speakText('first-ever gold medal')"><IMG SRC='speak.png'>首面金牌</span></span> in the 2024 <span class='tooltip2'>WBSC Premier12<span class='tooltip-text'>世界棒球超級聯賽12強賽</span></span>.<br>
+(A)<span class='tooltip'>claimed<span class='tooltip-text'  onclick="speakText('claimed')"><IMG SRC='speak.png'>聲稱</span></span>　(B)<span class='tooltip'>adjusted<span class='tooltip-text'  onclick="speakText('adjusted')"><IMG SRC='speak.png'>已調整</span></span>　(C)<span class='tooltip'>engaged<span class='tooltip-text'  onclick="speakText('engaged')"><IMG SRC='speak.png'>已訂婚</span></span>　(D)<span class='tooltip'>launched<span class='tooltip-text'  onclick="speakText('launched')"><IMG SRC='speak.png'>推出</span></span> <br>
+</th></tr></table><br>
+
+<span style="font-size:0.8em;color:blue;">二、文法測驗</span>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>堵塞建築物的緊急出口是危險的，因為它會阻止人們逃生。</span></span></th><th>
+<span class='circle-number'>34</span>It is <span class='tooltip'>dangerous<span class='tooltip-text'  onclick="speakText('dangerous')"><IMG SRC='speak.png'>危險的</span></span> to <span class='tooltip'>block<span class='tooltip-text'  onclick="speakText('block')"><IMG SRC='speak.png'>堵塞</span></span> an <span class='tooltip'>emergency<span class='tooltip-text'  onclick="speakText('emergency')"><IMG SRC='speak.png'>緊急狀況</span></span> exit in <span class='tooltip'>buildings<span class='tooltip-text'  onclick="speakText('buildings')"><IMG SRC='speak.png'>建築物</span></span> _____ it can <span class='tooltip'>prevent<span class='tooltip-text'  onclick="speakText('prevent')"><IMG SRC='speak.png'>防止、阻止</span></span> people from <span class='tooltip'>escaping<span class='tooltip-text'  onclick="speakText('escaping')"><IMG SRC='speak.png'>逃跑</span></span>.<br>
+</th></tr></table><table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>後面表示原因，故用「因為」 </span></span></th><th>
+(A)unless　(B)due to　(C)so that　(D)because 
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>有些人傾向於根據農曆來選擇一個幸運的日子，在那一天他們可以舉行某個重要活動」</span></span></th><th>
+<span class='circle-number'>35</span>Some people tend to look at the <span class='tooltip'>lunar calendar<span class='tooltip-text'  onclick="speakText('lunar calendar')"><IMG SRC='speak.png'>農曆</span></span> to <spanr>pick a lucky day</spanr> _____ they can hold a <span class='tooltip'>certain<span class='tooltip-text'  onclick="speakText('certain')"><IMG SRC='speak.png'>肯定</span></span> <span class='tooltip'>important<span class='tooltip-text'  onclick="speakText('important')"><IMG SRC='speak.png'>重要的</span></span> <span class='tooltip'>activity<span class='tooltip-text'  onclick="speakText('activity')"><IMG SRC='speak.png'>活動</span></span>.<br>
+</th></tr></table><table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>【D】on which表示「在那一天」。where：表示地點，while：表示時間「當..的時候。which：少了介系詞，文法上不完整。</span></span></th><th>
+(A)while　(B)where　(C)which　(D)on which <br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>情人節是每年2月14日，幾個世紀以來一直是慶祝浪漫和愛情的節日</span></span></th><th>
+<span class='circle-number'>36</span><span class='tooltip'>Valentine's Day<span class='tooltip-text'  onclick="speakText('Valentine's Day')"><IMG SRC='speak.png'>情人節</span></span>,  _____ on February 14,  has been around for centuries as a celebration of 
+romance and love.<br>
+</th></tr></table><table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>【C】後面使用Ving 變主詞，falling on 2/14</span></span></th><th>
+(A)falls　(B) fallen　(C)falling　(D)which fall <br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>當你打算去米其林星級餐廳用餐時，最好先預訂。否則，你會發現自己排了很長的隊。</span></span></th><th>
+<span class='circle-number'>37</span>When planning to dine in that <span class='tooltip'>Michelin-starred<span class='tooltip-text'  onclick="speakText('Michelin-starred')"><IMG SRC='speak.png'>米其林星級餐廳</span></span> <span class='tooltip'>restaurant<span class='tooltip-text'  onclick="speakText('restaurant')"><IMG SRC='speak.png'>餐廳</span></span>, <br>
+you _____ make a <span class='tooltip'>reservation<span class='tooltip-text'  onclick="speakText('reservation')"><IMG SRC='speak.png'>預訂</span></span> first.<br>
+Otherwise,  you will find yourself in a very long waiting line.<br>
+</th></tr></table><table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>【B】had better最好</span></span></th><th>
+(A)used to　(B)had better　(C)would like　(D)can't help but <br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>當一個國家能夠以更低的成本生產某種商品時，人們認為它比其他國家具有比較優勢</span></span></th><th>
+<span class='circle-number'>38</span>A country is believed _____ a <span class='tooltip'>comparative<span class='tooltip-text'  onclick="speakText('comparative')"><IMG SRC='speak.png'>比較</span></span> <span class='tooltip'>advantage<span class='tooltip-text'  onclick="speakText('advantage')"><IMG SRC='speak.png'>優勢</span></span> over another when it can <span class='tooltip'>produce<span class='tooltip-text'  onclick="speakText('produce')"><IMG SRC='speak.png'>生產</span></span> a <span class='tooltip'>commodity<span class='tooltip-text'  onclick="speakText('commodity')"><IMG SRC='speak.png'>商品</span></span> more <span class='tooltip'>cheaply<span class='tooltip-text'  onclick="speakText('cheaply')"><IMG SRC='speak.png'>便宜地</span></span>.<br>
+</th></tr></table><table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>【A】believed to have a</span></span></th><th>
+(A)to have　(B)having　(C)that it has　(D)to have had <br>
+</th></tr></table><hr>
+
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>老師經驗豐富，非常有幫助</span></span></th><th>
+<span class='circle-number'>39</span>The teacher,  _____ has a lot of experience,  is very helpful.<br>
+</th></tr></table><table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>【D】，後面接上who關係代名詞，指前面的老師</span></span></th><th>
+(A)whom　(B)which　(C)that　(D)who <br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>廚師為客人準備了美味佳餚</span></span></th><th>
+<span class='circle-number'>40</span>The <span class='tooltip'>chef<span class='tooltip-text'  onclick="speakText('chef')"><IMG SRC='speak.png'>廚師</span></span> _____ a <span class='tooltip'>delicious meal<span class='tooltip-text'  onclick="speakText('delicious meal')"><IMG SRC='speak.png'>美味佳餚</span></span> for the guests.<br>
+</th></tr></table><table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>【B】prepared，動詞，使用過去式。A、C、D選項為被動式→不對</span></span></th><th>
+(A)was prepared　(B)prepared　(C)is prepared　(D)has been prepared <br>
+</th></tr></table><hr>
+
+</div><BR><BR><BR><BR>

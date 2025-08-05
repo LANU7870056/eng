@@ -1,0 +1,971 @@
+﻿<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="0">
+<head>
+  <meta charset="utf-8" />
+<script>
+
+let allVisible = false;
+
+function toggleAllLA() {
+  const elements = document.querySelectorAll('.la');
+  allVisible = !allVisible;
+
+  elements.forEach(el => {
+    el.style.display = allVisible ? 'block' : 'none';
+  });
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+</script>
+
+ <script>             
+        // 語音設置
+        const speechSettings = {
+            voiceName: "Microsoft David Desktop - English (United States)", // 預設語音名稱
+            rate: 1.0,  // 語速
+            pitch: 1.0, // 音高
+            volume: 1.0 // 音量
+        };
+        
+        // 可用語音列表
+        let voices = [];
+        let williamVoice = null;
+        
+        // 初始化語音合成
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                return false;
+            }
+            
+            // 加載語音列表
+            loadVoices();
+            
+            // 某些瀏覽器需要這樣加載語音列表
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            
+            return true;
+        }
+        
+        // 加載語音列表並尋找 William 語音
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+            
+            // 尋找 William 語音 (Windows 系統)
+            williamVoice = voices.find(voice => 
+                voice.name.toLowerCase().includes('william') || 
+                voice.name.includes('Microsoft David Desktop')
+            );
+            
+            if (!williamVoice && voices.length > 0) {
+                // 如果找不到 William，使用第一個英語語音
+                williamVoice = voices.find(voice => voice.lang.startsWith('en'));
+            }
+            
+            if (williamVoice) {
+                console.log("使用的語音:", williamVoice.name);
+            } else {
+                
+            }
+        }
+        
+        // 朗讀單字
+        function speakText(tx) {
+            //const word = wordInput.value.trim();
+
+           
+            
+            // 檢查語音合成是否可用
+            if (!('speechSynthesis' in window)) {
+                
+                return;
+            }
+            
+            if (!williamVoice) {
+               
+                return;
+            }
+            
+            // 創建語音實例
+            const utterance = new SpeechSynthesisUtterance(tx);
+            
+            // 設置語音參數
+            utterance.voice = williamVoice;
+            utterance.lang = williamVoice.lang;
+            utterance.rate = speechSettings.rate;
+            utterance.pitch = speechSettings.pitch;
+            utterance.volume = speechSettings.volume;
+            
+           
+            
+          
+            
+            // 取消當前任何正在進行的朗讀
+            window.speechSynthesis.cancel();
+            
+            // 開始朗讀
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            if (initSpeechSynthesis()) {
+                // 主動獲取語音列表（某些瀏覽器需要）
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
+
+<script>
+    function speakText3(text) {
+      //const text = "Connect to the internet";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // 可改成 "en-GB" 聽英式口音
+      speechSynthesis.speak(utterance);
+    }
+    
+    function speakText2(text) {
+      const ww='https://translate.google.com/translate_tts?ie=UTF-8&q=' + text + '&tl=en&client=tw-ob';
+      const audio = new Audio(ww);
+      audio.play();
+    }
+
+let isVisible = false;
+
+
+
+function close2() {
+  const boxes = document.querySelectorAll('.te');
+  boxes.forEach(box => {
+    box.style.transform = "translateX(-50%) scale(0)";
+  });
+}
+
+
+
+function showTextBox(img) {
+  const boxes = document.querySelectorAll('.te');
+  const box = img.nextElementSibling;
+  const isVisible = box.style.transform.includes("scale(1)");
+
+  if (isVisible) {
+    // 如果自己是顯示狀態，則全部隱藏
+    boxes.forEach(b => {
+      b.style.transform = "translateX(-50%) scale(0)";
+    });
+  } else {
+    // 否則先全部隱藏，再只顯示自己
+    boxes.forEach(b => {
+      b.style.transform = "translateX(-50%) scale(0)";
+    });
+    box.style.transform = "translateX(-50%) scale(1)";
+  }
+}
+
+
+
+
+</script>
+
+<script>
+function gen(ur) {
+
+function getRandomString(length) {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+window.open(ur+'?i='+getRandomString(10),'_self');
+
+  }
+</script>
+
+<style>
+.in2{ 
+  padding-left: 2em; /* 左側空 2 字元 */
+  padding-right: 2em; /* 右側空 2 字元 */
+}
+
+.sol {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+color:#F0F;
+  border: 1px solid black;
+  border-radius: 50%;         /* 讓外框成圓形 */
+  text-align: center;
+  line-height: 26px;          /* 讓文字垂直置中 */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #D2FF78;
+}
+
+.bk-box {
+position: fixed;
+z-index: 3000; /* 確保在其他元素之上 */
+    width:100%;
+    //position: absolute;
+    align-items: center;   
+    height: 60px;background-color: #854D92;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 0px solid #ccc; /* 可加上邊框 */
+    margin: 0px auto; /* 置中顯示 */
+    top:0px;
+    left:-1px;
+    border-radius: 0px; /* 調整圓角大小 */
+  }
+
+  .background-box {
+    width:100%;
+    align-items: center;   
+    background-color: #D2FF78;
+    background-image: url('your-image.jpg'); /* 換成你的圖片路徑 */
+    background-size: cover; /* 圖片填滿區塊 */
+    background-position: center; /* 圖片置中 */
+    background-repeat: no-repeat; /* 不重複顯示圖片 */
+    border: 1px solid #ccc; /* 可加上邊框 */
+    margin: 20px 1px auto; /* 置中顯示 */
+    border-radius: 20px; /* 調整圓角大小 */
+  }
+</style>
+
+
+<style>
+.cir {
+  display: inline-block;
+  width: 35px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: 1.0em;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: 30%;
+  color: #333;
+  border: 1px solid #007BFF; /* 改成藍色外框 */
+  background-color: #FFF9DB; /* 淺黃色底色 */
+ padding: 0 0.2em; /* 左右各加空白 */
+}
+
+.tooltip4 {
+  position: relative;
+  display: inline-block;
+ color: #F00;
+font-size: 0.8em;
+}
+.tooltip4 .tooltip-text {
+  position: fixed;
+  bottom: 0;                  /* 靠螢幕最底部 */
+  left: 0;                    /* 靠左側（可改為 50% + transform 置中） */
+  width: 100%;                /* 寬度全螢幕 */
+  background-color: #FFFF00;
+  border: 1px solid black;
+  color: #000;
+  font-size: 0.9em;
+  text-align: center;
+  padding: 2px 0;
+  word-break: break-word;
+  white-space: normal;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;      
+font-size: 0.9em;
+  transition: opacity 0.3s ease;
+}
+.tooltip4:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+  .tooltip3 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: green; 
+    }
+ 
+  
+    .tooltip3 .tooltip-text {
+      visibility: hidden;
+      background-color: #FFFF00;
+      color: #FF00FF;
+      text-align: left;
+      padding: 3px 8px;
+      border-radius: 2px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left:0%;
+      
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      font-size: 0.8em;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip3:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip3 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+     .tooltip2 {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 0.9em;
+      color: blue; 
+    }
+ 
+  
+    .tooltip2 .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      font-size: 0.8em;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip2:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip2 .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }  
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+     .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.0em;
+      color: red; 
+    }
+ 
+  
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 100%; /* 👈 顯示在上方 */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+   }
+ 
+    /* 加一個小箭頭 */
+    .tooltip .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }   
+  </style>
+</head>
+<div class="bk-box">
+<div style="margin-left:10px; align-items: center;font-size: 18px;height: 10px; font-weight: bold;color:#FFFF00; text-align: left;">
+<a href="javascript: void(0)" onclick="gen('index3.htm')" style="color:white;"><h3>單字測驗與文法　回首頁</h3></a></div>
+</div>
+
+<body><h1 style="font-size: 1.5em;"><font-size: 1.5em;>
+<BR>
+<div class="background-box" style="font-size: 1.2em;">
+
+
+
+<div class="sv">
+<div class="b22" onclick="toggleAllLA()"><img src="sv.png"></div>
+</div>
+
+<div class="scroll-buttons">
+  <div class="b2"><a href="index3.htm"><img src="home.png"></a></div>
+  <button onclick="scrollToTop()">↑</button>
+  <button onclick="scrollToBottom()">↓</button>
+</div>
+
+<style>
+.sv {
+  position: fixed;
+  bottom: 0px;
+  left: -10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1800;
+}
+
+
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1500;
+}
+
+
+
+
+
+
+.scroll-buttons b2 {
+  background-color: #007bff;   
+   width: 50px;
+  height: 50px;
+ 
+}
+
+.scroll-buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.scroll-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.co2 {
+  position: relative;
+}
+
+.clickable-image {
+  width: 30px;
+  cursor: pointer;
+}
+
+.te {
+  position: fixed; 
+  bottom:0px;       
+  width:99%;
+  left: 50%;
+  font-family: Times New Roman, sans-serif;
+  transform: translateX(-50%) scale(0);
+  background-color: rgba(120,210,255, 0.8);
+  color: #000;
+  padding: 5px;
+  font-size: 30px; /* 這裡設定文字大小為 30px */
+  border-radius: 10px;
+  z-index: 1999;
+  transition: transform 0.3s ease;
+
+
+}
+.te2 {
+  border: 1px solid #f00;       /* 方框邊框 */
+  padding: 1px;                /* 內距讓文字不貼邊 */
+  font-size: 30px;              /* 文字大小 */
+  font-family: Arial, sans-serif; /* 字型 */
+  background-color: #FF50A7;    /* 背景色，可選 */
+  border-radius: 8px;           /* 圓角，可選 */
+  width: fit-content;           /* 自動調整寬度 */
+ // margin: 20px auto;            /* 置中顯示 */
+  line-height: 50px;  
+
+}
+
+
+</style>
+
+<style>
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+th, td {
+  //border: 1px;
+  padding: 1px;
+  font-size: 28px;              /* 文字大小 */
+  font-family: Arial/* 字型 */
+  vertical-align: top;
+  font-weight: bold;
+  text-align: left;
+width: max-content;
+  text-align: left;
+}
+
+th div {
+  margin-top: 0;
+}
+span2 {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  background-color: #fff8dc; 
+}
+
+spanr {
+  color: blue;
+  border: 1px dashed red;   /* 藍色矩形框 */
+
+  padding: 0px 0px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #FFFF78; 
+}
+
+spanb {
+  color: blue;
+  border: 1px solid red;   /* 藍色矩形框 */
+  padding: 3px 2px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color: #78D2FF; 
+}
+
+spany {
+  color: blue;
+  border: 1px dashed red;   /* 藍色矩形框 */
+  padding: 0px 0px;         /* 內距讓框看起來不壓迫文字 */
+  display: inline-block;    /* 讓框緊密包住文字 */
+  //text-decoration: underline;
+  //font-weight: bold;
+  background-color:#FFDD78; 
+}
+
+
+.pp{
+  position: relative;
+  display: inline-block;
+  cursor: grab;
+color: #772B1A;
+}
+
+.pp .tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: #00FFFF;
+  color: #000;
+font-size: 0.7em;
+  text-align: center;
+  border-radius: 0px;
+  padding: 0px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%; /* 顯示在上方 */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.pp:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.circle-number2 {
+  display: inline-block;
+  padding: 0px 2px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  background-color: #ff0; /* 明亮黃色 */
+  color: #1E88E5;            /* 鮮藍色 */
+  font-size: 0.8em;   
+  text-align: center;
+}
+
+.circle-number {   
+  color: #1E88E5;
+  display: inline-block;
+  width:  26px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  border: 2px solid #333;
+  border-radius: 50%;   /* 让它变成圆形 */
+  font-weight: bold;
+  background-color: #ffeb3b; /* 黃色背景 */
+  font-size: 0.7em;  
+ transform: translateY(-5px);
+
+}
+
+.circle-number2::before {
+  content: "(";
+}
+
+.circle-number2::after {
+  content: ")";
+}
+
+.question-options {
+  line-height: 1.0; /* 適當調整行高值 */
+
+}
+
+/* 特別處理選項中的全型空白 */
+.question-options span {
+  display: inline-block;
+  vertical-align: middle;
+  word-spacing: -0.3em; /* 微調全型空白的間距 */
+}
+.te {
+  transition: transform 0.3s ease;
+  transform: translateX(-50%) scale(0);
+}
+
+.spans {
+  color: blue;
+  border: 1px dashed red;
+  padding: 1px 1px;
+  display: inline-block;
+  background-color: #FFFF78;
+  //font-family: sans-serif;
+  position: relative;
+  font-size: 1.0em;
+}
+
+
+.la {
+ position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+  color: red;
+  border: 1px solid red;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-weight: bold;
+  font-size: 22px;
+  z-index: 2;
+  pointer-events: none; /* 避免遮住點擊 */
+}
+
+
+.lb {
+ position: absolute;
+  top: -15px;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+  color: red;
+  border: 1px solid red;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-weight: bold;
+  font-size: 22px;
+  z-index: 2;
+  pointer-events: none; /* 避免遮住點擊 */
+}
+
+
+
+</style>
+
+<span><a href="prg101-key.htm"><img src="exam3.png"></a>
+<a href="prg101-test.htm"><img src="exam.png"></a>
+<a href="prg101-test2.htm"><img src="exam2.png"></a></span>
+
+
+
+
+<center>101郵政考古題</center>
+<span style="font-size:0.8em;color:blue;">一、單字測驗</span>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【C】集郵是世界上最受歡迎的室內嗜好之一</span></span></th><th>
+<span class='circle-number'>26</span><span class='spans'><span class='la' style='display:none;'>S</span>Stamp <span class='tooltip'>collecting<span class='tooltip-text'  onclick="speakText('collecting')"><IMG SRC='speak.png'>收集</span></span></span> is <span class='spans'><span class='la' style='display:none;'>O</span>one of the world's most <span class='tooltip'>popular<span class='tooltip-text'  onclick="speakText('popular')"><IMG SRC='speak.png'>受歡迎的</span></span> <span class='tooltip'>indoor<span class='tooltip-text'  onclick="speakText('indoor')"><IMG SRC='speak.png'>室內</span></span> _____</span>. <br>
+(A)<span class='tooltip'>hazards<span class='tooltip-text'  onclick="speakText('hazards')"><IMG SRC='speak.png'>危害</span></span><span style='margin-left: 1em;'>(B)<span class='tooltip'>habits<span class='tooltip-text'  onclick="speakText('habits')"><IMG SRC='speak.png'>習慣</span></span><span style='margin-left: 1em;'>(C)<span class='tooltip'>hobbies<span class='tooltip-text'  onclick="speakText('hobbies')"><IMG SRC='speak.png'>嗜好</span></span><span style='margin-left: 1em;'>(D)<span class='tooltip'>honors<span class='tooltip-text'  onclick="speakText('honors')"><IMG SRC='speak.png'>榮譽</span></span> <br>
+
+<hr></th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】姪女是某人兄弟姊妹的女兒。</span></span></th><th>
+<span class='circle-number'>27</span>A(An) ______ is <spanr>a <span class='tooltip'>daughter<span class='tooltip-text'  onclick="speakText('daughter')"><IMG SRC='speak.png'>女兒</span></span> of one's brother or sister</spanr>. <br>
+(A)<span class='tooltip'>niece<span class='tooltip-text'  onclick="speakText('niece')"><IMG SRC='speak.png'>姪女</span></span><span style='margin-left: 1em;'>(B)<span class='tooltip'>cousin<span class='tooltip-text'  onclick="speakText('cousin')"><IMG SRC='speak.png'>表哥</span></span><span style='margin-left: 1em;'>(C)<span class='tooltip'>nephew<span class='tooltip-text'  onclick="speakText('nephew')"><IMG SRC='speak.png'>姪子</span></span><span style='margin-left: 1em;'>(D)<span class='tooltip'>aunt<span class='tooltip-text'  onclick="speakText('aunt')"><IMG SRC='speak.png'>阿姨</span></span> <br>
+
+<hr></th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【D】英國有句諺語說，預防勝於治療。</span></span></th><th>
+<span class='circle-number'>28</span>An English <span class='tooltip'>proverb<span class='tooltip-text'  onclick="speakText('proverb')"><IMG SRC='speak.png'>諺語</span></span> says that <spanr> ______ is better than <span class='tooltip'>cure<span class='tooltip-text'  onclick="speakText('cure')"><IMG SRC='speak.png'>治癒</span></span></spanr>. <br>
+(A)<span class='tooltip'>preservation<span class='tooltip-text'  onclick="speakText('preservation')"><IMG SRC='speak.png'>儲存</span></span><span style='margin-left: 1em;'>(B)<span class='tooltip'>prohibition<span class='tooltip-text'  onclick="speakText('prohibition')"><IMG SRC='speak.png'>禁令</span></span><span style='margin-left: 1em;'>(C)<span class='tooltip'>protection<span class='tooltip-text'  onclick="speakText('protection')"><IMG SRC='speak.png'>保護</span></span><span style='margin-left: 1em;'>(D)<span class='tooltip'>prevention<span class='tooltip-text'  onclick="speakText('prevention')"><IMG SRC='speak.png'>預防</span></span> <br>
+
+<hr></th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【B】為了保護智慧財產權，我們不應該購買假冒產品</span></span></th><th>
+<span class='circle-number'>29</span>To <span class='tooltip'>protect<span class='tooltip-text'  onclick="speakText('protect')"><IMG SRC='speak.png'>保護</span></span> <spanr><span class='tooltip'>intellectual<span class='tooltip-text'  onclick="speakText('intellectual')"><IMG SRC='speak.png'>知識</span></span> <span class='tooltip'>property<span class='tooltip-text'  onclick="speakText('property')"><IMG SRC='speak.png'>財產</span></span> rights</spanr> ,  we should not buy ______ <span class='tooltip'>products<span class='tooltip-text'  onclick="speakText('products')"><IMG SRC='speak.png'>產品</span></span> . <br>
+(A)real<span style='margin-left: 1em;'>(B)<span class='tooltip'>fake<span class='tooltip-text'  onclick="speakText('fake')"><IMG SRC='speak.png'>偽造的</span></span><span style='margin-left: 1em;'>(C)<span class='tooltip'>bake<span class='tooltip-text'  onclick="speakText('bake')"><IMG SRC='speak.png'>烤</span></span><span style='margin-left: 1em;'>(D)<span class='tooltip'>fade<span class='tooltip-text'  onclick="speakText('fade')"><IMG SRC='speak.png'>褪色</span></span> <br>
+
+<hr></th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【C】網上購物簡單又方便，但有時也可能有風險</span></span></th><th>
+<span class='circle-number'>30</span>Online shopping is easy and <span class='tooltip'>convenient<span class='tooltip-text'  onclick="speakText('convenient')"><IMG SRC='speak.png'>方便</span></span> but it can be ______ sometimes. <br>
+(A)reality<span style='margin-left: 1em;'>(B)<span class='tooltip'>safety<span class='tooltip-text'  onclick="speakText('safety')"><IMG SRC='speak.png'>安全</span></span><span style='margin-left: 1em;'>(C)<span class='tooltip'>risky<span class='tooltip-text'  onclick="speakText('risky')"><IMG SRC='speak.png'>有風險</span></span><span style='margin-left: 1em;'>(D)<span class='tooltip'>lucky<span class='tooltip-text'  onclick="speakText('lucky')"><IMG SRC='speak.png'>幸運的</span></span> <br>
+
+<hr></th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】六月豪雨襲擊台灣造成了巨大損失。</span></span></th><th>
+<span class='circle-number'>31</span>The <span class='tooltip'>heavy rain<span class='tooltip-text'  onclick="speakText('heavy rain')"><IMG SRC='speak.png'>豪雨</span></span> which ________ Taiwan in June <span class='tooltip'>caused<span class='tooltip-text'  onclick="speakText('caused')"><IMG SRC='speak.png'>造成</span></span> huge <span class='tooltip'>damage<span class='tooltip-text'  onclick="speakText('damage')"><IMG SRC='speak.png'>損害</span></span> . <br>
+(A)<span class='tooltip'>hit<span class='tooltip-text'  onclick="speakText('hit')"><IMG SRC='speak.png'>打擊、襲擊</span></span><span style='margin-left: 1em;'>(B)<span class='tooltip'>hiked<span class='tooltip-text'  onclick="speakText('hiked')"><IMG SRC='speak.png'>健行</span></span><span style='margin-left: 1em;'>(C)<span class='tooltip'>approached<span class='tooltip-text'  onclick="speakText('approached')"><IMG SRC='speak.png'>接近</span></span><span style='margin-left: 1em;'>(D)<span class='tooltip'>stepped<span class='tooltip-text'  onclick="speakText('stepped')"><IMG SRC='speak.png'>踩踏、邁步</span></span> <br>
+
+<hr></th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【C】郵差每天都會送郵件</span></span></th><th>
+<span class='circle-number'>32</span>The <span class='tooltip'>postman<span class='tooltip-text'  onclick="speakText('postman')"><IMG SRC='speak.png'>郵差</span></span> ______ the mail every day. <br>
+(A)<span class='tooltip'>deserts<span class='tooltip-text'  onclick="speakText('deserts')"><IMG SRC='speak.png'>沙漠</span></span><span style='margin-left: 1em;'>(B)<span class='tooltip'>leaves<span class='tooltip-text'  onclick="speakText('leaves')"><IMG SRC='speak.png'>樹葉</span></span><span style='margin-left: 1em;'>(C)<span class='tooltip'>delivers<span class='tooltip-text'  onclick="speakText('delivers')"><IMG SRC='speak.png'>遞送</span></span><span style='margin-left: 1em;'>(D)<span class='tooltip'>throws<span class='tooltip-text'  onclick="speakText('throws')"><IMG SRC='speak.png'>丟擲</span></span> <br>
+
+<hr></th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】台灣大學校園裡有很多椰子樹</span></span></th><th>
+<span class='circle-number'>33</span>There are many <span class='tooltip'>coconut<span class='tooltip-text'  onclick="speakText('coconut')"><IMG SRC='speak.png'>椰子</span></span> trees on the ______ of the National Taiwan University. <br>
+(A)<span class='tooltip'>campus<span class='tooltip-text'  onclick="speakText('campus')"><IMG SRC='speak.png'>校園</span></span><span style='margin-left: 1em;'>(B)<span class='tooltip'>camp<span class='tooltip-text'  onclick="speakText('camp')"><IMG SRC='speak.png'>營</span></span><span style='margin-left: 1em;'>(C)<span class='tooltip'>company<span class='tooltip-text'  onclick="speakText('company')"><IMG SRC='speak.png'>公司</span></span><span style='margin-left: 1em;'>(D)<span class='tooltip'>canal<span class='tooltip-text'  onclick="speakText('canal')"><IMG SRC='speak.png'>運河</span></span> <br>
+<hr></th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】為了改善郵件遞送服務，郵局敦促寄件者對所有郵件使用郵遞區號</span></span></th><th>
+<span class='circle-number'>34</span>To ______ mail <span class='tooltip'>delivery<span class='tooltip-text'  onclick="speakText('delivery')"><IMG SRC='speak.png'>遞送</span></span> <span class='tooltip'>services<span class='tooltip-text'  onclick="speakText('services')"><IMG SRC='speak.png'>服務</span></span> ,  the post office <span class='tooltip'>urges<span class='tooltip-text'  onclick="speakText('urges')"><IMG SRC='speak.png'>促進</span></span> <span class='tooltip'>mailers<span class='tooltip-text'  onclick="speakText('mailers')"><IMG SRC='speak.png'>寄件人</span></span> to use zip codes for all of their mail <span class='tooltip'>correspondence<span class='tooltip-text'  onclick="speakText('correspondence')"><IMG SRC='speak.png'>一致</span></span> . <br>
+(A)<span class='tooltip'>improve<span class='tooltip-text'  onclick="speakText('improve')"><IMG SRC='speak.png'>提升</span></span><span style='margin-left: 1em;'>(B)<span class='tooltip'>import<span class='tooltip-text'  onclick="speakText('import')"><IMG SRC='speak.png'>進口</span></span><span style='margin-left: 1em;'>(C)<span class='tooltip'>imply<span class='tooltip-text'  onclick="speakText('imply')"><IMG SRC='speak.png'>意味著</span></span><span style='margin-left: 1em;'>(D)<span class='tooltip'>impose<span class='tooltip-text'  onclick="speakText('impose')"><IMG SRC='speak.png'>強加</span></span> <br>
+<hr></th></tr></table>
+
+<span style="font-size:0.8em;color:blue;">二、文法測驗</span>
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【C】許多 NBA 球隊都對簽下林書豪感興趣。</span></span></th><th>
+<span class='circle-number'>35</span>Many NBA teams are ____ in <span class='tooltip'>signing<span class='tooltip-text'  onclick="speakText('signing')"><IMG SRC='speak.png'>簽名</span></span> Jeremy Shu-How Lin.<br>
+</th></tr></table>
+<table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>be interested in→對A有興趣，使用被動式</span></span></th><th>
+(A)<span class='tooltip'>interesting<span class='tooltip-text'  onclick="speakText('interesting')"><IMG SRC='speak.png'>有趣的</span></span><span style='margin-left: 1em;'>(B)<span class='tooltip'>interest<span class='tooltip-text'  onclick="speakText('interest')"><IMG SRC='speak.png'>興趣</span></span><span style='margin-left: 1em;'>(C)<span class='tooltip'>interested<span class='tooltip-text'  onclick="speakText('interested')"><IMG SRC='speak.png'>有興趣的</span></span><span style='margin-left: 1em;'>(D)<span class='tooltip'>interests<span class='tooltip-text'  onclick="speakText('interests')"><IMG SRC='speak.png'>利益</span></span> <br>
+<hr></th></tr></table>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】如果你想加入棒球隊，請舉手</span></span></th><th>
+<span class='circle-number'>36</span>Please ______ your hands if you want to join the baseball team.<br>
+</th></tr></table>
+<table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>raise your hand→舉手[Please+原型V]</span></span></th><th>
+(A)raise<span style='margin-left: 1em;'>(B)<span class='tooltip'>rise<span class='tooltip-text'  onclick="speakText('rise')"><IMG SRC='speak.png'>上升</span></span><span style='margin-left: 1em;'>(C)<span class='tooltip'>arise<span class='tooltip-text'  onclick="speakText('arise')"><IMG SRC='speak.png'>出現</span></span><span style='margin-left: 1em;'>(D)rises<br>
+<hr></th></tr></table>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】辦公室裡的每個人都對這個壞消息感到驚訝</span></span></th><th>
+<span class='circle-number'>37</span>Everybody in my office was <span class='tooltip'>surprised<span class='tooltip-text'  onclick="speakText('surprised')"><IMG SRC='speak.png'>驚訝</span></span> ______ the bad news.<br>
+</th></tr></table><table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>surprised at+事：對某事驚訝</span></span></th><th>
+(A)at<span style='margin-left: 1em;'>(B)in<span style='margin-left: 1em;'>(C)on<span style='margin-left: 1em;'>(D)for<br>
+
+<hr></th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【D】如果你今天早上吃了藥，你可能會感覺好些</span></span></th><th>
+<span class='circle-number'>38</span>If you ______ <span class='tooltip'>medicine<span class='tooltip-text'  onclick="speakText('medicine')"><IMG SRC='speak.png'>藥物</span></span> this morning ,  you might ______ better.<br>
+</th></tr></table><table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>If had pp ,  have 。<br>假設語氣，If+had pp, 後面接現在式<br>taken medicinew→吃藥</span></span></th><th>
+(A)had taken / had felt<span style='margin-left: 1em;'>(B)took / felt<span style='margin-left: 1em;'>(C)have taken / have felt<span style='margin-left: 1em;'>(D)had taken / have felt <br>
+
+<hr></th></tr></table><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【B】這個書架是木頭做的</span></span></th><th>
+<span class='circle-number'>39</span>This <span class='tooltip'>bookshelf<span class='tooltip-text'  onclick="speakText('bookshelf')"><IMG SRC='speak.png'>書架</span></span> is ______ wood.<br>
+</th></tr></table><table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>made of wood→木頭製作的，不能使用make，be +pp</span></span></th><th>
+(A)making from<span style='margin-left: 1em;'>(B)made of<span style='margin-left: 1em;'>(C)making of<span style='margin-left: 1em;'>(D)made from <br>
+
+</th></tr></table><hr><table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【C】從台北寄這封保險掛號信到紐約要花多少錢？</span></span></th><th>
+<span class='circle-number'>40</span>How much does it ___ to mail this <span class='tooltip'>Insured<span class='tooltip-text'  onclick="speakText('Insured')"><IMG SRC='speak.png'>保險</span></span> <span class='tooltip'>Registered<span class='tooltip-text'  onclick="speakText('Registered')"><IMG SRC='speak.png'>掛號的</span></span> Letter from Taipei to New York ? <br>
+</th></tr></table><table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>詢問費用，使用cost</span></span></th><th>
+(A)<span class='tooltip'>make<span class='tooltip-text'  onclick="speakText('make')"><IMG SRC='speak.png'>製作</span></span><span style='margin-left: 1em;'>(B)<span class='tooltip'>pay<span class='tooltip-text'  onclick="speakText('pay')"><IMG SRC='speak.png'>支付</span></span><span style='margin-left: 1em;'>(C)<span class='tooltip'>cost<span class='tooltip-text'  onclick="speakText('cost')"><IMG SRC='speak.png'>成本</span></span><span style='margin-left: 1em;'>(D)<span class='tooltip'>spend<span class='tooltip-text'  onclick="speakText('spend')"><IMG SRC='speak.png'>花費</span></span>
+<hr></th></tr></table>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】瑪麗上學從不遲到，是嗎？</span></span></th><th>
+<span class='circle-number'>41</span>Mary <spanr>is never late</spanr> for school ,  ______ she ? <br>
+</th></tr></table><table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>is never為否定，後面反問，要使用肯定</span></span></th><th>
+(A)is<span style='margin-left: 1em;'>(B)isn't<span style='margin-left: 1em;'>(C)does<span style='margin-left: 1em;'>(D)doesn't <br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】天氣這麼多雲陰天，你最好帶傘</span></span></th><th>
+<span class='circle-number'>42</span>It is so <span class='tooltip'>cloudy<span class='tooltip-text'  onclick="speakText('cloudy')"><IMG SRC='speak.png'>多雲</span></span>. You <spanr>had better</spanr> ______ your <span class='tooltip'>umbrella<span class='tooltip-text'  onclick="speakText('umbrella')"><IMG SRC='speak.png'>雨傘</span></span> with you.<br>
+</th></tr></table><table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>had better+原型V</span></span></th><th>
+(A)take<span style='margin-left: 1em;'>(B)<span class='tooltip'>taking<span class='tooltip-text'  onclick="speakText('taking')"><IMG SRC='speak.png'>服用</span></span><span style='margin-left: 1em;'>(C)to take<span style='margin-left: 1em;'>(D)took<span style='margin-left: 1em;'><br>
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】閱讀好的雜誌有助於豐富你的生活</span></span></th><th>
+<span class='circle-number'>43</span>
+<span class='spans'><span class='la' style='display:none;'>S</span>Reading good <span class='tooltip'>magazines<span class='tooltip-text'  onclick="speakText('magazines')"><IMG SRC='speak.png'>雜誌</span></span></span> ____ helpful <span class='spans'><span class='la' style='display:none;'>O</span>to <span class='tooltip'>enrich<span class='tooltip-text'  onclick="speakText('enrich')"><IMG SRC='speak.png'>豐富</span></span> your life</span>.<br>
+</th></tr></table><table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>is helpful to→有幫助的</span></span></th><th>
+(A)is<span style='margin-left: 1em;'>(B)are<span style='margin-left: 1em;'>(C)will<span style='margin-left: 1em;'>(D)be <br>
+</th></tr></table><hr>
+
+
+<span style="font-size:0.8em;color:blue;">三、會話測驗</span>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【B】A：你看今天的天氣預報了嗎？<br>
+B：沒有。有什麼新鮮事嗎？</span></span></th><th>
+<span class='circle-number'>44</span>A: Have you watched the <span class='spans'>weather</span> <span class='tooltip'>report<span class='tooltip-text'  onclick="speakText('report')"><IMG SRC='speak.png'>報告</span></span> today ? <br>
+<span style='margin-left: 1em;'>B:No,  I haven't.What's new ? <br>
+<span style='margin-left: 1em;'>A: ____________ <br>
+</th></tr></table><table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>(A)2012年夏季奧運會將在倫敦舉行。 (B)一場大風暴即將來臨。<br>
+(C)警方逮捕了一群歹徒。 (D)幾位聯合國事務專家正在訪問台灣。</span></span></th><th>
+
+(A)The 2012 Summer Olympic Games will be held in London.<br>
+(B)There is a big storm coming.<br>
+(C)The police have arrested a group of <span class='tooltip'>gangsters<span class='tooltip-text'  onclick="speakText('gangsters')"><IMG SRC='speak.png'>歹徒</span></span>.<br>
+(D)<span class='tooltip'>Several<span class='tooltip-text'  onclick="speakText('Several')"><IMG SRC='speak.png'>一些</span></span> experts on UN affairs are visiting Taiwan .
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】A：____________
+B：郵局就在轉角處。</span></span></th><th>
+<span class='circle-number'>45</span>A: ____________ <br>
+<span style='margin-left: 1em;'>B: The post office is just around the corner.<br>
+</th></tr></table>
+<table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>(A)我必須立即寄出這個包裹。
+(B)我可以在哪裡買到一些雜貨？
+(C)我需要提前確認我的航班。
+(D)我剛收到一封掛號信。</span></span></th><th>
+(A)I have to mail this parcel immediately.<br>
+(B)Where can I buy some <span class='tooltip'>groceries<span class='tooltip-text'  onclick="speakText('groceries')"><IMG SRC='speak.png'>雜貨</span></span> ?<br>
+(C)I need to <span class='tooltip'>confirm<span class='tooltip-text'  onclick="speakText('confirm')"><IMG SRC='speak.png'>確認</span></span> my flight in <span class='tooltip'>advance<span class='tooltip-text'  onclick="speakText('advance')"><IMG SRC='speak.png'>進步</span></span>.<br>
+(D)I just received a <span class='tooltip'>registered<span class='tooltip-text'  onclick="speakText('registered')"><IMG SRC='speak.png'>掛號的</span></span> letter.
+</th></tr></table><hr>
+
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【C】A：____________
+B：每隔一天。</span></span></th><th>
+<span class='circle-number'>46</span>A: ____________ <br>
+<span style='margin-left: 1em;'>B:Every other day.<br>
+</th></tr></table>
+<table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>(A) 你一週游泳幾次？
+(B) 你昨天去健身房了嗎？
+(C) 你多久去一次健身房？
+(D) 你上次游泳是什麼時候？B回答「每隔一天」，就要選How often</span></span></th><th>
+(A)How many times a week do you go swimming ?<br>
+(B)Did you go to the gym yesterday ?<br>
+(C)How often do you go to the gym ?<br>
+(D)When was the last time you went swimming ?
+</th></tr></table><hr>
+
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】A：我可以藉你的腳踏車嗎？
+B：____________</span></span></th><th>
+<span class='circle-number'>47</span>A: May I borrow your bike ? <br>
+<span style='margin-left: 1em;'>B: ____________ <br>
+</th></tr></table>
+<table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>(A)我把它藉給了吉姆。
+(B)我的自行車是台灣製造的。
+(C)我不想藉你的腳踏車。
+(D)你的自行車真時尚。</span></span></th><th>
+(A)I have lent it to Jim.<br>
+(B)My bike was made in Taiwan.<br>
+(C)I don't want to <span class='tooltip'>borrow<span class='tooltip-text'  onclick="speakText('borrow')"><IMG SRC='speak.png'>借</span></span> your bike.<br>
+(D)Your bike is so stylish .
+</th></tr></table><hr>
+
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【B】A：我明天要去巴黎。
+B：____________</span></span></th><th>
+<span class='circle-number'>48</span>A: I am leaving for Paris tomorrow. <br>
+<span style='margin-left: 1em;'>B: ____________ <br>
+</th></tr></table>
+<table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>(A)巴黎是法國的首都。
+(B)祝您旅途愉快。
+(C)我哥哥住在巴黎。
+(D)巴黎有許多著名的博物館。</span></span></th><th>
+(A)Paris is the <span class='tooltip'>capital<span class='tooltip-text'  onclick="speakText('capital')"><IMG SRC='speak.png'>首都</span></span> city of France.<br>
+(B)<span class='tooltip'>Have<span class='tooltip-text'  onclick="speakText('Have')"><IMG SRC='speak.png'>有</span></span> a safe <span class='tooltip'>trip<span class='tooltip-text'  onclick="speakText('trip')"><IMG SRC='speak.png'>旅行</span></span>.<br>
+(C)My brother lives in Paris.<br>
+(D)There are many <span class='tooltip'>famous<span class='tooltip-text'  onclick="speakText('famous')"><IMG SRC='speak.png'>著名的</span></span> <span class='tooltip'>museums<span class='tooltip-text'  onclick="speakText('museums')"><IMG SRC='speak.png'>博物館</span></span> in Paris .
+</th></tr></table><hr>
+
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【C】A：日月潭的美景令人嘆為觀止。
+B：____________</span></span></th><th>
+<span class='circle-number'>49</span>A: The beauty of Sun Moon Lake is <span class='tooltip'>breathtaking<span class='tooltip-text'  onclick="speakText('breathtaking')"><IMG SRC='speak.png'>驚險</span></span>. <br>
+<span style='margin-left: 1em;'>B: ____________ <br>
+</th></tr></table>
+<table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>(A)日月潭位於南投縣。
+(B)日月潭是台灣最大的湖泊。
+(C)你又說得對，我很喜歡日月潭。
+(D)我去過日月潭很多次。</span></span></th><th>
+(A)Sun Moon Lake is situated in Nantou County.<br>
+(B)Sun Moon Lake is the largest lake in Taiwan.<br>
+(C)You can say that again.I do love Sun Moon Lake.<br>
+(D)I have been to Sun Moon Lake many times .
+</th></tr></table><hr>
+
+<table><tr><th style='vertical-align:top;width:5px;'><span class='tooltip4'><img src='sol.png' style='vertical-align: top;'><span class='tooltip-text'>【A】A：____________
+B：當然可以。你度假的時候我會處理這件事</span></span></th><th>
+<span class='circle-number'>50</span>A:____________ <br>
+<span style='margin-left: 1em;'>B:Sure.I will take care of it when you are away on vacation.<br>
+</th></tr></table>
+<table><tr><th style='width:8px;vertical-align:top'><span class='co2'><img src='len2.png' class='clickable-image' onclick='showTextBox(this)'><span id='te' class='te'><img src='x.png' class='clickable-image' onclick='close2()'>(A) 你會幫我照顧我的狗嗎？
+(B) 你喜歡我的狗嗎？
+(C) 你喜歡我的狗嗎？ (D) 你怕我的狗嗎？</span></span></th><th>
+(A)Will you keep an eye on my dog ?<br>(B)Do you like my dog ?<br>
+(C)Are you fond of my dog ?<br>(D)Are you afraid of my dog ?
+</th></tr></table><hr>
+
+</div><br><br><br><br>
+
+
+
+
+<script>
+let allVisible = false;
+
+function toggleAllLA() {
+  const elements = document.querySelectorAll('.la');
+  allVisible = !allVisible;
+
+  elements.forEach(el </span> {
+    el.style.display = allVisible ? 'inline' : 'none';
+  });
+}
+
+</script>

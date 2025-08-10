@@ -15,22 +15,16 @@
             overflow: hidden;
         }
 
-#ti{
-top: 0;
- left: 0;
-height: 100px;
-width:100px;
-}
         
        
         #display-area {
             position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
+            left: 0px;
+            right: 0px;
             height: 100px;
             background: linear-gradient(to right, #749B00, #CCD700);
-            border-bottom: 2px solid #5e35b1;
+            border-bottom: 0px solid #5e35b1;
             padding: 1px;
             display: flex;
             align-items: center;
@@ -43,7 +37,7 @@ width:100px;
         #title {
             position: absolute;
             left: 0;
-            width: 200px;
+            width: 150px;
             height: 100%;
 font-size: 22px;
             display: flex;
@@ -55,7 +49,7 @@ font-size: 22px;
         }
         
         #translation-display {
-            margin-left: 300px; /* 從中間開始 */
+            margin-left: 150px; /* 從中間開始 */
             font-size: 22px;
             font-weight: 600;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);

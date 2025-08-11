@@ -162,38 +162,57 @@ font-size: 22px;
             background-color: #00F; /* 名詞 - 淺黃色 */
             padding: 0 2px;
             border-radius: 3px;
+	    font-size: 14px;
         }
         
         .pos-adj {
-            background-color: #99CCFF; /* 形容詞 - 淺藍色 */
+            background-color: #33CCFF; /* 形容詞 - 淺藍色 */
             padding: 0 2px;
             border-radius: 3px;
+	    font-size: 14px;
         }
         
         .pos-verb {
             background-color: #F00; /* 動詞 - 淺紅色 */
             padding: 0 2px;
             border-radius: 3px;
+	    font-size: 14px;
         }
         
         .pos-adv {
-            background-color: #749B00; /* 副詞 - 淺綠色 */
+            background-color: #000; /* 副詞 - 淺綠色 */
             padding: 0 2px;
             border-radius: 3px;
+	    font-size: 14px;
         }
 
         .pos-prep {
             background-color: #772B1A; /* 介詞 - 淺綠色 */
             padding: 0 2px;
             border-radius: 3px;
+	    font-size: 14px;
         }
 
         .pos-pron {
             background-color: #7C00A5; /* 代詞 - 淺綠色 */
             padding: 0 2px;
             border-radius: 3px;
+	    font-size: 14px;
         }
 
+        .pos-conj {
+            background-color: #0066FF; /* 連詞  */
+            padding: 0 2px;
+            border-radius: 3px;
+	    font-size: 14px;
+        }
+
+        .pos-v {
+            background-color: #0066FF; /* 動詞  */
+            padding: 0 2px;
+            border-radius: 3px;
+	    font-size: 14px;
+        }
         
         #pronunciation-area {  /*下方處*/
             position: fixed;
@@ -263,7 +282,7 @@ font-size: 22px;
             }
             
             .paragraph {
-                font-size: 16px;
+                font-size: 24px;
             }
             
             #buttons-container {
@@ -275,5 +294,9 @@ font-size: 22px;
                 height: 40px;
                 font-size: 16px;
             }
+
+        }
+
+
         }
     </style>

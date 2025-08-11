@@ -111,18 +111,25 @@
         // 标记词性（添加颜色样式）
         function markPartOfSpeech(text) {
             // 名词 [名]
-            text = text.replace(/\[名\]/g, '<span class="pos-noun">[名]</span>');
+            text = text.replace(/\[名\]/g, '<span class="pos-noun">名</span>');
             // 形容词 [形]
-            text = text.replace(/\[形\]/g, '<span class="pos-adj">[形]</span>');
+            text = text.replace(/\[形\]/g, '<span class="pos-adj">形</span>');
             // 动词 [动]
-            text = text.replace(/\[動\]/g, '<span class="pos-verb">[動]</span>');
+            text = text.replace(/\[動\]/g, '<span class="pos-verb">動</span>');
             // 副词 [副]
-            text = text.replace(/\[副\]/g, '<span class="pos-adv">[副]</span>');
-// 介词 [介]
-            text = text.replace(/\[介\]/g, '<span class="pos-prep">[介]</span>');
-// 介词 [代]
-            text = text.replace(/\[代\]/g, '<span class="pos-pron">[代]</span>');
-                        
+            text = text.replace(/\[副\]/g, '<span class="pos-adv">副</span>');
+	    // 介词 [介]
+            text = text.replace(/\[介\]/g, '<span class="pos-prep">介</span>');
+   	    // 代詞 [代]
+            text = text.replace(/\[代\]/g, '<span class="pos-pron">代</span>');
+
+	    // 連詞 [連]
+            text = text.replace(/\[連\]/g, '<span class="pos-conj">連</span>');
+  	    // V [V]
+            text = text.replace(/\[vi\]/g, '<span class="pos-v">Vi</span>');
+            text = text.replace(/\[vt\]/g, '<span class="pos-v">Vi</span>');
+             
+         
             return text;
         }
         

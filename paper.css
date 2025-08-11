@@ -22,7 +22,7 @@
             top: 0;
             left: 0px;
             right: 0px;
-            height: 100px;
+            height: 60px;
             background: linear-gradient(to right, #749B00, #CCD700);
             border-bottom: 0px solid #5e35b1;
             padding: 1px;
@@ -72,8 +72,8 @@ font-size: 22px;
             backdrop-filter: blur(5px);
         }
         
-        #content {
-            margin-top: 30px;
+        #content {  /*英文文章段*/
+            margin-top: 85px;
             margin-bottom: 100px;
             padding: 0px;
             overflow-y: auto;
@@ -83,7 +83,7 @@ font-size: 22px;
         }
         
         .paragraph-container {/* 英文外框 */
-            margin-bottom: 20px;
+            margin-bottom: 3px;
             padding: 2px;
             background: #FFF;
             border-radius: 1px;
@@ -98,6 +98,7 @@ font-size: 22px;
         
         .paragraph {/* 英文段落內容  */
             line-height: 1.0;
+   	    font-weight: bold;
             font-size: 24px;
             margin-bottom: 10px;
             padding: 10px;
@@ -282,7 +283,7 @@ font-size: 22px;
             }
             
             .paragraph {
-                font-size: 24px;
+                font-size: 26px;
             }
             
             #buttons-container {

@@ -180,7 +180,7 @@
         // 更新翻译显示（支持HTML）
         function updateTranslationDisplay(original, translation) {
             document.getElementById('translation-display').innerHTML = 
-                `<strong>${original}:</strong> ${translation}`;
+                `<strong><span style="font-size:25px;color:#FF0">${original}：</strong>${translation}`;
         }
         
         // 初始化按钮事件

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>單字測驗</title>
+    <script>
+        const wordDatabase = [
+
+{ en: 'account', zh: '(n) 帳戶，描述'},
+{ en: 'account', zh: '(v) 認為，解釋'},
+{ en: 'accountable', zh: '(adj) 負有責任的'},
+{ en: 'accountant', zh: '(n) 會計師'},
+{ en: 'accounting', zh: '(n) 會計學'},
+{ en: 'accumulate', zh: '(v) 累積'},
+{ en: 'accumulation', zh: '(n) 累積'},
+{ en: 'accuracy', zh: '(n) 正確，正確性'},
+{ en: 'accurate', zh: '(adj) 準確的'},
+{ en: 'accurately', zh: '(adv) 準確地'},
+{ en: 'accusation', zh: '(n) 控訴'},
+{ en: 'accuse', zh: '(v) 指控'},
+{ en: 'accustom', zh: '(v) 使⋯習慣'},
+{ en: 'accustomed', zh: '(adj) 習慣的'},
+
+{ en: 'achieve', zh: '(v) 完成，達到'},
+{ en: 'achievement', zh: '(n) 完成，達到'},
+{ en: 'acknowledge', zh: '(v) 承認'},
+{ en: 'acknowledgment', zh: '(n) 承認，確認，致謝'},
+{ en: 'acquaintance', zh: '(n) 熟人'},
+{ en: 'acquaint', zh: '(v) 使⋯通曉'},
+{ en: 'acquire', zh: '(v) 取得，獲得'},
+{ en: 'acquisition', zh: '(n) 取得，獲得'},
+{ en: 'act', zh: '(n)(v) 行動，表演'},
+{ en: 'action', zh: '(n) 行動，作用'},
+{ en: 'active', zh: '(adj) 活躍的，積極的'},
+{ en: 'activity', zh: '(n) 活動，活動力'},
+{ en: 'actor', zh: '(n) 男演員'},
+{ en: 'actress', zh: '(n) 女演員'}    
+        ];
+
+
+   
+
+    </script>
+
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #fffaf0; }
+        .container { background-color: #F1FF78; padding: 15px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        
+        /* 標題區域 */
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #8b4513;
+            padding-bottom: 10px;
+        }
+        .header-container h1 { color: #8b4513; margin: 0; font-size: 24px; display: flex; align-items: center; }
+        .header-container h1 img { margin-right: 10px; width: 30px; height: 30px; }
+
+        .question { font-size: 24px; margin-bottom: 20px; padding: 15px; background-color: #fffacd; border-radius: 5px; border: 1px solid #e6d8ac; min-height: 40px; text-align: center; }
+        .options { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .option { padding: 15px; background-color: #FFF878; border: 1px solid #e6d8ac; color:#000; border-radius: 5px; cursor: pointer; font-size: 20px; transition: all 0.3s; }
+        .option:hover:not(:disabled) { background-color: #f5e6b3; transform: translateY(-2px); }
+        .option:disabled { cursor: default; }
+
+        .score { text-align: center; font-size: 18px; margin-bottom: 20px; color: #8b4513; font-weight: bold; }
+        
+        .controls { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 10px; }
+        .range-selector { font-size: 18px; background: #fffacd; padding: 10px; border-radius: 5px; border: 1px dashed #8b4513; }
+        select { padding: 8px; font-size: 16px; border-radius: 5px; border: 1px solid #8b4513; cursor: pointer; }
+        
+        button { padding: 10px 20px; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: opacity 0.3s; }
+        #startBtn { background-color: #FF5084; font-size: 20px; padding: 12px 30px; }
+        #nextBtn { background-color: #4CAF50; }
+        .reset-btn { background-color: #8b4513; font-weight: bold; }
+        button:hover { opacity: 0.8; }
+        button:disabled { background-color: #ccc; cursor: not-allowed; opacity: 1; }
+
+        .result { text-align: center; font-size: 18px; margin-top: 20px; min-height: 27px; padding: 10px; background-color: #fffacd; border-radius: 5px; font-weight: bold; }
+        .correct { background-color: #8fbc8f !important; color: white; }
+        .incorrect { background-color: #cd5c5c !important; color: white; }
+        
+        .progress-container { width: 100%; background-color: #f5e6b3; border-radius: 5px; margin-bottom: 15px; }
+        .progress-bar { height: 15px; background-color: #d2b48c; border-radius: 5px; width: 0%; transition: width 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <h1><a href="#" onclick="history.back()"><img src="home2.png" alt="home"></a>06-07中選英測驗</h1>
+            <button id="resetBtn" class="reset-btn">重新出題</button>
+        </div>
+        
+        <div class="controls" id="setupArea">
+            <div class="range-selector">
+                <label for="rangeSelect"><b>請選擇測驗範圍：</b></label>
+                <select id="rangeSelect">
+                    <option value="0-10">第 1 ~ 10 個單字</option>
+                    <option value="10-20">第 11 ~ 20 個單字</option>
+                    <option value="20-30">第 21 ~ 30 個單字</option>
+                    <option value="0-30">全部範圍 (1~30)</option>
+                </select>
+            </div>
+            <button id="startBtn">開始測驗</button>
+        </div>
+
+        <div id="quizArea" style="display:none;">
+            <div class="progress-container">
+                <div class="progress-bar" id="progress"></div>
+            </div>
+            <div class="score" id="score">分數: 0 / 0</div>
+            <div class="question" id="question"></div>
+            <div class="options" id="options"></div>
+            <div class="result" id="result"></div>
+            <div class="controls">
+                <button id="nextBtn" disabled>下一題</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+const startBtn = document.getElementById('startBtn');
+const nextBtn = document.getElementById('nextBtn');
+const resetBtn = document.getElementById('resetBtn');
+const questionEl = document.getElementById('question');
+const optionsEl = document.getElementById('options');
+const resultEl = document.getElementById('result');
+const scoreEl = document.getElementById('score');
+const progressBar = document.getElementById('progress');
+const rangeSelect = document.getElementById('rangeSelect');
+const setupArea = document.getElementById('setupArea');
+const quizArea = document.getElementById('quizArea');
+
+let currentQuestionIndex = 0;
+let score = 0;
+let questions = [];
+let quizActive = false;
+
+// 開始測驗
+startBtn.addEventListener('click', startQuiz);
+
+// 重新出題（回到最前面）
+resetBtn.addEventListener('click', resetToHome);
+
+nextBtn.addEventListener('click', () => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        showQuestion();
+    } else {
+        endQuiz();
+    }
+});
+
+function startQuiz() {
+    score = 0;
+    currentQuestionIndex = 0;
+    quizActive = true;
+
+    const [start, end] = rangeSelect.value.split('-').map(Number);
+    let selectedRange = wordDatabase.slice(start, end);
+    questions = [...selectedRange].sort(() => 0.5 - Math.random());
+
+    // 切換顯示區域
+    setupArea.style.display = 'none';
+    quizArea.style.display = 'block';
+    
+    nextBtn.textContent = '下一題';
+    nextBtn.disabled = true;
+    resultEl.textContent = '';
+    scoreEl.textContent = `分數: ${score} / ${questions.length}`;
+    progressBar.style.width = '0%';
+    
+    showQuestion();
+}
+
+function resetToHome() {
+    // 停止測驗狀態
+    quizActive = false;
+    // 回到初始畫面
+    setupArea.style.display = 'flex';
+    quizArea.style.display = 'none';
+    // 清空數據
+    resultEl.textContent = '';
+    optionsEl.innerHTML = '';
+}
+
+function showQuestion() {
+    if (!quizActive) return;
+    
+    const question = questions[currentQuestionIndex];
+    const options = getRandomOptions(question.zh);
+    
+    questionEl.textContent = `"${question.zh}" 的英文是什麼？`;
+    
+    optionsEl.innerHTML = '';
+    options.forEach(option => {
+        const button = document.createElement('button');
+        button.classList.add('option');
+        button.textContent = option.en;
+        button.addEventListener('click', () => selectAnswer(option, button));
+        optionsEl.appendChild(button);
+    });
+    
+    progressBar.style.width = `${(currentQuestionIndex / questions.length) * 100}%`;
+    nextBtn.disabled = true;
+    resultEl.textContent = '';
+}
+
+function getRandomOptions(correctZh) {
+    const correctAnswer = wordDatabase.find(item => item.zh === correctZh);
+    let otherWords = wordDatabase.filter(item => item.zh !== correctZh);
+    otherWords = [...otherWords].sort(() => 0.5 - Math.random()).slice(0, 5);
+    
+    const options = [
+        { en: correctAnswer.en, zh: correctZh, isCorrect: true },
+        ...otherWords.map(word => ({ en: word.en, zh: word.zh, isCorrect: false }))
+    ];
+    
+    return options.sort(() => 0.5 - Math.random());
+}
+
+function selectAnswer(selectedOption, selectedButton) {
+    if (!quizActive) return;
+    
+    const allButtons = optionsEl.querySelectorAll('.option');
+    allButtons.forEach(button => {
+        button.disabled = true;
+        const isCorrect = button.textContent === questions[currentQuestionIndex].en;
+        if (isCorrect) button.classList.add('correct');
+    });
+    
+    if (selectedOption.isCorrect) {
+        score++;
+        resultEl.textContent = `正確！`;
+        selectedButton.classList.add('correct');
+    } else {
+        resultEl.textContent = `錯誤！正確答案是: ${questions[currentQuestionIndex].en}`;
+        selectedButton.classList.add('incorrect');
+    }
+    
+    scoreEl.textContent = `分數: ${score} / ${questions.length}`;
+    
+    if (currentQuestionIndex === questions.length - 1) {
+        nextBtn.textContent = '查看結果';
+    }
+    nextBtn.disabled = false;
+}
+
+function endQuiz() {
+    quizActive = false;
+    questionEl.textContent = `測驗完成！你的最終分數是 ${score} / ${questions.length}`;
+    optionsEl.innerHTML = '';
+    resultEl.textContent = '您可以點擊「重新出題」再次挑戰！';
+    nextBtn.disabled = true;
+    progressBar.style.width = '100%';
+}
+</script>
+</body>
+</html>
